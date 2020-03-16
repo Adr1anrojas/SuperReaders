@@ -26,6 +26,7 @@ body {
 
 #sidebar-wrapper.collapsed .list-group {
     width: 6rem;
+    transition: width 0.4s;
 }
   
 #page-content-wrapper {
