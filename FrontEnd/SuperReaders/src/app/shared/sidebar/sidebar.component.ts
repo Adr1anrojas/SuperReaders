@@ -8,6 +8,7 @@ declare var $: any;
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  
   constructor(faConfig: FaConfig) {
     faConfig.fixedWidth = true;
   }

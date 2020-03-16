@@ -22,6 +22,7 @@ body {
 
 #sidebar-wrapper.open .list-group {
     width: 15rem;
+
 }
 
 #sidebar-wrapper.collapsed .list-group {
@@ -81,3 +82,7 @@ br{
 .menu-home{
     border-top: 1px solid rgba(0,0,0,.125)!important;
 }
+.text-overflow {
+    overflow:hidden;
+    white-space:nowrap;  
+} 

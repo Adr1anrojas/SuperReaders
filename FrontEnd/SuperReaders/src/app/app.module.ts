@@ -10,6 +10,10 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { LoginComponent } from './shared/login/login.component';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { StudentComponent } from './components/student/student.component';
+import { ContentComponent } from './components/content/content.component';
+import { TeacherComponent } from './components/teacher/teacher.component';
+import { ReportComponent } from './components/report/report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +21,11 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
     NavbarComponent,
     FooterComponent,
     SidebarComponent,
-    LoginComponent
+    LoginComponent,
+    StudentComponent,
+    ContentComponent,
+    TeacherComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

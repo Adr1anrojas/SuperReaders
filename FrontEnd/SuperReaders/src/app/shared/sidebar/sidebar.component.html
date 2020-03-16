@@ -3,22 +3,22 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper" [class.open]="collapsed" [class.collapsed]="!collapsed">
         <div class="sidebar-heading" (click)="isCollapsed()">
-            <div class="logo">
+            <div class="logo text-overflow">
                 <img class="icon-logo" src="../../../assets/icon-sidebarright.png" alt="">
-                {{collapsed?'Super Lectores':''}}
+                <span>{{collapsed?'SuperLectores':''}}</span>
             </div>
         </div>
-        <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light menu-home">
+        <div class="list-group list-group-flush text-overflow">
+            <a [routerLink]="['/home']" class="list-group-item list-group-item-action bg-light menu-home">
                 <fa-icon class="fa-2x" icon="home">a</fa-icon>{{collapsed?'Inicio':''}}
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">
+            <a [routerLink]="['/teacher']" class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="user"></fa-icon>{{collapsed?'Maestros':''}}
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">
+            <a [routerLink]="['/student']" class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Alumnos':''}}
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">
+            <a [routerLink]="['/report']" class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="chart-line"></fa-icon>{{collapsed?'Monitoreo':''}}
             </a>
             <br>
