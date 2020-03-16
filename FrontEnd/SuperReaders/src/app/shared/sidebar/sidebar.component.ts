@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FaIconLibrary, FaConfig } from '@fortawesome/angular-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 declare var $: any;
 @Component({
   selector: 'app-sidebar',
@@ -6,7 +8,9 @@ declare var $: any;
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  constructor() { }
+  constructor(faConfig: FaConfig) {
+    faConfig.fixedWidth = true;
+  }
   collapsed: Boolean = true;
   ngOnInit(): void {
   }

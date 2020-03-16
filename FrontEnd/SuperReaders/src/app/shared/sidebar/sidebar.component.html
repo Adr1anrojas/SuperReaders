@@ -4,17 +4,24 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">
             <div class="logo">
-                <img class="icon-logo" src="../../../assets/icon-sidebar.png" alt="">
+                <img class="icon-logo" src="../../../assets/icon-sidebarright.png" alt="">
                 Super Lectores
             </div>
         </div>
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light" (click)="isCollapsed()"><i
-                    class="fas fa-home"></i>Inicio</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light" (click)="isCollapsed()">Maestros</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light" (click)="isCollapsed()"><i
-                    class="fas fa-users"></i>Alumnos</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light" (click)="isCollapsed()">Monitoreo</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light menu-home">
+                <fa-icon class="fa-2x" icon="home">a</fa-icon>Inicio
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x" icon="user"></fa-icon>Maestros
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x" icon="users"></fa-icon>Alumnos
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x" icon="chart-line"></fa-icon>Monitoreo
+            </a>
+            <br>
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
