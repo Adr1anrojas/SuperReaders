@@ -1,25 +1,25 @@
 <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">
+    <div class="bg-light border-right" id="sidebar-wrapper" [class.open]="collapsed" [class.collapsed]="!collapsed">
+        <div class="sidebar-heading" (click)="isCollapsed()">
             <div class="logo">
                 <img class="icon-logo" src="../../../assets/icon-sidebarright.png" alt="">
-                Super Lectores
+                {{collapsed?'Super Lectores':''}}
             </div>
         </div>
         <div class="list-group list-group-flush">
             <a href="#" class="list-group-item list-group-item-action bg-light menu-home">
-                <fa-icon class="fa-2x" icon="home">a</fa-icon>Inicio
+                <fa-icon class="fa-2x" icon="home">a</fa-icon>{{collapsed?'Inicio':''}}
             </a>
             <a href="#" class="list-group-item list-group-item-action bg-light">
-                <fa-icon class="fa-2x" icon="user"></fa-icon>Maestros
+                <fa-icon class="fa-2x" icon="user"></fa-icon>{{collapsed?'Maestros':''}}
             </a>
             <a href="#" class="list-group-item list-group-item-action bg-light">
-                <fa-icon class="fa-2x" icon="users"></fa-icon>Alumnos
+                <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Alumnos':''}}
             </a>
             <a href="#" class="list-group-item list-group-item-action bg-light">
-                <fa-icon class="fa-2x" icon="chart-line"></fa-icon>Monitoreo
+                <fa-icon class="fa-2x" icon="chart-line"></fa-icon>{{collapsed?'Monitoreo':''}}
             </a>
             <br>
         </div>
@@ -30,7 +30,7 @@
     <div id="page-content-wrapper">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <button class="btn btn-primary" id="menu-toggle" (click)="isCollapsed()">Toggle Menu</button>
+            <!-- <button class="btn btn-primary" id="menu-toggle" (click)="isCollapsed()">Toggle Menu</button> -->
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

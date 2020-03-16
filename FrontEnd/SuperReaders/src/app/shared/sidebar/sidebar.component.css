@@ -11,8 +11,6 @@ body {
     transition: margin .25s ease-out;
 }
 
-
-  
 #sidebar-wrapper .sidebar-heading {
     padding: 0.875rem 1.25rem;
     font-size: 1.2rem;
@@ -20,6 +18,14 @@ body {
   
 #sidebar-wrapper .list-group {
     width: 15rem;
+}
+
+#sidebar-wrapper.open .list-group {
+    width: 15rem;
+}
+
+#sidebar-wrapper.collapsed .list-group {
+    width: 6rem;
 }
   
 #page-content-wrapper {
@@ -38,27 +44,39 @@ body {
       min-width: 0;
       width: 100%;
     }
-    #wrapper.toggled #sidebar-wrapper {
-      margin-left: -15rem;
-    }
+
 }
+
+#sidebar-wrapper .sidebar-heading{
+    padding: 0.15em 1.25rem
+}
+
+.sidebar-heading:hover{
+    background: #dae0e5!important;
+    cursor: pointer;
+}
+
 .icon-logo{
     height: 50px;
     margin-left: 5px;
     margin-right: 15px;
 }
+
 ::ng-deep fa-icon{
     color: black;
     margin-right: 20px;
 }
+
 .list-group-item{
     padding-top: 0px;
     padding-bottom: 5px;
 }
+
 br{
     margin: 0px!important;
     padding: 0px!important;
 }
+
 .menu-home{
     border-top: 1px solid rgba(0,0,0,.125)!important;
 }
