@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
-    <Folder Include="Interfaces\IDAO\" />
-    <Folder Include="Interfaces\IDomainObject\" />
+    <ProjectReference Include="..\SuperReaders.Models\SuperReaders.Models.csproj" />
   </ItemGroup>
 
 </Project>

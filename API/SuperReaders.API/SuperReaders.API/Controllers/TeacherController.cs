@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SuperReaders.Contracts.Constants;
+using SuperReaders.Contracts.Interfaces.IDomainObject;
+using SuperReaders.Models;
+using SuperReaders.Models.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,24 +15,53 @@ namespace SuperReaders.API.Controllers
     [Route("api/[controller]")]
     public class TeacherController : Controller
     {
+        private ITeacherDomainObject _iTeacherDomainObject;
+        public TeacherController(IServiceProvider iServiceProvider, ITeacherDomainObject iTeacherDomainObject)
+        {
+            this._iTeacherDomainObject = iTeacherDomainObject;
+
+        }
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<List<User>> Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return this._iTeacherDomainObject.GetAllTeachers();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<User> GetById(int id)
         {
-            return "value";
+            try
+            {
+                return this._iTeacherDomainObject.GetTeacherById(id);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        //[Route(ControllerConstans.createTeacher)]
+        public IActionResult Post([FromBody] User teacher)
         {
+            try
+            {
+                return Ok(this._iTeacherDomainObject.CreateTeacher(teacher));
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         // PUT api/<controller>/5

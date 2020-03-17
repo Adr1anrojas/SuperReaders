@@ -5,6 +5,7 @@
 /* ---------------------------------------------------- */
 
 /* Drop Foreign Key Constraints */
+use master
 CREATE DATABASE ReadersDB
 USE ReadersDB
 IF EXISTS (SELECT 1 FROM dbo.sysobjects WHERE id = object_id(N'[FK_Admin_User]') AND OBJECTPROPERTY(id, N'IsForeignKey') = 1) 
@@ -391,6 +392,10 @@ GO
 /* Create Foreign Key Constraints */
 
 ALTER TABLE [Admin] ADD CONSTRAINT [FK_Admin_User]
+	FOREIGN KEY ([IdUser]) REFERENCES [User] ([Id]) ON DELETE No Action ON UPDATE No Action
+GO
+
+ALTER TABLE [Teacher] ADD CONSTRAINT [FK_Teacher_User]
 	FOREIGN KEY ([IdUser]) REFERENCES [User] ([Id]) ON DELETE No Action ON UPDATE No Action
 GO
 

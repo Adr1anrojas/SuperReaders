@@ -6,5 +6,16 @@
     <Win32Resource />
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SuperReaders.Contracts\SuperReaders.Contracts.csproj" />
+    <ProjectReference Include="..\SuperReaders.Models\SuperReaders.Models.csproj" />
+    <ProjectReference Include="..\SuperReaders.Services\SuperReaders.Services.csproj" />
+  </ItemGroup>
+
 
 </Project>
