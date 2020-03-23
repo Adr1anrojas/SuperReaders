@@ -13,13 +13,14 @@ namespace SuperReaders.Contracts.Helper
     {
         public static void AddSuperReaderServices(this IServiceCollection services)
         {
+
             #region Teacher
                 services.AddScoped<ITeacherDomainObject, TeacherDomainObject>();
                 services.AddScoped<ITeacherDAO, TeacherDAO>();
             #endregion
 
             #region User
-                services.AddScoped<IUserDAO, UserDAO>();
+                
             #endregion
 
         }

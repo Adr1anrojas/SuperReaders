@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "SuperReaders"
+  "defaultProject": "SuperReaders",
+  "cli": {
+    "analytics": false
+  }
 }
