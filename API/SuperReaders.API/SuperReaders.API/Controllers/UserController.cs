@@ -16,6 +16,11 @@ namespace SuperReaders.API.Controllers
         }
 
         // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Users of the role Specified
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Users of the role Specified</returns>
         [HttpGet]
         public ActionResult<User> Get()
         {
@@ -29,7 +34,12 @@ namespace SuperReaders.API.Controllers
             }
         }
 
-        // GET: api/User
+        // GET: api/User/id
+        /// <summary>
+        /// This EndPoint return an User by ID of the role Specified
+        /// </summary>
+        /// <param name="">
+        /// <returns>An User of the role Specified</returns>
         [HttpGet("{id}")]
         public ActionResult<User> GetUser(int id)
         {
@@ -45,6 +55,11 @@ namespace SuperReaders.API.Controllers
         }
 
         // POST: api/User
+        /// <summary>
+        /// This EndPoint create an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to create</param>
+        /// <returns>status code 200</returns>
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {
@@ -60,6 +75,11 @@ namespace SuperReaders.API.Controllers
         }
 
         // PUT: api/User
+        /// <summary>
+        /// This EndPoint update an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to update</param>
+        /// <returns>status code 200</returns>
         [HttpPut]
         public IActionResult UpdateUser([FromBody] User user)
         {
@@ -75,6 +95,11 @@ namespace SuperReaders.API.Controllers
         }
 
         // DELETE: api/User
+        /// <summary>
+        /// This EndPoint update the status of an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to change status</param>
+        /// <returns>status code 200</returns>
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {

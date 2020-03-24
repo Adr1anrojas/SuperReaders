@@ -17,6 +17,11 @@ namespace SuperReaders.Services.DAO
             connection = new DbAccess();
         }
 
+        /// <summary>
+        /// This EndPoint return all Users of the role Specified
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Users of the role Specified</returns>
         public IEnumerable<User> GetUsers()
         {
             try
@@ -32,6 +37,12 @@ namespace SuperReaders.Services.DAO
             }
         }
 
+        // GET: api/User/id
+        /// <summary>
+        /// This EndPoint return an User by ID of the role Specified
+        /// </summary>
+        /// <param name="">
+        /// <returns>An User of the role Specified</returns>
         public IEnumerable<User> GetUser(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -49,6 +60,11 @@ namespace SuperReaders.Services.DAO
             }
         }
 
+        /// <summary>
+        /// This EndPoint create an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to create</param>
+        /// <returns>status code 200</returns>
         public void AddUser(User user)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -73,6 +89,11 @@ namespace SuperReaders.Services.DAO
             }
         }
 
+        // <summary>
+        /// This EndPoint update an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to update</param>
+        /// <returns>status code 200</returns>
         public void UpdateUser(User user)
         {
             DynamicParameters parameters = new DynamicParameters();

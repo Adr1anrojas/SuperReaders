@@ -13,6 +13,11 @@ namespace SuperReaders.Services.DomainObject
             _iuserDAO = iuserDAO;
         }
 
+        /// <summary>
+        /// This EndPoint return all Users of the role Specified
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Users of the role Specified</returns>
         public IEnumerable<User> GetUsers()
         {
             try
@@ -24,6 +29,12 @@ namespace SuperReaders.Services.DomainObject
                 throw e;
             }
         }
+
+        /// <summary>
+        /// This EndPoint return an User by ID of the role Specified
+        /// </summary>
+        /// <param name="">
+        /// <returns>An User of the role Specified</returns>
         public IEnumerable<User> GetUser(int id)
         {
             try
@@ -36,6 +47,11 @@ namespace SuperReaders.Services.DomainObject
             }
         }
 
+        /// <summary>
+        /// This EndPoint create an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to create</param>
+        /// <returns>status code 200</returns>
         public void AddUser(User user)
         {
             try
@@ -48,6 +64,11 @@ namespace SuperReaders.Services.DomainObject
             }
         }
 
+        // <summary>
+        /// This EndPoint update an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to update</param>
+        /// <returns>status code 200</returns>
         public void UpdateUser(User user)
         {
             try
@@ -60,6 +81,12 @@ namespace SuperReaders.Services.DomainObject
             }
         }
 
+        // DELETE: api/User
+        /// <summary>
+        /// This EndPoint update the status of an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to change status</param>
+        /// <returns>status code 200</returns>
         public void DeleteUser(int id)
         {
             try

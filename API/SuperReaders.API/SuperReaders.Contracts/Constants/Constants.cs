@@ -2,6 +2,11 @@
 {
     public static class Constants
     {
+        #region ConfigAPI
+            public const string CorsPolicy = "CorsPolicy";
+            public const string OriginAllow = "http://localhost:4200";
+        #endregion
+
         #region User 
             // Parameter constants
             public const string P_User_Id = "@pId";
@@ -20,6 +25,5 @@
             public const string SP_User_Update = "User_Update";
             public const string SP_User_Delete = "User_Delete";
         #endregion
-
     }
 }
