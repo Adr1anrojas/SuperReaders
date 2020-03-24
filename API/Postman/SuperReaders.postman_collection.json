@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "47d78b92-f35c-4937-852d-e7a4d6459b34",
+		"name": "SuperReaders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GetUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:55211/api/User",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55211",
+							"path": [
+								"api",
+								"User"
+							]
+						},
+						"description": "asd"
+					},
+					"response": []
+				},
+				{
+					"name": "AddUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"firstName\": \"Alondra22\",\r\n    \"lastName\": \"Rojas22\",\r\n    \"userName\": \"Alondra.rojas22\",\r\n    \"role\": \"Alumno\",\r\n    \"password\": \"1234567\",\r\n    \"birthDate\": \"2021-03-23T00:00:00\",\r\n    \"idSchool\": 3,\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:55211/api/User",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55211",
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n \t\"id\": 16,\r\n    \"firstName\": \"Alondra23\",\r\n    \"lastName\": \"Rojas23\",\r\n    \"userName\": \"Alondra.rojas23\",\r\n    \"role\": \"Alumno\",\r\n    \"birthDate\": \"2021-03-23T00:00:00\",\r\n    \"idSchool\": 3,\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:55211/api/User",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55211",
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:55211/api/User/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55211",
+							"path": [
+								"api",
+								"User",
+								"16"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:55211/api/User/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55211",
+							"path": [
+								"api",
+								"User",
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,12 +1,15 @@
-﻿using SuperReaders.Models.Models;
-using System;
+﻿using SuperReaders.Models.Entities;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace SuperReaders.Contracts.Interfaces.IDAO
 {
     public interface IUserDAO
     {
-        User CreateUser(User user);
+        IEnumerable<User> GetUsers();
+        IEnumerable<User> GetUser(int id);
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void DeleteUser(int id);
     }
 }
