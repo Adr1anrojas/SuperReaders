@@ -12,7 +12,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
-        IEnumerable<User> GetUsers();
+        IEnumerable<User> GetUsers(string role);
 
         /// <summary>
         /// This Method return an User by ID of the role Specified and apply the business rules

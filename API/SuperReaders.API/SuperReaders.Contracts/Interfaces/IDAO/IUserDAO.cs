@@ -9,9 +9,9 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <summary>
         /// This Method return all Users of the role Specified and Access the data
         /// </summary>
-        /// <param name="">
+        /// <param name="role">
         /// <returns>Array of Users of the role Specified</returns>
-        IEnumerable<User> GetUsers();
+        IEnumerable<User> GetUsers(string role);
 
         /// <summary>
         /// This Method return an User by ID of the role Specified and Access the data

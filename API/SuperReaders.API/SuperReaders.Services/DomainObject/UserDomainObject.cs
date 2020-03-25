@@ -26,11 +26,11 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<User> GetUsers(string role)
         {
             try
             {
-                return _iUserDAO.GetUsers();
+                return _iUserDAO.GetUsers(role);
             }
             catch (Exception e)
             {
