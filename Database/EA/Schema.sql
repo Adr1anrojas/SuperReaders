@@ -139,7 +139,6 @@ GO
 CREATE TABLE [Admin]
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
-	[Email] nvarchar(50) NOT NULL,
 	[IdUser] int NOT NULL
 )
 GO
@@ -237,7 +236,6 @@ GO
 CREATE TABLE [Teacher]
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
-	[Email] nvarchar(50) NOT NULL,
 	[IdUser] int NOT NULL
 )
 GO
@@ -255,6 +253,7 @@ CREATE TABLE [User]
 	[FirstName] nvarchar(50) NOT NULL,
 	[LastName] nvarchar(50) NOT NULL,
 	[UserName] nvarchar(50) NOT NULL,
+	[Email] nvarchar(50) NULL,
 	[Password] nvarchar(50) NOT NULL,
 	[Status] bit NOT NULL,
 	[Role] nvarchar(50) NOT NULL,

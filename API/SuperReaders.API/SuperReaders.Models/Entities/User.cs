@@ -7,14 +7,17 @@ namespace SuperReaders.Models.Entities
     public class User
     {
         [Key]
-        [JsonProperty("idUser")]
-        public int? Id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
         [JsonProperty("lastName")]
         public string LastName { get; set; }
         [JsonProperty("userName")]
+
         public string UserName { get; set; }
+        [JsonProperty("email")]
+        public string? Email { get; set; }
         [JsonProperty("role")]
         public string Role { get; set; }
         [JsonProperty("password")]
@@ -25,5 +28,6 @@ namespace SuperReaders.Models.Entities
         public int IdSchool { get; set; }
         [JsonProperty("status")]
         public bool Status { get; set; }
+
     }
 }

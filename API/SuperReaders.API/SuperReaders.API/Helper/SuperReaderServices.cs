@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDAO;
+using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Services.DAO;
 using SuperReaders.Services.DomainObject;
 
@@ -18,6 +19,9 @@ namespace SuperReaders.Models.Helper
             #region User
                 services.AddScoped<IUserDomainObject, UserDomainObject>();
                 services.AddScoped<IUserDAO, UserDAO>();
+                services.AddScoped<IAdminDAO, AdminDAO>();
+                services.AddScoped<ITeacherDAO, TeacherDAO>();
+                services.AddScoped<IStudentDAO, StudentDAO>();
             #endregion
 
         }

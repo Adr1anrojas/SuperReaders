@@ -1,16 +1,24 @@
 ﻿using SuperReaders.Contracts.Interfaces.IDAO;
+using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SuperReaders.Services.DomainObject
 {
     public class UserDomainObject : IUserDomainObject
     {
-        private IUserDAO _iuserDAO;
-        public UserDomainObject(IUserDAO iuserDAO)
+        private IUserDAO _iUserDAO;
+        private IAdminDAO _iAdminDAO;
+        private ITeacherDAO _iTeacherDAO;
+        private IStudentDAO _iStudentDAO;
+        public UserDomainObject(IUserDAO iuserDAO, IAdminDAO iadminDAO, ITeacherDAO iTeacherDAO, IStudentDAO iStudentDAO)
         {
-            _iuserDAO = iuserDAO;
+            _iUserDAO = iuserDAO;
+            _iAdminDAO = iadminDAO;
+            _iTeacherDAO = iTeacherDAO;
+            _iStudentDAO = iStudentDAO;
         }
 
         /// <summary>
@@ -22,7 +30,7 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                return _iuserDAO.GetUsers();
+                return _iUserDAO.GetUsers();
             }
             catch (Exception e)
             {
@@ -39,7 +47,7 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                return _iuserDAO.GetUser(id);
+                return _iUserDAO.GetUser(id);
             }
             catch (Exception e)
             {
@@ -56,7 +64,32 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                 _iuserDAO.AddUser(user);
+                var result = _iUserDAO.GetUserByUserName(user.UserName);
+                var exitsUser = (from r in result
+                                 select new User
+                                 {
+                                     Id = r.Id,
+                                     FirstName = r.FirstName,   
+                                     LastName = r.LastName,
+                                     UserName = r.UserName,
+                                     Email = r.Email,
+                                     Role = r.Role,
+                                     BirthDate = r.BirthDate,
+                                     IdSchool = r.IdSchool,
+                                     Status = r.Status
+                                 }).ToList() as List<User>;
+                if (exitsUser.Count == 0)
+                {
+                   int id = _iUserDAO.AddUser(user);
+                    if (user.Role.Equals("Admin"))
+                        _iAdminDAO.AddAdmin(id);
+                    else if (user.Role.Equals("Maestro"))
+                        _iTeacherDAO.AddTeacher(id);
+                    else if (user.Role.Equals("Alumno"))
+                        _iStudentDAO.AddStudent(id);
+                }
+                else
+                    throw new ArgumentException("This user already exists");
             }
             catch (Exception e)
             {
@@ -73,7 +106,7 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                _iuserDAO.UpdateUser(user);
+                _iUserDAO.UpdateUser(user);
             }
             catch (Exception e)
             {
@@ -91,7 +124,7 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                _iuserDAO.DeleteUser(id);
+                _iUserDAO.DeleteUser(id);
             }
             catch (Exception e)
             {

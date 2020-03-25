@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
 
@@ -70,6 +71,8 @@ namespace SuperReaders.API.Controllers
             }
             catch (Exception e)
             {
+                if (e.Message.Equals("This user already exists"))
+                    return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }
         }

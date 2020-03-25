@@ -1,7 +1,9 @@
 ﻿using SuperReaders.Models.Entities;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace SuperReaders.Services.DomainObject
+namespace SuperReaders.Contracts.Interfaces.IDomainObject
 {
     public interface IUserDomainObject
     {
