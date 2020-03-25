@@ -64,21 +64,8 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                var result = _iUserDAO.GetUserByUserName(user.UserName);
-                var exitsUser = (from r in result
-                                 select new User
-                                 {
-                                     Id = r.Id,
-                                     FirstName = r.FirstName,   
-                                     LastName = r.LastName,
-                                     UserName = r.UserName,
-                                     Email = r.Email,
-                                     Role = r.Role,
-                                     BirthDate = r.BirthDate,
-                                     IdSchool = r.IdSchool,
-                                     Status = r.Status
-                                 }).ToList() as List<User>;
-                if (exitsUser.Count == 0)
+                int result = _iUserDAO.GetUserByUserName(user.UserName);
+                if (result == 0)
                 {
                    int id = _iUserDAO.AddUser(user);
                     if (user.Role.Equals("Admin"))

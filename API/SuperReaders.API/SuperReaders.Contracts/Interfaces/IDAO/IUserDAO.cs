@@ -32,7 +32,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="userName">user to create</param>
         /// <returns></returns>
-        IEnumerable<User> GetUserByUserName(string userName);
+        int GetUserByUserName(string userName);
 
         /// <summary>
         /// This Method update an User of the role Specified and Access the data

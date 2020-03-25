@@ -67,16 +67,21 @@ namespace SuperReaders.Services.DAO
         /// </summary>
         /// <param name="">
         /// <returns>An User of the role Specified</returns>
-        public IEnumerable<User> GetUserByUserName(string userName)
+        public int GetUserByUserName(string userName)
         {
-            DynamicParameters parameters = new DynamicParameters();
             try
             {
-                parameters.Add(Constants.P_User_UserName, userName);
+                int id = 0;
                 using (IDbConnection db = connection.Connection)
                 {
-                    var result = db.Query<User>(Constants.SP_User_GetByUserName, parameters, commandType: CommandType.StoredProcedure);
-                    return result;
+                   
+                    string sql = @" SELECT [Id] FROM[User] WHERE [UserName] = @UserName COLLATE SQL_Latin1_General_CP1_CI_AS";
+                    id = db.Query<int>(sql,
+                    new
+                    {
+                        UserName = userName
+                    }).Count();
+                    return id;
                 }
             }
             catch (Exception e)
