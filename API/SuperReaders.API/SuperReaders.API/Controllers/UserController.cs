@@ -22,12 +22,12 @@ namespace SuperReaders.API.Controllers
         /// </summary>
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
-        [HttpGet]
-        public ActionResult<User> Get()
+        [HttpGet("all/{role}")]
+        public ActionResult<User> Get(string role)
         {
             try
             {
-                return Ok(_iUserDomainObject.GetUsers());
+                return Ok(_iUserDomainObject.GetUsers(role));
             }
             catch (Exception e)
             {
@@ -93,6 +93,8 @@ namespace SuperReaders.API.Controllers
             }
             catch (Exception e)
             {
+                if (e.Message.Equals("This user already exists"))
+                    return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }
         }

@@ -26,11 +26,11 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<User> GetUsers(string role)
         {
             try
             {
-                return _iUserDAO.GetUsers();
+                return _iUserDAO.GetUsers(role);
             }
             catch (Exception e)
             {
@@ -64,21 +64,8 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                var result = _iUserDAO.GetUserByUserName(user.UserName);
-                var exitsUser = (from r in result
-                                 select new User
-                                 {
-                                     Id = r.Id,
-                                     FirstName = r.FirstName,   
-                                     LastName = r.LastName,
-                                     UserName = r.UserName,
-                                     Email = r.Email,
-                                     Role = r.Role,
-                                     BirthDate = r.BirthDate,
-                                     IdSchool = r.IdSchool,
-                                     Status = r.Status
-                                 }).ToList() as List<User>;
-                if (exitsUser.Count == 0)
+                int result = _iUserDAO.GetUserByUserName(user.UserName);
+                if (result == 0)
                 {
                    int id = _iUserDAO.AddUser(user);
                     if (user.Role.Equals("Admin"))
@@ -106,7 +93,11 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                _iUserDAO.UpdateUser(user);
+                int result = _iUserDAO.GetUserByUserName(user.UserName);
+                if (result == 0)
+                    _iUserDAO.UpdateUser(user);
+                else
+                    throw new ArgumentException("This user already exists");
             }
             catch (Exception e)
             {

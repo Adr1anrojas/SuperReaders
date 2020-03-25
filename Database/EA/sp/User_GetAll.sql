@@ -1,4 +1,5 @@
 CREATE PROC User_GetAll
+ @pRole as NVARCHAR(50)
 AS
 	BEGIN
 		SELECT 
@@ -11,5 +12,5 @@ AS
 			[BirthDate], 
 			[IdSchool] 
 		FROM [User]
-		WHERE [Status] = 1
+		WHERE [Status] = 1 AND [Role] = @pRole
 	END
