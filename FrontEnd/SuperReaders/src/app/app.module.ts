@@ -14,6 +14,8 @@ import { StudentComponent } from './components/student/student.component';
 import { ContentComponent } from './components/content/content.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { ReportComponent } from './components/report/report.component';
+import { AdminComponent } from "./components/admin/admin.component";
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,13 +27,15 @@ import { ReportComponent } from './components/report/report.component';
     StudentComponent,
     ContentComponent,
     TeacherComponent,
-    ReportComponent
+    ReportComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
