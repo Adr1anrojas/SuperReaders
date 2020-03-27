@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { AdminService } from '../../services/admin.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -14,6 +15,7 @@ export class AdminComponent implements OnInit {
   admin: User;
   show: boolean;
   columns: string[] = ["Nombres", "Apellidos", "Usuario", "Status", "Accion"];
+  selectedMoment = new Date();
   constructor(/*private toastr: ToastrService, */private adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -25,6 +27,7 @@ export class AdminComponent implements OnInit {
   saveAdmin() {
     if (this.admin.id === 0) {
       console.log("crear");
+      console.log(this.admin);
       this.createadmin(this.admin);
     } else {
       this.updateadmin(this.admin);
@@ -32,6 +35,7 @@ export class AdminComponent implements OnInit {
   }
 
   createadmin(admin: User) {
+    debugger;
     this.adminService.create(this.admin).subscribe(res => {
       // this.toastr.success('Hecho', 'Se creó un Administrador.');
       this.getAdmins();
@@ -39,6 +43,9 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  log() {
+    console.log(this.selectedMoment);
+  }
   updateadmin(admin: User) {
     this.adminService.update(this.admin).subscribe(res => {
       // this.toastr.success('Hecho', 'Se actualizo un Administrador.');
@@ -68,10 +75,10 @@ export class AdminComponent implements OnInit {
       lastName: "",
       userName: "",
       email: "",
-      role: "",
+      role: "Admin",
       password: "",
       birthDate: new Date(),
-      idSchool: 0,
+      idSchool: 1,
       status: true
     };
   }
