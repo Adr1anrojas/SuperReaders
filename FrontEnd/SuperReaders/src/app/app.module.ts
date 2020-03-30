@@ -15,7 +15,7 @@ import { ContentComponent } from './components/content/content.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { ReportComponent } from './components/report/report.component';
 import { AdminComponent } from "./components/admin/admin.component";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
@@ -35,12 +35,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

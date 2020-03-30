@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { AdminService } from '../../services/admin.service';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -16,9 +16,22 @@ export class AdminComponent implements OnInit {
   show: boolean;
   columns: string[] = ["Nombres", "Apellidos", "Usuario", "Status", "Accion"];
   selectedMoment = new Date();
-  constructor(/*private toastr: ToastrService, */private adminService: AdminService) { }
+  firstName: FormControl;
+  lastName: FormControl;
+  userName: FormControl;
+  email: FormControl;
+  password: FormControl;
+  birthDate: FormControl;
+  constructor(/*private toastr: ToastrService, */private adminService: AdminService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.firstName = new FormControl({ value: '' }, Validators.required);
+    this.lastName = new FormControl({ value: '' }, Validators.required);
+    this.userName = new FormControl({ value: '' }, Validators.required);
+    this.email = new FormControl({ value: '' }, Validators.required);
+    this.password = new FormControl({ value: '' }, Validators.required);
+    this.birthDate = new FormControl({ value: '' }, Validators.required);
+
     this.initAdmin();
     this.getAdmins();
     this.show = false;
@@ -84,7 +97,7 @@ export class AdminComponent implements OnInit {
   }
 
   // click event function toggle
-  password() {
+  showPassword() {
     this.show = !this.show;
   }
 
