@@ -103,14 +103,15 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     string sql = @"INSERT INTO [User]
-		            ([FirstName], [LastName], [UserName], [Password], [Status], [Role], [BirthDate], [IdSchool])
-		            VALUES (@FirstName, @LastName, @UserName, @Password, @Status, @Role, @BirthDate, @IdSchool);
+		            ([FirstName], [LastName], [UserName], [Email], [Password], [Status], [Role], [BirthDate], [IdSchool])
+		            VALUES (@FirstName, @LastName, @UserName, @pEmail, @Password, @Status, @Role, @BirthDate, @IdSchool);
 		            SELECT CAST(SCOPE_IDENTITY() as int)";
                     var id = db.Query<int>(sql, 
                         new { 
                             FirstName = user.FirstName,
                             LastName = user.LastName,
                             UserName = user.UserName,
+                            Email = user.Email,
                             Password = user.Password,
                             Status = user.Status,
                             Role = user.Role,
