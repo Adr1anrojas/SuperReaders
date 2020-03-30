@@ -23,3 +23,15 @@
     position: absolute;
     z-index: 9999999 !important;
 }
+#toast-container > div {
+    opacity:1;
+    width: 50%;
+    height: 50%;
+}
+@media (max-width: 768px) {
+    #toast-container > div {
+        opacity:1;
+        width: 90%;
+        height: 50%;
+    }
+}

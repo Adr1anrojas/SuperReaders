@@ -18,6 +18,7 @@ import { AdminComponent } from "./components/admin/admin.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

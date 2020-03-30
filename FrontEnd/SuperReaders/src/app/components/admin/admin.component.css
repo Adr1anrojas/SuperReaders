@@ -25,3 +25,10 @@
 .btn.focus, .btn:focus {
     box-shadow: 0 0 0 0 rgb(255, 255, 255, );
 }
+.eye{
+    width: 67px;
+    padding: 5px 5px 5px 18px;
+}
+.icon-eye{
+
+}
