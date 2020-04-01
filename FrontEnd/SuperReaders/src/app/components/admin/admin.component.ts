@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class AdminComponent implements OnInit {
   admins: User[] = [];
+  adminsCopy: User[] = [];
   admin: User;
   show: boolean;
   columns: string[] = ["Nombres", "Apellidos", "Usuario", "Status", "Accion"];
@@ -57,8 +58,9 @@ export class AdminComponent implements OnInit {
   }
 
   updateadmin(admin: User) {
+    var adminOld = this.adminsCopy.find(e => e.id === admin.id);
     debugger;
-    if (this.admin.firstName !== admin.firstName || this.admin.lastName !== admin.lastName || this.admin.userName !== admin.userName || this.admin.password !== admin.password) {
+    if (this.admin.firstName !== adminOld.firstName || this.admin.lastName !== adminOld.lastName || this.admin.userName !== adminOld.userName || this.admin.password !== adminOld.password) {
       this.adminService.update(this.admin).subscribe(res => {
         this.toastr.success('Hecho', 'Se actualizo un Administrador.');
         this.getAdmins();
@@ -73,6 +75,7 @@ export class AdminComponent implements OnInit {
 
   getAdmins() {
     this.adminService.getAll().subscribe((res: User[]) => {
+      this.adminsCopy = JSON.parse(JSON.stringify(res));
       this.admins = res;
       console.log(this.admins);
     });
