@@ -123,7 +123,7 @@ export class AdminComponent implements OnInit {
 
   delete() {
     console.log(this.admin);
-    this.adminService.delete(this.admin).subscribe(res => {
+    this.adminService.delete(this.admin.id).subscribe(res => {
       // this.toastr.success('Hecho', 'Se elimino un Administrador.');
       this.initAdmin();
       this.getAdmins();
