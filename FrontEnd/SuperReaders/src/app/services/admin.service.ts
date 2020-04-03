@@ -22,8 +22,8 @@ export class AdminService {
     return this.http.get(this.url + 'all/Admin');
   }
 
-  delete(user: User) {
-    return this.http.post(this.url, user);
+  delete(idUser: number) {
+    return this.http.delete(this.url+idUser);
   }
 
 }

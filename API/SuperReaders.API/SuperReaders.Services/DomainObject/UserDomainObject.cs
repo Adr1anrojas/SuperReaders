@@ -93,11 +93,7 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                int result = _iUserDAO.GetUserByUserName(user.UserName);
-                if (result == 0)
-                    _iUserDAO.UpdateUser(user);
-                else
-                    throw new ArgumentException("This user already exists");
+                _iUserDAO.UpdateUser(user);
             }
             catch (Exception e)
             {

@@ -104,7 +104,7 @@ namespace SuperReaders.Services.DAO
                 {
                     string sql = @"INSERT INTO [User]
 		            ([FirstName], [LastName], [UserName], [Email], [Password], [Status], [Role], [BirthDate], [IdSchool])
-		            VALUES (@FirstName, @LastName, @UserName, @pEmail, @Password, @Status, @Role, @BirthDate, @IdSchool);
+		            VALUES (@FirstName, @LastName, @UserName, @Email, @Password, @Status, @Role, @BirthDate, @IdSchool);
 		            SELECT CAST(SCOPE_IDENTITY() as int)";
                     var id = db.Query<int>(sql, 
                         new { 
