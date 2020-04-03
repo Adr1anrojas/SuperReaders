@@ -7,6 +7,7 @@ AS
 			[FirstName], 
 			[LastName], 
 			[UserName], 
+			[Email],
 			[Status], 
 			[Role], 
 			[BirthDate], 
