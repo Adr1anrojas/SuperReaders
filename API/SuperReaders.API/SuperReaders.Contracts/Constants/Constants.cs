@@ -53,10 +53,12 @@
         #region classRoom
             // Parameter constants
             public const string P_ClassRoom_Id = "@pId";
-            public const string P_Name = "@pName";
+            public const string P_ClassRoom_Name = "@pName";
+            public const string P_ClassRoom_Status = "@pStatus";
             public const string P_ClassRoom_IdTeacher = "@pIdTeacher";
             public const string SP_ClassRoom_GetAll = "ClassRoom_GetAll";
             public const string SP_ClassRoom_GetById = "ClassRoom_GetById";
+            public const string SP_ClassRoom_GetByTeacherId = "ClassRoom_GetByTeacherId";
             public const string SP_ClassRoom_GetByName = "ClassRoom_GetByName";
             public const string SP_ClassRoom_Create = "ClassRoom_Create";
             public const string SP_ClassRoom_Update = "ClassRoom_Update";

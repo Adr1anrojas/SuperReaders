@@ -12,5 +12,7 @@ namespace SuperReaders.Models.Entities
         public string Name { get; set; }
         [JsonProperty("idTeacher")]
         public int IdTeacher { get; set; }
+        [JsonProperty("status")]
+        public bool Status { get; set; }
     }
 }

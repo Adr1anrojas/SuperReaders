@@ -47,6 +47,17 @@ namespace SuperReaders.Services.DomainObject
                 throw e;
             }
         }
+        public IEnumerable<ClassRoom> GetClassRoomByIdTeacher(int idTeacher)
+        {
+            try
+            {
+                return _iClassRoomDAO.GetClassRoomByIdTeacher(idTeacher);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
          /// <summary>
         /// This EndPoint create an ClassRoom
         /// </summary>
@@ -105,5 +116,6 @@ namespace SuperReaders.Services.DomainObject
                 throw e;
             }
         }
+
     }
 }

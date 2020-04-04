@@ -12,7 +12,12 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// <param name="">
         /// <returns>Array of ClassRooms </returns>
         IEnumerable<ClassRoom> GetClassRooms();
-
+            /// <summary>
+        /// This Method return all Class Room by Teacher of Specied and apply the business rules
+        /// </summary>
+        /// <param name="idTeacher">
+        /// <returns>Array of ClassRooms </returns>
+        IEnumerable<ClassRoom> GetClassRoomByIdTeacher(int idTeacher);
         /// <summary>
         /// This Method return an Class Room by ID of the role Specified and apply the business rules
         /// </summary>
