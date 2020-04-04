@@ -1,4 +1,4 @@
-CREATE PROC ClassRoom_GetByIdTeacaher
+CREATE PROC ClassRoom_GetByIdTeacher
 @pIdTeacher AS INT
 AS
 	BEGIN

@@ -71,7 +71,7 @@ namespace SuperReaders.Services.DAO
                 parameters.Add(Constants.P_ClassRoom_IdTeacher, idTeacher);
                 using (IDbConnection db = connection.Connection)
                 {
-                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByTeacherId, parameters, commandType: CommandType.StoredProcedure);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByIdTeacher, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
