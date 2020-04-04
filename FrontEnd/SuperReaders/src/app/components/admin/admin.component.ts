@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user';
 import { AdminService } from '../../services/admin.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+declare var $: any;
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -12,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class AdminComponent implements OnInit {
   admins: User[] = [];
+  adminsCopy: User[] = [];
   admin: User;
   show: boolean;
   columns: string[] = ["Nombres", "Apellidos", "Usuario", "Status", "Accion"];
@@ -52,14 +54,17 @@ export class AdminComponent implements OnInit {
     this.adminService.create(this.admin).subscribe(res => {
       this.getAdmins();
       this.initAdmin();
+      $("#exampleModal").modal("hide");
       this.toastr.success('Hecho', 'Se creó un Administrador.');
     }, error => this.toastr.error('Error', 'Ocurrio un problema al crear al Administrador.'));
   }
 
   updateadmin(admin: User) {
+    var adminOld = this.adminsCopy.find(e => e.id === admin.id);
     debugger;
-    if (this.admin.firstName !== admin.firstName || this.admin.lastName !== admin.lastName || this.admin.userName !== admin.userName || this.admin.password !== admin.password) {
+    if (this.admin.firstName !== adminOld.firstName || this.admin.lastName !== adminOld.lastName || this.admin.userName !== adminOld.userName || this.admin.email !== adminOld.email || this.admin.password !== adminOld.password || this.admin.birthDate !== adminOld.birthDate) {
       this.adminService.update(this.admin).subscribe(res => {
+        $("#exampleModal").modal("hide");
         this.toastr.success('Hecho', 'Se actualizo un Administrador.');
         this.getAdmins();
         this.initAdmin();
@@ -73,6 +78,7 @@ export class AdminComponent implements OnInit {
 
   getAdmins() {
     this.adminService.getAll().subscribe((res: User[]) => {
+      this.adminsCopy = JSON.parse(JSON.stringify(res));
       this.admins = res;
       console.log(this.admins);
     });
@@ -120,11 +126,12 @@ export class AdminComponent implements OnInit {
 
   delete() {
     console.log(this.admin);
-    this.adminService.delete(this.admin).subscribe(res => {
-      // this.toastr.success('Hecho', 'Se elimino un Administrador.');
+    this.adminService.delete(this.admin.id).subscribe(res => {
+      this.toastr.success('Hecho', 'Se elimino a un Administrador.');
       this.initAdmin();
       this.getAdmins();
     }, (error => {
+      this.toastr.success('Ocurrio un problema al eliminar al Administrador', '¡Error!');
       this.initAdmin();
     }));
   }
