@@ -170,7 +170,8 @@ CREATE TABLE [Content]
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
 	[Title] nvarchar(100) NOT NULL,
-	[IdTypeContent] int NOT NULL
+	[IdTypeContent] int NOT NULL,
+        [Status] bit NOT NULL
 )
 GO
 
