@@ -19,7 +19,6 @@ export class SidebarComponent implements OnInit {
   isCollapsed() {
     this.collapsed = !this.collapsed;
     $("#wrapper").toggleClass("toggled");
-    console.log(this.collapsed);
   }
 
 }
