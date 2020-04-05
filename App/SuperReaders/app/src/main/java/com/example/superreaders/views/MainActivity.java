@@ -1,8 +1,10 @@
-package com.example.superreaders;
+package com.example.superreaders.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.superreaders.R;
 
 public class MainActivity extends AppCompatActivity {
 
