@@ -9,6 +9,7 @@ namespace SuperReaders.API.Helper
         public DbAccess()
         {
             connectionString = @"Server=ACER\TESEBADA;Database=ReadersDB;Trusted_Connection=True;";
+            //connectionString = @"Server=E-AAROJAS;Database=ReadersDB;Trusted_Connection=True;";  
         }
         public IDbConnection Connection
         {

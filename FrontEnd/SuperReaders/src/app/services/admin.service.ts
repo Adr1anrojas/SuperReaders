@@ -22,8 +22,13 @@ export class AdminService {
     return this.http.get(this.url + 'all/Admin');
   }
 
+<<<<<<< HEAD
   delete(user: User) {
     return this.http.post(this.url, user);
+=======
+  delete(idUser: number) {
+    return this.http.delete(this.url+idUser);
+>>>>>>> a5487686035e3c1ddf19c94dbd87dfabc4352ed0
   }
 
 }

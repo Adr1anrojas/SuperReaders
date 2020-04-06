@@ -29,6 +29,8 @@ namespace SuperReaders.Services.DomainObject
                 {
                     int id = _iContentDAO.AddContent(content);
                    // _iContentDetailDAO.AddContentDetail(id);
+
+              
                     
 
                 }

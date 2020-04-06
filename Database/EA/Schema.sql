@@ -6,8 +6,11 @@
 
 /* Drop Foreign Key Constraints */
 use master
+GO
 CREATE DATABASE ReadersDB
+GO
 USE ReadersDB
+Go
 IF EXISTS (SELECT 1 FROM dbo.sysobjects WHERE id = object_id(N'[FK_Admin_User]') AND OBJECTPROPERTY(id, N'IsForeignKey') = 1) 
 ALTER TABLE [Admin] DROP CONSTRAINT [FK_Admin_User]
 GO
@@ -155,7 +158,8 @@ CREATE TABLE [ClassRoom]
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
 	[Name] nvarchar(50) NOT NULL,
-	[IdTeacher] int NOT NULL
+	[IdTeacher] int NOT NULL,
+	[Status] bit NOt NULL
 )
 GO
 

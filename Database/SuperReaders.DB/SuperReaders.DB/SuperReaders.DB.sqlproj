@@ -56,12 +56,38 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Tables" />
-    <Folder Include="StoredProcedures" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\StoredProcedures" />
+    <Folder Include="dbo\StoredProcedures\User" />
+    <Folder Include="dbo\StoredProcedures\Teacher" />
+    <Folder Include="dbo\StoredProcedures\Admin" />
+    <Folder Include="dbo\StoredProcedures\Student" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="StoredProcedures\TeacherGetALL.sql" />
-    <Build Include="Tables\User.sql" />
-    <Build Include="Tables\School.sql" />
+    <Build Include="dbo\Tables\Admin.sql" />
+    <Build Include="dbo\Tables\Answer.sql" />
+    <Build Include="dbo\Tables\ClassRoom.sql" />
+    <Build Include="dbo\Tables\ClassRoomDetail.sql" />
+    <Build Include="dbo\Tables\Content.sql" />
+    <Build Include="dbo\Tables\ContentDetail.sql" />
+    <Build Include="dbo\Tables\Page.sql" />
+    <Build Include="dbo\Tables\Question.sql" />
+    <Build Include="dbo\Tables\QuestionAnswer.sql" />
+    <Build Include="dbo\Tables\Student.sql" />
+    <Build Include="dbo\Tables\StudentContent.sql" />
+    <Build Include="dbo\Tables\Teacher.sql" />
+    <Build Include="dbo\Tables\TypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\Admin\Admin_Create.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_Create.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetAll.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetByUserName.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Teacher\Teacher_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Student\Student_Create.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\School.sql" />
   </ItemGroup>
 </Project>
