@@ -10,7 +10,10 @@
         </div>
         <div class="list-group list-group-flush text-overflow">
             <a [routerLink]="['/home']" class="list-group-item list-group-item-action bg-light menu-home">
-                <fa-icon class="fa-2x" icon="home">a</fa-icon>{{collapsed?'Inicio':''}}
+                <fa-icon class="fa-2x" icon="home"></fa-icon>{{collapsed?'Inicio':''}}
+            </a>
+            <a [routerLink]="['/admin']" class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x" icon="user"></fa-icon>{{collapsed?'Administrador':''}}
             </a>
             <a [routerLink]="['/teacher']" class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="user"></fa-icon>{{collapsed?'Maestros':''}}

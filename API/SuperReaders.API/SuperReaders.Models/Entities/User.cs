@@ -14,10 +14,9 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("lastName")]
         public string LastName { get; set; }
         [JsonProperty("userName")]
-
         public string UserName { get; set; }
         [JsonProperty("email")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
         [JsonProperty("role")]
         public string Role { get; set; }
         [JsonProperty("password")]
