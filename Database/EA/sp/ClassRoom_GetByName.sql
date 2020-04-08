@@ -1,5 +1,5 @@
 CREATE PROC ClassRoom_GetByName
-@pName AS INT
+@pName AS VARCHAR(50)
 AS
 	BEGIN
 		SELECT 

@@ -1,4 +1,4 @@
-CREATE PROC ClassRoom_Create 
+ALTER PROC ClassRoom_Create 
 @pName AS NVARCHAR(50), 
 @pIdTeacher AS INT,
 @pStatus AS BIT
@@ -16,6 +16,6 @@ AS
             @pIdTeacher,
 			@pStatus
 		)
-		SELECT TOP 1 * FROM [ClassRoom] ORDER BY (Id) DESC
+		SELECT * FROM [ClassRoom] WHERE Id = (SELECT CAST(IDENT_CURRENT('ClassRoom') AS INT))
 	END
 	
