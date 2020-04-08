@@ -23,9 +23,15 @@ namespace SuperReaders.Models.Helper
                 services.AddScoped<ITeacherDAO, TeacherDAO>();
                 services.AddScoped<IStudentDAO, StudentDAO>();
             #endregion
+
             #region ClassRoom
                 services.AddScoped<IClassRoomDomainObject, ClassRoomDomainObject>();
                 services.AddScoped<IClassRoomDAO, ClassRoomDAO>();
+            #endregion
+
+            #region Login
+                services.AddScoped<ILoginDomainObject, LoginDomainObject>();
+                services.AddScoped<ILoginDAO, LoginDAO>();
             #endregion
         }
 
@@ -46,5 +52,9 @@ namespace SuperReaders.Models.Helper
             });
         }
 
+        public static void AddJWTConfiguration(this IServiceCollection services)
+        {
+           
+        }
     }
 }

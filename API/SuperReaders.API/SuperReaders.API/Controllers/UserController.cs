@@ -1,11 +1,14 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
 
 namespace SuperReaders.API.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -22,6 +25,7 @@ namespace SuperReaders.API.Controllers
         /// </summary>
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
+        //[Authorize(Roles = Constants.Admin)]
         [HttpGet("all/{role}")]
         public ActionResult<User> Get(string role)
         {

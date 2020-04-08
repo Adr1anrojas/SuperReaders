@@ -1,4 +1,4 @@
-CREATE PROC User_Create 
+CREATEA PROC User_Create 
 @pFirstName AS NVARCHAR(50), 
 @pLastName AS NVARCHAR(50), 
 @pUserName AS NVARCHAR(50), 
@@ -10,6 +10,7 @@ CREATE PROC User_Create
 @pIdSchool AS INT
 AS
 	BEGIN
+		DECLARE @encriptedPassword AS BINARY(64)= HASHBYTES('SHA2_256', @pPassword)
 		INSERT INTO [User]
 		( 
 			[FirstName], 
@@ -28,11 +29,23 @@ AS
 			@pLastName, 
 			@pUserName, 
 			@pEmail,
-			@pPassword, 
+			@encriptedPassword, 
 			@pStatus, 
 			@pRole, 
 			@pBirthDate, 
 			@pIdSchool
 		)
+		SELECT 
+			[Id],
+			[FirstName], 
+			[LastName], 
+			[UserName], 
+			[Email],
+			[Status], 
+			[Role], 
+			[BirthDate], 
+			[IdSchool]
+		FROM [User] 
+		WHERE Id = (SELECT CAST(IDENT_CURRENT('[User]') AS INT))
 	END
 	
