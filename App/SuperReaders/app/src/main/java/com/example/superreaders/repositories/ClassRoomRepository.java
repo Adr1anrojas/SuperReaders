@@ -42,18 +42,18 @@ public class ClassRoomRepository {
     private String result;
     public void  saveClassRoom(String name, String idTeacher, boolean status, final MutableLiveData<String> show) {
         if(!name.isEmpty()&&!idTeacher.isEmpty()) {
-            Call<List<ClassRoomResponse>> call = superReadersService.saveClassRoom(new ClassRoomRequest(name,Integer.parseInt(idTeacher),status));
-            call.enqueue(new Callback<List<ClassRoomResponse>>() {
+            Call<ClassRoomResponse> call = superReadersService.saveClassRoom(new ClassRoomRequest(name,Integer.parseInt(idTeacher),status));
+            call.enqueue(new Callback<ClassRoomResponse>() {
                 @Override
-                public void onResponse(Call<List<ClassRoomResponse>> call, Response<List<ClassRoomResponse>> response) {
+                public void onResponse(Call<ClassRoomResponse> call, Response<ClassRoomResponse> response) {
                     result = response.message() + " " + response.code();
                     if (response.isSuccessful())
-                        show.setValue(result+ response.body().get(0).toString());
+                        show.setValue(result+ response.body().toString());
                     else
                         show.setValue("ERROR: "+result);
                 }
                 @Override
-                public void onFailure(Call<List<ClassRoomResponse>> call, Throwable t) {
+                public void onFailure(Call<ClassRoomResponse> call, Throwable t) {
                     result = t.getMessage();
                     show.setValue(result);
                 }

@@ -63,7 +63,7 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="classRoom">classRoom to create</param>
         /// <returns>status code 200</returns>
-        public IEnumerable<ClassRoom> AddClassRoom(ClassRoom classRoom)
+        public ClassRoom AddClassRoom(ClassRoom classRoom)
         {
             try
             {

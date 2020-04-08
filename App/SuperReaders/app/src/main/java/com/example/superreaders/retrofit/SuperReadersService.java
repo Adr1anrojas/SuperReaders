@@ -15,6 +15,6 @@ public interface SuperReadersService {
     @GET("ClassRoom/all")
     Call<List<ClassRoomResponse>> getAllClassRoom();
     @POST(Urls.CLASSROOM)
-    Call<List<ClassRoomResponse>> saveClassRoom(@Body ClassRoomRequest body);
+    Call<ClassRoomResponse> saveClassRoom(@Body ClassRoomRequest body);
 
 }
