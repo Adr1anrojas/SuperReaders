@@ -60,6 +60,16 @@ public class ClassRoomResponse {
         return idTeacher;
     }
 
+    @Override
+    public String toString() {
+        return "ClassRoomResponse{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", idTeacher=" + idTeacher +
+                ", status=" + status +
+                '}';
+    }
+
     public void setIdTeacher(Integer idTeacher) {
         this.idTeacher = idTeacher;
     }
