@@ -23,7 +23,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="classRoom">ClassRoom to create</param>
         /// <returns></returns>
-        int AddClassRoom(ClassRoom classRoom);
+        IEnumerable<ClassRoom> AddClassRoom(ClassRoom classRoom);
 
         /// <summary>
         /// This Method return an ClassRoom by name of Specified and Access the data

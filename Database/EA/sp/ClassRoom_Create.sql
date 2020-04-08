@@ -16,5 +16,6 @@ AS
             @pIdTeacher,
 			@pStatus
 		)
+		SELECT TOP 1 * FROM [ClassRoom] ORDER BY (Id) DESC
 	END
 	

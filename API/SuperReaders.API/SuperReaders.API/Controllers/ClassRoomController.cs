@@ -80,12 +80,11 @@ namespace SuperReaders.API.Controllers
         /// <param name="ClassRoom">ClassRoom to create</param>
         /// <returns>status code 200</returns>
         [HttpPost]
-        public IActionResult AddClassRoom([FromBody] ClassRoom classRoom)
+        public ActionResult<ClassRoom> AddClassRoom([FromBody] ClassRoom classRoom)
         {
             try
             {
-                _iClassRoomDomainObject.AddClassRoom(classRoom);
-                return Ok();
+                return Ok(_iClassRoomDomainObject.AddClassRoom(classRoom));
             }
             catch (Exception e)
             {

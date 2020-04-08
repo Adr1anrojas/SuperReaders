@@ -110,24 +110,17 @@ namespace SuperReaders.Services.DAO
         /// </summary>
         /// <param name="classroom">classroom to create</param>
         /// <returns>status code 200</returns>
-        public int AddClassRoom(ClassRoom classRoom)
+        public IEnumerable<ClassRoom> AddClassRoom(ClassRoom classRoom)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @"INSERT INTO [ClassRoom]
-		            ([Name], [IdTeacher], [Status])
-		            VALUES (@Name, @IdTeacher, @Status);
-		            SELECT CAST(SCOPE_IDENTITY() as int)";
-                    var id = db.Query<int>(sql, 
-                        new { 
-                            Name = classRoom.Name,
-                            IdTeacher = classRoom.IdTeacher,
-                            Status = classRoom.Status
-                        }).Single();
-                    return id;
+                    parameters.Add(Constants.P_ClassRoom_Name,classRoom.Name);
+                    parameters.Add(Constants.P_ClassRoom_IdTeacher, classRoom.IdTeacher);
+                    parameters.Add(Constants.P_ClassRoom_Status, classRoom.Status);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_Create, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)

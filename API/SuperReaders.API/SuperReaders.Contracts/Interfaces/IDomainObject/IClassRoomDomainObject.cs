@@ -30,7 +30,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="classRoom">Class Room to create</param>
         /// <returns></returns>
-        void AddClassRoom(ClassRoom classRoom);
+        IEnumerable<ClassRoom> AddClassRoom(ClassRoom classRoom);
 
         /// <summary>
         /// This Method update an ClassRoom of the role Specified and apply the business rules
