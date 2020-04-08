@@ -50,5 +50,6 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="id">ClassRoom to change status</param>
         /// <returns></returns>
         void DeleteClassRoom(int id);
+        void AddStudentClassRoom(ClassRoomDetail classRoomDetail);
     }
 }

@@ -56,6 +56,8 @@
             public const string P_ClassRoom_Name = "@pName";
             public const string P_ClassRoom_Status = "@pStatus";
             public const string P_ClassRoom_IdTeacher = "@pIdTeacher";
+            public const string P_ClassRoomDetail_IdClasRoom = "@pIdClassRoom";
+            public const string P_ClassRoomDetail_IdStudent = "@pIdStudent";
             public const string SP_ClassRoom_GetAll = "ClassRoom_GetAll";
             public const string SP_ClassRoom_GetById = "ClassRoom_GetById";
             public const string SP_ClassRoom_GetByIdTeacher = "ClassRoom_GetByIdTeacher";
@@ -63,6 +65,7 @@
             public const string SP_ClassRoom_Create = "ClassRoom_Create";
             public const string SP_ClassRoom_Update = "ClassRoom_Update";
             public const string SP_ClassRoom_Delete = "ClassRoom_Delete";
+            public const string SP_ClassRoomDetail = "ClassRoomDetail_Create";
         #endregion
         
     }

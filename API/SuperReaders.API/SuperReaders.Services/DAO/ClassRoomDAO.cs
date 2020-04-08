@@ -135,6 +135,23 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
+        public void AddStudentClassRoom(ClassRoomDetail classRoomDetail){
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    parameters.Add(Constants.P_ClassRoomDetail_IdClasRoom, classRoomDetail.IdClassRoom);
+                    parameters.Add(Constants.P_ClassRoomDetail_IdStudent,classRoomDetail.IdStudent);
+                    db.ExecuteScalar<ClassRoom>(Constants.SP_ClassRoomDetail, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
          // <summary>
         /// This EndPoint update status an ClassRoom Specified
         /// </summary>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
+using SuperReaders.Services.DAO;
 namespace SuperReaders.API.Controllers
 {
     [Route("api/[controller]")]
@@ -93,7 +94,6 @@ namespace SuperReaders.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
         // PUT: api/ClassRoom
         /// <summary>
         /// This EndPoint update an ClassRoom 
