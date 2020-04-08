@@ -92,8 +92,7 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     parameters.Add(Constants.P_ClassRoom_Name,name);
-                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByName, parameters, commandType: CommandType.StoredProcedure)
-                    .First().Id;
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByName, parameters, commandType: CommandType.StoredProcedure).Count();
                     
                 }
             }
