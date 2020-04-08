@@ -88,16 +88,13 @@ namespace SuperReaders.Services.DAO
         {
             try
             {
-                int id = 0;
+                DynamicParameters parameters = new DynamicParameters();
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @" SELECT [Id] FROM[ClassRoom] WHERE [Name] = @Name COLLATE SQL_Latin1_General_CP1_CI_AS";
-                    id = db.Query<int>(sql,
-                    new
-                    {
-                        Name = name
-                    }).Count();
-                    return id;
+                    parameters.Add(Constants.P_ClassRoom_Name,name);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByName, parameters, commandType: CommandType.StoredProcedure)
+                    .First().Id;
+                    
                 }
             }
             catch (Exception e)
