@@ -1,0 +1,15 @@
+﻿CREATE TABLE [Student]
+(
+	[Id] int NOT NULL IDENTITY (1, 1),
+	[IdUser] int NOT NULL
+)
+GO
+ALTER TABLE [Student] ADD CONSTRAINT [FK_Student_User]
+	FOREIGN KEY ([IdUser]) REFERENCES [User] ([Id]) ON DELETE No Action ON UPDATE No Action
+GO
+ALTER TABLE [Student] 
+ ADD CONSTRAINT [PK_Student]
+	PRIMARY KEY CLUSTERED ([Id] ASC)
+GO
+CREATE NONCLUSTERED INDEX [IXFK_Student_User] 
+ ON [Student] ([IdUser] ASC)
