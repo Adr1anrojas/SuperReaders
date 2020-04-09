@@ -149,5 +149,9 @@ public class UserResponse {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+    @Override
+    public  String toString (){
+        return firstName+" "+lastName;
+    }
 
 }

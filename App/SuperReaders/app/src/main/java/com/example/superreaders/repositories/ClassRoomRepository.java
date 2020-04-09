@@ -3,8 +3,9 @@ package com.example.superreaders.repositories;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.superreaders.retrofit.RetrofitService;
-import com.example.superreaders.retrofit.SuperReadersService;
+import com.example.superreaders.retrofit.response.UserResponse;
+import com.example.superreaders.retrofit.services.RetrofitService;
+import com.example.superreaders.retrofit.services.SuperReadersService;
 import com.example.superreaders.retrofit.request.ClassRoomRequest;
 import com.example.superreaders.retrofit.response.ClassRoomResponse;
 
@@ -18,8 +19,11 @@ import retrofit2.Response;
 
 public class ClassRoomRepository {
     private SuperReadersService  superReadersService;
+    public MutableLiveData<String> messageResponse = new MutableLiveData<>();
     MutableLiveData<List<ClassRoomResponse>> responseClassRoom = new MutableLiveData<>();
     ArrayList<ClassRoomResponse> classRoomList = new ArrayList<ClassRoomResponse>();
+    MutableLiveData<List<UserResponse>> responseTeacher = new MutableLiveData<>();
+    ArrayList<UserResponse> teacherList = new ArrayList<UserResponse>();
     public ClassRoomRepository(){
         superReadersService = RetrofitService.createService(SuperReadersService.class);
     }
@@ -41,7 +45,7 @@ public class ClassRoomRepository {
         return responseClassRoom;
     }
     private String result;
-    public void  saveClassRoom(String name, String idTeacher, boolean status, final MutableLiveData<String> show) {
+    public void  saveClassRoom(String name, String idTeacher, boolean status) {
         if(!name.isEmpty()&&!idTeacher.isEmpty()) {
             Call<ClassRoomResponse> call = superReadersService.saveClassRoom(new ClassRoomRequest(name,Integer.parseInt(idTeacher),status));
             call.enqueue(new Callback<ClassRoomResponse>() {
@@ -49,23 +53,43 @@ public class ClassRoomRepository {
                 public void onResponse(Call<ClassRoomResponse> call, Response<ClassRoomResponse> response) {
                     result = response.message() + " " + response.code();
                     if (response.isSuccessful())
-                        show.setValue(result+ response.body().toString());
+                        messageResponse.setValue("El Grupo fue agregado exitosamente");
                     else {
                         try {
-                            show.setValue("ERROR: " + response.errorBody().string());
+                            messageResponse.setValue("ERROR: "+ response.errorBody().string());
                         } catch (IOException e) {
-                            show.setValue(result+" "+e.getMessage());
+                            messageResponse.setValue(result+" "+e.getMessage());
                         }
                     }
                 }
                 @Override
                 public void onFailure(Call<ClassRoomResponse> call, Throwable t) {
                     result = t.getMessage();
-                    show.setValue(result);
+                    messageResponse.setValue(result);
                 }
             });
             return;
         }
-        show.setValue("No se aceptan vacios");
+        messageResponse.setValue("No se aceptan vacios");
+    }
+
+    public MutableLiveData<List<UserResponse>> getAllTeachers() {
+        Call<List<UserResponse>> call = superReadersService.getAllTeachers();
+        call.enqueue(new Callback<List<UserResponse>>() {
+            @Override
+            public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
+                if(!response.isSuccessful())
+                    return;
+                teacherList.removeAll(teacherList);
+                teacherList.addAll(response.body());
+                responseTeacher.setValue(teacherList);
+            }
+
+            @Override
+            public void onFailure(Call<List<UserResponse>> call, Throwable t) {
+
+            }
+        });
+        return responseTeacher;
     }
 }
