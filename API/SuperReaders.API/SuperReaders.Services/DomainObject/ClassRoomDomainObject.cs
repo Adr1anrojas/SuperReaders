@@ -63,13 +63,13 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="classRoom">classRoom to create</param>
         /// <returns>status code 200</returns>
-        public void AddClassRoom(ClassRoom classRoom)
+        public ClassRoom AddClassRoom(ClassRoom classRoom)
         {
             try
             {
                 int result = _iClassRoomDAO.GetClassRoomByName(classRoom.Name);
                 if (result == 0)
-                    _iClassRoomDAO.AddClassRoom(classRoom);
+                    return _iClassRoomDAO.AddClassRoom(classRoom);
                 else
                     throw new ArgumentException("This Class Room already exists");
             }

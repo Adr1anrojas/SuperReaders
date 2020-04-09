@@ -23,7 +23,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="classRoom">ClassRoom to create</param>
         /// <returns></returns>
-        int AddClassRoom(ClassRoom classRoom);
+        ClassRoom AddClassRoom(ClassRoom classRoom);
 
         /// <summary>
         /// This Method return an ClassRoom by name of Specified and Access the data
@@ -50,5 +50,6 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="id">ClassRoom to change status</param>
         /// <returns></returns>
         void DeleteClassRoom(int id);
+        void AddStudentClassRoom(ClassRoomDetail classRoomDetail);
     }
 }

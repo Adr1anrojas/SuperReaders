@@ -88,16 +88,12 @@ namespace SuperReaders.Services.DAO
         {
             try
             {
-                int id = 0;
+                DynamicParameters parameters = new DynamicParameters();
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @" SELECT [Id] FROM[ClassRoom] WHERE [Name] = @Name COLLATE SQL_Latin1_General_CP1_CI_AS";
-                    id = db.Query<int>(sql,
-                    new
-                    {
-                        Name = name
-                    }).Count();
-                    return id;
+                    parameters.Add(Constants.P_ClassRoom_Name,name);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByName, parameters, commandType: CommandType.StoredProcedure).Count();
+                    
                 }
             }
             catch (Exception e)
@@ -110,30 +106,40 @@ namespace SuperReaders.Services.DAO
         /// </summary>
         /// <param name="classroom">classroom to create</param>
         /// <returns>status code 200</returns>
-        public int AddClassRoom(ClassRoom classRoom)
+        public ClassRoom AddClassRoom(ClassRoom classRoom)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @"INSERT INTO [ClassRoom]
-		            ([Name], [IdTeacher], [Status])
-		            VALUES (@Name, @IdTeacher, @Status);
-		            SELECT CAST(SCOPE_IDENTITY() as int)";
-                    var id = db.Query<int>(sql, 
-                        new { 
-                            Name = classRoom.Name,
-                            IdTeacher = classRoom.IdTeacher,
-                            Status = classRoom.Status
-                        }).Single();
-                    return id;
+                    parameters.Add(Constants.P_ClassRoom_Name,classRoom.Name);
+                    parameters.Add(Constants.P_ClassRoom_IdTeacher, classRoom.IdTeacher);
+                    parameters.Add(Constants.P_ClassRoom_Status, classRoom.Status);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_Create, parameters, commandType: CommandType.StoredProcedure).First();
                 }
             }
             catch (Exception e)
             {
                 throw e;
             }
+        }
+        public void AddStudentClassRoom(ClassRoomDetail classRoomDetail){
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    parameters.Add(Constants.P_ClassRoomDetail_IdClasRoom, classRoomDetail.IdClassRoom);
+                    parameters.Add(Constants.P_ClassRoomDetail_IdStudent,classRoomDetail.IdStudent);
+                    db.ExecuteScalar<ClassRoom>(Constants.SP_ClassRoomDetail, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
         }
          // <summary>
         /// This EndPoint update status an ClassRoom Specified

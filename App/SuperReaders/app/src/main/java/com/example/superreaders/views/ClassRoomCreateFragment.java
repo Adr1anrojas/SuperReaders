@@ -42,7 +42,7 @@ public class ClassRoomCreateFragment extends Fragment {
             classRoomViewModel.saveClassRoom(nombre.getText().toString(),idtecaher.getText().toString(),status.isChecked());
         });
         final Observer<String> observer = resultado ->{
-            Toast.makeText(getActivity().getApplicationContext(),resultado,Toast.LENGTH_SHORT ).show();
+            Toast.makeText(getActivity().getApplicationContext(),resultado,Toast.LENGTH_LONG ).show();
         };
         classRoomViewModel.getRespose().observe(this.getActivity(),observer);
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
+using SuperReaders.Services.DAO;
 namespace SuperReaders.API.Controllers
 {
     [Route("api/[controller]")]
@@ -79,12 +80,11 @@ namespace SuperReaders.API.Controllers
         /// <param name="ClassRoom">ClassRoom to create</param>
         /// <returns>status code 200</returns>
         [HttpPost]
-        public IActionResult AddClassRoom([FromBody] ClassRoom classRoom)
+        public ActionResult<ClassRoom> AddClassRoom([FromBody] ClassRoom classRoom)
         {
             try
             {
-                _iClassRoomDomainObject.AddClassRoom(classRoom);
-                return Ok();
+                return Ok(_iClassRoomDomainObject.AddClassRoom(classRoom));
             }
             catch (Exception e)
             {
@@ -93,7 +93,6 @@ namespace SuperReaders.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
         // PUT: api/ClassRoom
         /// <summary>
         /// This EndPoint update an ClassRoom 
