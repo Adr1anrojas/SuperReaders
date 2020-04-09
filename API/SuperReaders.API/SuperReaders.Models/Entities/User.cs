@@ -20,6 +20,7 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("role")]
         public string Role { get; set; }
         [JsonProperty("password")]
+        #nullable enable
         public string? Password { get; set; }
         [JsonProperty("birthDate")]
         public DateTime BirthDate { get; set; }
@@ -27,6 +28,5 @@ namespace SuperReaders.Models.Entities
         public int IdSchool { get; set; }
         [JsonProperty("status")]
         public bool Status { get; set; }
-
     }
 }
