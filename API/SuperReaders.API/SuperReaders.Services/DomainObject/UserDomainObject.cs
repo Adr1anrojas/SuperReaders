@@ -39,6 +39,57 @@ namespace SuperReaders.Services.DomainObject
         }
 
         /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        public IEnumerable<User> GetStudents()
+        {
+            try
+            {
+                return _iUserDAO.GetStudents();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all Admins
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Admins</returns>
+        public IEnumerable<User> GetAdmins()
+        {
+            try
+            {
+                return _iUserDAO.GetAdmins();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        /// <summary>
+        /// This EndPoint return all Teachers
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Teachers</returns>
+        public IEnumerable<User> GetTeachers()
+        {
+            try
+            {
+                return _iUserDAO.GetTeachers();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        /// <summary>
         /// This EndPoint return an User by ID of the role Specified
         /// </summary>
         /// <param name="">

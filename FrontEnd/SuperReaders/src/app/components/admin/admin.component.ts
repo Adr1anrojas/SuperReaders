@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { AdminService } from '../../services/admin.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -16,42 +15,70 @@ export class AdminComponent implements OnInit {
   adminsCopy: User[] = [];
   admin: User;
   show: boolean;
+  submitted = false;
   columns: string[] = ["Nombres", "Apellidos", "Usuario", "Status", "Accion"];
   selectedMoment = new Date();
-  firstName: FormControl;
-  lastName: FormControl;
-  userName: FormControl;
-  email: FormControl;
-  password: FormControl;
-  userForm: FormGroup;
+  formAdmin: FormGroup = new FormGroup({
+    id: new FormControl(''),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    userName: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+    date: new FormControl({ value: '', disabled: true }, Validators.required)
+  });
+
   constructor(private toastr: ToastrService, private adminService: AdminService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.firstName = new FormControl({ value: '' }, Validators.required);
-    this.lastName = new FormControl({ value: '' }, Validators.required);
-    this.userName = new FormControl({ value: '' }, Validators.required);
-    this.email = new FormControl({ value: '' }, [Validators.required, Validators.email]);
-    this.password = new FormControl({ value: '' }, Validators.required);
     this.initAdmin();
     this.getAdmins();
     this.show = false;
   }
 
   onSubmit() {
-    if (this.onSubmitStatus()) {
-      if (this.admin.id === 0) {
+    this.submitted = true;
+    console.log(this.isValidDate);
+    console.log(this.createAnUser());
+    if (this.formAdmin.valid && this.isValidDate) {
+      let admin = this.createAnUser();
+      if (admin.id === 0) {
         console.log("crear");
-        console.log(this.admin);
-        this.createadmin(this.admin);
-      } else {
-        this.updateadmin(this.admin);
-      }
-    } else
-      this.validateForm();
+        console.log(admin);
+        this.createadmin(admin);
+      } else
+        this.updateadmin(admin);
+    }
+  }
+
+  initAdmin() {
+    this.submitted = false;
+    this.formAdmin.reset();
+  }
+
+  // click event function toggle
+  showPassword() {
+    this.show = !this.show;
+  }
+
+  get controls() {
+    return this.formAdmin.controls;
+  }
+
+  get isValidDate(): Boolean {
+    return this.formAdmin.get('date').value !== null;
+  }
+
+  getAdmins() {
+    this.adminService.getAll().subscribe((res: User[]) => {
+      this.adminsCopy = JSON.parse(JSON.stringify(res));
+      this.admins = res;
+      console.log(this.admins);
+    });
   }
 
   createadmin(admin: User) {
-    this.adminService.create(this.admin).subscribe(res => {
+    this.adminService.create(admin).subscribe(res => {
       this.getAdmins();
       this.initAdmin();
       $("#exampleModal").modal("hide");
@@ -61,9 +88,8 @@ export class AdminComponent implements OnInit {
 
   updateadmin(admin: User) {
     var adminOld = this.adminsCopy.find(e => e.id === admin.id);
-    debugger;
-    if (this.admin.firstName !== adminOld.firstName || this.admin.lastName !== adminOld.lastName || this.admin.userName !== adminOld.userName || this.admin.email !== adminOld.email || this.admin.password !== adminOld.password || this.admin.birthDate !== adminOld.birthDate) {
-      this.adminService.update(this.admin).subscribe(res => {
+    if (admin.firstName !== adminOld.firstName || admin.lastName !== adminOld.lastName || admin.userName !== adminOld.userName || admin.email !== adminOld.email || admin.password !== adminOld.password || admin.birthDate !== adminOld.birthDate) {
+      this.adminService.update(admin).subscribe(res => {
         $("#exampleModal").modal("hide");
         this.toastr.success('Hecho', 'Se actualizo un Administrador.');
         this.getAdmins();
@@ -76,57 +102,36 @@ export class AdminComponent implements OnInit {
       this.toastr.error('Se debe modificar al menos un campo.', '¡Error!');
   }
 
-  getAdmins() {
-    this.adminService.getAll().subscribe((res: User[]) => {
-      this.adminsCopy = JSON.parse(JSON.stringify(res));
-      this.admins = res;
-      console.log(this.admins);
+  editAdmin(e: User) {
+    this.formAdmin.patchValue({
+      id: e.id,
+      firstName: e.firstName,
+      lastName: e.lastName,
+      userName: e.userName,
+      email: e.email,
+      password: e.password,
+      date: e.birthDate
     });
   }
 
-  editAdmin(e: User) {
-    this.admin = e;
-    console.log(e);
-  }
-
-  initAdmin() {
-    this.admin = {
-      id: 0,
-      firstName: "",
-      lastName: "",
-      userName: "",
-      email: "",
+  createAnUser(): User {
+    return {
+      id: +this.formAdmin.get('id').value,
+      firstName: this.formAdmin.get('firstName').value,
+      lastName: this.formAdmin.get('lastName').value,
+      userName: this.formAdmin.get('userName').value,
+      email: this.formAdmin.get('email').value,
       role: "Admin",
-      password: "",
-      birthDate: new Date(),
+      password: this.formAdmin.get('password').value,
+      birthDate: this.formAdmin.get('date').value,
       idSchool: 1,
       status: true
-    };
-    this.firstName.reset();
-    this.lastName.reset();
-    this.userName.reset();
-    this.email.reset();
-    this.password.reset();
-  }
-
-  validateForm() {
-    console.log("asd");
-    let opts = { onlySelf: true };
-    this.admin.firstName === '' || !this.admin.firstName ? this.firstName.markAsTouched(opts) : this.firstName.setErrors({ 'incorrect': false })
-    this.admin.lastName === '' || !this.admin.lastName ? this.lastName.markAsTouched(opts) : this.lastName.setErrors({ 'incorrect': false })
-    this.admin.userName === '' || !this.admin.userName ? this.userName.markAsTouched(opts) : this.userName.setErrors({ 'incorrect': false })
-    this.admin.password === '' || !this.admin.password ? this.password.markAsTouched(opts) : this.password.setErrors({ 'incorrect': false })
-    if (!this.email.touched && this.admin.email == '')
-      this.email.markAsTouched(opts);
-  }
-  // click event function toggle
-  showPassword() {
-    this.show = !this.show;
+    }
   }
 
   delete() {
-    console.log(this.admin);
-    this.adminService.delete(this.admin.id).subscribe(res => {
+    let idUser = this.formAdmin.get('id').value;
+    this.adminService.delete(idUser).subscribe(res => {
       this.toastr.success('Hecho', 'Se elimino a un Administrador.');
       this.initAdmin();
       this.getAdmins();
@@ -134,12 +139,6 @@ export class AdminComponent implements OnInit {
       this.toastr.success('Ocurrio un problema al eliminar al Administrador', '¡Error!');
       this.initAdmin();
     }));
-  }
-
-  onSubmitStatus(): Boolean {
-    if (this.admin.firstName != '' && this.admin.lastName != '' && this.admin.userName != '' && this.admin.email != '' && this.admin.password != '')
-      return true;
-    return false;
   }
 
 }

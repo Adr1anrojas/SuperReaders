@@ -5,7 +5,7 @@ export class User {
     userName: string;
     email: string;
     role: string;
-    password: string;
+    password?: string;
     birthDate: Date;
     idSchool: number;
     status: Boolean;
