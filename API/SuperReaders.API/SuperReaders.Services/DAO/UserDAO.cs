@@ -152,9 +152,10 @@ namespace SuperReaders.Services.DAO
             DynamicParameters parameters = new DynamicParameters();
             try
             {
+                parameters.Add(Constants.P_User_Id, id);
                 using (IDbConnection db = connection.Connection)
                 {
-                    db.ExecuteScalar<User>(Constants.SP_User_GetStudents, parameters, commandType: CommandType.StoredProcedure);
+                    db.ExecuteScalar<User>(Constants.SP_User_Delete, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
