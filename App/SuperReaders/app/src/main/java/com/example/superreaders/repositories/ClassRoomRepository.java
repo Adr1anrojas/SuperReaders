@@ -8,6 +8,7 @@ import com.example.superreaders.retrofit.SuperReadersService;
 import com.example.superreaders.retrofit.request.ClassRoomRequest;
 import com.example.superreaders.retrofit.response.ClassRoomResponse;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,8 +50,13 @@ public class ClassRoomRepository {
                     result = response.message() + " " + response.code();
                     if (response.isSuccessful())
                         show.setValue(result+ response.body().toString());
-                    else
-                        show.setValue("ERROR: "+result);
+                    else {
+                        try {
+                            show.setValue("ERROR: " + response.errorBody().string());
+                        } catch (IOException e) {
+                            show.setValue(result+" "+e.getMessage());
+                        }
+                    }
                 }
                 @Override
                 public void onFailure(Call<ClassRoomResponse> call, Throwable t) {
