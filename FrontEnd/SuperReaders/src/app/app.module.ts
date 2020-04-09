@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptor } from './shared/helper/jtwInterceptor';
 import { ResponseInterceptor } from './shared/helper/ResponseInterceptor';
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { ResponseInterceptor } from './shared/helper/ResponseInterceptor';
       positionClass: 'toast-top-center',
       preventDuplicates: true
     }),
+    NgxSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
