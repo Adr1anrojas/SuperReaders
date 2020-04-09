@@ -63,6 +63,9 @@
     <Folder Include="dbo\StoredProcedures\Teacher" />
     <Folder Include="dbo\StoredProcedures\Admin" />
     <Folder Include="dbo\StoredProcedures\Student" />
+    <Folder Include="dbo\StoredProcedures\Content" />
+    <Folder Include="dbo\StoredProcedures\ClassRoom" />
+    <Folder Include="dbo\StoredProcedures\Login" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Admin.sql" />
@@ -89,5 +92,6 @@
     <Build Include="dbo\StoredProcedures\Student\Student_Create.sql" />
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\School.sql" />
+    <Build Include="dbo\StoredProcedures\Login\Login_UserLoged.sql" />
   </ItemGroup>
 </Project>

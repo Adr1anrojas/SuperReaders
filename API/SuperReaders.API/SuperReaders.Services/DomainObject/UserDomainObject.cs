@@ -67,13 +67,13 @@ namespace SuperReaders.Services.DomainObject
                 int result = _iUserDAO.GetUserByUserName(user.UserName);
                 if (result == 0)
                 {
-                   int id = _iUserDAO.AddUser(user);
+                   var userCreated = _iUserDAO.AddUser(user).First();
                     if (user.Role.Equals("Admin"))
-                        _iAdminDAO.AddAdmin(id);
+                        _iAdminDAO.AddAdmin(userCreated.Id);
                     else if (user.Role.Equals("Maestro"))
-                        _iTeacherDAO.AddTeacher(id);
+                        _iTeacherDAO.AddTeacher(userCreated.Id);
                     else if (user.Role.Equals("Alumno"))
-                        _iStudentDAO.AddStudent(id);
+                        _iStudentDAO.AddStudent(userCreated.Id);
                 }
                 else
                     throw new ArgumentException("This user already exists");

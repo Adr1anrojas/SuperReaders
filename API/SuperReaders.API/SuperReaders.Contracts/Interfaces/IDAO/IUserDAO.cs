@@ -25,7 +25,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="user">user to create</param>
         /// <returns></returns>
-        int AddUser(User user);
+        IEnumerable<User> AddUser(User user);
 
         /// <summary>
         /// This Method return an User by userName of the role Specified and Access the data

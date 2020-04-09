@@ -95,30 +95,23 @@ namespace SuperReaders.Services.DAO
         /// </summary>
         /// <param name="user">user to create</param>
         /// <returns>status code 200</returns>
-        public int AddUser(User user)
+        public IEnumerable<User> AddUser(User user)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
             {
+                parameters.Add(Constants.P_User_FirstName, user.FirstName);
+                parameters.Add(Constants.P_User_LastName, user.LastName);
+                parameters.Add(Constants.P_User_UserName, user.UserName);
+                parameters.Add(Constants.P_User_Email, user.Email);
+                parameters.Add(Constants.P_User_Password, user.Password);
+                parameters.Add(Constants.P_User_Status, user.Status);
+                parameters.Add(Constants.P_User_Role, user.Role);
+                parameters.Add(Constants.P_User_BirthDate, user.BirthDate);
+                parameters.Add(Constants.P_User_IdSchool, user.IdSchool);
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @"INSERT INTO [User]
-		            ([FirstName], [LastName], [UserName], [Email], [Password], [Status], [Role], [BirthDate], [IdSchool])
-		            VALUES (@FirstName, @LastName, @UserName, @Email, @Password, @Status, @Role, @BirthDate, @IdSchool);
-		            SELECT CAST(SCOPE_IDENTITY() as int)";
-                    var id = db.Query<int>(sql, 
-                        new { 
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            UserName = user.UserName,
-                            Email = user.Email,
-                            Password = user.Password,
-                            Status = user.Status,
-                            Role = user.Role,
-                            BirthDate = user.BirthDate,
-                            IdSchool = user.IdSchool
-                        }).Single();
-                    return id;
+                    return db.Query<User>(Constants.SP_User_Create, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
