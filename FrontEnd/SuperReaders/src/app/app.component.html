@@ -1,2 +1,2 @@
-<app-sidebar *ngIf="token"></app-sidebar>
-<app-login></app-login>
+<app-sidebar *ngIf="this.loginService.isLogged"></app-sidebar>
+<app-login *ngIf="!this.loginService.isLogged"></app-login>

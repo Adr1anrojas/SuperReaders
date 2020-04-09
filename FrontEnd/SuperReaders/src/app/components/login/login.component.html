@@ -1,19 +1,30 @@
-<div class="container">
+<div class="container h-100">
     <div class="card mt-5">
         <div class="card-body">
-            <form>
+            <form [formGroup]="formLogin" class="needs-validation" novalidate (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Usuario</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Nombre de Usuario">
-                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small> -->
+                    <input type="email" class="form-control " id="exampleInputEmail1" placeholder="Nombre de Usuario"
+                        formControlName="userName"
+                        [ngClass]="{'is-invalid':formLogin.get('userName').invalid && (formLogin.get('userName').dirty || formLogin.get('userName').touched) }">
+                    <div *ngIf="formLogin.get('userName').invalid && (formLogin.get('userName').dirty || formLogin.get('userName').touched)"
+                        class="invalid-feedback">
+                        Nombre de Usuario requerido.
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña"
+                        formControlName="password"
+                        [ngClass]="{'is-invalid':formLogin.get('password').invalid && (formLogin.get('password').dirty || formLogin.get('password').touched) }">
+                    <div *ngIf="formLogin.get('password').invalid && (formLogin.get('password').dirty || formLogin.get('password').touched)"
+                        class="invalid-feedback">
+                        Contraseña requerido.
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary text-uppercase btn-block">Iniciar Sesión</button>
+                <button type="submit" class="btn btn-primary text-uppercase btn-block"
+                    [disabled]="!formLogin.valid">Iniciar
+                    Sesión</button>
             </form>
         </div>
     </div>

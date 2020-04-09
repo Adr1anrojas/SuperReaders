@@ -9,8 +9,8 @@ import { AdminComponent } from "./components/admin/admin.component";
 
 
 const routes: Routes = [
+  { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'teacher', component: TeacherComponent },

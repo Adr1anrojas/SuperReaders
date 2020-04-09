@@ -8,7 +8,7 @@ using SuperReaders.Services.DomainObject;
 
 namespace SuperReaders.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

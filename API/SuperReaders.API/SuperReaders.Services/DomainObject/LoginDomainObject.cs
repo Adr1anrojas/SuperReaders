@@ -38,6 +38,8 @@ namespace SuperReaders.Services.DomainObject
                 {
                     BuildToken(result.First());
                 }
+                if (!result.Any())
+                    throw new Exception("UserName or Password invalid");
                 return result;
             }
             catch (Exception e)

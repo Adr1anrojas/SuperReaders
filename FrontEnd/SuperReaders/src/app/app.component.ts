@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DateTimeAdapter } from 'ng-pick-datetime';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,11 @@ import { DateTimeAdapter } from 'ng-pick-datetime';
 export class AppComponent implements OnInit {
   title = 'SuperReaders';
   token: string;
-  constructor(dateTimeAdapter: DateTimeAdapter<any>) {
+  constructor(dateTimeAdapter: DateTimeAdapter<any>, public loginService: LoginService) {
     dateTimeAdapter.setLocale('es');
   }
 
   ngOnInit(): void {
-    this.isUserAuth();
-  }
-
-  isUserAuth() {
-    this.token = localStorage.getItem('token');
-    console.log(this.token);
   }
 
 }
