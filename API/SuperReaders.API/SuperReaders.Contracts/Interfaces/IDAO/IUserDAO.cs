@@ -12,6 +12,24 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="role">
         /// <returns>Array of Users of the role Specified</returns>
         IEnumerable<User> GetUsers(string role);
+        /// <summary>
+        /// This Method return all Students of Access the data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students </returns>
+        IEnumerable<User> GetStudents();
+        /// <summary>
+        /// This Method return all Admins of Access the data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Admins </returns>
+        IEnumerable<User> GetAdmins();
+        /// <summary>
+        /// This Method return all Teachers of Access the data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Teachers </returns>
+        IEnumerable<User> GetTeachers();
 
         /// <summary>
         /// This Method return an User by ID of the role Specified and Access the data

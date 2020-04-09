@@ -154,8 +154,7 @@ namespace SuperReaders.Services.DAO
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    parameters.Add(Constants.P_User_Id, id);
-                    db.ExecuteScalar<User>(Constants.SP_User_Delete, parameters, commandType: CommandType.StoredProcedure);
+                    db.ExecuteScalar<User>(Constants.SP_User_GetStudents, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
@@ -163,6 +162,52 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
+        public IEnumerable<User> GetStudents()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<User>(Constants.SP_User_GetStudents, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public IEnumerable<User> GetAdmins()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<User>(Constants.SP_User_GetAdmins, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public IEnumerable<User> GetTeachers()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<User>(Constants.SP_User_GetTeachers, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
 
     }
 }

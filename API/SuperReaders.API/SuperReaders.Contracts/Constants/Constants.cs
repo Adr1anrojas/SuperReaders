@@ -26,6 +26,9 @@
             public const string SP_User_Create = "User_Create";
             public const string SP_User_Update = "User_Update";
             public const string SP_User_Delete = "User_Delete";
+            public const string SP_User_GetStudents = "User_GetStudents";
+            public const string SP_User_GetTeachers = "User_GetTeachers";
+            public const string SP_User_GetAdmins = "User_GetAdmins";
         #endregion
 
         #region Admin
