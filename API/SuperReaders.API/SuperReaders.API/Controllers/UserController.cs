@@ -9,7 +9,7 @@ using SuperReaders.Services.DAO;
 
 namespace SuperReaders.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

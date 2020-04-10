@@ -1,4 +1,4 @@
-ALTER PROC User_GetStudents 
+CREATE PROC User_GetStudents 
 AS
 BEGIN
 SELECT

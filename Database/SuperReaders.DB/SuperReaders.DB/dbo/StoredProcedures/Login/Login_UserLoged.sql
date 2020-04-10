@@ -1,8 +1,9 @@
-CREATE PROC Login_UserLoged
+CREATE PROC [dbo].[Login_UserLoged]
 @pUserName AS NVARCHAR(50),
 @pPassword AS NVARCHAR(50)
 AS
 	BEGIN
+		OPEN SYMMETRIC KEY SQLSymmetricKey DECRYPTION BY CERTIFICATE SelfSignedCertificate;
 		SELECT 
 			[Id], 
 			[FirstName], 
@@ -14,5 +15,6 @@ AS
 			[BirthDate], 
 			[IdSchool] 
 		FROM [User]
-		WHERE [UserName] = @pUserName COLLATE SQL_Latin1_General_CP1_CI_AS AND [Password] = HASHBYTES('SHA2_256', @pPassword)
+		WHERE [UserName] = @pUserName COLLATE SQL_Latin1_General_CP1_CI_AS AND [Password] =  DecryptByKey(@pPassword);
+		CLOSE SYMMETRIC KEY SQLSymmetricKey
 	END

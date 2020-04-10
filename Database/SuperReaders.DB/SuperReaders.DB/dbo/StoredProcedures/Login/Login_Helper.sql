@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[Login_Helper]
+AS
+	BEGIN
+		 CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'password-1'
+		 CREATE CERTIFICATE SelfSignedCertificate 
+		WITH SUBJECT = 'Password Encryption'; 
+		CREATE SYMMETRIC KEY SQLSymmetricKey WITH ALGORITHM = AES_128 
+		ENCRYPTION BY CERTIFICATE SelfSignedCertificate; 
+	END
