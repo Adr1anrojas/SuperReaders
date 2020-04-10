@@ -3,7 +3,7 @@ AS
 BEGIN
 SELECT
     U.[Id],
-    T.[Id] AS IdTeacher, 
+    T.[Id] AS TeacherId,
     [FirstName], 
     [LastName], 
     [UserName], 
@@ -11,5 +11,5 @@ SELECT
     [Status], 
     [Role], 
     [BirthDate], 
-    [IdSchool]  FROM [Teacher] T  INNER JOIN [User] U ON T.IdUser=U.Id
+    [IdSchool] FROM [User] U INNER JOIN [Teacher] T ON T.IdUser=U.Id
 END

@@ -2,7 +2,8 @@ CREATE PROC User_GetStudents
 AS
 BEGIN
 SELECT
-    S.[Id], 
+    U.[Id],
+    S.[Id] AS StudentId,
     [FirstName], 
     [LastName], 
     [UserName], 
