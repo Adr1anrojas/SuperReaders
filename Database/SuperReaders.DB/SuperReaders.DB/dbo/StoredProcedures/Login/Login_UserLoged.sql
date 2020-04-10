@@ -15,6 +15,5 @@ AS
 			[BirthDate], 
 			[IdSchool] 
 		FROM [User]
-		WHERE [UserName] = @pUserName COLLATE SQL_Latin1_General_CP1_CI_AS AND [Password] =  DecryptByKey(@pPassword);
-		CLOSE SYMMETRIC KEY SQLSymmetricKey
+		WHERE [UserName] = @pUserName COLLATE SQL_Latin1_General_CP1_CI_AS AND CONVERT(NVARCHAR(50), (DecryptByKey([Password])))  =  @pPassword
 	END
