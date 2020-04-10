@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { AdminService } from '../../services/admin.service';
+import { UserService } from '../../services/user.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 declare var $: any;
@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit {
   });
   isUpdate: Boolean = false;
 
-  constructor(private toastr: ToastrService, private adminService: AdminService, private fb: FormBuilder) { }
+  constructor(private toastr: ToastrService, private userService: UserService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initAdmin();
@@ -72,7 +72,7 @@ export class AdminComponent implements OnInit {
   }
 
   getAdmins() {
-    this.adminService.getAll().subscribe((res: User[]) => {
+    this.userService.getAllAdmins().subscribe((res: User[]) => {
       this.adminsCopy = JSON.parse(JSON.stringify(res));
       this.admins = res;
       console.log(this.admins);
@@ -80,7 +80,7 @@ export class AdminComponent implements OnInit {
   }
 
   createadmin(admin: User) {
-    this.adminService.create(admin).subscribe(res => {
+    this.userService.create(admin).subscribe(res => {
       this.getAdmins();
       this.initAdmin();
       $("#exampleModal").modal("hide");
@@ -96,7 +96,7 @@ export class AdminComponent implements OnInit {
   updateadmin(admin: User) {
     var adminOld = this.adminsCopy.find(e => e.id === admin.id);
     if (admin.firstName !== adminOld.firstName || admin.lastName !== adminOld.lastName || admin.userName !== adminOld.userName || admin.email !== adminOld.email || admin.password !== adminOld.password || admin.birthDate !== adminOld.birthDate) {
-      this.adminService.update(admin).subscribe(res => {
+      this.userService.update(admin).subscribe(res => {
         $("#exampleModal").modal("hide");
         this.toastr.success('¡Hecho!', 'Se actualizo un Administrador.');
         this.getAdmins();
@@ -138,7 +138,7 @@ export class AdminComponent implements OnInit {
 
   delete() {
     let idUser = this.formAdmin.get('id').value;
-    this.adminService.delete(idUser).subscribe(res => {
+    this.userService.delete(idUser).subscribe(res => {
       this.toastr.success('Hecho', 'Se elimino a un Administrador.');
       this.initAdmin();
       this.getAdmins();

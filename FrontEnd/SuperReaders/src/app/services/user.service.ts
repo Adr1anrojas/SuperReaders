@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+export class UserService {
   url = environment.url + 'user/';
   constructor(private http: HttpClient) { }
 
@@ -18,12 +18,17 @@ export class AdminService {
     return this.http.put(this.url, user);
   }
 
-  getAll() {
+  getAllAdmins() {
     return this.http.get(this.url + 'GetAdmins');
   }
 
+  getAllTeachers() {
+    return this.http.get(this.url + 'GetTeachers');
+  }
+
+
   delete(idUser: number) {
-    return this.http.delete(this.url+idUser);
+    return this.http.delete(this.url + idUser);
   }
 
 }

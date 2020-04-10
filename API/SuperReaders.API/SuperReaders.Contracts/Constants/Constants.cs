@@ -43,6 +43,7 @@
             // Parameter constants
             public const string P_Teacher_Id = "@pId";
             public const string P_Teacher_UserId = "@pUserId";
+            public const string P_Teacher_ClassRoomId = "@pClassRoomId";
             // StoreProcedure constants
             public const string SP_Teacher_Create = "Teacher_Create";
         #endregion

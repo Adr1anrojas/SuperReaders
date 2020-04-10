@@ -114,7 +114,6 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     parameters.Add(Constants.P_ClassRoom_Name,classRoom.Name);
-                    parameters.Add(Constants.P_ClassRoom_IdTeacher, classRoom.IdTeacher);
                     parameters.Add(Constants.P_ClassRoom_Status, classRoom.Status);
                     return db.Query<ClassRoom>(Constants.SP_ClassRoom_Create, parameters, commandType: CommandType.StoredProcedure).First();
                 }
@@ -176,7 +175,6 @@ namespace SuperReaders.Services.DAO
                 {
                     parameters.Add(Constants.P_ClassRoom_Id, classRoom.Id);
                     parameters.Add(Constants.P_ClassRoom_Name,classRoom.Name);
-                    parameters.Add(Constants.P_ClassRoom_IdTeacher, classRoom.IdTeacher);
                     parameters.Add(Constants.P_ClassRoom_Status, classRoom.Status);
                     db.ExecuteScalar<ClassRoom>(Constants.SP_ClassRoom_Update, parameters, commandType: CommandType.StoredProcedure);
                 }
