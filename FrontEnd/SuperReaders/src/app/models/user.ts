@@ -1,5 +1,10 @@
+import { ClassRoom } from './classRoom';
+
 export class User {
     id: number;
+    adminId?: number;
+    studentId?: number;
+    teacherId?: number;
     firstName: string;
     lastName: string;
     userName: string;
@@ -9,4 +14,5 @@ export class User {
     birthDate: Date;
     idSchool: number;
     status: Boolean;
+    classRoom?: ClassRoom;
 }

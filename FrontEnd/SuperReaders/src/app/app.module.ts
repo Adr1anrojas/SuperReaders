@@ -22,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptor } from './shared/helper/jtwInterceptor';
 import { ResponseInterceptor } from './shared/helper/ResponseInterceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ClassRoomComponent } from './components/class-room/class-room.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ContentComponent,
     TeacherComponent,
     ReportComponent,
-    AdminComponent
+    AdminComponent,
+    ClassRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
-})
+})  
 
 export class AppModule {
   constructor(library: FaIconLibrary) {

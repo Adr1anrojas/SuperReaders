@@ -97,5 +97,16 @@
     <Build Include="dbo\StoredProcedures\User\User_GetStudents.sql" />
     <Build Include="dbo\StoredProcedures\User\User_GetTeachers.sql" />
     <Build Include="dbo\StoredProcedures\Login\Login_Helper.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_Create.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetAll.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetByIdTeacher.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetByName.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_Update.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_Create.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetAll.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetByIdClassRoom.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetByIdStudent.sql" />
   </ItemGroup>
 </Project>

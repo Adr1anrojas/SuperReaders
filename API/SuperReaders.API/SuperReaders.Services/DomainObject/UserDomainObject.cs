@@ -13,12 +13,14 @@ namespace SuperReaders.Services.DomainObject
         private IAdminDAO _iAdminDAO;
         private ITeacherDAO _iTeacherDAO;
         private IStudentDAO _iStudentDAO;
-        public UserDomainObject(IUserDAO iuserDAO, IAdminDAO iadminDAO, ITeacherDAO iTeacherDAO, IStudentDAO iStudentDAO)
+        private IClassRoomDAO _iClassRoomDAO;
+        public UserDomainObject(IUserDAO iuserDAO, IAdminDAO iadminDAO, ITeacherDAO iTeacherDAO, IStudentDAO iStudentDAO, IClassRoomDAO iClassRoomDAO)
         {
             _iUserDAO = iuserDAO;
             _iAdminDAO = iadminDAO;
             _iTeacherDAO = iTeacherDAO;
             _iStudentDAO = iStudentDAO;
+            _iClassRoomDAO = iClassRoomDAO;
         }
 
         /// <summary>
@@ -78,9 +80,17 @@ namespace SuperReaders.Services.DomainObject
         /// <returns>Array of Teachers</returns>
         public IEnumerable<User> GetTeachers()
         {
+            List<User> teachers;
             try
             {
-                return _iUserDAO.GetTeachers();
+                teachers = _iUserDAO.GetTeachers().ToList();
+                if(teachers.Count > 0) { 
+                    foreach (User item in teachers)
+                    {
+                        item.classRoom = _iClassRoomDAO.GetClassRoomByIdTeacher(item.TeacherId).First();
+                    }
+                }
+                return teachers;
             }
             catch (Exception e)
             {
@@ -121,9 +131,9 @@ namespace SuperReaders.Services.DomainObject
                    var userCreated = _iUserDAO.AddUser(user).First();
                     if (user.Role.Equals("Admin"))
                         _iAdminDAO.AddAdmin(userCreated.Id);
-                    else if (user.Role.Equals("Maestro"))
-                        _iTeacherDAO.AddTeacher(userCreated.Id);
-                    else if (user.Role.Equals("Alumno"))
+                    else if (user.Role.Equals("Teacher"))
+                        _iTeacherDAO.AddTeacher(userCreated.Id, user.classRoom.Id);
+                    else if (user.Role.Equals("Student"))
                         _iStudentDAO.AddStudent(userCreated.Id);
                 }
                 else
