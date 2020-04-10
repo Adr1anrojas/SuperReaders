@@ -58,7 +58,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
-})
+})  
 
 export class AppModule {
   constructor(library: FaIconLibrary) {

@@ -19,7 +19,7 @@ export class AdminService {
   }
 
   getAll() {
-    return this.http.get(this.url + 'all/Admin');
+    return this.http.get(this.url + 'GetAdmins');
   }
 
   delete(idUser: number) {

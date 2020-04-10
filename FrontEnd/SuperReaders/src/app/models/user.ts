@@ -1,5 +1,8 @@
 export class User {
     id: number;
+    adminId?: number;
+    studentId?: number;
+    teacherId?: number;
     firstName: string;
     lastName: string;
     userName: string;

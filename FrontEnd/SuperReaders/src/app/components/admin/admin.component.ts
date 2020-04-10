@@ -27,6 +27,7 @@ export class AdminComponent implements OnInit {
     password: new FormControl('', Validators.required),
     date: new FormControl({ value: '', disabled: true }, Validators.required)
   });
+  isUpdate: Boolean = false;
 
   constructor(private toastr: ToastrService, private adminService: AdminService, private fb: FormBuilder) { }
 
@@ -53,6 +54,7 @@ export class AdminComponent implements OnInit {
 
   initAdmin() {
     this.submitted = false;
+    this.isUpdate = false;
     this.formAdmin.reset();
   }
 
@@ -82,8 +84,13 @@ export class AdminComponent implements OnInit {
       this.getAdmins();
       this.initAdmin();
       $("#exampleModal").modal("hide");
-      this.toastr.success('Hecho', 'Se creó un Administrador.');
-    }, error => this.toastr.error('Error', 'Ocurrio un problema al crear al Administrador.'));
+      this.toastr.success('¡Hecho!', 'Se creó un Administrador.');
+    }, error => {
+      if (error == 'Bad Request')
+        this.toastr.error('El Nombre de usuario ya esta en uso.', '¡Error!');
+      else
+        this.toastr.error('Ocurrio un problema al crear al Administrador.', '¡Error!');
+    });
   }
 
   updateadmin(admin: User) {
@@ -91,12 +98,11 @@ export class AdminComponent implements OnInit {
     if (admin.firstName !== adminOld.firstName || admin.lastName !== adminOld.lastName || admin.userName !== adminOld.userName || admin.email !== adminOld.email || admin.password !== adminOld.password || admin.birthDate !== adminOld.birthDate) {
       this.adminService.update(admin).subscribe(res => {
         $("#exampleModal").modal("hide");
-        this.toastr.success('Hecho', 'Se actualizo un Administrador.');
+        this.toastr.success('¡Hecho!', 'Se actualizo un Administrador.');
         this.getAdmins();
         this.initAdmin();
       }, (error => {
         this.toastr.error('Ocurrio un problema al actualizar al Administrador.', '¡Error!');
-        this.initAdmin();
       }));
     } else
       this.toastr.error('Se debe modificar al menos un campo.', '¡Error!');
@@ -112,6 +118,7 @@ export class AdminComponent implements OnInit {
       password: e.password,
       date: e.birthDate
     });
+    this.isUpdate = true;
   }
 
   createAnUser(): User {
