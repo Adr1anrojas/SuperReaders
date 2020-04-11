@@ -14,25 +14,44 @@ namespace SuperReaders.Services.DomainObject
         private IStudentDAO _iStudentDAO;
         private IPageDAO _iPageDAO;
         private IQuestionDAO _iQuestionDAO;
+        private IAnswerDAO _iAnswerDAO;
 
-        public ContentDomainObject(IContentDAO iContentDAO)
+        public ContentDomainObject(IContentDAO iContentDAO,IPageDAO iPageDAO,IQuestionDAO iQuestionDAO,IAnswerDAO iAnswerDAO)
         {
             _iContentDAO = iContentDAO;
+            _iPageDAO = iPageDAO;
+            _iQuestionDAO = iQuestionDAO;
+            _iAnswerDAO = iAnswerDAO;
         }
 
-        public void AddContent(Content content)
+        public void AddContent(Content content, List<Page> pages, List<Question> questions, List<Answer> answers)
         {
             try
             {
+                List<int> questionsId = new List<int>();
+                List<int> answersId = new List<int>();
                 int result = _iContentDAO.GetContentByContentName(content.Title);
                 if (result == 0)
                 {
                     int id = _iContentDAO.AddContent(content);
-                   // _iContentDetailDAO.AddContentDetail(id);
-
-              
-                    
-
+                    foreach (Page item in pages)
+                    {
+                        _iPageDAO.AddPage(item);
+                    }
+                    foreach (Question item in questions)
+                    {
+                        _iQuestionDAO.AddQuestion(item);
+                        questionsId.Add(item.Id);
+                    }
+                    foreach(Answer item in answers)
+                    {
+                        _iAnswerDAO.AddAnswer(item);
+                        answersId.Add(item.Id);
+                    }
+                    for (int i = 0; i <questionsId.Count; i++)
+                    {
+                        _iContentDAO.AddQuestionAnswer(questionsId[i],answersId[i]);
+                    }
                 }
                 else
                     throw new ArgumentException("This title content already exists");

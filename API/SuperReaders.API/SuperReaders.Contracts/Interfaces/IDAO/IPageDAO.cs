@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SuperReaders.Contracts.Interfaces.IDAO
 {
-   public interface IPageDAO
+    public interface IPageDAO
     {
         /// <summary>
         /// This Method create an Page
@@ -20,5 +20,20 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="question">Question Create</param>
         /// <returns></returns>
         void UpdatePage(Page page);
+
+        /// <summary>
+        /// This Method create an Question
+        /// </summary>
+        /// <param name="question">Question Create</param>
+        /// <returns></returns>
+        void DeletePage(int id);
+
+        /// <summary>
+        /// This Method create an Question
+        /// </summary>
+        /// <param name="question">Question Create</param>
+        /// <returns></returns>
+        IEnumerable<Page> GetPage(int id);
+
     }
 }

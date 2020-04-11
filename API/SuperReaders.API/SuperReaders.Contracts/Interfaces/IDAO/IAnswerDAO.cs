@@ -5,34 +5,34 @@ using System.Text;
 
 namespace SuperReaders.Contracts.Interfaces.IDAO
 {
-   public interface IQuestionDAO
+    public interface IAnswerDAO
     {
         /// <summary>
-        /// This Method create an Question
+        /// This Method create an Page
         /// </summary>
-        /// <param name="question">Question Create</param>
+        /// <param name="page">Page Create</param>
         /// <returns></returns>
-        int AddQuestion(Question question);
+        int AddAnswer(Answer answer);
 
         /// <summary>
         /// This Method create an Question
         /// </summary>
         /// <param name="question">Question Create</param>
         /// <returns></returns>
-        void UpdateQuestion(Question question);
+        void UpdateAnswer(Answer page);
 
-        /// <summary>
-        /// This Method eliminate an Question
-        /// </summary>
-        /// <param name="question">Question Create</param>
-        /// <returns></returns>
-        void DeleteQuestion(int id);
         /// <summary>
         /// This Method create an Question
         /// </summary>
         /// <param name="question">Question Create</param>
         /// <returns></returns>
-        /// 
-        IEnumerable<Question> GetQuestion(int id);
+        void DeleteAnswer(int id);
+
+        /// <summary>
+        /// This Method create an Question
+        /// </summary>
+        /// <param name="question">Question Create</param>
+        /// <returns></returns>
+        IEnumerable<Answer> GetAnswer(int id);
     }
 }

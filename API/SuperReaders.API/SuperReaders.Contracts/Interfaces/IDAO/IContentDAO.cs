@@ -41,5 +41,17 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="id">user to change status</param>
         /// <returns></returns>
         void DeleteContent(int id);
+        /// <summary>
+        /// This Method delete the status of an Content  and Access the data
+        /// </summary>
+        /// <param name="id">user to change status</param>
+        /// <returns></returns>
+        void AddContentDetail(int id);
+        /// <summary>
+        /// This Method delete the status of an Content  and Access the data
+        /// </summary>
+        /// <param name="id">user to change status</param>
+        /// <returns></returns>
+        void AddQuestionAnswer(int idQuestion, int idAnswer );
     }
 }

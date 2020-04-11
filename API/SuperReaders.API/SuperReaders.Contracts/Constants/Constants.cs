@@ -85,20 +85,24 @@
             // StoreProcedure constants
             public const string SP_Page_Create = "Page_Create";
             public const string SP_Page_Update = "Page_Update";
+            public const string SP_Page_Delete = "Page_Delete";
+            public const string SP_Page_GetById = "Page_GetById"; 
         #endregion
         #region Question
-            //Parameter constant 
-            public const string P_Question_Id = "@pId";
+        //Parameter constant 
+        public const string P_Question_Id = "@pId";
             public const string P_Question_IdContent = "@pIdContent";
             public const string P_Question_Text = "@pText";
         
             // StoreProcedure constants
             public const string SP_Question_Create = "Question_Create";
             public const string SP_Question_Update = "Question_Update";
+            public const string SP_Question_Delete = "Question_Delete";
+            public const string SP_Question_GetById = "Question_GetById";
         #endregion
         #region StudentContent
-            //Parameter constant 
-            public const string P_StudentContent_Id = "@pIdStudentContent";
+        //Parameter constant 
+        public const string P_StudentContent_Id = "@pIdStudentContent";
             public const string P_StudentContent_IdStudent = "@pIdStudent";
             public const string P_StudentContent_IdContent = "@pIdContent";
             public const string P_StudentContent_TimeReading = "@pTimeReading";
@@ -124,6 +128,22 @@
             public const string SP_ClassRoom_Create = "ClassRoom_Create";
             public const string SP_ClassRoom_Update = "ClassRoom_Update";
             public const string SP_ClassRoom_Delete = "ClassRoom_Delete";
+        #endregion
+        #region Answer
+        // Parameter constants
+        public const string P_Answer_Id = "@pId";
+        public const string P_Answer_IdStudent = "@pIdStudent";
+        public const string P_Answer_Text= "@pText";
+        public const string SP_Answer_Create = "Answer_Create";
+        public const string SP_Answer_Update = "Answer_Update";
+        public const string SP_Answer_Delete= "Answer_Delete";
+        public const string SP_Answer_GetById = "Answer_GetById";
+        #endregion
+        #region QuestionAnswer
+        // Parameter constants
+        public const string P_QuestionAnswer_IdQuestion = "@pIdQuestion";
+        public const string P_QuestionAnswer_IdAnswer = "@pIdAnswer";
+        public const string SP_QuestionAnswer_Create = "QuestionAnswer_Create";
         #endregion
     }
 }

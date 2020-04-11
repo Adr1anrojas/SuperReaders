@@ -6,6 +6,7 @@ using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace SuperReaders.Services.DAO
@@ -14,24 +15,57 @@ namespace SuperReaders.Services.DAO
     {
         private DbAccess connection;
         public void AddPage(Page page)
-         
+        { 
+
+
+             DynamicParameters parameters = new DynamicParameters();
+            try
             {
-                DynamicParameters parameters = new DynamicParameters();
-                try
+                using (IDbConnection db = connection.Connection)
                 {
-                    using (IDbConnection db = connection.Connection)
-                    {
-                    parameters.Add(Constants.P_Page_Text, page.Text);
-                    parameters.Add(Constants.P_Page_IdContent,page.IdContent);
-                      
-                    db.ExecuteScalar<Page>(Constants.SP_Page_Create, parameters, commandType: CommandType.StoredProcedure);
-                    }
+                    db.ExecuteScalar<User>(Constants.SP_Page_Create, parameters, commandType: CommandType.StoredProcedure);
                 }
-                catch (Exception e)
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+    }
+    
+        
+
+        public void DeletePage(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
                 {
-                    throw e;
+                    parameters.Add(Constants.P_Page_Id, id);
+                    db.ExecuteScalar<Page>(Constants.SP_Page_Delete, parameters, commandType: CommandType.StoredProcedure);
                 }
-            
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IEnumerable<Page> GetPage(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_Page_Id, id);
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<Page>(Constants.SP_Page_GetById, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void UpdatePage(Page page)

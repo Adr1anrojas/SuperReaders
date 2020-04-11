@@ -51,11 +51,11 @@ namespace SuperReaders.API.Controllers
 
         // POST: api/Content
         [HttpPost]
-        public IActionResult AddContent([FromBody] Content content)
+        public IActionResult AddContent([FromBody] Content content,List<Page> pages,List<Question> questions,List<Answer> answers)
         {
             try
             {
-                _iContentDomainObject.AddContent(content);
+                _iContentDomainObject.AddContent(content,pages,questions,answers);
                 return Ok();
             }
             catch (Exception e)

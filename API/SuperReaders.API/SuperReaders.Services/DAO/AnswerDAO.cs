@@ -11,25 +11,24 @@ using System.Text;
 
 namespace SuperReaders.Services.DAO
 {
-    public class QuestionDAO :IQuestionDAO
+    public class AnswerDAO : IAnswerDAO
     {
         private DbAccess connection;
-        public int AddQuestion(Question question)
+        public int AddAnswer(Answer answer)
 
         {
-            try
-            {
+            try {
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @"INSERT INTO [Question]
-		            ([IdContent], [Text])
-		            VALUES (@IdContent,@Text);
+                    string sql = @"INSERT INTO [Answer]
+		            ([IdStudent], [Text])
+		            VALUES (@IdStudent,@Text);
 		            SELECT CAST(SCOPE_IDENTITY() as int)";
                     var id = db.Query<int>(sql,
                         new
                         {
-                            IdStudent = question.IdContent,
-                            Text = question.Text,
+                            IdStudent = answer.IdStudent,
+                            Text = answer.Text,
                         }).Single();
                     return id;
 
@@ -40,17 +39,18 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
 
+
         }
 
-        public void DeleteQuestion(int id)
+        public void DeleteAnswer(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    parameters.Add(Constants.P_Question_Id, id);
-                    db.ExecuteScalar<Question>(Constants.SP_Question_Delete, parameters, commandType: CommandType.StoredProcedure);
+                    parameters.Add(Constants.P_Answer_Id, id);
+                    db.ExecuteScalar<Answer>(Constants.SP_Answer_Delete, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
@@ -59,15 +59,15 @@ namespace SuperReaders.Services.DAO
             }
         }
 
-        public IEnumerable<Question> GetQuestion(int id)
+        public IEnumerable<Answer> GetAnswer(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
             {
-                parameters.Add(Constants.P_Question_Id, id);
+                parameters.Add(Constants.P_Answer_Id, id);
                 using (IDbConnection db = connection.Connection)
                 {
-                    return db.Query<Question>(Constants.SP_Question_GetById, parameters, commandType: CommandType.StoredProcedure);
+                    return db.Query<Answer>(Constants.SP_Answer_GetById, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
@@ -76,17 +76,16 @@ namespace SuperReaders.Services.DAO
             }
         }
 
-        public void UpdateQuestion(Question question)
+        public void UpdateAnswer(Answer answer)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    parameters.Add(Constants.P_Question_Id, question.Id);
-                    parameters.Add(Constants.P_Question_IdContent, question.IdContent);
-                    parameters.Add(Constants.P_Question_Text,question.Text);
-                    db.ExecuteScalar<Question>(Constants.SP_Page_Update, parameters, commandType: CommandType.StoredProcedure);
+                    parameters.Add(Constants.P_Answer_Id, answer.Id);
+                    parameters.Add(Constants.P_Answer_Text, answer.Text);
+                    db.ExecuteScalar<Answer>(Constants.SP_Answer_Update, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
@@ -95,5 +94,4 @@ namespace SuperReaders.Services.DAO
             }
         }
     }
-    }
-
+}

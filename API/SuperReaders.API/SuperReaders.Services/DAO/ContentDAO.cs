@@ -141,5 +141,42 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
+        public void AddQuestionAnswer(int idQuestion, int idAnswer)
+        {
+
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    parameters.Add(Constants.P_QuestionAnswer_IdQuestion, idQuestion);
+                    parameters.Add(Constants.P_QuestionAnswer_IdAnswer, idAnswer);
+                    db.ExecuteScalar<ContentDetail>(Constants.SP_QuestionAnswer_Create, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void AddContentDetail(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    parameters.Add(Constants.P_ContentDetail_IdContent, id);
+                    db.ExecuteScalar<ContentDetail>(Constants.SP_ContentDetail_Create, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
     }
+
+    

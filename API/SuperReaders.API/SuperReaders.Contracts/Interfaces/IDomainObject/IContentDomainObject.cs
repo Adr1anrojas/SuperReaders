@@ -19,7 +19,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="user">user to create</param>
         /// <returns></returns>
-        void AddContent(Content content);
+        void AddContent(Content content,List<Page> pages, List<Question> questions, List<Answer> answers);
 
         /// <summary>
         /// This Method update an User of the role Specified and apply the business rules
