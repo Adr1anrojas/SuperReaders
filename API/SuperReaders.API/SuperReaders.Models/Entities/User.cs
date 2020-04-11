@@ -12,7 +12,7 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("adminId")]
         public int? AdminId { get; set; }
         [JsonProperty("studentId")]
-        public int? StudentId { get; set; }
+        public int StudentId { get; set; }
         [JsonProperty("teacherId")]
         public int TeacherId { get; set; }
         [JsonProperty("firstName")]

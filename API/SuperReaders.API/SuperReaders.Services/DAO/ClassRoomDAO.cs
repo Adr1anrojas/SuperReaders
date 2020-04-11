@@ -131,7 +131,7 @@ namespace SuperReaders.Services.DAO
                 {
                     parameters.Add(Constants.P_ClassRoomDetail_IdClasRoom, classRoomDetail.IdClassRoom);
                     parameters.Add(Constants.P_ClassRoomDetail_IdStudent,classRoomDetail.IdStudent);
-                    db.ExecuteScalar<ClassRoom>(Constants.SP_ClassRoomDetail, parameters, commandType: CommandType.StoredProcedure);
+                    db.ExecuteScalar<ClassRoom>(Constants.SP_User_CreateStudentToClassRoom, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
@@ -177,6 +177,31 @@ namespace SuperReaders.Services.DAO
                     parameters.Add(Constants.P_ClassRoom_Name,classRoom.Name);
                     parameters.Add(Constants.P_ClassRoom_Status, classRoom.Status);
                     db.ExecuteScalar<ClassRoom>(Constants.SP_ClassRoom_Update, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        
+        /// <summary>
+        /// This EndPoint return an ClassRoom by Teacher of Specified
+        /// </summary>
+        /// <param name="idTeacher">
+        /// <returns>An ClassRom of the Teacher Specified</returns>
+        public IEnumerable<ClassRoom> GetClassRoomByIdStudent(int idStudent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_ClassRoom_IdStudent, idStudent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    var result = db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByIdStudent, parameters, commandType: CommandType.StoredProcedure);
+                    if (result.ToList().Count == 0)
+                        return null;
+                    return result;
                 }
             }
             catch (Exception e)

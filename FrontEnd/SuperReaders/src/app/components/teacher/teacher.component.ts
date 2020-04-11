@@ -62,6 +62,11 @@ export class TeacherComponent implements OnInit {
     this.formTeacher.reset();
   }
 
+  initClassRoom(e: ClassRoom) {
+    this.formTeacher.get('classRoom').setValue(e, {
+      onlyself: true
+    });
+  }
   // click event function toggle
   showPassword() {
     this.show = !this.show;
@@ -88,12 +93,14 @@ export class TeacherComponent implements OnInit {
       this.classRooms = res;
     });
   }
+
   createadmin(admin: User) {
     this.userService.create(admin).subscribe(res => {
       this.getTeachers();
       this.initTeacher();
       $("#exampleModal").modal("hide");
       this.toastr.success('¡Hecho!', 'Se creó un Maestro.');
+      this.getClassRooms();
     }, error => {
       if (error == 'Bad Request')
         this.toastr.error('El Nombre de usuario ya esta en uso.', '¡Error!');
@@ -130,8 +137,11 @@ export class TeacherComponent implements OnInit {
       classRoom: e.classRoom
     });
     this.isUpdate = true;
+    this.initClassRoom(e.classRoom);
   }
-
+  classRoomChange(e) {
+    console.log("change", e);
+  }
   createAnUser(): User {
     return {
       id: +this.formTeacher.get('id').value,

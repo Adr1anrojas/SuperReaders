@@ -108,5 +108,9 @@
     <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetAll.sql" />
     <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetByIdClassRoom.sql" />
     <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetByIdStudent.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_CreateStudentToClassRoom.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetByIdStudent.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetTeacherById.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetStudentById.sql" />
   </ItemGroup>
 </Project>

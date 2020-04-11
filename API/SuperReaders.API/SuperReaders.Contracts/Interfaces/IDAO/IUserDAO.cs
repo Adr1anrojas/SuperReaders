@@ -39,6 +39,13 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         IEnumerable<User> GetUser(int id);
 
         /// <summary>
+        /// This Method return an User by ID of the role Teacher and Access the data
+        /// </summary>
+        /// <param name="">
+        /// <returns>An User of the role Teacher</returns> 
+        User GetTeacherById(int id);
+
+        /// <summary>
         /// This Method create an User of the role Specified and Access the data
         /// </summary>
         /// <param name="user">user to create</param>
@@ -65,5 +72,13 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="id">user to change status</param>
         /// <returns></returns>
         void DeleteUser(int id);
+
+        /// <summary>
+        /// This Method add an student to ClassRoom
+        /// </summary>
+        /// <param name="idClassRoom">idClassRoom to insert</param>
+        /// <param name="idStudent">idStudent to insert</param>
+        /// <returns></returns>
+        void AddStudentToClassRoom(int idClassRoom, int idStudent);
     }
 }

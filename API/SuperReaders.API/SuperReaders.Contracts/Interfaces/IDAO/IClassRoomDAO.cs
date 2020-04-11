@@ -31,12 +31,21 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="name">ClassRoom to create</param>
         /// <returns></returns>
         int GetClassRoomByName(string name);
-          /// <summary>
+
+        /// <summary>
         /// This Method return an ClassRoom by Teacher of Specified and Access the data
         /// </summary>
         /// <param name="idTeacher">ClassRoom to create</param>
         /// <returns></returns>
         IEnumerable<ClassRoom> GetClassRoomByIdTeacher(int idTeacher);
+
+        /// <summary>
+        /// This Method return an ClassRoom by student of Specified and Access the data
+        /// </summary>
+        /// <param name="idStudent">ClassRoom to create</param>
+        /// <returns></returns>
+        IEnumerable<ClassRoom> GetClassRoomByIdStudent(int idStudent);
+
         /// <summary>
         /// This Method update an ClassRoom Specified and Access the data
         /// </summary>

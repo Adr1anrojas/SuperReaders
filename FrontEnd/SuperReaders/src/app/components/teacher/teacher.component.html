@@ -131,7 +131,8 @@
                         <label for="selecGroup">Grupo</label>
                         <select class="form-control" id="selecGroup" formControlName="classRoom"
                             [ngClass]="{'is-invalid':submitted && controls.classRoom.errors }">
-                            <option selected *ngIf="isUpdate">{{this.formTeacher.get('classRoom').value.name}}</option>
+                            <option selected *ngIf="isUpdate">
+                                {{this.formTeacher.get('classRoom').value.name}}</option>
                             <option *ngFor="let item of classRooms" [ngValue]="item">
                                 {{item.name}}
                             </option>

@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   }
   collapsed: Boolean = true;
   ngOnInit(): void {
-    this.currentUser = this.loginService.currentUserValue()[0];
+    this.currentUser = this.loginService.currentUserValue();
   }
 
   isCollapsed() {
