@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
     lastName: new FormControl('', Validators.required),
     userName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     date: new FormControl({ value: '', disabled: true }, Validators.required)
   });
   isUpdate: Boolean = false;

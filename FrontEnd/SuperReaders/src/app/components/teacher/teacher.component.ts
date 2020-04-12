@@ -26,10 +26,11 @@ export class TeacherComponent implements OnInit {
     lastName: new FormControl('', Validators.required),
     userName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     date: new FormControl({ value: '', disabled: true }, Validators.required),
     classRoom: new FormControl('', Validators.required)
   });
+  classRoomset: ClassRoom;
   isUpdate: Boolean = false;
 
   constructor(private toastr: ToastrService, private userService: UserService, private classRoomService: ClassRoomService) { }
@@ -62,12 +63,6 @@ export class TeacherComponent implements OnInit {
     this.formTeacher.reset();
   }
 
-  initClassRoom(e: ClassRoom) {
-    this.formTeacher.get('classRoom').setValue(e, {
-      onlyself: true
-    });
-  }
-  // click event function toggle
   showPassword() {
     this.show = !this.show;
   }
@@ -89,7 +84,7 @@ export class TeacherComponent implements OnInit {
   }
 
   getClassRooms() {
-    this.classRoomService.getAll().subscribe((res: ClassRoom[]) => {
+    this.classRoomService.getAllAvailable().subscribe((res: ClassRoom[]) => {
       this.classRooms = res;
     });
   }
@@ -110,12 +105,14 @@ export class TeacherComponent implements OnInit {
   }
 
   updateadmin(admin: User) {
+    debugger;
     var adminOld = this.adminsCopy.find(e => e.id === admin.id);
-    if (admin.firstName !== adminOld.firstName || admin.lastName !== adminOld.lastName || admin.userName !== adminOld.userName || admin.email !== adminOld.email || admin.password !== adminOld.password || admin.birthDate !== adminOld.birthDate) {
+    if (admin.firstName !== adminOld.firstName || admin.lastName !== adminOld.lastName || admin.userName !== adminOld.userName || admin.email !== adminOld.email || admin.password !== adminOld.password || admin.birthDate !== adminOld.birthDate || admin.classRoom.id !== adminOld.classRoom.id) {
       this.userService.update(admin).subscribe(res => {
         $("#exampleModal").modal("hide");
         this.toastr.success('¡Hecho!', 'Se actualizo un Maestro.');
         this.getTeachers();
+        this.getClassRooms();
         this.initTeacher();
       }, (error => {
         this.toastr.error('Ocurrio un problema al actualizar al Maestro.', '¡Error!');
@@ -137,11 +134,8 @@ export class TeacherComponent implements OnInit {
       classRoom: e.classRoom
     });
     this.isUpdate = true;
-    this.initClassRoom(e.classRoom);
   }
-  classRoomChange(e) {
-    console.log("change", e);
-  }
+
   createAnUser(): User {
     return {
       id: +this.formTeacher.get('id').value,

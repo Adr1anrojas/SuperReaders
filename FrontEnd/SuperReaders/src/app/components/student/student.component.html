@@ -2,6 +2,21 @@
 <div class="card mt-3">
     <!-- <h5 class="card-header">Estudiantes</h5> -->
     <div class="card-body">
+        <div class="form-group " *ngIf="this.currentUser.role === 'Admin'">
+            <label for="selecGroupSearch col-6">Grupo</label>
+            <select class="form-control col-6" id="selecGroupSearch"
+                [ngClass]="{'is-invalid':submitted && controls.classRoom.errors }">
+                <option selected *ngIf="isUpdate" [ngValue]="this.formStudent.get('classRoom').value">
+                    {{this.formStudent.get('classRoom').value.name}}</option>
+                <option *ngFor="let item of classRooms" [ngValue]="item">
+                    {{item.name}}
+                </option>
+            </select>
+            <div *ngIf="submitted && controls.classRoom.errors" class="invalid-feedback">
+                Grupo requerido.
+            </div>
+            <button type="button" class="btn btn-primary">Buscar</button>
+        </div>
         <button type="button" class="btn btn-danger add mb-3" data-toggle="modal" data-target="#exampleModal"
             (click)=initStudent()>+</button>
         <table class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg">
@@ -111,7 +126,9 @@
                                     </span>
                                 </div>
                                 <div *ngIf="submitted && controls.password.errors" class="invalid-feedback">
-                                    Campo requerido
+                                    <div *ngIf="controls.password.errors.required"> Campo requerido</div>
+                                    <div *ngIf="controls.password.errors.minlength">La Contraseña debe tener minimo 6
+                                        caracteres.</div>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +153,8 @@
                         <label for="selecGroup">Grupo</label>
                         <select class="form-control" id="selecGroup" formControlName="classRoom"
                             [ngClass]="{'is-invalid':submitted && controls.classRoom.errors }">
-                            <option selected *ngIf="isUpdate">{{this.formStudent.get('classRoom').value.name}}</option>
+                            <option selected *ngIf="isUpdate" [ngValue]="this.formStudent.get('classRoom').value">
+                                {{this.formStudent.get('classRoom').value.name}}</option>
                             <option *ngFor="let item of classRooms" [ngValue]="item">
                                 {{item.name}}
                             </option>

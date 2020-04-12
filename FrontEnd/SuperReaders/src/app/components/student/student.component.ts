@@ -28,7 +28,7 @@ export class StudentComponent implements OnInit {
     lastName: new FormControl('', Validators.required),
     userName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     date: new FormControl({ value: '', disabled: true }, Validators.required),
     classRoom: new FormControl('', Validators.required),
   });
@@ -70,6 +70,7 @@ export class StudentComponent implements OnInit {
     this.isUpdate = false;
     this.formStudent.reset();
   }
+
   checkRole() {
     if (this.currentUser.role === "Teacher")
       this.formStudent.get('classRoom').setValue(this.currentUser.classRoom, {
@@ -81,13 +82,6 @@ export class StudentComponent implements OnInit {
     this.show = !this.show;
   }
 
-  initClassRoom() {
-    console.log("initClassRoom ", this.currentUser.classRoom);
-    this.formStudent.get('classRoom').setValue(this.currentUser.classRoom, {
-      onlyself: true
-    });
-    console.log(this.formStudent.value);
-  }
   get controls() {
     return this.formStudent.controls;
   }
@@ -109,6 +103,7 @@ export class StudentComponent implements OnInit {
       this.classRooms = res;
     });
   }
+  
   createstudent(student: User) {
     this.userService.create(student).subscribe(res => {
       this.getStudents();

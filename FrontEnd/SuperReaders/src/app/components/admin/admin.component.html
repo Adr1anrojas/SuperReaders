@@ -1,9 +1,9 @@
 <h5 class="mt-3">Administradores</h5>
-<div class="card mt-3">
+<button type="button" class="btn btn-danger add mb-3" data-toggle="modal" data-target="#exampleModal"
+    (click)=initAdmin()>+</button>
+<div class="card mt-5 margin-card">
     <!-- <h5 class="card-header">Administradores</h5> -->
     <div class="card-body">
-        <button type="button" class="btn btn-danger add mb-3" data-toggle="modal" data-target="#exampleModal"
-            (click)=initAdmin()>+</button>
         <table class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg">
             <thead>
                 <tr>
@@ -104,7 +104,9 @@
                                 </span>
                             </div>
                             <div *ngIf="submitted && controls.password.errors" class="invalid-feedback">
-                                Campo requerido
+                                <div *ngIf="controls.password.errors.required"> Campo requerido</div>
+                                <div *ngIf="controls.password.errors.minlength">La Contraseña debe tener minimo 6
+                                    caracteres.</div>
                             </div>
                         </div>
                     </div>
