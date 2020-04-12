@@ -1,0 +1,12 @@
+/* .background {
+    background-image: none !important;
+} */
+.background {
+    background-image: url("../assets/background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #999;
+    height: 100%;
+  }
