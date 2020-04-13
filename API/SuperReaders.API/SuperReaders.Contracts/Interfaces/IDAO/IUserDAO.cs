@@ -7,7 +7,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
     public interface IUserDAO
     {
         /// <summary>
-        /// This Method return all Users of the role Specified and Access the data
+        /// This Method return all User of the role Specified and Access the data
         /// </summary>
         /// <param name="role">
         /// <returns>Array of Users of the role Specified</returns>
