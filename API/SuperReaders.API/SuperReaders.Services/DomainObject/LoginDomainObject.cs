@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDAO;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
+using SuperReaders.Models.Entities;
 using SuperReaders.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,14 @@ namespace SuperReaders.Services.DomainObject
     {
         private ILoginDAO _iLoginDAO;
         private IConfiguration _config;
-        public LoginDomainObject(ILoginDAO iLoginDAO, IConfiguration config)
+        private IClassRoomDAO _iClassRoomDAO;
+        private IUserDAO _iUserDAO;
+        public LoginDomainObject(ILoginDAO iLoginDAO, IConfiguration config, IClassRoomDAO iClassRoomDAO, IUserDAO iUserDAO)
         {
             _iLoginDAO = iLoginDAO;
             _config = config;
+            _iClassRoomDAO = iClassRoomDAO;
+            _iUserDAO = iUserDAO;
         }
 
         /// <summary>
@@ -28,17 +33,24 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="user">
         /// <returns>LoginResult</returns>
-        public IEnumerable<LoginResult> Login(LoginCredential user)
+        public LoginResult Login(LoginCredential user)
         {
-            IEnumerable<LoginResult> result;
+            LoginResult result;
             try
             {
-                result = _iLoginDAO.Login(user);
-                if (result != null && result.Any())
+                
+                result = _iLoginDAO.Login(user).First();
+                if (result != null)
                 {
-                    BuildToken(result.First());
-                }
-                if (!result.Any())
+                    result.Token = BuildToken(result);
+                    if (result.Role.Equals("Teacher"))
+                    {
+                        User userResult =_iUserDAO.GetTeacherById(result.Id);
+                        result.TeacherId = userResult.TeacherId;
+                        result.classRoom = _iClassRoomDAO.GetClassRoomByIdTeacher(result.TeacherId).First();
+                    } else if(result.Role.Equals("Student"))
+                        result.classRoom = _iClassRoomDAO.GetClassRoomByIdStudent(result.TeacherId).First();
+                } else
                     throw new Exception("UserName or Password invalid");
                 return result;
             }
@@ -69,7 +81,6 @@ namespace SuperReaders.Services.DomainObject
             var issuer = _config[Constants.JWT_ISSUER];
             var jwtToken = new JwtSecurityToken(issuer, issuer, claims, expires: DateTime.Now.AddMinutes(tokenTime), signingCredentials: creds);
             var token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
-            user.Token = token;
             return token;
         }
     }

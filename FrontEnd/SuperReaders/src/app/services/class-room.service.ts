@@ -18,6 +18,13 @@ export class ClassRoomService {
     return this.http.put(this.url, classRoom);
   }
 
+  getAllAvailable() {
+    return this.http.get(this.url + 'allAvailable');
+  }
+  getAllWithInfo() {
+    return this.http.get(this.url + 'allInfo');
+  }
+
   getAll() {
     return this.http.get(this.url + 'all');
   }

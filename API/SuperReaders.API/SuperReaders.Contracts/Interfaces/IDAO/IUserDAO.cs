@@ -17,12 +17,21 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="">
         /// <returns>Array of Students </returns>
+        
         IEnumerable<User> GetStudents();
         /// <summary>
         /// This Method return all Admins of Access the data
         /// </summary>
         /// <param name="">
         /// <returns>Array of Admins </returns>
+
+        IEnumerable<User> GetStudentsByClassRoom(int idClassRoom);
+        /// <summary>
+        /// This Method return all Students of Access the data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students </returns>
+        
         IEnumerable<User> GetAdmins();
         /// <summary>
         /// This Method return all Teachers of Access the data
@@ -37,6 +46,13 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="">
         /// <returns>An User of the role Specified</returns> 
         IEnumerable<User> GetUser(int id);
+
+        /// <summary>
+        /// This Method return an User by ID of the role Teacher and Access the data
+        /// </summary>
+        /// <param name="">
+        /// <returns>An User of the role Teacher</returns> 
+        User GetTeacherById(int id);
 
         /// <summary>
         /// This Method create an User of the role Specified and Access the data
@@ -65,5 +81,13 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="id">user to change status</param>
         /// <returns></returns>
         void DeleteUser(int id);
+
+        /// <summary>
+        /// This Method add an student to ClassRoom
+        /// </summary>
+        /// <param name="idClassRoom">idClassRoom to insert</param>
+        /// <param name="idStudent">idStudent to insert</param>
+        /// <returns></returns>
+        void AddStudentToClassRoom(int idClassRoom, int idStudent);
     }
 }

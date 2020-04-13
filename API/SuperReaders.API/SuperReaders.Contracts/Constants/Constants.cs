@@ -19,21 +19,28 @@
             public const string P_User_Role = "@pRole";
             public const string P_User_BirthDate = "@pBirthDate";
             public const string P_User_IdSchool = "@pIdSchool";
+            public const string P_User_ClassRoomId = "@pIdClassRoom";
+            public const string P_User_StudentId = "@pIdStudent";
             // StoreProcedure constants
             public const string SP_User_GetAll = "User_GetAll";
             public const string SP_User_GetById = "User_GetById";
             public const string SP_User_GetByUserName = "User_GetByUserName";
             public const string SP_User_Create = "User_Create";
             public const string SP_User_Update = "User_Update";
+            public const string SP_User_TeacherUpdateClassRoom = "User_TeacherUpdateClassRoom";
             public const string SP_User_Delete = "User_Delete";
             public const string SP_User_GetStudents = "User_GetStudents";
+            public const string SP_User_GetStudentsByClassRoom = "User_GetStudentsByClassRoom";
             public const string SP_User_GetTeachers = "User_GetTeachers";
             public const string SP_User_GetAdmins = "User_GetAdmins";
+            public const string SP_User_CreateStudentToClassRoom = "User_CreateStudentToClassRoom";
+            public const string SP_User_GetTeacherById = "User_GetTeacherById";
+            public const string SP_User_GetStudentById = "User_GetStudentById";
         #endregion
 
         #region Admin
-            // Parameter constants
-            public const string P_Admin_Id = "@pId";
+        // Parameter constants
+        public const string P_Admin_Id = "@pId";
             public const string P_Admin_UserId = "@pUserId";
             // StoreProcedure constants
             public const string SP_Admin_Create = "Admin_Create";
@@ -62,9 +69,12 @@
             public const string P_ClassRoom_Name = "@pName";
             public const string P_ClassRoom_Status = "@pStatus";
             public const string P_ClassRoom_IdTeacher = "@pIdTeacher";
+            public const string P_ClassRoom_IdStudent = "@pIdStudent";
             public const string P_ClassRoomDetail_IdClasRoom = "@pIdClassRoom";
             public const string P_ClassRoomDetail_IdStudent = "@pIdStudent";
             public const string SP_ClassRoom_GetAll = "ClassRoom_GetAll";
+            public const string SP_ClassRoom_GetAllWithInfo = "ClassRoom_GetAllWithInfo";
+            public const string SP_ClassRoom_GetAllAvailable = "ClassRoom_GetAllAvailable";
             public const string SP_ClassRoom_GetById = "ClassRoom_GetById";
             public const string SP_ClassRoom_GetByIdTeacher = "ClassRoom_GetByIdTeacher";
             public const string SP_ClassRoom_GetByName = "ClassRoom_GetByName";
@@ -72,6 +82,7 @@
             public const string SP_ClassRoom_Update = "ClassRoom_Update";
             public const string SP_ClassRoom_Delete = "ClassRoom_Delete";
             public const string SP_ClassRoomDetail = "ClassRoomDetail_Create";
+            public const string SP_ClassRoom_GetByIdStudent = "ClassRoom_GetByIdStudent";
         #endregion
 
         #region Login

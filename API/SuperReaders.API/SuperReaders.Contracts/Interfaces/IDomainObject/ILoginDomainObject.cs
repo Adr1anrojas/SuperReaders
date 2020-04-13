@@ -13,6 +13,6 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="user">
         /// <returns>LoginResult</returns>
-        IEnumerable<LoginResult> Login(LoginCredential user);
+        LoginResult Login(LoginCredential user);
     }
 }

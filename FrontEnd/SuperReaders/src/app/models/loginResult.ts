@@ -1,3 +1,5 @@
+import { ClassRoom } from './classRoom';
+
 export class LoginResult {
     id: number;
     firstName: string;
@@ -8,4 +10,5 @@ export class LoginResult {
     role: string;
     token: string;
     refreshToken: string;
+    classRoom: ClassRoom;
 }

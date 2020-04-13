@@ -61,7 +61,28 @@ namespace SuperReaders.API.Controllers
             }
         }
 
-         // GET: api/User
+        // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        /// 
+        [HttpGet("GetStudentsByClassRoom/{idClassRoom}")]
+        public ActionResult<User> GetStudentsByClassRoom(int idClassRoom)
+        {
+            try
+            {
+                UserDAO userDAO = new UserDAO();
+                return Ok(_iUserDomainObject.GetStudentsByClassRoom(idClassRoom));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/User
         /// <summary>
         /// This EndPoint return all Admins
         /// </summary>

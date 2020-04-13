@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
     lastName: new FormControl('', Validators.required),
     userName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     date: new FormControl({ value: '', disabled: true }, Validators.required)
   });
   isUpdate: Boolean = false;
@@ -39,13 +39,9 @@ export class AdminComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.isValidDate);
-    console.log(this.createAnUser());
     if (this.formAdmin.valid && this.isValidDate) {
       let admin = this.createAnUser();
       if (admin.id === 0) {
-        console.log("crear");
-        console.log(admin);
         this.createadmin(admin);
       } else
         this.updateadmin(admin);
@@ -58,7 +54,6 @@ export class AdminComponent implements OnInit {
     this.formAdmin.reset();
   }
 
-  // click event function toggle
   showPassword() {
     this.show = !this.show;
   }
@@ -75,7 +70,6 @@ export class AdminComponent implements OnInit {
     this.userService.getAllAdmins().subscribe((res: User[]) => {
       this.adminsCopy = JSON.parse(JSON.stringify(res));
       this.admins = res;
-      console.log(this.admins);
     });
   }
 
