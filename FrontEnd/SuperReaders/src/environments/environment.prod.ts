@@ -1,4 +1,4 @@
 export const environment = {
-  url: "http://localhost:55211/api/",
+  url: "http://readersapi.azurewebsites.net/api/",
   production: true
 };
