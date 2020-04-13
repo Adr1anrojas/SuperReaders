@@ -23,7 +23,9 @@ namespace SuperReaders.Services.DAO
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    db.ExecuteScalar<User>(Constants.SP_Page_Create, parameters, commandType: CommandType.StoredProcedure);
+                    parameters.Add(Constants.P_Page_Text, page.Text);
+                    parameters.Add(Constants.P_Page_IdContent,page.IdContent);
+                    db.ExecuteScalar<Page>(Constants.SP_Page_Create, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)

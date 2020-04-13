@@ -14,6 +14,6 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("text")]
         public string Text { get; set; }
         [JsonProperty("idContent")]
-        public string IdContent { get; set; }
+        public int IdContent { get; set; }
     }
 }

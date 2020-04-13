@@ -12,7 +12,7 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("id")]
         public int Id { get; set; }
         [JsonProperty("idcontent")]
-        public string IdContent { get; set; }
+        public int IdContent { get; set; }
         [JsonProperty("text")]
         public string Text { get; set; }
         

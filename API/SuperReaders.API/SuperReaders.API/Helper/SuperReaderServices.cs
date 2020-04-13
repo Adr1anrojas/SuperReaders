@@ -27,10 +27,14 @@ namespace SuperReaders.Models.Helper
             #region Content
                 services.AddScoped<IContentDomainObject, ContentDomainObject>();
                 services.AddScoped<IContentDAO, ContentDAO>();
+                services.AddScoped<IPageDAO, PageDAO>();
+                services.AddScoped<IQuestionDAO, QuestionDAO>();
+                services.AddScoped<IAnswerDAO, AnswerDAO>();
+                services.AddScoped<IQuestionAnswerDAO, QuestionAnswerDAO>();
             #endregion
 
             #region ClassRoom
-                services.AddScoped<IClassRoomDomainObject, ClassRoomDomainObject>();
+            services.AddScoped<IClassRoomDomainObject, ClassRoomDomainObject>();
                 services.AddScoped<IClassRoomDAO, ClassRoomDAO>();
             #endregion
 
