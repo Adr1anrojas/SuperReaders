@@ -2,6 +2,7 @@ using Dapper;
 using SuperReaders.API.Helper;
 using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDAO;
+using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SuperReaders.Services.DAO
         {
             connection = new DbAccess();
         }
+
          /// <summary>
         /// This EndPoint return all Class Rooms
         /// </summary>
@@ -23,12 +25,51 @@ namespace SuperReaders.Services.DAO
         /// <returns>Array of ClassRooms </returns>
         public IEnumerable<ClassRoom> GetClassRooms()
         {
-            DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetAll, parameters, commandType: CommandType.StoredProcedure);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetAll, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all Class Rooms
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms </returns>
+        public IEnumerable<ClassRoomDTO> GetClassRoomWithInfo()
+        {
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<ClassRoomDTO>(Constants.SP_ClassRoom_GetAllWithInfo, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all Class Rooms
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms </returns>
+        public IEnumerable<ClassRoom> GetClassRoomsAvailable()
+        {
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetAllAvailable, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)

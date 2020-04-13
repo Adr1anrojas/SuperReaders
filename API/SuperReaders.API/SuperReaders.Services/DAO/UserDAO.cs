@@ -138,7 +138,8 @@ namespace SuperReaders.Services.DAO
                     parameters.Add(Constants.P_User_UserName, user.UserName);
                     parameters.Add(Constants.P_User_Status, user.Status);
                     parameters.Add(Constants.P_User_BirthDate, user.BirthDate);
-                    db.ExecuteScalar<User>(Constants.SP_User_Update, parameters, commandType: CommandType.StoredProcedure);
+                    parameters.Add(Constants.P_User_ClassRoomId, user.classRoom.Id);
+                    db.Query<User>(Constants.SP_User_Update, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
@@ -165,12 +166,28 @@ namespace SuperReaders.Services.DAO
         }
         public IEnumerable<User> GetStudents()
         {
-            DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    return db.Query<User>(Constants.SP_User_GetStudents, parameters, commandType: CommandType.StoredProcedure);
+                    return db.Query<User>(Constants.SP_User_GetStudents, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IEnumerable<User> GetStudentsByClassRoom(int idClassRoom)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_User_ClassRoomId, idClassRoom);
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<User>(Constants.SP_User_GetStudentsByClassRoom, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)

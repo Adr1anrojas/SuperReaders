@@ -4,7 +4,8 @@ CREATE PROC User_Update
 @pLastName AS NVARCHAR(50), 
 @pUserName AS NVARCHAR(50),  
 @pStatus AS BIT,  
-@pBirthDate AS DATETIME
+@pBirthDate AS DATETIME,
+@pIdClassRoom AS INT
 AS
 	BEGIN
 		UPDATE [User]
@@ -15,5 +16,9 @@ AS
 			[Status] = @pStatus, 
 			[BirthDate] = @pBirthDate
 		WHERE [Id] = @pId
+		UPDATE [Teacher]
+		SET 
+			[IdClassRoom] = @pIdClassRoom
+		WHERE IdUser = @pId
 	END
 	

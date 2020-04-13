@@ -67,6 +67,32 @@ namespace SuperReaders.Services.DomainObject
         }
 
         /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        public IEnumerable<User> GetStudentsByClassRoom(int idClassRoom)
+        {
+            List<User> admins;
+            try
+            {
+                admins = _iUserDAO.GetStudentsByClassRoom(idClassRoom).ToList();
+                if (admins.Count > 0)
+                {
+                    foreach (User item in admins)
+                    {
+                        item.classRoom = _iClassRoomDAO.GetClassRoomByIdStudent(item.StudentId).First();
+                    }
+                }
+                return admins;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
         /// This EndPoint return all Admins
         /// </summary>
         /// <param name="">

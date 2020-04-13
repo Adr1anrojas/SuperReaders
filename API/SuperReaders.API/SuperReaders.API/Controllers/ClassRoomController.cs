@@ -4,8 +4,12 @@ using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
 using SuperReaders.Services.DAO;
+using SuperReaders.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
+
 namespace SuperReaders.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ClassRoomController : ControllerBase
@@ -28,6 +32,44 @@ namespace SuperReaders.API.Controllers
             try
             {
                 return Ok(_iClassRoomDomainObject.GetClassRooms());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/ClassRoom
+        /// <summary>
+        /// This EndPoint return all ClassRooms
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms</returns>
+        [HttpGet("allInfo")]
+        public ActionResult<ClassRoomDTO> GetClassRoomWithInfo()
+        {
+            try
+            {
+                return Ok(_iClassRoomDomainObject.GetClassRoomWithInfo());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/ClassRoom
+        /// <summary>
+        /// This EndPoint return all ClassRooms
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms</returns>
+        [HttpGet("allAvailable")]
+        public ActionResult<ClassRoom> GetClassRoomAvailable()
+        {
+            try
+            {
+                return Ok(_iClassRoomDomainObject.GetClassRoomsAvailable());
             }
             catch (Exception e)
             {
@@ -88,7 +130,7 @@ namespace SuperReaders.API.Controllers
             }
             catch (Exception e)
             {
-                if (e.Message.Equals("This classRoom already exists"))
+                if (e.Message.Equals("This ClassRoom already exists"))
                     return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }

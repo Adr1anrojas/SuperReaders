@@ -27,8 +27,10 @@
             public const string SP_User_GetByUserName = "User_GetByUserName";
             public const string SP_User_Create = "User_Create";
             public const string SP_User_Update = "User_Update";
+            public const string SP_User_TeacherUpdateClassRoom = "User_TeacherUpdateClassRoom";
             public const string SP_User_Delete = "User_Delete";
             public const string SP_User_GetStudents = "User_GetStudents";
+            public const string SP_User_GetStudentsByClassRoom = "User_GetStudentsByClassRoom";
             public const string SP_User_GetTeachers = "User_GetTeachers";
             public const string SP_User_GetAdmins = "User_GetAdmins";
             public const string SP_User_CreateStudentToClassRoom = "User_CreateStudentToClassRoom";
@@ -71,6 +73,8 @@
             public const string P_ClassRoomDetail_IdClasRoom = "@pIdClassRoom";
             public const string P_ClassRoomDetail_IdStudent = "@pIdStudent";
             public const string SP_ClassRoom_GetAll = "ClassRoom_GetAll";
+            public const string SP_ClassRoom_GetAllWithInfo = "ClassRoom_GetAllWithInfo";
+            public const string SP_ClassRoom_GetAllAvailable = "ClassRoom_GetAllAvailable";
             public const string SP_ClassRoom_GetById = "ClassRoom_GetById";
             public const string SP_ClassRoom_GetByIdTeacher = "ClassRoom_GetByIdTeacher";
             public const string SP_ClassRoom_GetByName = "ClassRoom_GetByName";

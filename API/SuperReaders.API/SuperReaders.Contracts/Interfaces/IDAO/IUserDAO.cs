@@ -17,12 +17,21 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="">
         /// <returns>Array of Students </returns>
+        
         IEnumerable<User> GetStudents();
         /// <summary>
         /// This Method return all Admins of Access the data
         /// </summary>
         /// <param name="">
         /// <returns>Array of Admins </returns>
+
+        IEnumerable<User> GetStudentsByClassRoom(int idClassRoom);
+        /// <summary>
+        /// This Method return all Students of Access the data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students </returns>
+        
         IEnumerable<User> GetAdmins();
         /// <summary>
         /// This Method return all Teachers of Access the data

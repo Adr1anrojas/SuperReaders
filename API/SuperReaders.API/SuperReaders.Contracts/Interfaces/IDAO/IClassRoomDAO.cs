@@ -1,3 +1,4 @@
+using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 using System.Collections.Generic;
 namespace SuperReaders.Contracts.Interfaces.IDAO
@@ -10,6 +11,21 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="role">
         /// <returns>Array of ClassRooms</returns>
         IEnumerable<ClassRoom> GetClassRooms();
+
+        /// <summary>
+        /// This Method return all Class Room and apply the business rules
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms </returns>
+
+        IEnumerable<ClassRoomDTO> GetClassRoomWithInfo();
+
+        /// <summary>
+        /// This Method return all Class Room and apply the business rules
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms </returns>
+        IEnumerable<ClassRoom> GetClassRoomsAvailable();
 
         /// <summary>
         /// This Method return an ClassRoom by ID of the Specified ID and Access the data
