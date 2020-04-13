@@ -113,5 +113,6 @@
     <Build Include="dbo\StoredProcedures\User\User_GetTeacherById.sql" />
     <Build Include="dbo\StoredProcedures\User\User_GetStudentById.sql" />
     <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetAllAvailable.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetAllWithInfo.sql" />
   </ItemGroup>
 </Project>
