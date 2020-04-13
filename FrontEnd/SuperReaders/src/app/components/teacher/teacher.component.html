@@ -2,16 +2,14 @@
 <button type="button" class="btn btn-danger add mb-3" data-toggle="modal" data-target="#exampleModal"
     (click)=initTeacher()>+</button>
 <div class="card mt-5 margin-card">
-    <!-- <h5 class="card-header">Maestros</h5> -->
     <div class="card-body">
-
         <table class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg">
             <thead>
                 <tr>
                     <th scope="col" *ngFor="let item of columns">{{item}}</th>
                 </tr>
             </thead>
-            <tbody *ngFor="let item of admins">
+            <tbody *ngFor="let item of teachers">
                 <tr>
                     <td>{{item.firstName}}</td>
                     <td>{{item.lastName}}</td>
@@ -19,26 +17,18 @@
                     <td>{{item.classRoom.name}}</td>
                     <td>{{item.status?'Activo':'Inactivo'}}</td>
                     <td class="icons">
-                        <!-- <div class="row"> -->
-                        <!-- <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6"> -->
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Editar"
                             (click)="editTeacher(item)" data-toggle="modal" data-target="#exampleModal">
                             <fa-icon class="fa-lg" icon="edit"></fa-icon>
                         </button>
-                        <!-- </div> -->
-                        <!-- <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6"> -->
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Eliminar"
                             data-toggle="modal" data-target="#myModal" (click)="editTeacher(item)">
                             <fa-icon class="fa-lg" icon="trash"></fa-icon>
                         </button>
-                        <!-- </div> -->
-                        <!-- </div> -->
                     </td>
-
             </tbody>
-
         </table>
-        <p class="text-center" *ngIf="admins.length==0">No existen Maestros registrados.</p>
+        <p class="text-center" *ngIf="teachers.length==0">No existen Maestros registrados.</p>
     </div>
 </div>
 
@@ -114,7 +104,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group ">
                         <label>Fecha de Nacimiento*</label>
                         <div class="input-group">
@@ -157,7 +146,6 @@
 
 <!-- MODAL DELETE -->
 <div class="bs-example">
-    <!-- Modal HTML -->
     <div id="myModal" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">

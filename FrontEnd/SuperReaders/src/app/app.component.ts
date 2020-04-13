@@ -10,7 +10,6 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = 'SuperReaders';
-  token: string;
   constructor(dateTimeAdapter: DateTimeAdapter<any>, public loginService: LoginService) {
     dateTimeAdapter.setLocale('es');
   }

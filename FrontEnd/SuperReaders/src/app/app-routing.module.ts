@@ -6,6 +6,7 @@ import { TeacherComponent } from './components/teacher/teacher.component';
 import { StudentComponent } from './components/student/student.component';
 import { ReportComponent } from './components/report/report.component';
 import { AdminComponent } from "./components/admin/admin.component";
+import { ClassRoomComponent } from './components/class-room/class-room.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'teacher', component: TeacherComponent },
   { path: 'student', component: StudentComponent },
-  { path: 'report', component: ReportComponent }
+  { path: 'report', component: ReportComponent },
+  { path: 'classRoom', component: ClassRoomComponent }
 ];
 
 @NgModule({

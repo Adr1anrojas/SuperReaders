@@ -2,6 +2,7 @@
     text-align: center;
 }
 .add{
+    margin-left: -35px;
     border-radius: 50%;
     float: right;
 }
@@ -27,4 +28,7 @@
 .eye{
     width: 67px;
     padding: 5px 5px 5px 18px;
+}
+.margin-card {
+    margin-top: 3.3rem!important;
 }

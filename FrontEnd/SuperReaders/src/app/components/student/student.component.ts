@@ -32,6 +32,8 @@ export class StudentComponent implements OnInit {
     date: new FormControl({ value: '', disabled: true }, Validators.required),
     classRoom: new FormControl('', Validators.required),
   });
+  classRoomSearch = new FormControl('', Validators.required)
+  groupSelected: ClassRoom;
   currentUser: LoginResult;
   isUpdate: Boolean = false;
 
@@ -39,30 +41,35 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.loginService.currentUserValue();
-    console.log("current ", this.loginService.currentUserValue());
     this.initStudent();
-    this.getStudents();
     if (this.currentUser.role === "Admin")
       this.getClassRooms();
+    else
+      this.getAllStudentsByClassRoom();
     this.show = false;
   }
 
   onSubmit() {
-    console.log("submit");
     this.submitted = true;
-    console.log(this.formStudent.value);
-    console.log(this.createAnUser());
-    debugger;
     this.checkRole();
     if (this.formStudent.valid && this.isValidDate) {
       let student = this.createAnUser();
       if (student.id === 0) {
-        console.log("crear");
-        console.log(student);
         this.createstudent(student);
       } else
         this.updatestudent(student);
     }
+  }
+
+  searchStudents() {
+    if (this.classRoomSearch.value)
+      this.getAllStudentsByClassRoom();
+    else
+      this.classRoomSearch.markAsTouched({ onlySelf: true });
+  }
+
+  get idGroupSearch(): number {
+    return this.currentUser.role === 'Admin' ? this.classRoomSearch.value.id : this.currentUser.classRoom.id;
   }
 
   initStudent() {
@@ -77,7 +84,7 @@ export class StudentComponent implements OnInit {
         onlyself: true
       });
   }
-  // click event function toggle
+  
   showPassword() {
     this.show = !this.show;
   }
@@ -90,11 +97,10 @@ export class StudentComponent implements OnInit {
     return this.formStudent.get('date').value !== null;
   }
 
-  getStudents() {
-    this.userService.getAllStudents().subscribe((res: User[]) => {
+  getAllStudentsByClassRoom() {
+    this.userService.getAllStudentsByClassRoom(this.idGroupSearch).subscribe((res: User[]) => {
       this.studentsCopy = JSON.parse(JSON.stringify(res));
       this.students = res;
-      console.log(this.students);
     });
   }
 
@@ -103,10 +109,10 @@ export class StudentComponent implements OnInit {
       this.classRooms = res;
     });
   }
-  
+
   createstudent(student: User) {
     this.userService.create(student).subscribe(res => {
-      this.getStudents();
+      this.getAllStudentsByClassRoom();
       this.initStudent();
       $("#exampleModal").modal("hide");
       this.toastr.success('¡Hecho!', 'Se creó un Maestro.');
@@ -124,7 +130,7 @@ export class StudentComponent implements OnInit {
       this.userService.update(student).subscribe(res => {
         $("#exampleModal").modal("hide");
         this.toastr.success('¡Hecho!', 'Se actualizo un Maestro.');
-        this.getStudents();
+        this.getAllStudentsByClassRoom();
         this.initStudent();
       }, (error => {
         this.toastr.error('Ocurrio un problema al actualizar al Maestro.', '¡Error!');
@@ -134,7 +140,6 @@ export class StudentComponent implements OnInit {
   }
 
   editStudent(e: User) {
-    console.log("edit ", e.classRoom);
     this.formStudent.patchValue({
       id: e.id,
       firstName: e.firstName,
@@ -169,7 +174,7 @@ export class StudentComponent implements OnInit {
     this.userService.delete(idUser).subscribe(res => {
       this.toastr.success('Hecho', 'Se elimino a un Maestro.');
       this.initStudent();
-      this.getStudents();
+      this.getAllStudentsByClassRoom();
     }, (error => {
       this.toastr.success('Ocurrio un problema al eliminar al Maestro', '¡Error!');
       this.initStudent();

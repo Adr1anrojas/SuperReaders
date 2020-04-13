@@ -21,6 +21,9 @@ export class ClassRoomService {
   getAllAvailable() {
     return this.http.get(this.url + 'allAvailable');
   }
+  getAllWithInfo() {
+    return this.http.get(this.url + 'allInfo');
+  }
 
   getAll() {
     return this.http.get(this.url + 'all');

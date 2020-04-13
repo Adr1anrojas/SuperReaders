@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
   constructor(faConfig: FaConfig, private loginService: LoginService) {
     faConfig.fixedWidth = true;
   }
-  collapsed: Boolean = true;
+  collapsed: Boolean = false;
   ngOnInit(): void {
     this.currentUser = this.loginService.currentUserValue();
   }
@@ -23,6 +23,7 @@ export class SidebarComponent implements OnInit {
     this.collapsed = !this.collapsed;
     $("#wrapper").toggleClass("toggled");
   }
+  
   exit() {
     this.loginService.logout();
   }
