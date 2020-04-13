@@ -1,4 +1,4 @@
-CREATE PROC ClassRoom_Create 
+ALTER PROC ClassRoom_Create 
 @pName AS NVARCHAR(50), 
 @pIdTeacher AS INT,
 @pStatus AS BIT
@@ -16,5 +16,6 @@ AS
             @pIdTeacher,
 			@pStatus
 		)
+		SELECT * FROM [ClassRoom] WHERE Id = (SELECT CAST(IDENT_CURRENT('ClassRoom') AS INT))
 	END
 	

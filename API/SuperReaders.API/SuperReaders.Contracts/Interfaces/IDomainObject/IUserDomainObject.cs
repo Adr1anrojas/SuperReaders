@@ -12,7 +12,38 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
+        
+
         IEnumerable<User> GetUsers(string role);
+        /// <summary>
+        /// This Method return an Students and Access Data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Arrray of Students</returns> 
+        
+        IEnumerable<User> GetStudents();
+        /// <summary>
+        /// This Method return an Students and Access Data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Arrray of Admins</returns> 
+
+        IEnumerable<User> GetStudentsByClassRoom(int idClassRoom);
+        /// <summary>
+        /// This Method return an Students and Access Data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Arrray of Admins</returns> 
+
+        IEnumerable<User> GetAdmins();
+
+          /// <summary>
+        /// This Method return an Students and Access Data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Arrray of Admins</returns> 
+        
+        IEnumerable<User> GetTeachers();
 
         /// <summary>
         /// This Method return an User by ID of the role Specified and apply the business rules

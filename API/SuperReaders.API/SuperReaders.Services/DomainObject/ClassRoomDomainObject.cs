@@ -1,5 +1,6 @@
 using SuperReaders.Contracts.Interfaces.IDAO;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
+using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace SuperReaders.Services.DomainObject
         {
             _iClassRoomDAO = iClassRoomDAO;
         }
+
         /// <summary>
         /// This EndPoint return all ClassRooms 
         /// </summary>
@@ -24,6 +26,40 @@ namespace SuperReaders.Services.DomainObject
             try
             {
                 return _iClassRoomDAO.GetClassRooms();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all ClassRooms 
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms</returns>
+        public IEnumerable<ClassRoomDTO> GetClassRoomWithInfo()
+        {
+            try
+            {
+                return _iClassRoomDAO.GetClassRoomWithInfo();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all ClassRooms 
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms</returns>
+        public IEnumerable<ClassRoom> GetClassRoomsAvailable()
+        {
+            try
+            {
+                return _iClassRoomDAO.GetClassRoomsAvailable();
             }
             catch (Exception e)
             {
@@ -63,15 +99,15 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="classRoom">classRoom to create</param>
         /// <returns>status code 200</returns>
-        public void AddClassRoom(ClassRoom classRoom)
+        public ClassRoom AddClassRoom(ClassRoom classRoom)
         {
             try
             {
                 int result = _iClassRoomDAO.GetClassRoomByName(classRoom.Name);
                 if (result == 0)
-                    _iClassRoomDAO.AddClassRoom(classRoom);
+                    return _iClassRoomDAO.AddClassRoom(classRoom);
                 else
-                    throw new ArgumentException("This Class Room already exists");
+                    throw new ArgumentException("This ClassRoom already exists");
             }
             catch (Exception e)
             {

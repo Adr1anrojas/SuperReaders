@@ -1,11 +1,15 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
+using SuperReaders.Services.DAO;
 
 namespace SuperReaders.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -22,12 +26,96 @@ namespace SuperReaders.API.Controllers
         /// </summary>
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
+        //[Authorize(Roles = Constants.Admin)]
         [HttpGet("all/{role}")]
         public ActionResult<User> Get(string role)
         {
             try
             {
                 return Ok(_iUserDomainObject.GetUsers(role));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        /// 
+        [HttpGet("GetStudents")]
+        public ActionResult<User> GetStudents()
+        {
+            try
+            {
+                UserDAO userDAO = new UserDAO();
+                return Ok(_iUserDomainObject.GetStudents());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        /// 
+        [HttpGet("GetStudentsByClassRoom/{idClassRoom}")]
+        public ActionResult<User> GetStudentsByClassRoom(int idClassRoom)
+        {
+            try
+            {
+                UserDAO userDAO = new UserDAO();
+                return Ok(_iUserDomainObject.GetStudentsByClassRoom(idClassRoom));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Admins
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Admins</returns>
+        /// 
+        [HttpGet("GetAdmins")]
+        public ActionResult<User> GetAdmins()
+        {
+            try
+            {
+                UserDAO userDAO = new UserDAO();
+                return Ok(_iUserDomainObject.GetAdmins());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+         // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Teachers
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Teachers</returns>
+        /// 
+        [HttpGet("GetTeachers")]
+        public ActionResult<User> GetTeachers()
+        {
+            try
+            {
+                UserDAO userDAO = new UserDAO();
+                return Ok(_iUserDomainObject.GetTeachers());
             }
             catch (Exception e)
             {
@@ -46,7 +134,6 @@ namespace SuperReaders.API.Controllers
         {
             try
             {
-               
                 return Ok(_iUserDomainObject.GetUser(id));
             }
             catch (Exception e)

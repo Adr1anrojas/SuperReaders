@@ -2,6 +2,7 @@ using Dapper;
 using SuperReaders.API.Helper;
 using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDAO;
+using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SuperReaders.Services.DAO
         {
             connection = new DbAccess();
         }
+
          /// <summary>
         /// This EndPoint return all Class Rooms
         /// </summary>
@@ -23,12 +25,51 @@ namespace SuperReaders.Services.DAO
         /// <returns>Array of ClassRooms </returns>
         public IEnumerable<ClassRoom> GetClassRooms()
         {
-            DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetAll, parameters, commandType: CommandType.StoredProcedure);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetAll, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all Class Rooms
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms </returns>
+        public IEnumerable<ClassRoomDTO> GetClassRoomWithInfo()
+        {
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<ClassRoomDTO>(Constants.SP_ClassRoom_GetAllWithInfo, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all Class Rooms
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms </returns>
+        public IEnumerable<ClassRoom> GetClassRoomsAvailable()
+        {
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetAllAvailable, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
@@ -88,16 +129,12 @@ namespace SuperReaders.Services.DAO
         {
             try
             {
-                int id = 0;
+                DynamicParameters parameters = new DynamicParameters();
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @" SELECT [Id] FROM[ClassRoom] WHERE [Name] = @Name COLLATE SQL_Latin1_General_CP1_CI_AS";
-                    id = db.Query<int>(sql,
-                    new
-                    {
-                        Name = name
-                    }).Count();
-                    return id;
+                    parameters.Add(Constants.P_ClassRoom_Name,name);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByName, parameters, commandType: CommandType.StoredProcedure).Count();
+                    
                 }
             }
             catch (Exception e)
@@ -110,30 +147,39 @@ namespace SuperReaders.Services.DAO
         /// </summary>
         /// <param name="classroom">classroom to create</param>
         /// <returns>status code 200</returns>
-        public int AddClassRoom(ClassRoom classRoom)
+        public ClassRoom AddClassRoom(ClassRoom classRoom)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @"INSERT INTO [ClassRoom]
-		            ([Name], [IdTeacher], [Status])
-		            VALUES (@Name, @IdTeacher, @Status);
-		            SELECT CAST(SCOPE_IDENTITY() as int)";
-                    var id = db.Query<int>(sql, 
-                        new { 
-                            Name = classRoom.Name,
-                            IdTeacher = classRoom.IdTeacher,
-                            Status = classRoom.Status
-                        }).Single();
-                    return id;
+                    parameters.Add(Constants.P_ClassRoom_Name,classRoom.Name);
+                    parameters.Add(Constants.P_ClassRoom_Status, classRoom.Status);
+                    return db.Query<ClassRoom>(Constants.SP_ClassRoom_Create, parameters, commandType: CommandType.StoredProcedure).First();
                 }
             }
             catch (Exception e)
             {
                 throw e;
             }
+        }
+        public void AddStudentClassRoom(ClassRoomDetail classRoomDetail){
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                using (IDbConnection db = connection.Connection)
+                {
+                    parameters.Add(Constants.P_ClassRoomDetail_IdClasRoom, classRoomDetail.IdClassRoom);
+                    parameters.Add(Constants.P_ClassRoomDetail_IdStudent,classRoomDetail.IdStudent);
+                    db.ExecuteScalar<ClassRoom>(Constants.SP_User_CreateStudentToClassRoom, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
         }
          // <summary>
         /// This EndPoint update status an ClassRoom Specified
@@ -170,9 +216,33 @@ namespace SuperReaders.Services.DAO
                 {
                     parameters.Add(Constants.P_ClassRoom_Id, classRoom.Id);
                     parameters.Add(Constants.P_ClassRoom_Name,classRoom.Name);
-                    parameters.Add(Constants.P_ClassRoom_IdTeacher, classRoom.IdTeacher);
                     parameters.Add(Constants.P_ClassRoom_Status, classRoom.Status);
                     db.ExecuteScalar<ClassRoom>(Constants.SP_ClassRoom_Update, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        
+        /// <summary>
+        /// This EndPoint return an ClassRoom by Teacher of Specified
+        /// </summary>
+        /// <param name="idTeacher">
+        /// <returns>An ClassRom of the Teacher Specified</returns>
+        public IEnumerable<ClassRoom> GetClassRoomByIdStudent(int idStudent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_ClassRoom_IdStudent, idStudent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    var result = db.Query<ClassRoom>(Constants.SP_ClassRoom_GetByIdStudent, parameters, commandType: CommandType.StoredProcedure);
+                    if (result.ToList().Count == 0)
+                        return null;
+                    return result;
                 }
             }
             catch (Exception e)

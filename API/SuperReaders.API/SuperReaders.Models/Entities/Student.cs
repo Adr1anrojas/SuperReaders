@@ -10,7 +10,7 @@ namespace SuperReaders.Models.Entities
     {
         [Key]
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [JsonProperty("idUser")]
         public int IdUser { get; set; }
     }
