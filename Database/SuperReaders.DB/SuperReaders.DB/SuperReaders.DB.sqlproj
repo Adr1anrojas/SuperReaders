@@ -66,6 +66,9 @@
     <Folder Include="dbo\StoredProcedures\Content" />
     <Folder Include="dbo\StoredProcedures\ClassRoom" />
     <Folder Include="dbo\StoredProcedures\Login" />
+    <Folder Include="dbo\StoredProcedures\Answer" />
+    <Folder Include="dbo\StoredProcedures\Page" />
+    <Folder Include="dbo\StoredProcedures\Question" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Admin.sql" />
@@ -114,5 +117,26 @@
     <Build Include="dbo\StoredProcedures\User\User_GetStudentById.sql" />
     <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetAllAvailable.sql" />
     <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetAllWithInfo.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetContentByContentName.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetContents.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Content\ContentDetail_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Content\TypeContent_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Question\QuestionAnswer_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_Delete.sql" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
+using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 
 namespace SuperReaders.API.Controllers
@@ -51,11 +52,11 @@ namespace SuperReaders.API.Controllers
 
         // POST: api/Content
         [HttpPost]
-        public IActionResult AddContent([FromBody] Content content,List<Page> pages,List<Question> questions,List<Answer> answers)
+        public IActionResult AddContent([FromBody] ContentDTO content)
         {
             try
             {
-                _iContentDomainObject.AddContent(content,pages,questions,answers);
+                _iContentDomainObject.AddContent(content);
                 return Ok();
             }
             catch (Exception e)

@@ -65,7 +65,6 @@ namespace SuperReaders.API
             {
                 endpoints.MapControllers();
             });
-
         }
     }
 }

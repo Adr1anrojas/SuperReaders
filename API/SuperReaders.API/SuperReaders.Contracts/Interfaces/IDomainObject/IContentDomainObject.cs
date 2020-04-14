@@ -1,4 +1,5 @@
-﻿using SuperReaders.Models.Entities;
+﻿using SuperReaders.Models.DTO;
+using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,7 +20,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="user">user to create</param>
         /// <returns></returns>
-        void AddContent(Content content,List<Page> pages, List<Question> questions, List<Answer> answers);
+        void AddContent(ContentDTO content);
 
         /// <summary>
         /// This Method update an User of the role Specified and apply the business rules

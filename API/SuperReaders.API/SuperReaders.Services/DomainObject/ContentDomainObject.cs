@@ -1,5 +1,6 @@
 ﻿using SuperReaders.Contracts.Interfaces.IDAO;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
+using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -24,26 +25,26 @@ namespace SuperReaders.Services.DomainObject
             _iAnswerDAO = iAnswerDAO;
         }
 
-        public void AddContent(Content content, List<Page> pages, List<Question> questions, List<Answer> answers)
+        public void AddContent(ContentDTO content)
         {
             try
             {
                 List<int> questionsId = new List<int>();
                 List<int> answersId = new List<int>();
-                int result = _iContentDAO.GetContentByContentName(content.Title);
+                int result = _iContentDAO.GetContentByContentName(content.content.Title);
                 if (result == 0)
                 {
-                    int id = _iContentDAO.AddContent(content);
-                    foreach (Page item in pages)
+                    int id = _iContentDAO.AddContent(content.content);
+                    foreach (Page item in content.pages)
                     {
                         _iPageDAO.AddPage(item);
                     }
-                    foreach (Question item in questions)
+                    foreach (Question item in content.questions)
                     {
                         _iQuestionDAO.AddQuestion(item);
                         questionsId.Add(item.Id);
                     }
-                    foreach(Answer item in answers)
+                    foreach(Answer item in content.answers)
                     {
                         _iAnswerDAO.AddAnswer(item);
                         answersId.Add(item.Id);
