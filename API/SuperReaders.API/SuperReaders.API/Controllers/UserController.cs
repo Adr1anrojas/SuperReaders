@@ -34,7 +34,6 @@ namespace SuperReaders.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
         // GET: api/User/id
         /// <summary>
         /// This EndPoint return an User by ID of the role Specified

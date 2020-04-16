@@ -8,7 +8,7 @@ namespace SuperReaders.API.Helper
         private string connectionString;
         public DbAccess()
         {
-            connectionString = @"Server=E-AAROJAS;Database=ReadersDB;Trusted_Connection=True;";
+            connectionString = @"Server=DESKTOP-G4SEHB2\SQLSERVER;Database=ReadersDB;Trusted_Connection=True;";
         }
         public IDbConnection Connection
         {

@@ -50,5 +50,19 @@
             // StoreProcedure constants
             public const string SP_Student_Create = "Student_Create";
         #endregion
+        #region Monitoring 
+        // Parameter constants
+        public const string P_Monitoring_IdStudent = "@pIdStudent";
+        public const string P_Monitoring_IdContent = "@pIdContent";
+        public const string P_Monitoring_TimeReading = "@pTimeReading"; 
+        public const string P_Monitoring_CurrentPage = "@pCurrentPage";
+        public const string P_Monitoring_DateStart = "@pDateStart";
+        public const string P_Monitoring_DateFinish = "@pDateFinish";
+        public const string P_Monitoring_IsFinish = "@pIsFinish";
+        // StoreProcedure constants
+        public const string SP_Monitoring_Insert = "Monitoring_Insert";
+        public const string SP_Monitoring_Update = "Monitoring_Update";
+
+        #endregion
     }
 }
