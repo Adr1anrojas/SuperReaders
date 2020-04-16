@@ -78,8 +78,10 @@ public class ClassRoomRepository {
         call.enqueue(new Callback<List<UserResponse>>() {
             @Override
             public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
-                if(!response.isSuccessful())
+                if(!response.isSuccessful()) {
+                    messageResponse.setValue(response.message());
                     return;
+                }
                 teacherList.removeAll(teacherList);
                 teacherList.addAll(response.body());
                 responseTeacher.setValue(teacherList);
@@ -87,7 +89,7 @@ public class ClassRoomRepository {
 
             @Override
             public void onFailure(Call<List<UserResponse>> call, Throwable t) {
-
+                messageResponse.setValue(t.getMessage());
             }
         });
         return responseTeacher;
