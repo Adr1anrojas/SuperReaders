@@ -2,7 +2,7 @@
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
 	[IdStudent] int NOT NULL,
-	[Text] nvarchar(500) NOT NULL
+	[Answer] char(1) NOT NULL
 )
 GO
 ALTER TABLE [Answer] 
