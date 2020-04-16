@@ -18,7 +18,7 @@ namespace SuperReaders.Services.DAO
             connection = new DbAccess();
         }
 
-        public void AddTeacher(int id)
+        public void AddTeacher(int id, int idClassRoom)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
@@ -26,6 +26,7 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     parameters.Add(Constants.P_Teacher_UserId, id);
+                    parameters.Add(Constants.P_Teacher_ClassRoomId, id);
                     db.ExecuteScalar<User>(Constants.SP_Teacher_Create, parameters, commandType: CommandType.StoredProcedure);
                 }
             }

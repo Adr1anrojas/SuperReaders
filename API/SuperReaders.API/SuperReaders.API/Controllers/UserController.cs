@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
@@ -7,6 +9,7 @@ using SuperReaders.Services.DAO;
 
 namespace SuperReaders.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -23,6 +26,7 @@ namespace SuperReaders.API.Controllers
         /// </summary>
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
+        //[Authorize(Roles = Constants.Admin)]
         [HttpGet("all/{role}")]
         public ActionResult<User> Get(string role)
         {
@@ -57,7 +61,28 @@ namespace SuperReaders.API.Controllers
             }
         }
 
-         // GET: api/User
+        // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        /// 
+        [HttpGet("GetStudentsByClassRoom/{idClassRoom}")]
+        public ActionResult<User> GetStudentsByClassRoom(int idClassRoom)
+        {
+            try
+            {
+                UserDAO userDAO = new UserDAO();
+                return Ok(_iUserDomainObject.GetStudentsByClassRoom(idClassRoom));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/User
         /// <summary>
         /// This EndPoint return all Admins
         /// </summary>

@@ -6,6 +6,7 @@ using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace SuperReaders.Services.DAO
@@ -18,7 +19,7 @@ namespace SuperReaders.Services.DAO
             connection = new DbAccess();
         }
 
-        public void AddStudent(int id)
+        public int AddStudent(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
@@ -26,7 +27,8 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     parameters.Add(Constants.P_Student_UserId, id);
-                    db.ExecuteScalar<User>(Constants.SP_Student_Create, parameters, commandType: CommandType.StoredProcedure);
+                    var result = db.Query<Student>(Constants.SP_Student_Create, parameters, commandType: CommandType.StoredProcedure).First();
+                    return result.Id;
                 }
             }
             catch (Exception e)

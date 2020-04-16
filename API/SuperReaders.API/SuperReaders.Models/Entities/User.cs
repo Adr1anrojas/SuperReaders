@@ -9,6 +9,12 @@ namespace SuperReaders.Models.Entities
         [Key]
         [JsonProperty("id")]
         public int Id { get; set; }
+        [JsonProperty("adminId")]
+        public int? AdminId { get; set; }
+        [JsonProperty("studentId")]
+        public int StudentId { get; set; }
+        [JsonProperty("teacherId")]
+        public int TeacherId { get; set; }
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
         [JsonProperty("lastName")]
@@ -28,5 +34,7 @@ namespace SuperReaders.Models.Entities
         public int IdSchool { get; set; }
         [JsonProperty("status")]
         public bool Status { get; set; }
+        [JsonProperty("classRoom")]
+        public ClassRoom? classRoom { get; set; }
     }
 }

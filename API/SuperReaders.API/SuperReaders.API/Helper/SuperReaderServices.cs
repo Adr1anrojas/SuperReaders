@@ -23,10 +23,26 @@ namespace SuperReaders.Models.Helper
                 services.AddScoped<ITeacherDAO, TeacherDAO>();
                 services.AddScoped<IStudentDAO, StudentDAO>();
             #endregion
+
+            #region Content
+                services.AddScoped<IContentDomainObject, ContentDomainObject>();
+                services.AddScoped<IContentDAO, ContentDAO>();
+                services.AddScoped<IPageDAO, PageDAO>();
+                services.AddScoped<IQuestionDAO, QuestionDAO>();
+                services.AddScoped<IAnswerDAO, AnswerDAO>();
+                services.AddScoped<IQuestionAnswerDAO, QuestionAnswerDAO>();
+            #endregion
+
             #region ClassRoom
-                services.AddScoped<IClassRoomDomainObject, ClassRoomDomainObject>();
+            services.AddScoped<IClassRoomDomainObject, ClassRoomDomainObject>();
                 services.AddScoped<IClassRoomDAO, ClassRoomDAO>();
             #endregion
+
+            #region Login
+                services.AddScoped<ILoginDomainObject, LoginDomainObject>();
+                services.AddScoped<ILoginDAO, LoginDAO>();
+            #endregion
+
         }
 
         /// <summary>
@@ -46,5 +62,9 @@ namespace SuperReaders.Models.Helper
             });
         }
 
+        public static void AddJWTConfiguration(this IServiceCollection services)
+        {
+           
+        }
     }
 }

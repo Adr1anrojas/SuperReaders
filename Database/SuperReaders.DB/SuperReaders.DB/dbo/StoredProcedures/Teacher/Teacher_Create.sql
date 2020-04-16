@@ -1,7 +1,8 @@
 CREATE PROC Teacher_Create 
-@pUserId AS INT
+@pUserId AS INT,
+@pClassRoomId AS INT
 AS
 	BEGIN
-		INSERT INTO [Teacher] ([IdUser]) VALUES (@pUserId)
+		INSERT INTO [Teacher] ([IdUser],[IdCLassRoom]) VALUES (@pUserId, @pClassRoomId)
 	END
 	

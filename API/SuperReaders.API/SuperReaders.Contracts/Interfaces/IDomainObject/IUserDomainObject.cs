@@ -27,7 +27,14 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="">
         /// <returns>Arrray of Admins</returns> 
-        
+
+        IEnumerable<User> GetStudentsByClassRoom(int idClassRoom);
+        /// <summary>
+        /// This Method return an Students and Access Data
+        /// </summary>
+        /// <param name="">
+        /// <returns>Arrray of Admins</returns> 
+
         IEnumerable<User> GetAdmins();
 
           /// <summary>
