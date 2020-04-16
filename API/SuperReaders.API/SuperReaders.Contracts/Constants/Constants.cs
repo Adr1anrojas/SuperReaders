@@ -4,6 +4,7 @@
     {
         #region ConfigAPI
             public const string CorsPolicy = "CorsPolicy";
+            //public const string OriginAllow = "http://appreaders.web.app";
             public const string OriginAllow = "http://localhost:4200";
         #endregion
         #region User 
