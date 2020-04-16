@@ -1,3 +1,4 @@
+using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 using System.Collections.Generic;
 namespace SuperReaders.Contracts.Interfaces.IDAO
@@ -12,6 +13,21 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         IEnumerable<ClassRoom> GetClassRooms();
 
         /// <summary>
+        /// This Method return all Class Room and apply the business rules
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms </returns>
+
+        IEnumerable<ClassRoomDTO> GetClassRoomWithInfo();
+
+        /// <summary>
+        /// This Method return all Class Room and apply the business rules
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of ClassRooms </returns>
+        IEnumerable<ClassRoom> GetClassRoomsAvailable();
+
+        /// <summary>
         /// This Method return an ClassRoom by ID of the Specified ID and Access the data
         /// </summary>
         /// <param name="">
@@ -23,7 +39,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="classRoom">ClassRoom to create</param>
         /// <returns></returns>
-        int AddClassRoom(ClassRoom classRoom);
+        ClassRoom AddClassRoom(ClassRoom classRoom);
 
         /// <summary>
         /// This Method return an ClassRoom by name of Specified and Access the data
@@ -31,12 +47,21 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="name">ClassRoom to create</param>
         /// <returns></returns>
         int GetClassRoomByName(string name);
-          /// <summary>
+
+        /// <summary>
         /// This Method return an ClassRoom by Teacher of Specified and Access the data
         /// </summary>
         /// <param name="idTeacher">ClassRoom to create</param>
         /// <returns></returns>
         IEnumerable<ClassRoom> GetClassRoomByIdTeacher(int idTeacher);
+
+        /// <summary>
+        /// This Method return an ClassRoom by student of Specified and Access the data
+        /// </summary>
+        /// <param name="idStudent">ClassRoom to create</param>
+        /// <returns></returns>
+        IEnumerable<ClassRoom> GetClassRoomByIdStudent(int idStudent);
+
         /// <summary>
         /// This Method update an ClassRoom Specified and Access the data
         /// </summary>
@@ -50,5 +75,6 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="id">ClassRoom to change status</param>
         /// <returns></returns>
         void DeleteClassRoom(int id);
+        void AddStudentClassRoom(ClassRoomDetail classRoomDetail);
     }
 }

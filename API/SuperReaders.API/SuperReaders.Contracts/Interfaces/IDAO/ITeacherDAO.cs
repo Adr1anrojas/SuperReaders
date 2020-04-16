@@ -11,7 +11,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// This Method create an User of the role Teacher
         /// </summary>
         /// <param name="id">ID of user Teacher to create</param>
-        /// <returns></returns>
-        void AddTeacher(int id);
+        /// <returns></returns> 
+        void AddTeacher(int id, int idClassRoom);
     }
 }

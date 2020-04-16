@@ -5,7 +5,7 @@
 	[LastName] nvarchar(50) NOT NULL,
 	[UserName] nvarchar(50) NOT NULL,
 	[Email] nvarchar(50) NULL,
-	[Password] nvarchar(50) NOT NULL,
+	[Password] VARBINARY(MAX) NOT NULL,
 	[Status] bit NOT NULL,
 	[Role] nvarchar(50) NOT NULL,
 	[BirthDate] date NOT NULL,

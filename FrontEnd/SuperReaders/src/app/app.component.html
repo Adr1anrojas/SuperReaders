@@ -1,2 +1,7 @@
-<app-sidebar></app-sidebar>
-<!-- <router-outlet></router-outlet> -->
+<app-sidebar *ngIf="this.loginService.isLogged"></app-sidebar>
+<div [ngClass]="{'background' : !this.loginService.isLogged}">
+    <app-login *ngIf="!this.loginService.isLogged"></app-login>
+</div>
+<ngx-spinner bdColor="rgba(255,255,255,0.68)" size="large" color="#f21d1d" type="ball-climbing-dot" [fullScreen]="true">
+    <p style="color: #f21d1d"> Cargando... </p>
+</ngx-spinner>

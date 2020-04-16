@@ -13,12 +13,14 @@ namespace SuperReaders.Services.DomainObject
         private IAdminDAO _iAdminDAO;
         private ITeacherDAO _iTeacherDAO;
         private IStudentDAO _iStudentDAO;
-        public UserDomainObject(IUserDAO iuserDAO, IAdminDAO iadminDAO, ITeacherDAO iTeacherDAO, IStudentDAO iStudentDAO)
+        private IClassRoomDAO _iClassRoomDAO;
+        public UserDomainObject(IUserDAO iuserDAO, IAdminDAO iadminDAO, ITeacherDAO iTeacherDAO, IStudentDAO iStudentDAO, IClassRoomDAO iClassRoomDAO)
         {
             _iUserDAO = iuserDAO;
             _iAdminDAO = iadminDAO;
             _iTeacherDAO = iTeacherDAO;
             _iStudentDAO = iStudentDAO;
+            _iClassRoomDAO = iClassRoomDAO;
         }
 
         /// <summary>
@@ -37,6 +39,100 @@ namespace SuperReaders.Services.DomainObject
                 throw e;
             }
         }
+
+        /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        public IEnumerable<User> GetStudents()
+        {
+            List<User> admins;
+            try
+            {
+                admins = _iUserDAO.GetStudents().ToList();
+                if (admins.Count > 0)
+                {
+                    foreach (User item in admins)
+                    {
+                        item.classRoom = _iClassRoomDAO.GetClassRoomByIdStudent(item.StudentId).First();
+                    }
+                }
+                return admins;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        public IEnumerable<User> GetStudentsByClassRoom(int idClassRoom)
+        {
+            List<User> admins;
+            try
+            {
+                admins = _iUserDAO.GetStudentsByClassRoom(idClassRoom).ToList();
+                if (admins.Count > 0)
+                {
+                    foreach (User item in admins)
+                    {
+                        item.classRoom = _iClassRoomDAO.GetClassRoomByIdStudent(item.StudentId).First();
+                    }
+                }
+                return admins;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return all Admins
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Admins</returns>
+        public IEnumerable<User> GetAdmins()
+        {
+            try
+            {
+                return _iUserDAO.GetAdmins();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        /// <summary>
+        /// This EndPoint return all Teachers
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Teachers</returns>
+        public IEnumerable<User> GetTeachers()
+        {
+            List<User> teachers;
+            try
+            {
+                teachers = _iUserDAO.GetTeachers().ToList();
+                if(teachers.Count > 0) { 
+                    foreach (User item in teachers)
+                    {
+                        item.classRoom = _iClassRoomDAO.GetClassRoomByIdTeacher(item.TeacherId).First();
+                    }
+                }
+                return teachers;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
 
         /// <summary>
         /// This EndPoint return an User by ID of the role Specified
@@ -64,16 +160,19 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
+                int idStudent = 0;
                 int result = _iUserDAO.GetUserByUserName(user.UserName);
                 if (result == 0)
                 {
-                   int id = _iUserDAO.AddUser(user);
+                   var userCreated = _iUserDAO.AddUser(user).First();
                     if (user.Role.Equals("Admin"))
-                        _iAdminDAO.AddAdmin(id);
-                    else if (user.Role.Equals("Maestro"))
-                        _iTeacherDAO.AddTeacher(id);
-                    else if (user.Role.Equals("Alumno"))
-                        _iStudentDAO.AddStudent(id);
+                        _iAdminDAO.AddAdmin(userCreated.Id);
+                    else if (user.Role.Equals("Teacher"))
+                        _iTeacherDAO.AddTeacher(userCreated.Id, user.classRoom.Id);
+                    else if (user.Role.Equals("Student")) { 
+                       idStudent = _iStudentDAO.AddStudent(userCreated.Id);
+                        _iUserDAO.AddStudentToClassRoom(user.classRoom.Id, idStudent);
+                    }
                 }
                 else
                     throw new ArgumentException("This user already exists");
