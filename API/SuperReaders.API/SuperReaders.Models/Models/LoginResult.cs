@@ -14,6 +14,8 @@ namespace SuperReaders.Models.Models
         public int Id { get; set; }
         [JsonProperty("teacherId")]
         public int TeacherId { get; set; }
+        [JsonProperty("studentId")]
+        public int StudentId { get; set; }
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
         [JsonProperty("lastName")]

@@ -4,7 +4,7 @@ AS
 	BEGIN
 		 SELECT
             U.[Id],
-            S.[Id] AS TeacherId,
+            S.[Id] AS StudentId,
             [FirstName], 
             [LastName], 
             [UserName], 

@@ -54,6 +54,14 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <returns>An User of the role Teacher</returns> 
         User GetTeacherById(int id);
 
+
+        /// <summary>
+        /// This Method return an User by ID of the role Teacher and Access the data
+        /// </summary>
+        /// <param name="">
+        /// <returns>An User of the role Teacher</returns> 
+        User GetStudentById(int id);
+        
         /// <summary>
         /// This Method create an User of the role Specified and Access the data
         /// </summary>
@@ -80,7 +88,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="id">user to change status</param>
         /// <returns></returns>
-        void DeleteUser(int id);
+        void DeleteUser(int id, string role);
 
         /// <summary>
         /// This Method add an student to ClassRoom

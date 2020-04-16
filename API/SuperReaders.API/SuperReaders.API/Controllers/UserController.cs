@@ -192,12 +192,12 @@ namespace SuperReaders.API.Controllers
         /// </summary>
         /// <param name="user">user to change status</param>
         /// <returns>status code 200</returns>
-        [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        [HttpDelete("{id}/{role}")]
+        public IActionResult DeleteUser(int id, string role)
         {
             try
             {
-                _iUserDomainObject.DeleteUser(id);
+                _iUserDomainObject.DeleteUser(id, role);
                 return Ok();
             }
             catch (Exception e)

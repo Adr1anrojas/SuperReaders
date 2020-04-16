@@ -18,7 +18,7 @@ export class TeacherComponent implements OnInit {
   teacher: User;
   show: boolean;
   submitted = false;
-  columns: string[] = ["Nombres", "Apellidos", "Usuario", "Grupo", "Status", "Accion"];
+  columns: string[] = ["Nombres", "Apellidos", "Usuario", "Grupo", "Email", "Accion"];
   selectedMoment = new Date();
   formTeacher: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -147,7 +147,7 @@ export class TeacherComponent implements OnInit {
 
   delete() {
     let idUser = this.formTeacher.get('id').value;
-    this.userService.delete(idUser).subscribe(res => {
+    this.userService.delete(idUser,"Teacher").subscribe(res => {
       this.toastr.success('Hecho', 'Se elimino a un Maestro.');
       this.initTeacher();
       this.getTeachers();

@@ -136,9 +136,10 @@ namespace SuperReaders.Services.DAO
                     parameters.Add(Constants.P_User_FirstName, user.FirstName);
                     parameters.Add(Constants.P_User_LastName, user.LastName);
                     parameters.Add(Constants.P_User_UserName, user.UserName);
+                    parameters.Add(Constants.P_User_Email, user.Email);
                     parameters.Add(Constants.P_User_Status, user.Status);
                     parameters.Add(Constants.P_User_BirthDate, user.BirthDate);
-                    parameters.Add(Constants.P_User_ClassRoomId, user.classRoom.Id);
+                    if(user.classRoom != null) parameters.Add(Constants.P_User_ClassRoomId, user.classRoom.Id);
                     db.Query<User>(Constants.SP_User_Update, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
@@ -148,12 +149,13 @@ namespace SuperReaders.Services.DAO
             }
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(int id, string role)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
             {
                 parameters.Add(Constants.P_User_Id, id);
+                parameters.Add(Constants.P_User_Role, role);
                 using (IDbConnection db = connection.Connection)
                 {
                     db.ExecuteScalar<User>(Constants.SP_User_Delete, parameters, commandType: CommandType.StoredProcedure);
@@ -266,6 +268,33 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     var result = db.Query<User>(Constants.SP_User_GetTeacherById, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    if (result.Count == 0)
+                        return null;
+                    user = result.First();
+                    return user;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This EndPoint return an User by ID of the teacher Specified
+        /// </summary>
+        /// <param name="">
+        /// <returns>An User of the teacher Specified</returns>
+        public User GetStudentById(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            User user;
+            try
+            {
+                parameters.Add(Constants.P_User_Id, id);
+                using (IDbConnection db = connection.Connection)
+                {
+                    var result = db.Query<User>(Constants.SP_User_GetStudentById, parameters, commandType: CommandType.StoredProcedure).ToList();
                     if (result.Count == 0)
                         return null;
                     user = result.First();

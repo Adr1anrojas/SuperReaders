@@ -35,8 +35,8 @@ export class UserService {
     return this.http.get(this.url + 'GetStudentsByClassRoom/' + idClassroom);
   }
 
-  delete(idUser: number) {
-    return this.http.delete(this.url + idUser);
+  delete(idUser: number, role: string) {
+    return this.http.delete(this.url + idUser + '/' + role);
   }
 
 }

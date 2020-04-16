@@ -138,5 +138,6 @@
     <Build Include="dbo\StoredProcedures\Question\Question_Update.sql" />
     <Build Include="dbo\StoredProcedures\Question\QuestionAnswer_Create.sql" />
     <Build Include="dbo\StoredProcedures\Answer\Answer_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetStudentsByClassRoom.sql" />
   </ItemGroup>
 </Project>

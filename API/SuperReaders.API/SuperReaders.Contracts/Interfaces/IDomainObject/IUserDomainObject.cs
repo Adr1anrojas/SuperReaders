@@ -71,6 +71,6 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="user">user to change status</param>
         /// <returns>status code 200</returns>
-        void DeleteUser(int user);
+        void DeleteUser(int id, string role);
     }
 }

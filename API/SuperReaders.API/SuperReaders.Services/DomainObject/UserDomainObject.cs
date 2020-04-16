@@ -206,11 +206,11 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="user">user to change status</param>
         /// <returns>status code 200</returns>
-        public void DeleteUser(int id)
+        public void DeleteUser(int id, string role)
         {
             try
             {
-                _iUserDAO.DeleteUser(id);
+                _iUserDAO.DeleteUser(id, role);
             }
             catch (Exception e)
             {

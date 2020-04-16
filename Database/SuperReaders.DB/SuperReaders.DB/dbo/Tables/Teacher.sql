@@ -2,7 +2,7 @@
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
 	[IdUser] int NOT NULL,
-	[IdClassRoom] int NOT NULL
+	[IdClassRoom] int NULL
 )
 GO
 ALTER TABLE [Teacher] ADD CONSTRAINT [FK_Teacher_User]

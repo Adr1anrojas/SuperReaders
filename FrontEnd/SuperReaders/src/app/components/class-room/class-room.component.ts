@@ -16,8 +16,9 @@ export class ClassRoomComponent implements OnInit {
   classRoomsCopy: ClassRoomDTO[] = [];
   classRoom: ClassRoomDTO;
   show: boolean;
+  quantityStudent: number;
   submitted = false;
-  columns: string[] = ["Grupo", "Maestro", "# de Alumnos", "Status", "Accion"];
+  columns: string[] = ["Grupo", "Maestro", "# de Alumnos", "Accion"];
   formClassRoom: FormGroup = new FormGroup({
     id: new FormControl(''),
     name: new FormControl('', Validators.required)
@@ -34,12 +35,9 @@ export class ClassRoomComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.createAnGroup());
     if (this.formClassRoom.valid) {
       let classRoom = this.createAnGroup();
       if (classRoom.id === 0) {
-        console.log("crear");
-        console.log(classRoom);
         this.createclassRoom(classRoom);
       } else
         this.updateclassRoom(classRoom);
@@ -60,7 +58,6 @@ export class ClassRoomComponent implements OnInit {
     this.classRoomService.getAllWithInfo().subscribe((res: ClassRoomDTO[]) => {
       this.classRoomsCopy = JSON.parse(JSON.stringify(res));
       this.classRooms = res;
-      console.log(this.classRooms);
     });
   }
 
@@ -71,7 +68,6 @@ export class ClassRoomComponent implements OnInit {
       $("#exampleModal").modal("hide");
       this.toastr.success('¡Hecho!', 'Se creó un Grupo.');
     }, error => {
-      console.log(error);
       if (error == 'Bad Request')
         this.toastr.error('El Nombre del Grupo ya esta en uso.', '¡Error!');
       else
@@ -100,6 +96,7 @@ export class ClassRoomComponent implements OnInit {
       name: e.name,
     });
     this.isUpdate = true;
+    this.quantityStudent = this.classRoomsCopy.find(copy => copy.id == e.id).quantityStudents;
   }
 
   createAnGroup(): ClassRoom {
@@ -111,15 +108,18 @@ export class ClassRoomComponent implements OnInit {
   }
 
   delete() {
-    let idclassRoom = this.formClassRoom.get('id').value;
-    this.classRoomService.delete(idclassRoom).subscribe(res => {
-      this.toastr.success('Hecho', 'Se elimino a un Grupo.');
-      this.initClassRoom();
-      this.getAllWithInfo();
-    }, (error => {
-      this.toastr.success('Ocurrio un problema al eliminar al Grupo', '¡Error!');
-      this.initClassRoom();
-    }));
+    if (this.quantityStudent == 0) {
+      let idclassRoom = this.formClassRoom.get('id').value;
+      this.classRoomService.delete(idclassRoom).subscribe(res => {
+        this.toastr.success('Hecho', 'Se elimino a un Grupo.');
+        this.initClassRoom();
+        this.getAllWithInfo();
+      }, (error => {
+        this.toastr.error('Ocurrio un problema al eliminar al Grupo.', '¡Error!');
+        this.initClassRoom();
+      }));
+    } else
+      this.toastr.error('El grupo no debe de tener ningun Alumno.', '¡Error!');
   }
 
 }

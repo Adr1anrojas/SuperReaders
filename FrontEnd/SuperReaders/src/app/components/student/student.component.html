@@ -26,7 +26,6 @@
                         <th scope="col">Apellidos</th>
                         <th scope="col">Usuario</th>
                         <th scope="col" *ngIf="this.currentUser.role==='Admin'">Grupo</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Accion</th>
                     </tr>
                 </thead>
@@ -36,7 +35,6 @@
                         <td>{{item.lastName}}</td>
                         <td>{{item.userName}}</td>
                         <td *ngIf="this.currentUser.role==='Admin'">{{item.classRoom.name}}</td>
-                        <td>{{item.status?'Activo':'Inactivo'}}</td>
                         <td class="icons">
                             <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Editar"
                                 (click)="editStudent(item)" data-toggle="modal" data-target="#exampleModal">
