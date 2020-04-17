@@ -79,7 +79,6 @@
     <Build Include="dbo\Tables\ContentDetail.sql" />
     <Build Include="dbo\Tables\Page.sql" />
     <Build Include="dbo\Tables\Question.sql" />
-    <Build Include="dbo\Tables\QuestionAnswer.sql" />
     <Build Include="dbo\Tables\Student.sql" />
     <Build Include="dbo\Tables\StudentContent.sql" />
     <Build Include="dbo\Tables\Teacher.sql" />
@@ -95,10 +94,9 @@
     <Build Include="dbo\StoredProcedures\Student\Student_Create.sql" />
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\School.sql" />
-    <Build Include="dbo\Tables\OptionQuestion.sql" />
+    <Build Include="dbo\Tables\StudentAnswer.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="SuperReaders.DB.refactorlog" />
     <Build Include="dbo\StoredProcedures\Login\Login_UserLoged.sql" />
     <Build Include="dbo\StoredProcedures\User\User_GetAdmins.sql" />
     <Build Include="dbo\StoredProcedures\User\User_GetStudents.sql" />
