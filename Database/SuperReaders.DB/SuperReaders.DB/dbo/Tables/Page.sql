@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [Page]
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
-	[Text] nvarchar(500) NOT NULL,
+	[Text] nvarchar(MAX) NOT NULL,
 	[IdContent] int NOT NULL
 )
 GO
