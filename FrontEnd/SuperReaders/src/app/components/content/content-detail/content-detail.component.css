@@ -128,16 +128,20 @@ body {
     background: #F96302;
     border-color: white;
 }
+.btn .btn-primary .btn-title:active{
+    background: #F96302;
+    border-color: white;
+}
 .input-group-text{
     background: #F96302;
     color: white;
 }
+.btn-danger{
+	border-color: white;
+}
 .custom-file-label::after {
     display: none;
 }
-/* img:-moz-broken {
-	opacity: 0;
-  } */
 .size{
 	background: white;
 	height: 200px;

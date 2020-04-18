@@ -37,8 +37,15 @@ export class ContentDetailComponent implements OnInit {
     return this.currentStepper += 1;
   }
 
+  lastCurrentStepper() {
+    this.currentStepper -= 1;
+  }
+
   get controlsContent() {
     return this.formContent.controls;
+  }
+  get controlsPage() {
+    return this.formPages.controls;
   }
 
   onSubmitContent() {
@@ -63,6 +70,7 @@ export class ContentDetailComponent implements OnInit {
   readURL(event): void {
     if (event.target.files && event.target.files[0]) {
       this.file = event.target.files[0];
+      this.controlsContent.img.setValue(this.file, { onlySelf: true });
       const reader = new FileReader();
       reader.onload = e => this.imageURL = reader.result;
       reader.readAsDataURL(this.file);
@@ -87,6 +95,7 @@ export class ContentDetailComponent implements OnInit {
       img: this.formContent.get('img').value
     }
   }
+
   createAnPage(): Page {
     return {
       id: +this.formPages.get('id').value,

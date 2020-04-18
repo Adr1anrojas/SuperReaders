@@ -64,7 +64,9 @@
                 </div>
                 <div class="container-fluid mt-2">
                     <div class="row">
-                        <button type="submit" class="btn btn-primary btn-title ml-auto mt-3">
+                        <button type="button" class="btn btn-danger ml-auto mt-3" [routerLink]="['/content']">
+                            Cancelar</button>
+                        <button type="submit" class="btn btn-primary btn-title ml-right mt-3 ml-1">
                             Siguiente</button>
                     </div>
                 </div>
@@ -74,8 +76,31 @@
     <!-- END PAGE 1 -->
 
     <!-- PAGE 2 -->
-    <div class="row" *ngIf="this.currentStepper===2">
-        <form [formGroup]="formPages" class="needs-validation" novalidate (ngSubmit)="onSubmitPages()"></form>
+    <div *ngIf="this.currentStepper===2">
+        <form [formGroup]="formPages" class="needs-validation" novalidate (ngSubmit)="onSubmitPages()">
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for="name">Titulo</label>
+                    <textarea rows="12" type="text" class="form-control" id="name" placeholder="Titulo" name="name"
+                        formControlName="text"
+                        [ngClass]="{'is-invalid':submitted && controlsPage.text.errors }"></textarea>
+                    <div *ngIf="submitted && controlsPage.title.errors" class="invalid-feedback">
+                        Introduzca el texto.
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <button type="button" class="btn btn-primary btn-title float-right mt-3"
+                        [routerLink]="['/content']">
+                        Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-title ml-auto mt-3" (click)="lastCurrentStepper()">
+                        Atras</button>
+                    <button type="submit" class="btn btn-primary btn-title ml-right mt-3 ml-1">
+                        Siguiente</button>
+                </div>
+            </div>
+        </form>
     </div>
     <!-- END PAGE 2 -->
 </div>
