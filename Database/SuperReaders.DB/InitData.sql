@@ -48,3 +48,14 @@ INSERT INTO Answer(IdQuestion,IsCorrect,Text) VALUES
 --INNER JOIN Question Q ON Q.Id = A.IdQuestion
 --INNER JOIN Content C ON C.Id = Q.IdContent
 --select * from Answer
+--delete from StudentAnswer
+--delete from Answer
+--delete from Question
+--delete from [Page]
+--delete from Content
+select * from [User]
+select * from StudentAnswer
+select * from Answer
+select * from Question
+select * from [Page]
+select * from Content

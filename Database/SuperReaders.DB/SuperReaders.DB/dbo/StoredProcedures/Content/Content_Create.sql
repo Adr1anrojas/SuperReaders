@@ -1,19 +1,20 @@
 CREATE PROC Content_Create 
 @pTitle AS NVARCHAR(50), 
-@pIdTypeContent int,
-@pStatus bit
+@pIdTypeContent int
 AS
 	BEGIN
-		INSERT INTO [Content]
-		( 
-			[Title], 
-			[IdTypeContent],
-            	        [Status]
+		INSERT INTO 
+		[Content]
+		    (
+				[Title], 
+				[IdTypeContent],
+				[Status]
 			)
-		VALUES
-		(
-			@pTitle, 
-			@pIdTypeContent,
-			@pStatus
-		)
+		VALUES 
+			(
+				@pTitle,
+				@pIdTypeContent,
+				1
+			)
+		SELECT CAST(IDENT_CURRENT('Content') AS INT)
 	END

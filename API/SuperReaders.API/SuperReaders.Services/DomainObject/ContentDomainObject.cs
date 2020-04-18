@@ -29,29 +29,25 @@ namespace SuperReaders.Services.DomainObject
         {
             try
             {
-                List<int> questionsId = new List<int>();
-                List<int> answersId = new List<int>();
+                int idContent = 0, idQuestion = 0;
                 int result = _iContentDAO.GetContentByContentName(content.content.Title);
                 if (result == 0)
                 {
-                    int id = _iContentDAO.AddContent(content.content);
+                    idContent = _iContentDAO.AddContent(content.content);
                     foreach (Page item in content.pages)
                     {
+                        item.IdContent = idContent;
                         _iPageDAO.AddPage(item);
                     }
                     foreach (Question item in content.questions)
                     {
-                        _iQuestionDAO.AddQuestion(item);
-                        questionsId.Add(item.Id);
-                    }
-                    foreach(Answer item in content.answers)
-                    {
-                        _iAnswerDAO.AddAnswer(item);
-                        answersId.Add(item.Id);
-                    }
-                    for (int i = 0; i <questionsId.Count; i++)
-                    {
-                        _iContentDAO.AddQuestionAnswer(questionsId[i],answersId[i]);
+                        item.IdContent = idContent;
+                       idQuestion = _iQuestionDAO.AddQuestion(item);
+                        foreach (Answer answer in item.answers)
+                        {
+                            answer.IdQuestion = idQuestion;
+                            _iAnswerDAO.AddAnswer(answer);
+                        }
                     }
                 }
                 else
@@ -111,13 +107,13 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="content">content to update</param>
         /// <returns>status code 200</returns>
-        public void UpdateContent(Content content)
+        public void UpdateContent(ContentDTO content)
         {
             try
             {
-                int result = _iContentDAO.GetContentByContentName(content.Title);
+                int result = _iContentDAO.GetContentByContentName(content.content.Title);
                 if (result == 0)
-                    _iContentDAO.UpdateContent(content);
+                    _iContentDAO.UpdateContent(content.content);
                 else
                     throw new ArgumentException("This content already exists");
             }

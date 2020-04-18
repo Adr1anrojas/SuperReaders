@@ -8,6 +8,7 @@ import { ReportComponent } from './components/report/report.component';
 import { AdminComponent } from "./components/admin/admin.component";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 import { ContentComponent } from './components/content/content.component';
+import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'report', component: ReportComponent },
   { path: 'classRoom', component: ClassRoomComponent },
-  { path: 'content', component: ContentComponent }
+  { path: 'content', component: ContentComponent },
+  { path: 'contentdetail/:id', component: ContentDetailComponent }
 ];
 
 @NgModule({

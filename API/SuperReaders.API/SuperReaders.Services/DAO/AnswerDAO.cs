@@ -14,6 +14,11 @@ namespace SuperReaders.Services.DAO
     public class AnswerDAO : IAnswerDAO
     {
         private DbAccess connection;
+        public AnswerDAO()
+        {
+            connection = new DbAccess();
+        }
+
         public int AddAnswer(Answer answer)
 
         {
@@ -21,14 +26,15 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     string sql = @"INSERT INTO [Answer]
-		            ([IdStudent], [Text])
-		            VALUES (@IdStudent,@Text);
+		            ([Text], [IsCorrect], [IdQuestion])
+		            VALUES (@Text, @IsCorrect, @IdQuestion);
 		            SELECT CAST(SCOPE_IDENTITY() as int)";
                     var id = db.Query<int>(sql,
                         new
                         {
-                            IdStudent = answer.IdStudent,
                             Text = answer.Text,
+                            IsCorrect = answer.IsCorrect,
+                            IdQuestion = answer.IdQuestion
                         }).Single();
                     return id;
 

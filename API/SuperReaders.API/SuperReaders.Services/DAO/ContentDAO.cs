@@ -26,18 +26,11 @@ namespace SuperReaders.Services.DAO
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @"INSERT INTO [Content]
-		            ([Title], [IdTypeContent],[Status])
-		            VALUES (@Title, @IdTypeContent,@Status);
-		            SELECT CAST(SCOPE_IDENTITY() as int)";
-                    var id = db.Query<int>(sql,
-                        new
-                        {
-                            Title = content.Title,
-                            IdTypeContent = content.IdTypeContent, 
-                            Status = content.Status
-                        }).Single();
-                    return id;
+                    int result = 0;
+                    parameters.Add(Constants.P_Content_Title, content.Title);
+                    parameters.Add(Constants.P_Content_IdTypeContent, content.IdTypeContent);
+                    result = db.Query<int>(Constants.SP_Content_Create, parameters, commandType: CommandType.StoredProcedure).First();
+                    return result;
                 }
             }
             catch (Exception e)

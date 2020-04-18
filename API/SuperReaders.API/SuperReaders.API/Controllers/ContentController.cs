@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.DTO;
@@ -33,11 +29,9 @@ namespace SuperReaders.API.Controllers
             }
         }
         
-      
-
         // GET: api/Content/5
         [HttpGet("{id}", Name = "Get")]
-        public ActionResult<Content> GetContent(int id)
+        public ActionResult<ContentDTO> GetContent(int id)
         {
             try
             {
@@ -61,7 +55,7 @@ namespace SuperReaders.API.Controllers
             }
             catch (Exception e)
             {
-                if (e.Message.Equals("This Content already exists"))
+                if (e.Message.Equals("This title content already exists"))
                     return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }
@@ -69,7 +63,7 @@ namespace SuperReaders.API.Controllers
 
         // PUT: api/Content/5
         [HttpPut("{id}")]
-        public IActionResult UpdateUser([FromBody] Content content)
+        public IActionResult UpdateContent([FromBody] ContentDTO content)
         {
             try
             {

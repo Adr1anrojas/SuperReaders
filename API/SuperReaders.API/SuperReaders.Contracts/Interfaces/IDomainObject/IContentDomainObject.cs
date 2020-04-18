@@ -27,7 +27,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="user">user to update</param>
         /// <returns>status code 200</returns>
-        void UpdateContent(Content content);
+        void UpdateContent(ContentDTO content);
 
         /// <summary>
         /// This Method update the status of an User of the role Specified and apply the business rules

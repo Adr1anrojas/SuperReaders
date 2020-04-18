@@ -14,6 +14,11 @@ namespace SuperReaders.Services.DAO
     public class QuestionDAO :IQuestionDAO
     {
         private DbAccess connection;
+        public QuestionDAO()
+        {
+            connection = new DbAccess();
+        }
+
         public int AddQuestion(Question question)
 
         {
@@ -28,7 +33,7 @@ namespace SuperReaders.Services.DAO
                     var id = db.Query<int>(sql,
                         new
                         {
-                            IdStudent = question.IdContent,
+                            IdContent = question.IdContent,
                             Text = question.Text,
                         }).Single();
                     return id;

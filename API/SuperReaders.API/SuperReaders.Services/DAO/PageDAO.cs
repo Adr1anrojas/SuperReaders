@@ -14,27 +14,29 @@ namespace SuperReaders.Services.DAO
     public class PageDAO : IPageDAO
     {
         private DbAccess connection;
+
+        public PageDAO()
+        {
+            connection = new DbAccess();
+        }
+
         public void AddPage(Page page)
-        { 
-
-
-             DynamicParameters parameters = new DynamicParameters();
+        {
+            DynamicParameters parameters = new DynamicParameters();
             try
             {
                 using (IDbConnection db = connection.Connection)
                 {
                     parameters.Add(Constants.P_Page_Text, page.Text);
                     parameters.Add(Constants.P_Page_IdContent,page.IdContent);
-                    db.ExecuteScalar<Page>(Constants.SP_Page_Create, parameters, commandType: CommandType.StoredProcedure);
+                    db.Query<Page>(Constants.SP_Page_Create, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception e)
             {
                 throw e;
             }
-    }
-    
-        
+        }
 
         public void DeletePage(int id)
         {
