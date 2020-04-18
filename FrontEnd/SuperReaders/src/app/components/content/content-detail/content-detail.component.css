@@ -1,8 +1,4 @@
-html {
-	-webkit-font-smoothing: antialiased!important;
-	-moz-osx-font-smoothing: grayscale!important;
-	-ms-font-smoothing: antialiased!important;
-}
+
 .card-body{
     box-shadow: 0 3px 10px -4px rgba(0,0,0,.50);
 }
@@ -127,4 +123,23 @@ body {
 	left:0;
 	right:50%;
 	margin-right:20px;
+}
+.btn-title{
+    background: #F96302;
+    border-color: white;
+}
+.input-group-text{
+    background: #F96302;
+    color: white;
+}
+.custom-file-label::after {
+    display: none;
+}
+/* img:-moz-broken {
+	opacity: 0;
+  } */
+.size{
+	background: white;
+	height: 200px;
+	width: 160px;
 }
