@@ -21,7 +21,7 @@
         </div>
     </div>
     <!-- PAGE 1 -->
-    <div *ngIf="this.currentStepper===1">
+    <div *ngIf="this.currentStepper===2">
         <form [formGroup]="formContent" class="needs-validation row" novalidate (ngSubmit)="onSubmitContent()">
             <div class="modal-body col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <label for="inputGroupFileAddon01">Portada</label>
@@ -76,9 +76,9 @@
     <!-- END PAGE 1 -->
 
     <!-- PAGE 2 -->
-    <div *ngIf="this.currentStepper===2">
+    <div *ngIf="this.currentStepper===1">
         <form [formGroup]="formPages" class="needs-validation" novalidate (ngSubmit)="onSubmitPages()">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="name">Titulo</label>
                     <textarea rows="12" type="text" class="form-control" id="name" placeholder="Titulo" name="name"
@@ -86,6 +86,44 @@
                         [ngClass]="{'is-invalid':submitted && controlsPage.text.errors }"></textarea>
                     <div *ngIf="submitted && controlsPage.title.errors" class="invalid-feedback">
                         Introduzca el texto.
+                    </div>
+                </div>
+            </div> -->
+            <div class="container-fluid">
+                <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active pr-1 pt-1" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true"><button onclick="this.blur();" type="button"
+                                class="close ml-2 mb-2" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                            aria-controls="contact" aria-selected="false">Contact</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div id="section1">
+                            <div class="form-group w-100">
+                                <textarea rows="11" type="text" class="form-control border border-top-0"
+                                    style="width: 100%;" id="name" placeholder="Pagina 1" name="name"
+                                    formControlName="text"
+                                    [ngClass]="{'is-invalid':submitted && controlsPage.text.errors }"></textarea>
+                                <div *ngIf="submitted && controlsPage.title.errors" class="invalid-feedback">
+                                    Introduzca el texto.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Profile
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact
                     </div>
                 </div>
             </div>
