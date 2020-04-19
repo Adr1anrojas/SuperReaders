@@ -13,7 +13,7 @@ export class ContentDetailComponent implements OnInit {
   currentStepper: number = 1;
   submitted: Boolean = false;
   content: ContentFile;
-  // pagesArray: Page[] = [];
+  pagesArray: Page[] = [];
   // page: Page;
   imageURL: any;
   formContent: FormGroup = new FormGroup({
@@ -23,6 +23,11 @@ export class ContentDetailComponent implements OnInit {
     img: new FormControl('', Validators.required)
   });
   formPages = new FormGroup({
+    pages: new FormArray([
+      new FormControl('', Validators.required)
+    ])
+  });
+  formQuestion = new FormGroup({
     pages: new FormArray([
       new FormControl('', Validators.required)
     ])
@@ -39,7 +44,6 @@ export class ContentDetailComponent implements OnInit {
   }
 
   addPage() {
-    console.log(this.pages);
     this.currentPage(this.pages.length);
     this.pages.push(new FormControl('', Validators.required));
   }
@@ -54,11 +58,11 @@ export class ContentDetailComponent implements OnInit {
   }
 
   deletePage(page) {
-    console.log(page);
     if (this.pages.length !== 1) {
       this.pages.removeAt(page);
     }
   }
+
   nextCurrentStepper(): number {
     return this.currentStepper += 1;
   }
@@ -70,6 +74,7 @@ export class ContentDetailComponent implements OnInit {
   get controlsContent() {
     return this.formContent.controls;
   }
+
   get controlsPage() {
     return this.formPages.controls;
   }
@@ -85,10 +90,23 @@ export class ContentDetailComponent implements OnInit {
 
   onSubmitPages() {
     this.submitted = true;
-    console.log(this.formPages.value);
+    let value = this.controlsPage.pages.value;
     if (this.formPages.valid) {
-
+      for (let index = 0; index < value.length; index++) {
+        this.pagesArray.push(
+          {
+            id: 0,
+            text: value[index],
+            idContent: 0
+          }
+        );
+      }
+      this.nextCurrentStepper();
     }
+  }
+
+  onSubmitQuestions() {
+
   }
 
   // Image Preview

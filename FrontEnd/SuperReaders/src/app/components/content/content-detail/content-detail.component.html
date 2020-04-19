@@ -21,7 +21,7 @@
         </div>
     </div>
     <!-- PAGE 1 -->
-    <div *ngIf="this.currentStepper===2">
+    <div *ngIf="this.currentStepper===1">
         <form [formGroup]="formContent" class="needs-validation row" novalidate (ngSubmit)="onSubmitContent()">
             <div class="modal-body col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <label for="inputGroupFileAddon01">Portada</label>
@@ -76,7 +76,7 @@
     <!-- END PAGE 1 -->
 
     <!-- PAGE 2 -->
-    <div *ngIf="this.currentStepper===1">
+    <div *ngIf="this.currentStepper===2">
         <form [formGroup]="formPages" class="needs-validation" novalidate (ngSubmit)="onSubmitPages()">
             <div class="container-fluid">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -121,17 +121,27 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="row">
-                    <button type="button" class="btn btn-primary btn-title float-right mt-3"
-                        [routerLink]="['/content']">
-                        Cancelar</button>
-                    <button type="button" class="btn btn-primary btn-title ml-auto mt-3" (click)="lastCurrentStepper()">
-                        Atras</button>
-                    <button type="submit" class="btn btn-primary btn-title ml-right mt-3 ml-1">
-                        Siguiente</button>
+                <div class="row ">
+                    <div class="ml-auto">
+                        <button type="button" class="btn btn-danger" [routerLink]="['/content']">
+                            Cancelar</button>
+                        <button type="button" class="btn btn-primary btn-title ml-1" (click)="lastCurrentStepper()">
+                            Atras</button>
+                        <button type="submit" class="btn btn-primary btn-title ml-1">
+                            Siguiente</button>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
     <!-- END PAGE 2 -->
+
+    <!-- PAGE 3 -->
+    <div *ngIf="this.currentStepper===3">
+        <form [formGroup]="formQuestion" class="needs-validation" novalidate (ngSubmit)="onSubmitQuestions()">
+            <div class="container-fluid">
+                
+            </div>
+        </form>
+    </div>
 </div>
