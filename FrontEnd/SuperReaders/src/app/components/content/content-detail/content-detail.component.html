@@ -78,52 +78,45 @@
     <!-- PAGE 2 -->
     <div *ngIf="this.currentStepper===1">
         <form [formGroup]="formPages" class="needs-validation" novalidate (ngSubmit)="onSubmitPages()">
-            <!-- <div class="row">
-                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="name">Titulo</label>
-                    <textarea rows="12" type="text" class="form-control" id="name" placeholder="Titulo" name="name"
-                        formControlName="text"
-                        [ngClass]="{'is-invalid':submitted && controlsPage.text.errors }"></textarea>
-                    <div *ngIf="submitted && controlsPage.title.errors" class="invalid-feedback">
-                        Introduzca el texto.
-                    </div>
-                </div>
-            </div> -->
             <div class="container-fluid">
-                <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <!-- <div formArrayName="pages"> -->
+                    <div *ngFor="let page of pages.controls; index as idx">
+                        <li class="nav-item" (click)="currentPage(idx)">
+                            <a class="nav-link pr-1 pt-1" [ngClass]="{active: this.pageCurrentValue===idx}"
+                                id="p{{idx+1}}" data-toggle="tab" href="#page{{idx+1}}" role="tab"
+                                aria-selected="true"><span>Pagina {{idx+1}}</span>
+                                <button onclick="this.blur();" (click)="deletePage(page)" type="button"
+                                    class="close ml-2 mb-2" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </a>
+                        </li>
+                    </div>
+                    <!-- </div> -->
                     <li class="nav-item">
-                        <a class="nav-link active pr-1 pt-1" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                            aria-controls="home" aria-selected="true"><button onclick="this.blur();" type="button"
-                                class="close ml-2 mb-2" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                            aria-controls="profile" aria-selected="false">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                            aria-controls="contact" aria-selected="false">Contact</a>
+                        <button onclick="this.blur();" (click)="addPage()" type="button" class="btn btn-outline-primary"
+                            aria-label="Close">
+                            <span aria-hidden="true" class="h5">+</span>
+                        </button>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div id="section1">
-                            <div class="form-group w-100">
-                                <textarea rows="11" type="text" class="form-control border border-top-0"
-                                    style="width: 100%;" id="name" placeholder="Pagina 1" name="name"
-                                    formControlName="text"
-                                    [ngClass]="{'is-invalid':submitted && controlsPage.text.errors }"></textarea>
-                                <div *ngIf="submitted && controlsPage.title.errors" class="invalid-feedback">
-                                    Introduzca el texto.
+                    <div formArrayName="pages">
+                        <div *ngFor="let page of pages.controls; index as idx">
+                            <div class="tab-pane fade show" id="page{{idx+1}}" role="tabpanel">
+                                <div id="section1" *ngIf="this.pageCurrentValue===idx">
+                                    <div class="form-group w-100">
+                                        <textarea rows="10" type="text" class="form-control border border-top-0"
+                                            style="width: 100%;" placeholder="Pagina {{idx+1}}" [formControlName]="idx"
+                                            [ngClass]="{'is-invalid':submitted && page.invalid }"></textarea>
+                                        <div *ngIf="submitted && page.invalid" class="invalid-feedback">
+                                            Campo obligatorio.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Profile
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact
                     </div>
                 </div>
             </div>

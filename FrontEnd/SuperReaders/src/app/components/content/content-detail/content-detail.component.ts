@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, MinLengthValidator } from '@angular/forms';
+import { FormGroup, FormControl, Validators, MinLengthValidator, FormArray, FormBuilder } from '@angular/forms';
 import { ContentFile } from 'src/app/models/contentFile';
 import { Page } from 'src/app/models/page';
 
@@ -13,8 +13,8 @@ export class ContentDetailComponent implements OnInit {
   currentStepper: number = 1;
   submitted: Boolean = false;
   content: ContentFile;
-  pages: Page[] = [];
-  page: Page;
+  // pagesArray: Page[] = [];
+  // page: Page;
   imageURL: any;
   formContent: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -22,17 +22,43 @@ export class ContentDetailComponent implements OnInit {
     idTypeContent: new FormControl(''),
     img: new FormControl('', Validators.required)
   });
-  formPages: FormGroup = new FormGroup({
-    id: new FormControl(''),
-    text: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    idContent: new FormControl(''),
+  formPages = new FormGroup({
+    pages: new FormArray([
+      new FormControl('', Validators.required)
+    ])
   });
   file: any;
+  pageCurrent: number = 0;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  get pages(): FormArray {
+    return this.formPages.get('pages') as FormArray;
+  }
+
+  addPage() {
+    console.log(this.pages);
+    this.currentPage(this.pages.length);
+    this.pages.push(new FormControl('', Validators.required));
+  }
+
+  get pageCurrentValue() {
+    return this.pageCurrent;
+  }
+
+  currentPage(index: number) {
+    this.pageCurrent = index;
+    return this.pageCurrent;
+  }
+
+  deletePage(page) {
+    console.log(page);
+    if (this.pages.length !== 1) {
+      this.pages.removeAt(page);
+    }
+  }
   nextCurrentStepper(): number {
     return this.currentStepper += 1;
   }
@@ -59,10 +85,9 @@ export class ContentDetailComponent implements OnInit {
 
   onSubmitPages() {
     this.submitted = true;
+    console.log(this.formPages.value);
     if (this.formPages.valid) {
-      this.page = this.createAnPage();
-      this.nextCurrentStepper();
-      this.submitted = false;
+
     }
   }
 
