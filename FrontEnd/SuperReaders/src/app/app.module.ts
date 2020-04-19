@@ -20,7 +20,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptor } from './shared/helper/jtwInterceptor';
-import { ResponseInterceptor } from './shared/helper/ResponseInterceptor';
+import { ResponseInterceptor } from './shared/helper/responseInterceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 @NgModule({

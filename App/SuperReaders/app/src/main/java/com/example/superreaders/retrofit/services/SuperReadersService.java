@@ -1,7 +1,9 @@
 package com.example.superreaders.retrofit.services;
 
 import com.example.superreaders.retrofit.request.ClassRoomRequest;
+import com.example.superreaders.retrofit.request.LoginRequest;
 import com.example.superreaders.retrofit.response.ClassRoomResponse;
+import com.example.superreaders.retrofit.response.LoginResponse;
 import com.example.superreaders.retrofit.response.UserResponse;
 
 import java.util.List;
@@ -28,4 +30,6 @@ public interface SuperReadersService {
     Call<List<UserResponse>> getAllTeachers();
     @GET("User/GetStudents")
     Call<List<UserResponse>> getAllStudents();
+    @POST("Login")
+    Call<LoginResponse> login(@Body LoginRequest body);
 }

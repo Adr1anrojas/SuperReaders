@@ -8,8 +8,8 @@ namespace SuperReaders.API.Helper
         private string connectionString;
         public DbAccess()
         {
-            connectionString = @"Server=E-AAROJAS;Database=ReadersDB;Trusted_Connection=True;";  
-            //connectionString = @"Server = tcp:readers.database.windows.net,1433; Initial Catalog = ReadersDB; Persist Security Info = False; User ID = readers; Password = Lector123;";
+            //connectionString = @"Server=E-AAROJAS;Database=ReadersDB;Trusted_Connection=True;";  
+            connectionString = @"Server=localhost;Database=ReadersDB;User Id=sa;password=eduardo326;Trusted_Connection=False;MultipleActiveResultSets=true;";
         }
         public IDbConnection Connection
         {
