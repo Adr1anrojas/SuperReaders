@@ -159,3 +159,8 @@ body {
 .btn-outline-primary:focus {
     box-shadow: 0 0 0 0;
 }
+.add{
+    margin-left: -35px;
+    border-radius: 50%;
+    float: right;
+}

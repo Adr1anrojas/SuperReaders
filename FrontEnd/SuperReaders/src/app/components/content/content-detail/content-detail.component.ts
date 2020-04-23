@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, MinLengthValidator, FormArray, FormBuilder } from '@angular/forms';
 import { ContentFile } from 'src/app/models/contentFile';
 import { Page } from 'src/app/models/page';
+import { Question } from 'src/app/models/Question';
+import { Answer } from 'src/app/models/answer';
 
 @Component({
   selector: 'app-content-detail',
@@ -27,16 +29,37 @@ export class ContentDetailComponent implements OnInit {
       new FormControl('', Validators.required)
     ])
   });
-  formQuestion = new FormGroup({
-    pages: new FormArray([
-      new FormControl('', Validators.required)
-    ])
-  });
+  questions: Question[] = [];
+  question: Question = {
+    id: 0,
+    text: "",
+    idContent: 0,
+    answers: [
+      {
+        id: 0,
+        text: "",
+        isCorrect: false,
+        idQuestion: 0
+      }
+    ]
+  };
+  answer: Answer = {
+    id: 0,
+    text: "",
+    isCorrect: false,
+    idQuestion: 0
+  };
+  // formQuestion = new FormGroup({
+  //   questions: new FormArray([
+  //     new FormControl('', Validators.required)
+  //   ])
+  // });
   file: any;
   pageCurrent: number = 0;
   constructor() { }
 
   ngOnInit(): void {
+    this.addQuestion();
   }
 
   get pages(): FormArray {
@@ -79,6 +102,42 @@ export class ContentDetailComponent implements OnInit {
     return this.formPages.controls;
   }
 
+  // get controlsQuestion() {
+  //   return this.formQuestion.controls;
+  // }
+
+  // get questions(): FormArray {
+  //   return this.formQuestion.get('questions') as FormArray;
+  // }
+
+  addQuestion() {
+    console.log(this.questions.length);
+    let question: Question = {
+      id: 0,
+      text: "",
+      idContent: 0,
+      answers: [
+        {
+          id: 0,
+          text: "",
+          isCorrect: false,
+          idQuestion: 0
+        }
+      ]
+    };
+    this.questions.push(question);
+  }
+
+  addAnswer(index: number) {
+    let answer: Answer = {
+      id: 0,
+      text: "",
+      isCorrect: false,
+      idQuestion: 0
+    };
+    this.questions[index].answers.push(answer);
+  }
+
   onSubmitContent() {
     this.submitted = true;
     if (this.formContent.valid) {
@@ -86,6 +145,10 @@ export class ContentDetailComponent implements OnInit {
       this.nextCurrentStepper();
       this.submitted = false;
     }
+  }
+
+  uploadContent() {
+    console.log(this.questions);
   }
 
   onSubmitPages() {
@@ -106,7 +169,8 @@ export class ContentDetailComponent implements OnInit {
   }
 
   onSubmitQuestions() {
-
+    console.log("Submit");
+    console.log(this.questions.length);
   }
 
   // Image Preview

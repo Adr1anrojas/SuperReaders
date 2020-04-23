@@ -21,7 +21,7 @@
         </div>
     </div>
     <!-- PAGE 1 -->
-    <div *ngIf="this.currentStepper===1">
+    <div *ngIf="this.currentStepper===2">
         <form [formGroup]="formContent" class="needs-validation row" novalidate (ngSubmit)="onSubmitContent()">
             <div class="modal-body col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <label for="inputGroupFileAddon01">Portada</label>
@@ -137,11 +137,58 @@
     <!-- END PAGE 2 -->
 
     <!-- PAGE 3 -->
-    <div *ngIf="this.currentStepper===3">
-        <form [formGroup]="formQuestion" class="needs-validation" novalidate (ngSubmit)="onSubmitQuestions()">
-            <div class="container-fluid">
-                
+    <div *ngIf="this.currentStepper===1">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="ml-auto">
+                    <span class="h6">Crear pregunta</span>
+                    <button type="button" class="btn btn-primary btn-title ml-2 mb-3 rounded-circle"
+                        (click)="addQuestion()">+</button>
+                </div>
             </div>
-        </form>
+            <div *ngFor="let itemQuestion of questions;let i = index">
+                <div class="form-group w-100">
+
+                    <label for="question{{i+1}}">Pregunta #{{i+1}} </label>
+                    <button type="button" class="btn btn-light ml-2 mb-1" (click)="addAnswer(i)">Añadir
+                        respuesta</button>
+
+                    <textarea rows="2" type="text" id="question{{i+1}}" class="form-control" style="width: 100%;"
+                        placeholder="Pregunta {{i+1}}" [(ngModel)]="questions[i].text"></textarea>
+                    <div *ngIf="false" class="invalid-feedback">
+                        Campo obligatorio.
+                    </div>
+                </div>
+
+                <div *ngFor="let itemAnswer of itemQuestion.answers;let j = index">
+                    <ul class="list-group mb-1">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                id="inlineRadio{{j+1}}" value="option{{j+1}}">
+
+                            <textarea rows="2" type="text" id="answer{{j+1}}" class="form-control" style="width: 100%;"
+                                placeholder="Respuesta {{j+1}}" [(ngModel)]="questions[i].answers[j].text"></textarea>
+                            <div *ngIf="false" class="invalid-feedback">
+                                Campo obligatorio.
+                            </div>
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="ml-auto">
+                    <button type="button" class="btn btn-danger" [routerLink]="['/content']">
+                        Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-title ml-1" (click)="lastCurrentStepper()">
+                        Atras</button>
+                    <button type="button" class="btn btn-primary btn-title ml-1" (click)="uploadContent()">
+                        Finalizar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
