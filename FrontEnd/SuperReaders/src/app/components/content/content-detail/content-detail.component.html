@@ -3,7 +3,7 @@
     <div class="md-stepper-horizontal orange row">
         <div class="md-step title col-4 pt-4" [ngClass]="{'active' : this.currentStepper==1}">
             <div class="md-step-circle"><span>1</span></div>
-            <div class="md-step-title">Titulo</div>
+            <div class="md-step-title">Portada</div>
             <div class="md-step-bar-left"></div>
             <div class="md-step-bar-right"></div>
         </div>
@@ -21,10 +21,10 @@
         </div>
     </div>
     <!-- PAGE 1 -->
-    <div *ngIf="this.currentStepper===2">
+    <div *ngIf="this.currentStepper===1">
         <form [formGroup]="formContent" class="needs-validation row" novalidate (ngSubmit)="onSubmitContent()">
             <div class="modal-body col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <label for="inputGroupFileAddon01">Portada</label>
+                <label for="inputGroupFileAddon01">Imagen</label>
                 <div class="row mb-2">
                     <div class="input-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="input-group-prepend">
@@ -137,7 +137,7 @@
     <!-- END PAGE 2 -->
 
     <!-- PAGE 3 -->
-    <div *ngIf="this.currentStepper===1">
+    <div *ngIf="this.currentStepper===3">
         <div class="container-fluid">
             <div class="row">
                 <div class="ml-auto">
@@ -149,11 +149,11 @@
             <div *ngFor="let itemQuestion of questions;let i = index">
                 <div class="form-group w-100">
 
-                    <label for="question{{i+1}}">Pregunta #{{i+1}} </label>
+                    <label for="question{{i}}">Pregunta #{{i+1}} </label>
                     <button type="button" class="btn btn-light ml-2 mb-1" (click)="addAnswer(i)">Añadir
                         respuesta</button>
 
-                    <textarea rows="2" type="text" id="question{{i+1}}" class="form-control" style="width: 100%;"
+                    <textarea rows="2" type="text" id="question{{i}}" class="form-control" style="width: 100%;"
                         placeholder="Pregunta {{i+1}}" [(ngModel)]="questions[i].text"></textarea>
                     <div *ngIf="false" class="invalid-feedback">
                         Campo obligatorio.
@@ -162,17 +162,16 @@
 
                 <div *ngFor="let itemAnswer of itemQuestion.answers;let j = index">
                     <ul class="list-group mb-1">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                id="inlineRadio{{j+1}}" value="option{{j+1}}">
-
-                            <textarea rows="2" type="text" id="answer{{j+1}}" class="form-control" style="width: 100%;"
+                        <div class="custom-control custom-radio">
+                            <input class="form-check-input" type="radio" name="optionsQuestion{{i}}"
+                                id="optionQuestion{{i}}Answer{{j}}"
+                                (click)="this.questions[i].answers[j].isCorrect=true">
+                            <textarea rows="2" type="text" id="answer{{j}}" class="form-control" style="width: 100%;"
                                 placeholder="Respuesta {{j+1}}" [(ngModel)]="questions[i].answers[j].text"></textarea>
                             <div *ngIf="false" class="invalid-feedback">
                                 Campo obligatorio.
                             </div>
                         </div>
-
                     </ul>
                 </div>
             </div>

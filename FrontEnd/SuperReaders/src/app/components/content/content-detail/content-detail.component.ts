@@ -4,6 +4,10 @@ import { ContentFile } from 'src/app/models/contentFile';
 import { Page } from 'src/app/models/page';
 import { Question } from 'src/app/models/Question';
 import { Answer } from 'src/app/models/answer';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { ContentDTO } from 'src/app/models/contentDTO';
+import { ContentService } from 'src/app/services/content.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-content-detail',
@@ -16,7 +20,6 @@ export class ContentDetailComponent implements OnInit {
   submitted: Boolean = false;
   content: ContentFile;
   pagesArray: Page[] = [];
-  // page: Page;
   imageURL: any;
   formContent: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -30,33 +33,9 @@ export class ContentDetailComponent implements OnInit {
     ])
   });
   questions: Question[] = [];
-  question: Question = {
-    id: 0,
-    text: "",
-    idContent: 0,
-    answers: [
-      {
-        id: 0,
-        text: "",
-        isCorrect: false,
-        idQuestion: 0
-      }
-    ]
-  };
-  answer: Answer = {
-    id: 0,
-    text: "",
-    isCorrect: false,
-    idQuestion: 0
-  };
-  // formQuestion = new FormGroup({
-  //   questions: new FormArray([
-  //     new FormControl('', Validators.required)
-  //   ])
-  // });
   file: any;
   pageCurrent: number = 0;
-  constructor() { }
+  constructor(private toastr: ToastrService, private contentService: ContentService) { }
 
   ngOnInit(): void {
     this.addQuestion();
@@ -102,16 +81,7 @@ export class ContentDetailComponent implements OnInit {
     return this.formPages.controls;
   }
 
-  // get controlsQuestion() {
-  //   return this.formQuestion.controls;
-  // }
-
-  // get questions(): FormArray {
-  //   return this.formQuestion.get('questions') as FormArray;
-  // }
-
   addQuestion() {
-    console.log(this.questions.length);
     let question: Question = {
       id: 0,
       text: "",
@@ -137,6 +107,10 @@ export class ContentDetailComponent implements OnInit {
     };
     this.questions[index].answers.push(answer);
   }
+  setRadioButton(i: number, j: number) {
+    console.log(i + ', ' + j)
+    this.questions[i].answers[j].isCorrect = true;
+  }
 
   onSubmitContent() {
     this.submitted = true;
@@ -148,7 +122,23 @@ export class ContentDetailComponent implements OnInit {
   }
 
   uploadContent() {
-    console.log(this.questions);
+    let content: ContentDTO = {
+      content: this.content,
+      questions: this.questions,
+      pages: this.pagesArray
+    }
+    this.contentService.create(content).subscribe(res => {
+      this.toastr.success('¡Hecho!', 'Se creó el Contenido.');
+      this.formContent.reset();
+      this.formPages.reset();
+      this.pagesArray = [];
+      this.questions = [];
+    }, error => {
+      if (error == 'Bad Request')
+        this.toastr.error('El titulo del Contenido esta en uso.', '¡Error!');
+      else
+        this.toastr.error('Ocurrio un problema al crear el Contenido.', '¡Error!');
+    });
   }
 
   onSubmitPages() {
