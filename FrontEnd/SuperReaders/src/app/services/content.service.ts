@@ -13,4 +13,9 @@ export class ContentService {
   create(content: ContentDTO) {
     return this.http.post(this.url, content);
   }
+
+  getTypeContent() {
+    return this.http.get(this.url + 'typeContent');
+  }
+
 }

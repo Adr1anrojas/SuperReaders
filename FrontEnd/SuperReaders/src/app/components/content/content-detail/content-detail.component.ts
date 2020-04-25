@@ -8,6 +8,7 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { ContentDTO } from 'src/app/models/contentDTO';
 import { ContentService } from 'src/app/services/content.service';
 import { ToastrService } from 'ngx-toastr';
+import { TypeContent } from 'src/app/models/typeContent';
 
 @Component({
   selector: 'app-content-detail',
@@ -24,7 +25,7 @@ export class ContentDetailComponent implements OnInit {
   formContent: FormGroup = new FormGroup({
     id: new FormControl(''),
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    idTypeContent: new FormControl(''),
+    typeContent: new FormControl(''),
     img: new FormControl('', Validators.required)
   });
   formPages = new FormGroup({
@@ -35,10 +36,18 @@ export class ContentDetailComponent implements OnInit {
   questions: Question[] = [];
   file: any;
   pageCurrent: number = 0;
+  typeContents: TypeContent[] = [];
+  isUpdate: Boolean = false;
   constructor(private toastr: ToastrService, private contentService: ContentService) { }
 
   ngOnInit(): void {
     this.addQuestion();
+  }
+
+  getTypeContet() {
+    this.contentService.getTypeContent().subscribe((res: TypeContent[]) => {
+      this.typeContents = res;
+    }, error => console.log(error));
   }
 
   get pages(): FormArray {
@@ -178,7 +187,7 @@ export class ContentDetailComponent implements OnInit {
     this.formContent.patchValue({
       id: e.id,
       title: e.title,
-      idTypeContent: e.idTypeContent,
+      typeContent: e.idTypeContent,
       img: this.formContent.get('img')
     });
   }
@@ -187,7 +196,7 @@ export class ContentDetailComponent implements OnInit {
     return {
       id: +this.formContent.get('id').value,
       title: this.formContent.get('title').value,
-      idTypeContent: +this.formContent.get('idTypeContent').value,
+      idTypeContent: this.formContent.get('typeContent').value.id,
       status: true,
       img: this.formContent.get('img').value
     }

@@ -15,6 +15,8 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// <returns>Array of Users of the role Specified</returns>
         IEnumerable<Content> GetAllContents();
         IEnumerable<Content> GetContent(int id);
+
+        IEnumerable<TypeContent> GetTypeContent();
         /// <summary>
         /// This Method create an User of the role Specified and apply the business rules
         /// </summary>

@@ -12,6 +12,6 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("id")]
         public int? Id { get; set; }
         [JsonProperty("nombre")]
-        public int Nombre { get; set; }
+        public string Nombre { get; set; }
     }
 }

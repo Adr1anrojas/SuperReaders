@@ -44,6 +44,22 @@ namespace SuperReaders.API.Controllers
             }
         }
 
+        // GET: api/Content/typeContent
+        [HttpGet]
+        [Route("typeContent")]
+        public ActionResult<TypeContent> GetTypeContent()
+        {
+            try
+            {
+
+                return Ok(_iContentDomainObject.GetTypeContent());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
         // POST: api/Content
         [HttpPost]
         public IActionResult AddContent([FromBody] ContentDTO content)

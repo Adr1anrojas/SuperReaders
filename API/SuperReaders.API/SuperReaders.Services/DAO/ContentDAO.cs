@@ -59,7 +59,7 @@ namespace SuperReaders.Services.DAO
 
     
 
-    public IEnumerable<Content> GetAllContents()
+        public IEnumerable<Content> GetAllContents()
         {
             try
             {
@@ -76,22 +76,38 @@ namespace SuperReaders.Services.DAO
         }
 
   
-           public IEnumerable<Content> GetContent(int id)
+        public IEnumerable<Content> GetContent(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
             {
-                DynamicParameters parameters = new DynamicParameters();
-                try
+                parameters.Add(Constants.P_Content_Id, id);
+                using (IDbConnection db = connection.Connection)
                 {
-                    parameters.Add(Constants.P_Content_Id, id);
-                    using (IDbConnection db = connection.Connection)
-                    {
-                        return db.Query<Content>(Constants.SP_Content_GetById, parameters, commandType: CommandType.StoredProcedure);
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw e;
+                    return db.Query<Content>(Constants.SP_Content_GetById, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IEnumerable<TypeContent> GetTypeContent()
+        {
+            try
+            {
+
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<TypeContent>(Constants.SP_Content_GetAllTypeContent, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public int GetContentByContentName(string title)
         {
@@ -170,6 +186,6 @@ namespace SuperReaders.Services.DAO
             }
         }
     }
-    }
+}
 
     

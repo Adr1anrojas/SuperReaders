@@ -102,6 +102,18 @@ namespace SuperReaders.Services.DomainObject
                 }
          }
 
+        public IEnumerable<TypeContent> GetTypeContent()
+        {
+            try
+            {
+                return _iContentDAO.GetTypeContent();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         // <summary>
         /// This EndPoint update an Content 
         /// </summary>

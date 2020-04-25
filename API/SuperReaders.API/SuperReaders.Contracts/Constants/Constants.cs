@@ -69,6 +69,7 @@
             public const string SP_Content_Delete = "Content_Delete";
             public const string SP_Content_Update = "Content_Update";
             public const string SP_Content_GetAllContents = "Content_GetContents";
+            public const string SP_Content_GetAllTypeContent = "Content_TypeContent";
             public const string SP_Content_GetById = "Content_GetById";
             //Parameter constant 
             public const string P_Content_Id = "@pId";
