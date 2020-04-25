@@ -5,7 +5,7 @@ INSERT INTO ClassRoom(Name, Status)
 VALUES('1-A',1),('1-B',1),('2-A',1),('2-B',1),('3-A',1),('3-B',1)
 exec User_Create 'Super','Lector','super.poderoso','superpoderoso@gmail.com','123456', 1, 'Admin', '2021-03-23T00:00:00', 1
 exec Admin_Create 1
-INSERT INTO TypeContent([Nombre]) VALUES('Aventura')
+INSERT INTO TypeContent([Name]) VALUES('Aventura')
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(1, 1, 'Pinocho')
 INSERT INTO [Page](IdContent,Text) 
 VALUES(1,'En una vieja carpintería, Geppetto, un señor amable y simpático, terminaba un día más de trabajo dando los últimos retoques de pintura a un muñeco de madera que había construido.

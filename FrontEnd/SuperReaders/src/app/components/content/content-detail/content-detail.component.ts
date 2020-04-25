@@ -41,12 +41,14 @@ export class ContentDetailComponent implements OnInit {
   constructor(private toastr: ToastrService, private contentService: ContentService) { }
 
   ngOnInit(): void {
+    this.getTypeContent();
     this.addQuestion();
   }
 
-  getTypeContet() {
+  getTypeContent() {
     this.contentService.getTypeContent().subscribe((res: TypeContent[]) => {
       this.typeContents = res;
+      console.log(this.typeContents);
     }, error => console.log(error));
   }
 
@@ -136,12 +138,15 @@ export class ContentDetailComponent implements OnInit {
       questions: this.questions,
       pages: this.pagesArray
     }
+    const formData = new FormData();
+    formData.append('img', content.content.img);
     this.contentService.create(content).subscribe(res => {
       this.toastr.success('¡Hecho!', 'Se creó el Contenido.');
       this.formContent.reset();
       this.formPages.reset();
       this.pagesArray = [];
       this.questions = [];
+      this.currentStepper = 1;
     }, error => {
       if (error == 'Bad Request')
         this.toastr.error('El titulo del Contenido esta en uso.', '¡Error!');

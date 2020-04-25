@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+
 namespace SuperReaders.Models.Entities
 {
    public class Content
@@ -14,6 +16,8 @@ namespace SuperReaders.Models.Entities
         public string Title { get; set; }
         [JsonProperty("idTypecontent")]
         public int IdTypeContent { get; set; }
+        [JsonProperty("img")]
+        public IFormFile Img { get; set; }
         [JsonProperty("status")]
         public bool Status { get; set; }
     }

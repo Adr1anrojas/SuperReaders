@@ -55,17 +55,17 @@
                 </div>
                 <div class="row">
                     <div class="form-group ol-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="selectTypeContent">Grupo</label>
-                        <select class="form-control" id="selectTypeContent" formControlName="classRoom"
-                            [ngClass]="{'is-invalid':submitted && controlsContent.classRoom.errors }">
-                            <option selected *ngIf="isUpdate" [ngValue]="this.formContent.get('TypeContent').value">
-                                {{this.formContent.get('TypeContent').value.name}}</option>
+                        <label for="selectTypeContent">Tipo de Contenido</label>
+                        <select class="form-control" id="selectTypeContent" formControlName="typeContent"
+                            [ngClass]="{'is-invalid':submitted && controlsContent.typeContent.errors }">
+                            <option selected *ngIf="isUpdate" [ngValue]="this.formContent.get('typeContent').value">
+                                {{this.formContent.get('typeContent').value.name}}</option>
                             <option *ngFor="let item of typeContents" [ngValue]="item">
                                 {{item.name}}
                             </option>
                         </select>
                         <div *ngIf="submitted && controlsContent.typeContent.errors" class="invalid-feedback">
-                            Grupo requerido.
+                            Tipo de Contenido requerido.
                         </div>
                     </div>
                 </div>

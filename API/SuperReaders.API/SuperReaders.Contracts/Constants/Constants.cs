@@ -87,7 +87,7 @@
         #region TypeContent
             //Parameter constant 
             public const string P_TypeContent_Id = "@pId";
-            public const string P_TypeContent_Nombre = "@pNombre";
+            public const string P_TypeContent_Name = "@pName";
             // StoreProcedure constants
             public const string SP_TypeContent_Create = "TypeContent_Create";
             public const string SP_TypeContent_Update = "TypeContent_Update";

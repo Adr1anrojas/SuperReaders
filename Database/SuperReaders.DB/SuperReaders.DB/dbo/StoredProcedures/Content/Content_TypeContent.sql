@@ -3,6 +3,6 @@ AS
 	BEGIN
 		SELECT 
 			[Id],
-			[Nombre]
+			[Name]
 		FROM [TypeContent]
 	END
