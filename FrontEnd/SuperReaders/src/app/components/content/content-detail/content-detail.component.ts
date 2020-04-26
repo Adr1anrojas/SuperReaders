@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, MinLengthValidator, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ContentFile } from 'src/app/models/contentFile';
 import { Page } from 'src/app/models/page';
 import { Question } from 'src/app/models/Question';
 import { Answer } from 'src/app/models/answer';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { ContentDTO } from 'src/app/models/contentDTO';
 import { ContentService } from 'src/app/services/content.service';
 import { ToastrService } from 'ngx-toastr';
@@ -22,6 +21,7 @@ export class ContentDetailComponent implements OnInit {
   content: ContentFile;
   pagesArray: Page[] = [];
   imageURL: any;
+  base64textString: string;
   formContent: FormGroup = new FormGroup({
     id: new FormControl(''),
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -135,11 +135,10 @@ export class ContentDetailComponent implements OnInit {
   uploadContent() {
     let content: ContentDTO = {
       content: this.content,
+      pages: this.pagesArray,
       questions: this.questions,
-      pages: this.pagesArray
     }
-    const formData = new FormData();
-    formData.append('img', content.content.img);
+    content.content.img = this.base64textString;
     this.contentService.create(content).subscribe(res => {
       this.toastr.success('¡Hecho!', 'Se creó el Contenido.');
       this.formContent.reset();
@@ -147,6 +146,7 @@ export class ContentDetailComponent implements OnInit {
       this.pagesArray = [];
       this.questions = [];
       this.currentStepper = 1;
+      this.submitted = false;
     }, error => {
       if (error == 'Bad Request')
         this.toastr.error('El titulo del Contenido esta en uso.', '¡Error!');
@@ -183,9 +183,14 @@ export class ContentDetailComponent implements OnInit {
       this.file = event.target.files[0];
       this.controlsContent.img.setValue(this.file, { onlySelf: true });
       const reader = new FileReader();
-      reader.onload = e => this.imageURL = reader.result;
-      reader.readAsDataURL(this.file);
+      reader.onload = this.handleFile.bind(this);
+      reader.readAsBinaryString(this.file);
     }
+  }
+
+  handleFile(event) {
+    var binaryString = event.target.result;
+    this.base64textString = btoa(binaryString);
   }
 
   editContent(e: ContentFile) {

@@ -17,7 +17,7 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("idTypecontent")]
         public int IdTypeContent { get; set; }
         [JsonProperty("img")]
-        public IFormFile Img { get; set; }
+        public string Img { get; set; }
         [JsonProperty("status")]
         public bool Status { get; set; }
     }

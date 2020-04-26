@@ -3,5 +3,5 @@ export class ContentFile {
     title: string;
     idTypeContent: number;
     status: Boolean;
-    img: any;
+    img: string;
 }

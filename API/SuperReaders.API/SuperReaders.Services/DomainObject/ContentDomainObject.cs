@@ -1,10 +1,13 @@
-﻿using SuperReaders.Contracts.Interfaces.IDAO;
+﻿using Microsoft.AspNetCore.Hosting;
+using SuperReaders.Contracts.Interfaces.IDAO;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace SuperReaders.Services.DomainObject
 {
@@ -16,13 +19,14 @@ namespace SuperReaders.Services.DomainObject
         private IPageDAO _iPageDAO;
         private IQuestionDAO _iQuestionDAO;
         private IAnswerDAO _iAnswerDAO;
-
-        public ContentDomainObject(IContentDAO iContentDAO,IPageDAO iPageDAO,IQuestionDAO iQuestionDAO,IAnswerDAO iAnswerDAO)
+        private readonly IHostingEnvironment hostingEnvironment;
+        public ContentDomainObject(IContentDAO iContentDAO,IPageDAO iPageDAO,IQuestionDAO iQuestionDAO,IAnswerDAO iAnswerDAO, IHostingEnvironment environment)
         {
             _iContentDAO = iContentDAO;
             _iPageDAO = iPageDAO;
             _iQuestionDAO = iQuestionDAO;
             _iAnswerDAO = iAnswerDAO;
+            hostingEnvironment = environment;
         }
 
         public void AddContent(ContentDTO content)
@@ -49,6 +53,7 @@ namespace SuperReaders.Services.DomainObject
                             _iAnswerDAO.AddAnswer(answer);
                         }
                     }
+                    SaveImg(content);
                 }
                 else
                     throw new ArgumentException("This title content already exists");
@@ -58,6 +63,18 @@ namespace SuperReaders.Services.DomainObject
                 throw e;
             }
         }
+
+        private void SaveImg(ContentDTO content)
+        { 
+            var dir = hostingEnvironment.ContentRootPath;
+            var ruta = Path.Combine(dir + "\\Img\\Content\\");
+            byte[] imageBytes = Convert.FromBase64String(content.content.Img);
+            ImageConverter converter = new ImageConverter();
+            Image img = (Image)converter.ConvertFrom(imageBytes);
+            string path = ruta + content.content.Title + ".jpg";
+            img.Save(path, ImageFormat.Jpeg);
+        }
+
         // DELETE: api/User
         /// <summary>
         /// This EndPoint update the status of an Content

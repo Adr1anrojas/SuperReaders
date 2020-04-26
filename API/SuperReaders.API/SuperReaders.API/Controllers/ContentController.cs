@@ -1,6 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
@@ -63,6 +70,7 @@ namespace SuperReaders.API.Controllers
 
         // POST: api/Content
         [HttpPost]
+        [DisableRequestSizeLimit]
         public IActionResult AddContent([FromBody] ContentDTO content)
         {
             try
@@ -76,7 +84,8 @@ namespace SuperReaders.API.Controllers
                     return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }
-        }
+        } 
+
 
         // PUT: api/Content/5
         [HttpPut("{id}")]

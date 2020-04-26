@@ -13,7 +13,6 @@ namespace SuperReaders.Models.DTO
         [JsonProperty("pages")]
         public List<Page> pages { get; set; }
         [JsonProperty("questions")]
-        public List<Question> questions { get; set; }
-        
+        public List<Question> questions { get; set; }   
     }
 }
