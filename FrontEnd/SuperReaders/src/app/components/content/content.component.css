@@ -4,8 +4,13 @@
     float: right;
 }
 
-.size{
+/* .size{
 	background: white;
 	height: 200px;
 	width: 160px;
+} */
+.title{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
