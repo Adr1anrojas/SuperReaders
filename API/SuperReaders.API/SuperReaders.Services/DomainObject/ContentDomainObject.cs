@@ -8,14 +8,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 
 namespace SuperReaders.Services.DomainObject
 {
     public class ContentDomainObject : IContentDomainObject
     {
         private IContentDAO _iContentDAO;
-        private IContentDetailDAO _iContentDetailDAO;
-        private IStudentDAO _iStudentDAO;
         private IPageDAO _iPageDAO;
         private IQuestionDAO _iQuestionDAO;
         private IAnswerDAO _iAnswerDAO;
@@ -71,9 +70,28 @@ namespace SuperReaders.Services.DomainObject
             byte[] imageBytes = Convert.FromBase64String(content.content.Img);
             ImageConverter converter = new ImageConverter();
             Image img = (Image)converter.ConvertFrom(imageBytes);
-            string path = ruta + content.content.Title + ".jpg";
+            string path = ruta + content.content.Title + ".jpeg";
             img.Save(path, ImageFormat.Jpeg);
         }
+
+        private string GetImg(Content content)
+        {
+            var dir = hostingEnvironment.ContentRootPath;
+            var ruta = Path.Combine(dir + "\\Img\\Content\\");
+            string path = ruta + content.Title + ".jpeg";
+            using (Image image = Image.FromFile(path))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+                    // Convert byte[] to Base64 String
+                    string base64String = Convert.ToBase64String(imageBytes);
+                    return base64String;
+                }
+            }
+        }
+
 
         // DELETE: api/User
         /// <summary>
@@ -97,9 +115,15 @@ namespace SuperReaders.Services.DomainObject
 
         public IEnumerable<Content> GetAllContents()
         {
+            List<Content> contents;
             try
             {
-                return _iContentDAO.GetAllContents();
+                contents = _iContentDAO.GetAllContents().ToList();
+                foreach (Content content in contents)
+                {
+                    content.Img = GetImg(content);
+                }
+                return contents;
             }
             catch (Exception e)
             {

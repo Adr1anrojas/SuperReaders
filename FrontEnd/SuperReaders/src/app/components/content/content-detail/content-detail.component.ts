@@ -188,10 +188,10 @@ export class ContentDetailComponent implements OnInit {
     }
   }
 
-  handleFile(event) {
-    var binaryString = event.target.result;
-    this.base64textString = btoa(binaryString);
-  }
+    handleFile(event) {
+      var binaryString = event.target.result;
+      this.base64textString = btoa(binaryString);
+    }
 
   editContent(e: ContentFile) {
     this.formContent.patchValue({

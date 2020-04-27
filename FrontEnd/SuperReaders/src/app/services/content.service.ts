@@ -18,4 +18,8 @@ export class ContentService {
     return this.http.get(this.url + 'typeContent');
   }
 
+  getAllContent() {
+    return this.http.get(this.url);
+  }
+
 }

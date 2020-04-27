@@ -3,3 +3,9 @@
     border-radius: 50%;
     float: right;
 }
+
+.size{
+	background: white;
+	height: 200px;
+	width: 160px;
+}
