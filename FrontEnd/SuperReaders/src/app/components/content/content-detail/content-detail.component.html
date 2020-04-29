@@ -93,10 +93,35 @@
 
     <!-- PAGE 2 -->
     <div *ngIf="this.currentStepper===2">
+
         <form [formGroup]="formPages" class="needs-validation" novalidate (ngSubmit)="onSubmitPages()">
+            <!-- <div formArrayName="images">
+                <div *ngFor="let image of images.controls; index as idx">
+                    <div class="input-img" *ngIf="this.pageCurrentValue===idx">
+                        <label for="imgPage{{idx}}">Imagen {{idx+1}}</label>
+                        <div class="row mb-2">
+                            <div class="input-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="imgPage{{idx}}">Cargar</span>
+                                </div>
+                                <div class="custom-file form-group">
+                                    <input type="file" class="custom-file-input form-control" id="inputGroupFile01"
+                                        accept=" image/*" [ngClass]="{'is-invalid':submitted && image.invalid }"
+                                        [formControlName]="idx">
+                                    <div *ngIf="submitted && image.invalid" class="invalid-feedback">
+                                        Seleccione una Imagen.
+                                    </div>
+                                    <label class="custom-file-label"
+                                        for="inputGroupFile01">{{!this.file?"Selecciona una portada...":this.file.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div> -->
             <div class="container-fluid">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <!-- <div formArrayName="pages"> -->
+                <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
                     <div *ngFor="let page of pages.controls; index as idx">
                         <li class="nav-item" (click)="currentPage(idx)">
                             <a class="nav-link pr-1 pt-1" [ngClass]="{active: this.pageCurrentValue===idx}"

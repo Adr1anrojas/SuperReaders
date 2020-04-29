@@ -65,33 +65,32 @@ namespace SuperReaders.Services.DomainObject
 
         private void SaveImg(ContentDTO content)
         { 
-            var dir = hostingEnvironment.ContentRootPath;
-            var ruta = Path.Combine(dir + "\\Img\\Content\\");
             byte[] imageBytes = Convert.FromBase64String(content.content.Img);
             ImageConverter converter = new ImageConverter();
             Image img = (Image)converter.ConvertFrom(imageBytes);
-            string path = ruta + content.content.Title + ".jpeg";
+            string path = GetPath(content.content.Title);
             img.Save(path, ImageFormat.Jpeg);
         }
 
         private string GetImg(Content content)
         {
-            var dir = hostingEnvironment.ContentRootPath;
-            var ruta = Path.Combine(dir + "\\Img\\Content\\");
-            string path = ruta + content.Title + ".jpeg";
+            string path = GetPath(content.Title);
             using (Image image = Image.FromFile(path))
             {
                 using (MemoryStream m = new MemoryStream())
                 {
                     image.Save(m, image.RawFormat);
                     byte[] imageBytes = m.ToArray();
-                    // Convert byte[] to Base64 String
                     string base64String = Convert.ToBase64String(imageBytes);
                     return base64String;
                 }
             }
         }
 
+        private string GetPath(string title)
+        {
+            return Path.Combine(hostingEnvironment.ContentRootPath + "\\Img\\Content\\"+ title + ".jpeg");
+        }
 
         // DELETE: api/User
         /// <summary>

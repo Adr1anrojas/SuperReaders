@@ -86,7 +86,6 @@ namespace SuperReaders.API.Controllers
             }
         } 
 
-
         // PUT: api/Content/5
         [HttpPut("{id}")]
         public IActionResult UpdateContent([FromBody] ContentDTO content)
@@ -104,7 +103,6 @@ namespace SuperReaders.API.Controllers
             }
         }
 
-
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
@@ -121,5 +119,4 @@ namespace SuperReaders.API.Controllers
         }
 
     }
-
 }

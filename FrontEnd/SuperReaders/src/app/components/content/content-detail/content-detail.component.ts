@@ -21,7 +21,7 @@ export class ContentDetailComponent implements OnInit {
   content: ContentFile;
   pagesArray: Page[] = [];
   imageURL: any;
-  base64textString: string;
+  imgContent: string;
   formContent: FormGroup = new FormGroup({
     id: new FormControl(''),
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -30,8 +30,11 @@ export class ContentDetailComponent implements OnInit {
   });
   formPages = new FormGroup({
     pages: new FormArray([
-      new FormControl('', Validators.required)
+      new FormControl('', Validators.required),
     ])
+    // img: new FormArray([
+    //   new FormControl('', Validators.required),
+    // ])
   });
   questions: Question[] = [];
   file: any;
@@ -55,10 +58,14 @@ export class ContentDetailComponent implements OnInit {
   get pages(): FormArray {
     return this.formPages.get('pages') as FormArray;
   }
+  get images(): FormArray {
+    return this.formPages.get('img') as FormArray;
+  }
 
   addPage() {
     this.currentPage(this.pages.length);
     this.pages.push(new FormControl('', Validators.required));
+    // this.images.push(new FormControl('', Validators.required));
   }
 
   get pageCurrentValue() {
@@ -138,7 +145,7 @@ export class ContentDetailComponent implements OnInit {
       pages: this.pagesArray,
       questions: this.questions,
     }
-    content.content.img = this.base64textString;
+    // content.content.img = this.base64textString;
     this.contentService.create(content).subscribe(res => {
       this.toastr.success('¡Hecho!', 'Se creó el Contenido.');
       this.formContent.reset();
@@ -157,14 +164,18 @@ export class ContentDetailComponent implements OnInit {
 
   onSubmitPages() {
     this.submitted = true;
-    let value = this.controlsPage.pages.value;
+    let pages = this.controlsPage.pages.value;
+    let imgs = this.images;
+    console.log(imgs);
+    console.log(this.pages.controls.values);
     if (this.formPages.valid) {
-      for (let index = 0; index < value.length; index++) {
+      for (let index = 0; index < pages.length; index++) {
         this.pagesArray.push(
           {
             id: 0,
-            text: value[index],
-            idContent: 0
+            text: pages[index],
+            idContent: 0,
+            img: null
           }
         );
       }
@@ -188,10 +199,12 @@ export class ContentDetailComponent implements OnInit {
     }
   }
 
-    handleFile(event) {
-      var binaryString = event.target.result;
-      this.base64textString = btoa(binaryString);
-    }
+  handleFile(event) {
+    var binaryString = event.target.result;
+    if (this.currentStepper === 1)
+      this.imgContent = btoa(binaryString);
+
+  }
 
   editContent(e: ContentFile) {
     this.formContent.patchValue({
@@ -208,7 +221,7 @@ export class ContentDetailComponent implements OnInit {
       title: this.formContent.get('title').value,
       idTypeContent: this.formContent.get('typeContent').value.id,
       status: true,
-      img: this.formContent.get('img').value
+      img: this.imgContent
     }
   }
 
@@ -217,6 +230,7 @@ export class ContentDetailComponent implements OnInit {
       id: +this.formPages.get('id').value,
       text: this.formPages.get('text').value,
       idContent: this.formPages.get('idContent').value,
+      img: this.formPages.get('img').value
     }
   }
 
