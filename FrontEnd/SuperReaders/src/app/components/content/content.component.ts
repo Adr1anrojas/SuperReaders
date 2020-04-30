@@ -22,6 +22,7 @@ export class ContentComponent implements OnInit {
   getContents() {
     this.contentService.getAllContent().subscribe((res: ContentFile[]) => {
       this.content = res;
+      debugger;
       console.log(this.content);
     }, error => console.log(error));
   }

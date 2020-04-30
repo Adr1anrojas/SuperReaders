@@ -8,6 +8,7 @@ import { ContentDTO } from 'src/app/models/contentDTO';
 import { ContentService } from 'src/app/services/content.service';
 import { ToastrService } from 'ngx-toastr';
 import { TypeContent } from 'src/app/models/typeContent';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-content-detail',
@@ -25,23 +26,31 @@ export class ContentDetailComponent implements OnInit {
   formContent: FormGroup = new FormGroup({
     id: new FormControl(''),
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    typeContent: new FormControl(''),
+    typeContent: new FormControl('', Validators.required),
     img: new FormControl('', Validators.required)
   });
   formPages = new FormGroup({
     pages: new FormArray([
       new FormControl('', Validators.required),
+    ]),
+    images: new FormArray([
+      new FormControl(''),
+    ]),
+    urls: new FormArray([
+      new FormControl(''),
     ])
-    // img: new FormArray([
-    //   new FormControl('', Validators.required),
-    // ])
   });
+  formQuestion: FormGroup = new FormGroup({});
   questions: Question[] = [];
   file: any;
   pageCurrent: number = 0;
   typeContents: TypeContent[] = [];
   isUpdate: Boolean = false;
-  constructor(private toastr: ToastrService, private contentService: ContentService) { }
+  checkQuestions: Boolean = false;
+  checkAnswers: Boolean = false;
+  checkOptionAnswers: Boolean = false;
+  questionsValid: Boolean = true;
+  constructor(private toastr: ToastrService, private contentService: ContentService, public imageService: ImageService) { }
 
   ngOnInit(): void {
     this.getTypeContent();
@@ -59,13 +68,17 @@ export class ContentDetailComponent implements OnInit {
     return this.formPages.get('pages') as FormArray;
   }
   get images(): FormArray {
-    return this.formPages.get('img') as FormArray;
+    return this.formPages.get('images') as FormArray;
+  }
+  get urls(): FormArray {
+    return this.formPages.get('urls') as FormArray;
   }
 
   addPage() {
     this.currentPage(this.pages.length);
     this.pages.push(new FormControl('', Validators.required));
-    // this.images.push(new FormControl('', Validators.required));
+    this.images.push(new FormControl('', Validators.required));
+    this.urls.push(new FormControl('', Validators.required));
   }
 
   get pageCurrentValue() {
@@ -80,6 +93,8 @@ export class ContentDetailComponent implements OnInit {
   deletePage(page) {
     if (this.pages.length !== 1) {
       this.pages.removeAt(page);
+      this.images.removeAt(page);
+      this.urls.removeAt(page);
     }
   }
 
@@ -125,6 +140,7 @@ export class ContentDetailComponent implements OnInit {
     };
     this.questions[index].answers.push(answer);
   }
+
   setRadioButton(i: number, j: number) {
     console.log(i + ', ' + j)
     this.questions[i].answers[j].isCorrect = true;
@@ -154,6 +170,8 @@ export class ContentDetailComponent implements OnInit {
       this.questions = [];
       this.currentStepper = 1;
       this.submitted = false;
+      this.imgContent = null;
+      this.imageURL = null;
     }, error => {
       if (error == 'Bad Request')
         this.toastr.error('El titulo del Contenido esta en uso.', '¡Error!');
@@ -164,18 +182,18 @@ export class ContentDetailComponent implements OnInit {
 
   onSubmitPages() {
     this.submitted = true;
+    this.pagesArray = [];
     let pages = this.controlsPage.pages.value;
-    let imgs = this.images;
-    console.log(imgs);
-    console.log(this.pages.controls.values);
-    if (this.formPages.valid) {
+    let imgs = this.controlsPage.images;
+    debugger;
+    if (this.pages.valid) {
       for (let index = 0; index < pages.length; index++) {
         this.pagesArray.push(
           {
             id: 0,
             text: pages[index],
             idContent: 0,
-            img: null
+            img: imgs[index]
           }
         );
       }
@@ -184,26 +202,61 @@ export class ContentDetailComponent implements OnInit {
   }
 
   onSubmitQuestions() {
-    console.log("Submit");
-    console.log(this.questions.length);
+    debugger;
+    this.submitted = true;
+    if (this.formQuestion.valid && this.questionsValid)
+      this.uploadContent();
+  }
+
+
+  validateQuestions() {
+    if (this.questions.length >= 2) {
+      let countAnswers: number = 0;
+      let countCheckAnswer: number = 0;
+      this.questions.forEach(question => {
+        question.answers.forEach(answer => {
+          if (answer.isCorrect)
+            countCheckAnswer++;
+        });
+        if (question.answers.length >= 2)
+          countAnswers++;
+      });
+      this.checkQuestions = this.questions.length >= 2 ? true : false;
+      this.checkAnswers = countAnswers === this.questions.length ? true : false;
+      this.checkOptionAnswers = countCheckAnswer === this.questions.length ? true : false;
+      this.questionsValid = this.checkQuestions && this.checkAnswers && this.checkOptionAnswers
+    }
   }
 
   // Image Preview
   readURL(event): void {
+    console.log(event);
     if (event.target.files && event.target.files[0]) {
       this.file = event.target.files[0];
-      this.controlsContent.img.setValue(this.file, { onlySelf: true });
+      this.getUrlFile(this.file);
       const reader = new FileReader();
       reader.onload = this.handleFile.bind(this);
       reader.readAsBinaryString(this.file);
     }
   }
 
-  handleFile(event) {
-    var binaryString = event.target.result;
-    if (this.currentStepper === 1)
-      this.imgContent = btoa(binaryString);
+  getUrlFile(file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      if (this.currentStepper === 1)
+        this.imageURL = reader.result;
+      else
+        this.urls[this.pageCurrentValue] = reader.result;
+    }
+    reader.readAsDataURL(file);
+  }
 
+  handleFile(event) {
+    var convertTostring = btoa(event.target.result);
+    if (this.currentStepper === 1)
+      this.imgContent = btoa(convertTostring);
+    else if (this.currentStepper === 2)
+      this.images[this.pageCurrentValue] = convertTostring;
   }
 
   editContent(e: ContentFile) {
@@ -224,14 +277,4 @@ export class ContentDetailComponent implements OnInit {
       img: this.imgContent
     }
   }
-
-  createAnPage(): Page {
-    return {
-      id: +this.formPages.get('id').value,
-      text: this.formPages.get('text').value,
-      idContent: this.formPages.get('idContent').value,
-      img: this.formPages.get('img').value
-    }
-  }
-
 }

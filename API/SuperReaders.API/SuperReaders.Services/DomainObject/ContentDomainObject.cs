@@ -75,15 +75,22 @@ namespace SuperReaders.Services.DomainObject
         private string GetImg(Content content)
         {
             string path = GetPath(content.Title);
-            using (Image image = Image.FromFile(path))
+            try
             {
-                using (MemoryStream m = new MemoryStream())
+                using (Image image = Image.FromFile(path))
                 {
-                    image.Save(m, image.RawFormat);
-                    byte[] imageBytes = m.ToArray();
-                    string base64String = Convert.ToBase64String(imageBytes);
-                    return base64String;
+                    using (MemoryStream m = new MemoryStream())
+                    {
+                        image.Save(m, image.RawFormat);
+                        byte[] imageBytes = m.ToArray();
+                        string base64String = Convert.ToBase64String(imageBytes);
+                        return base64String;
+                    }
                 }
+            }
+            catch(Exception e)
+            {
+                return null;
             }
         }
 

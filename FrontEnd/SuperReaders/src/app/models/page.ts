@@ -3,4 +3,5 @@ export class Page {
     text: string;
     idContent: number;
     img: string;
+    imgUrl?: string;
 }

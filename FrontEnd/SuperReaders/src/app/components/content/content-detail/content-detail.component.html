@@ -21,7 +21,7 @@
         </div>
     </div>
     <!-- PAGE 1 -->
-    <div *ngIf="this.currentStepper===1">
+    <div *ngIf="this.currentStepper===2">
         <form [formGroup]="formContent" class="needs-validation row" novalidate (ngSubmit)="onSubmitContent()">
             <div class="modal-body col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <label for="inputGroupFileAddon01">Imagen</label>
@@ -33,7 +33,8 @@
                         <div class="custom-file form-group">
                             <input type="file" class="custom-file-input form-control" id="inputGroupFile01"
                                 aria-describedby="inputGroupFileAddon01" accept="image/*" (change)="readURL($event)"
-                                [ngClass]="{'is-invalid':submitted && controlsContent.img.errors }">
+                                [ngClass]="{'is-invalid':submitted && controlsContent.img.errors }"
+                                formControlName='img'>
                             <div *ngIf="submitted && controlsContent.img.errors" class="invalid-feedback">
                                 Seleccione una Portada.
                             </div>
@@ -57,14 +58,15 @@
                     <div class="form-group ol-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <label for="selectTypeContent">Tipo de Contenido</label>
                         <select class="form-control" id="selectTypeContent" formControlName="typeContent"
-                            [ngClass]="{'is-invalid':submitted && controlsContent.typeContent.errors }">
+                            [ngClass]="{'is-invalid':submitted && (controlsContent.typeContent.errors || !controlsContent.typeContent.value) }">
                             <option selected *ngIf="isUpdate" [ngValue]="this.formContent.get('typeContent').value">
                                 {{this.formContent.get('typeContent').value.name}}</option>
                             <option *ngFor="let item of typeContents" [ngValue]="item">
                                 {{item.name}}
                             </option>
                         </select>
-                        <div *ngIf="submitted && controlsContent.typeContent.errors" class="invalid-feedback">
+                        <div *ngIf="submitted && (controlsContent.typeContent.errors || !controlsContent.typeContent.value)"
+                            class="invalid-feedback">
                             Tipo de Contenido requerido.
                         </div>
                     </div>
@@ -95,69 +97,76 @@
     <div *ngIf="this.currentStepper===2">
 
         <form [formGroup]="formPages" class="needs-validation" novalidate (ngSubmit)="onSubmitPages()">
-            <!-- <div formArrayName="images">
-                <div *ngFor="let image of images.controls; index as idx">
-                    <div class="input-img" *ngIf="this.pageCurrentValue===idx">
-                        <label for="imgPage{{idx}}">Imagen {{idx+1}}</label>
-                        <div class="row mb-2">
-                            <div class="input-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="imgPage{{idx}}">Cargar</span>
-                                </div>
-                                <div class="custom-file form-group">
-                                    <input type="file" class="custom-file-input form-control" id="inputGroupFile01"
-                                        accept=" image/*" [ngClass]="{'is-invalid':submitted && image.invalid }"
-                                        [formControlName]="idx">
-                                    <div *ngIf="submitted && image.invalid" class="invalid-feedback">
-                                        Seleccione una Imagen.
-                                    </div>
-                                    <label class="custom-file-label"
-                                        for="inputGroupFile01">{{!this.file?"Selecciona una portada...":this.file.name}}</label>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> -->
             <div class="container-fluid">
-                <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
-                    <div *ngFor="let page of pages.controls; index as idx">
-                        <li class="nav-item" (click)="currentPage(idx)">
-                            <a class="nav-link pr-1 pt-1" [ngClass]="{active: this.pageCurrentValue===idx}"
-                                id="p{{idx+1}}" data-toggle="tab" href="#page{{idx+1}}" role="tab"
-                                aria-selected="true"><span>Pagina {{idx+1}}</span>
-                                <button onclick="this.blur();" (click)="deletePage(page)" type="button"
-                                    class="close ml-2 mb-2" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                <div class="row">
+                    <div class="col-8">
+                        <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
+                            <div *ngFor="let page of pages.controls; index as idx">
+                                <li class="nav-item" (click)="currentPage(idx)">
+                                    <a class="nav-link pr-1 pt-1" [ngClass]="{active: this.pageCurrentValue===idx}"
+                                        id="p{{idx+1}}" data-toggle="tab" href="#page{{idx+1}}" role="tab"
+                                        aria-selected="true"><span>Pagina {{idx+1}}</span>
+                                        <button onclick="this.blur();" (click)="deletePage(page)" type="button"
+                                            class="close ml-2 mb-2" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </a>
+                                </li>
+                            </div>
+                            <!-- </div> -->
+                            <li class="nav-item">
+                                <button onclick="this.blur();" (click)="addPage()" type="button"
+                                    class="btn btn-outline-primary" aria-label="Close">
+                                    <span aria-hidden="true" class="h5">+</span>
                                 </button>
-                            </a>
-                        </li>
-                    </div>
-                    <!-- </div> -->
-                    <li class="nav-item">
-                        <button onclick="this.blur();" (click)="addPage()" type="button" class="btn btn-outline-primary"
-                            aria-label="Close">
-                            <span aria-hidden="true" class="h5">+</span>
-                        </button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div formArrayName="pages">
-                        <div *ngFor="let page of pages.controls; index as idx">
-                            <div class="tab-pane fade show" id="page{{idx+1}}" role="tabpanel">
-                                <div id="section1" *ngIf="this.pageCurrentValue===idx">
-                                    <div class="form-group w-100">
-                                        <textarea rows="10" type="text" class="form-control border border-top-0"
-                                            style="width: 100%;" placeholder="Pagina {{idx+1}}" [formControlName]="idx"
-                                            [ngClass]="{'is-invalid':submitted && page.invalid }"></textarea>
-                                        <div *ngIf="submitted && page.invalid" class="invalid-feedback">
-                                            Campo obligatorio.
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+                            <div formArrayName="pages">
+                                <div *ngFor="let page of pages.controls; index as idx">
+                                    <div class="tab-pane fade show" id="page{{idx+1}}" role="tabpanel">
+                                        <div id="section1" *ngIf="this.pageCurrentValue===idx">
+                                            <div class="form-group w-100">
+                                                <textarea rows="10" type="text" class="form-control border border-top-0"
+                                                    style="width: 100%;" placeholder="Pagina {{idx+1}}"
+                                                    [formControlName]="idx"
+                                                    [ngClass]="{'is-invalid':submitted && page.invalid }"></textarea>
+                                                <div *ngIf="submitted && page.invalid" class="invalid-feedback">
+                                                    Campo obligatorio.
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-4" style="text-align: -webkit-center;padding-bottom: 0;">
+                        <div formArrayName="images">
+                            <div *ngFor="let image of images.controls; index as idx">
+                                <div class="input-img" *ngIf="this.pageCurrentValue===idx">
+                                    <label for="imgPage{{idx}}">Imagen {{idx+1}}</label>
+                                    <div class="row mb-2">
+                                        <div class="input-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="imgPage{{idx}}">Cargar</span>
+                                            </div>
+                                            <div class="custom-file form-group">
+                                                <input type="file" class="custom-file-input form-control"
+                                                    id="inputGroupFile01" accept=" image/*" (change)="readURL($event)">
+                                                <label class="custom-file-label"
+                                                    for="inputGroupFile01">{{this.images[idx] !=="" &&  !this.images[idx]?"Seleccione una imagen...": 'Imagen #'+(idx+1)}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card size" *ngIf="this.pageCurrentValue===idx">
+                                        <img [src]="this.urls[idx] ?this.urls[idx]: ''" class="card-img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -178,7 +187,7 @@
     <!-- END PAGE 2 -->
 
     <!-- PAGE 3 -->
-    <div *ngIf="this.currentStepper===3">
+    <div *ngIf="this.currentStepper===1" class="needs-validation" novalidate="">
         <div class="container-fluid">
             <div class="row">
                 <div class="ml-auto">
@@ -189,18 +198,13 @@
             </div>
             <div *ngFor="let itemQuestion of questions;let i = index">
                 <div class="form-group w-100">
-
                     <label for="question{{i}}">Pregunta #{{i+1}} </label>
                     <button type="button" class="btn btn-light ml-2 mb-1" (click)="addAnswer(i)">Añadir
                         respuesta</button>
 
                     <textarea rows="2" type="text" id="question{{i}}" class="form-control" style="width: 100%;"
                         placeholder="Pregunta {{i+1}}" [(ngModel)]="questions[i].text"></textarea>
-                    <div *ngIf="false" class="invalid-feedback">
-                        Campo obligatorio.
-                    </div>
                 </div>
-
                 <div *ngFor="let itemAnswer of itemQuestion.answers;let j = index">
                     <ul class="list-group mb-1">
                         <div class="custom-control custom-radio">
@@ -209,23 +213,34 @@
                                 (click)="this.questions[i].answers[j].isCorrect=true">
                             <textarea rows="2" type="text" id="answer{{j}}" class="form-control" style="width: 100%;"
                                 placeholder="Respuesta {{j+1}}" [(ngModel)]="questions[i].answers[j].text"></textarea>
-                            <div *ngIf="false" class="invalid-feedback">
-                                Campo obligatorio.
-                            </div>
                         </div>
                     </ul>
                 </div>
             </div>
+            <div *ngIf="!questionsValid">
+                <div>
+                    <div *ngIf="submitted && !checkQuestions">
+                        Se deben crear por lo menos 2 preguntas.
+                    </div>
+                    <div *ngIf=" submitted && !checkAnswers">
+                        Se deben crear por lo menos 2 respuestas.
+                    </div>
+                    <div *ngIf="submitted && !checkQuestions">
+                        Las preguntas deben tener seleccionada una respuesta.
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="container-fluid">
+
+        <div class=" container-fluid">
             <div class="row ">
                 <div class="ml-auto">
                     <button type="button" class="btn btn-danger" [routerLink]="['/content']">
                         Cancelar</button>
                     <button type="button" class="btn btn-primary btn-title ml-1" (click)="lastCurrentStepper()">
                         Atras</button>
-                    <button type="button" class="btn btn-primary btn-title ml-1" (click)="uploadContent()">
+                    <button type="button" class="btn btn-primary btn-title ml-1" (click)="onSubmitQuestions()">
                         Finalizar</button>
                 </div>
             </div>
