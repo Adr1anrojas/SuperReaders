@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SuperReaders.Services.DomainObject
 {
@@ -37,10 +38,12 @@ namespace SuperReaders.Services.DomainObject
                 if (result == 0)
                 {
                     idContent = _iContentDAO.AddContent(content.content);
-                    foreach (Page item in content.pages)
+                    SaveImg(content.content.Title, content.content.Img, 1);
+                    for (int i = 0; i < content.pages.Count; i++)
                     {
-                        item.IdContent = idContent;
-                        _iPageDAO.AddPage(item);
+                        content.pages[i].IdContent = idContent;
+                        _iPageDAO.AddPage(content.pages[i]);
+                        SaveImg(content.content.Title + "-page" + (i + 1), content.pages[i].Img, 2);
                     }
                     foreach (Question item in content.questions)
                     {
@@ -52,7 +55,6 @@ namespace SuperReaders.Services.DomainObject
                             _iAnswerDAO.AddAnswer(answer);
                         }
                     }
-                    SaveImg(content);
                 }
                 else
                     throw new ArgumentException("This title content already exists");
@@ -63,21 +65,22 @@ namespace SuperReaders.Services.DomainObject
             }
         }
 
-        private void SaveImg(ContentDTO content)
+        private void SaveImg(string title, string base64img, int option)
         { 
-            byte[] imageBytes = Convert.FromBase64String(content.content.Img);
+            byte[] imageBytes = Convert.FromBase64String(base64img);
             ImageConverter converter = new ImageConverter();
             Image img = (Image)converter.ConvertFrom(imageBytes);
-            string path = GetPath(content.content.Title);
-            img.Save(path, ImageFormat.Jpeg);
+            string path = GetPath(title, option);
+            Directory.CreateDirectory(path);
+            img.Save(path+title+".jpeg", ImageFormat.Jpeg);
         }
 
-        private string GetImg(Content content)
+        private string GetImg(Content content, int option)
         {
-            string path = GetPath(content.Title);
+            string path = GetPath(content.Title, option);
             try
             {
-                using (Image image = Image.FromFile(path))
+                using (Image image = Image.FromFile(path+content.Title+".jpeg"))
                 {
                     using (MemoryStream m = new MemoryStream())
                     {
@@ -94,9 +97,10 @@ namespace SuperReaders.Services.DomainObject
             }
         }
 
-        private string GetPath(string title)
+        private string GetPath(string title, int option)
         {
-            return Path.Combine(hostingEnvironment.ContentRootPath + "\\Img\\Content\\"+ title + ".jpeg");
+            var folder = Path.Combine(hostingEnvironment.ContentRootPath + (option==1? "\\Img\\Content\\" + title + "\\": "\\Img\\Content\\" + Regex.Split(title, "-page")[0] + "\\"));
+            return folder;
         }
 
         // DELETE: api/User
@@ -127,7 +131,7 @@ namespace SuperReaders.Services.DomainObject
                 contents = _iContentDAO.GetAllContents().ToList();
                 foreach (Content content in contents)
                 {
-                    content.Img = GetImg(content);
+                    content.Img = GetImg(content, 1);
                 }
                 return contents;
             }

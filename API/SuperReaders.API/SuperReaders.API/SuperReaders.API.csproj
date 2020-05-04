@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Img\Content\" />
+    <Folder Include="Img\Pages\" />
   </ItemGroup>
 
 

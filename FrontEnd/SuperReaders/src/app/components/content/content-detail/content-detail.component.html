@@ -21,7 +21,7 @@
         </div>
     </div>
     <!-- PAGE 1 -->
-    <div *ngIf="this.currentStepper===2">
+    <div *ngIf="this.currentStepper===1">
         <form [formGroup]="formContent" class="needs-validation row" novalidate (ngSubmit)="onSubmitContent()">
             <div class="modal-body col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <label for="inputGroupFileAddon01">Imagen</label>
@@ -187,14 +187,18 @@
     <!-- END PAGE 2 -->
 
     <!-- PAGE 3 -->
-    <div *ngIf="this.currentStepper===1" class="needs-validation" novalidate="">
+    <div *ngIf="this.currentStepper===3" class="needs-validation" novalidate="">
         <div class="container-fluid">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="ml-auto">
                     <span class="h6">Crear pregunta</span>
                     <button type="button" class="btn btn-primary btn-title ml-2 mb-3 rounded-circle"
                         (click)="addQuestion()">+</button>
                 </div>
+            </div> -->
+            <div class="row mb-2">
+                <label class="h4 mr-2">Preguntas</label>
+                <button type="button" class="btn btn-light" (click)="addQuestion()">+</button>
             </div>
             <div *ngFor="let itemQuestion of questions;let i = index">
                 <div class="form-group w-100">
@@ -217,21 +221,7 @@
                     </ul>
                 </div>
             </div>
-            <div *ngIf="!questionsValid">
-                <div>
-                    <div *ngIf="submitted && !checkQuestions">
-                        Se deben crear por lo menos 2 preguntas.
-                    </div>
-                    <div *ngIf=" submitted && !checkAnswers">
-                        Se deben crear por lo menos 2 respuestas.
-                    </div>
-                    <div *ngIf="submitted && !checkQuestions">
-                        Las preguntas deben tener seleccionada una respuesta.
-                    </div>
-                </div>
-            </div>
         </div>
-
 
         <div class=" container-fluid">
             <div class="row ">
@@ -242,6 +232,42 @@
                         Atras</button>
                     <button type="button" class="btn btn-primary btn-title ml-1" (click)="onSubmitQuestions()">
                         Finalizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Erros Question -->
+<div class="bs-example">
+    <div id="myModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¡Error al crear las Preguntas!</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li *ngIf="!checkQuestions">
+                            Se deben crear por lo menos 2 preguntas.
+                        </li>
+                        <li *ngIf=" !checkAnswers">
+                            Todas las preguntas deben tener por lo menos 2 respuestas.
+                        </li>
+                        <li *ngIf="!checkOptionAnswers">
+                            Todas preguntas deben tener seleccionada una respuesta.
+                        </li>
+                        <li *ngIf="this.questionIsEmpty!==0">
+                            Las preguntas no pueden estar vacias.
+                        </li>
+                        <li *ngIf="this.answerIsEmpty!==0">
+                            Las respuestas no pueden estar vacias
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>

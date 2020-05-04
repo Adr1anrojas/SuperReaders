@@ -9,7 +9,7 @@ import { ContentService } from 'src/app/services/content.service';
 import { ToastrService } from 'ngx-toastr';
 import { TypeContent } from 'src/app/models/typeContent';
 import { ImageService } from 'src/app/services/image.service';
-
+declare var $: any;
 @Component({
   selector: 'app-content-detail',
   templateUrl: './content-detail.component.html',
@@ -50,6 +50,8 @@ export class ContentDetailComponent implements OnInit {
   checkAnswers: Boolean = false;
   checkOptionAnswers: Boolean = false;
   questionsValid: Boolean = true;
+  questionIsEmpty: number = 0;
+  answerIsEmpty: number = 0;
   constructor(private toastr: ToastrService, private contentService: ContentService, public imageService: ImageService) { }
 
   ngOnInit(): void {
@@ -60,8 +62,7 @@ export class ContentDetailComponent implements OnInit {
   getTypeContent() {
     this.contentService.getTypeContent().subscribe((res: TypeContent[]) => {
       this.typeContents = res;
-      console.log(this.typeContents);
-    }, error => console.log(error));
+    });
   }
 
   get pages(): FormArray {
@@ -142,7 +143,6 @@ export class ContentDetailComponent implements OnInit {
   }
 
   setRadioButton(i: number, j: number) {
-    console.log(i + ', ' + j)
     this.questions[i].answers[j].isCorrect = true;
   }
 
@@ -204,33 +204,41 @@ export class ContentDetailComponent implements OnInit {
   onSubmitQuestions() {
     debugger;
     this.submitted = true;
-    if (this.formQuestion.valid && this.questionsValid)
+    if (this.formQuestion.valid && this.validateQuestions())
       this.uploadContent();
+    else {
+      $("#myModal").modal("show");
+    }
   }
 
-
   validateQuestions() {
-    if (this.questions.length >= 2) {
-      let countAnswers: number = 0;
-      let countCheckAnswer: number = 0;
+    let countAnswers: number = 0;
+    let countCheckAnswer: number = 0;
+    this.questionIsEmpty = 0;
+    this.answerIsEmpty = 0;
+    if (this.questions.length >= 1) {
       this.questions.forEach(question => {
+        if (question.text == "")
+          this.questionIsEmpty++;
         question.answers.forEach(answer => {
           if (answer.isCorrect)
             countCheckAnswer++;
+          if (answer.text == "")
+            this.answerIsEmpty++;
         });
         if (question.answers.length >= 2)
           countAnswers++;
       });
-      this.checkQuestions = this.questions.length >= 2 ? true : false;
-      this.checkAnswers = countAnswers === this.questions.length ? true : false;
-      this.checkOptionAnswers = countCheckAnswer === this.questions.length ? true : false;
-      this.questionsValid = this.checkQuestions && this.checkAnswers && this.checkOptionAnswers
     }
+    this.checkQuestions = this.questions.length >= 2 ? true : false;
+    this.checkAnswers = (countAnswers === this.questions.length) ? true : false;
+    this.checkOptionAnswers = countCheckAnswer === this.questions.length ? true : false;
+    this.questionsValid = (this.checkQuestions && this.checkAnswers && this.checkOptionAnswers && this.questionIsEmpty == 0 && this.answerIsEmpty == 0);
+    return this.questionsValid;
   }
 
   // Image Preview
   readURL(event): void {
-    console.log(event);
     if (event.target.files && event.target.files[0]) {
       this.file = event.target.files[0];
       this.getUrlFile(this.file);
@@ -254,7 +262,7 @@ export class ContentDetailComponent implements OnInit {
   handleFile(event) {
     var convertTostring = btoa(event.target.result);
     if (this.currentStepper === 1)
-      this.imgContent = btoa(convertTostring);
+      this.imgContent = convertTostring;
     else if (this.currentStepper === 2)
       this.images[this.pageCurrentValue] = convertTostring;
   }
