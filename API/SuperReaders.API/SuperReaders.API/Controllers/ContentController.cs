@@ -105,7 +105,7 @@ namespace SuperReaders.API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteContent(int id)
         {
             try
             {
@@ -117,6 +117,5 @@ namespace SuperReaders.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
     }
 }

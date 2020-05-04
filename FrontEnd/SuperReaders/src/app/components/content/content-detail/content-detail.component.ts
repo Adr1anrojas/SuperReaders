@@ -9,6 +9,7 @@ import { ContentService } from 'src/app/services/content.service';
 import { ToastrService } from 'ngx-toastr';
 import { TypeContent } from 'src/app/models/typeContent';
 import { ImageService } from 'src/app/services/image.service';
+import { ActivatedRoute } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-content-detail',
@@ -52,9 +53,11 @@ export class ContentDetailComponent implements OnInit {
   questionsValid: Boolean = true;
   questionIsEmpty: number = 0;
   answerIsEmpty: number = 0;
-  constructor(private toastr: ToastrService, private contentService: ContentService, public imageService: ImageService) { }
+  constructor(private toastr: ToastrService, private contentService: ContentService, public imageService: ImageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    let id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
     this.getTypeContent();
     this.addQuestion();
   }
@@ -68,9 +71,11 @@ export class ContentDetailComponent implements OnInit {
   get pages(): FormArray {
     return this.formPages.get('pages') as FormArray;
   }
+
   get images(): FormArray {
     return this.formPages.get('images') as FormArray;
   }
+
   get urls(): FormArray {
     return this.formPages.get('urls') as FormArray;
   }
@@ -185,7 +190,6 @@ export class ContentDetailComponent implements OnInit {
     this.pagesArray = [];
     let pages = this.controlsPage.pages.value;
     let imgs = this.controlsPage.images;
-    debugger;
     if (this.pages.valid) {
       for (let index = 0; index < pages.length; index++) {
         this.pagesArray.push(
@@ -202,7 +206,6 @@ export class ContentDetailComponent implements OnInit {
   }
 
   onSubmitQuestions() {
-    debugger;
     this.submitted = true;
     if (this.formQuestion.valid && this.validateQuestions())
       this.uploadContent();

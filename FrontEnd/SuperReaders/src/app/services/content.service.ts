@@ -14,6 +14,18 @@ export class ContentService {
     return this.http.post(this.url, content);
   }
 
+  update(content: ContentDTO) {
+    return this.http.put(this.url, content);
+  }
+
+  delete(id: number) {
+    return this.http.delete(this.url + id);
+  }
+
+  getContentById(id: number) {
+    return this.http.get(this.url + id);
+  }
+
   getTypeContent() {
     return this.http.get(this.url + 'typeContent');
   }
@@ -21,5 +33,6 @@ export class ContentService {
   getAllContent() {
     return this.http.get(this.url);
   }
+
 
 }

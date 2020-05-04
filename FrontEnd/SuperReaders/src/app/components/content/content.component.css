@@ -4,13 +4,15 @@
     float: right;
 }
 
-/* .size{
-	background: white;
-	height: 200px;
-	width: 160px;
-} */
 .title{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+.p-card{
+    padding: 0px;
+}
+.card-body-view{
+    padding-top: 0px!important;
+    padding-bottom: 0px!important;
 }
