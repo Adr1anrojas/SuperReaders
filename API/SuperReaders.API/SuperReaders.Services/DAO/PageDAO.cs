@@ -90,5 +90,22 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
+
+        public List<Page> GetPagesByIdContent(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_Page_IdContent, id);
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<Page>(Constants.SP_Page_GetByIdContent, parameters, commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

@@ -22,8 +22,8 @@ export class ContentService {
     return this.http.delete(this.url + id);
   }
 
-  getContentById(id: number) {
-    return this.http.get(this.url + id);
+  async getContentById(id: number) {
+    return this.http.get(this.url + id).toPromise();
   }
 
   getTypeContent() {

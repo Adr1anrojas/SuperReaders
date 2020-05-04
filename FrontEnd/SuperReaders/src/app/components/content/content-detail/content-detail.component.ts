@@ -53,11 +53,24 @@ export class ContentDetailComponent implements OnInit {
   questionsValid: Boolean = true;
   questionIsEmpty: number = 0;
   answerIsEmpty: number = 0;
+  id: number = 0;
+  currentContent: ContentDTO = new ContentDTO();
   constructor(private toastr: ToastrService, private contentService: ContentService, public imageService: ImageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let id = +this.route.snapshot.paramMap.get('id');
-    console.log(id);
+    this.id = +this.route.snapshot.paramMap.get('id');
+    debugger;
+    if (this.id !== 0) {
+      this.getContentById(this.id);
+      console.log(this.currentContent);
+      this.formContent.patchValue({
+        id: this.currentContent.content.id,
+        title: this.currentContent.content.title,
+        typeContent: this.currentContent.content.idTypeContent,
+        img: this.currentContent.content.img
+      });
+    }
+
     this.getTypeContent();
     this.addQuestion();
   }
@@ -166,7 +179,6 @@ export class ContentDetailComponent implements OnInit {
       pages: this.pagesArray,
       questions: this.questions,
     }
-    // content.content.img = this.base64textString;
     this.contentService.create(content).subscribe(res => {
       this.toastr.success('¡Hecho!', 'Se creó el Contenido.');
       this.formContent.reset();
@@ -288,4 +300,12 @@ export class ContentDetailComponent implements OnInit {
       img: this.imgContent
     }
   }
+
+  getContentById(id: number) {
+    this.contentService.getContentById(id).then((res: ContentDTO) => {
+      console.log(res);
+      this.currentContent = res;
+    }).catch(error => console.log(error));
+  }
+
 }

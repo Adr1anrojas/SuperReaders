@@ -1,4 +1,4 @@
-<h5 class="mt-3">Crear Contenido</h5>
+<h5 class="mt-3">{{this.id==0?"Crear":"Actualizar"}} Contenido</h5>
 <div class="card-body mt-3">
     <div class="md-stepper-horizontal orange row">
         <div class="md-step title col-4 pt-4" [ngClass]="{'active' : this.currentStepper==1}">
@@ -229,7 +229,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <!-- Modal Erros Question -->

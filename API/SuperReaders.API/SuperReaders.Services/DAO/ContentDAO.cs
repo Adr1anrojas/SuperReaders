@@ -39,7 +39,6 @@ namespace SuperReaders.Services.DAO
             }
         }
 
-
         public void DeleteContent(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -57,8 +56,6 @@ namespace SuperReaders.Services.DAO
             }
         }
 
-    
-
         public IEnumerable<Content> GetAllContents()
         {
             try
@@ -75,8 +72,7 @@ namespace SuperReaders.Services.DAO
             }
         }
 
-  
-        public IEnumerable<Content> GetContent(int id)
+        public Content GetContent(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             try
@@ -84,7 +80,7 @@ namespace SuperReaders.Services.DAO
                 parameters.Add(Constants.P_Content_Id, id);
                 using (IDbConnection db = connection.Connection)
                 {
-                    return db.Query<Content>(Constants.SP_Content_GetById, parameters, commandType: CommandType.StoredProcedure);
+                    return db.Query<Content>(Constants.SP_Content_GetById, parameters, commandType: CommandType.StoredProcedure).First();
                 }
             }
             catch (Exception e)
@@ -185,6 +181,7 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
+
     }
 }
 

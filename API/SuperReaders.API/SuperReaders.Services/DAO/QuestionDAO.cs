@@ -81,6 +81,23 @@ namespace SuperReaders.Services.DAO
             }
         }
 
+        public List<Question> GetQuestionByIdContent(int idContent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_Question_IdContent, idContent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<Question>(Constants.SP_Question_GetByIdContent, parameters, commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void UpdateQuestion(Question question)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -100,5 +117,5 @@ namespace SuperReaders.Services.DAO
             }
         }
     }
-    }
+}
 

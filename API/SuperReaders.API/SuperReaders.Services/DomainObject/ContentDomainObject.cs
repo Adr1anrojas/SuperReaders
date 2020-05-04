@@ -141,17 +141,25 @@ namespace SuperReaders.Services.DomainObject
             }
         }
 
-        public IEnumerable<Content> GetContent(int id)
+        public ContentDTO GetContent(int id)
         {
-                try
+            ContentDTO content = new ContentDTO();
+            try
+            {
+                content.content = _iContentDAO.GetContent(id);
+                content.pages = _iPageDAO.GetPagesByIdContent(id);
+                content.questions = _iQuestionDAO.GetQuestionByIdContent(id);
+                foreach (var item in content.questions)
                 {
-                    return _iContentDAO.GetContent(id);
+                    item.answers = _iAnswerDAO.GetAnswersByIdQuestions(item.Id);
                 }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-         }
+                return content;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public IEnumerable<TypeContent> GetTypeContent()
         {

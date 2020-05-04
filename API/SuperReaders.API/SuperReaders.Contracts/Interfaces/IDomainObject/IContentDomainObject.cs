@@ -14,7 +14,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
         IEnumerable<Content> GetAllContents();
-        IEnumerable<Content> GetContent(int id);
+        ContentDTO GetContent(int id);
 
         IEnumerable<TypeContent> GetTypeContent();
         /// <summary>
