@@ -13,5 +13,10 @@
     <ProjectReference Include="..\SuperReaders.Services\SuperReaders.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Img\Content\" />
+    <Folder Include="Img\Pages\" />
+  </ItemGroup>
+
 
 </Project>

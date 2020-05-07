@@ -6,6 +6,7 @@ using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
 using SuperReaders.Services.DAO;
+using System.Collections.Generic;
 
 namespace SuperReaders.API.Controllers
 {
@@ -198,6 +199,27 @@ namespace SuperReaders.API.Controllers
             try
             {
                 _iUserDomainObject.DeleteUser(id, role);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // POST: api/User
+        /// <summary>
+        /// This EndPoint create an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to create</param>
+        /// <returns>status code 200</returns>
+        [HttpPost]
+        [Route("typeContentStudent")]
+        public IActionResult AddTypeContentStudent([FromBody] List<TypeContent> typeContentStudent)
+        {
+            try
+            {
+                _iUserDomainObject.AddTypeContentStudent(typeContentStudent);
                 return Ok();
             }
             catch (Exception e)

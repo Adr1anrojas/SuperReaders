@@ -20,7 +20,7 @@ namespace SuperReaders.Services.DAO
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    parameters.Add(Constants.P_TypeContent_Nombre, nombre);
+                    parameters.Add(Constants.P_TypeContent_Name, nombre);
                     db.ExecuteScalar<TypeContent>(Constants.SP_TypeContent_Create, parameters, commandType: CommandType.StoredProcedure);
                 }
             }
@@ -38,7 +38,7 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     parameters.Add(Constants.P_TypeContent_Id,typeContent.Id );
-                    parameters.Add(Constants.P_TypeContent_Nombre,typeContent.Nombre);
+                    parameters.Add(Constants.P_TypeContent_Name,typeContent.Name);
                     db.ExecuteScalar<TypeContent>(Constants.SP_TypeContent_Update, parameters, commandType: CommandType.StoredProcedure);
                 }
             }

@@ -23,6 +23,8 @@ import { JwtInterceptor } from './shared/helper/jtwInterceptor';
 import { ResponseInterceptor } from './shared/helper/ResponseInterceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
+import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { ClassRoomComponent } from './components/class-room/class-room.component
     TeacherComponent,
     ReportComponent,
     AdminComponent,
-    ClassRoomComponent
+    ClassRoomComponent,
+    ContentDetailComponent
   ],
   imports: [
     BrowserModule,

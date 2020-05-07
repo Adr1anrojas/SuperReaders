@@ -34,5 +34,12 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="question">Question Create</param>
         /// <returns></returns>
         IEnumerable<Answer> GetAnswer(int id);
+
+        /// <summary>
+        /// This Method create an Question
+        /// </summary>
+        /// <param name="question">Question Create</param>
+        /// <returns></returns>
+        List<Answer> GetAnswersByIdQuestions(int idQuestion);
     }
 }

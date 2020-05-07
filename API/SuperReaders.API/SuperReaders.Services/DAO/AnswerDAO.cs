@@ -14,6 +14,11 @@ namespace SuperReaders.Services.DAO
     public class AnswerDAO : IAnswerDAO
     {
         private DbAccess connection;
+        public AnswerDAO()
+        {
+            connection = new DbAccess();
+        }
+
         public int AddAnswer(Answer answer)
 
         {
@@ -21,14 +26,15 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     string sql = @"INSERT INTO [Answer]
-		            ([IdStudent], [Text])
-		            VALUES (@IdStudent,@Text);
+		            ([Text], [IsCorrect], [IdQuestion])
+		            VALUES (@Text, @IsCorrect, @IdQuestion);
 		            SELECT CAST(SCOPE_IDENTITY() as int)";
                     var id = db.Query<int>(sql,
                         new
                         {
-                            IdStudent = answer.IdStudent,
                             Text = answer.Text,
+                            IsCorrect = answer.IsCorrect,
+                            IdQuestion = answer.IdQuestion
                         }).Single();
                     return id;
 
@@ -68,6 +74,23 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     return db.Query<Answer>(Constants.SP_Answer_GetById, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<Answer> GetAnswersByIdQuestions(int idQuestion)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_Answer_IdQuestion, idQuestion);
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<Answer>(Constants.SP_Answer_GetByIdQuestion, parameters, commandType: CommandType.StoredProcedure).ToList();
                 }
             }
             catch (Exception e)

@@ -35,6 +35,8 @@ namespace SuperReaders.Models.Models
         public string RefreshToken { get; set; }
         [JsonProperty("classRoom")]
         public ClassRoom classRoom { get; set; }
+        [JsonProperty("isFirstTime")]
+        public bool IsFirstTime { get; set; }
 
     }
 }
