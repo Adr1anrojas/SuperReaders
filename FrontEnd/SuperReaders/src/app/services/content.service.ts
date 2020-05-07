@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ContentDTO } from '../models/contentDTO';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class ContentService {
   }
 
   async getContentById(id: number) {
-    return this.http.get(this.url + id).toPromise();
+    return this.http.get<ContentDTO>(this.url + id).toPromise();
   }
 
   getTypeContent() {

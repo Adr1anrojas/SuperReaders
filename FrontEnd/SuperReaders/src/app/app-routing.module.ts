@@ -8,14 +8,14 @@ import { ReportComponent } from './components/report/report.component';
 import { AdminComponent } from "./components/admin/admin.component";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 import { ContentComponent } from './components/content/content.component';
+import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
-
-
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'home/content/:id', component: HomeDetailComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'teacher', component: TeacherComponent },
   { path: 'student', component: StudentComponent },

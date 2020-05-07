@@ -34,3 +34,6 @@
 .image-checkbox-checked .fa {
   display: block !important;
 }
+.content{
+	cursor: pointer;
+}

@@ -7,6 +7,8 @@ import { TypeContent } from 'src/app/models/typeContent';
 import { ImageService } from 'src/app/services/image.service';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { ContentFile } from 'src/app/models/contentFile';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +18,15 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeComponent implements OnInit {
   currentUser: LoginResult;
   allTypeContent: TypeContent[] = [];
+  allContent: ContentFile[] = [];
   constructor(private loginService: LoginService, private router: Router, private contentService: ContentService, public imgService: ImageService, private userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.currentUser = this.loginService.currentUserValue();
-    this.contentService.getTypeContent().subscribe((res: TypeContent[]) => { this.allTypeContent = res; });
+    if (this.currentUser.isFirstTime && this.currentUser.role == 'Student')
+      this.contentService.getTypeContent().subscribe((res: TypeContent[]) => { this.allTypeContent = res; });
+    else if (!this.currentUser.isFirstTime && this.currentUser.role == 'Student')
+      this.contentService.getAllContent().subscribe((res: ContentFile[]) => { this.allContent = res; });
   }
 
   selectedCategories() {
@@ -49,6 +55,9 @@ export class HomeComponent implements OnInit {
     }, error => this.toastr.error('Ocurrio un problema al cargar tus categorias.', '¡Error!'));
   }
 
-
+  showContent(content: ContentFile) {
+    console.log(content);
+    this.router.navigate(['home/content/', content.id]);
+  }
 
 }
