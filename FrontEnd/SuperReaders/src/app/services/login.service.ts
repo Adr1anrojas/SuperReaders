@@ -31,6 +31,10 @@ export class LoginService {
     }));
   }
 
+  setCurrentUser(user: LoginResult) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
   logout() {
     localStorage.removeItem('currentUser');
   }

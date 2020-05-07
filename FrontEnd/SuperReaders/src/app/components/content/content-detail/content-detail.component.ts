@@ -28,7 +28,7 @@ export class ContentDetailComponent implements OnInit {
     id: new FormControl(''),
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
     typeContent: new FormControl('', Validators.required),
-    img: new FormControl('', Validators.required)
+    img: new FormControl('')
   });
   formPages = new FormGroup({
     pages: new FormArray([
@@ -54,25 +54,16 @@ export class ContentDetailComponent implements OnInit {
   questionIsEmpty: number = 0;
   answerIsEmpty: number = 0;
   id: number = 0;
-  currentContent: ContentDTO = new ContentDTO();
+  currentContent: ContentDTO;
   constructor(private toastr: ToastrService, private contentService: ContentService, public imageService: ImageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
-    debugger;
+    this.getTypeContent();
     if (this.id !== 0) {
       this.getContentById(this.id);
-      console.log(this.currentContent);
-      this.formContent.patchValue({
-        id: this.currentContent.content.id,
-        title: this.currentContent.content.title,
-        typeContent: this.currentContent.content.idTypeContent,
-        img: this.currentContent.content.img
-      });
-    }
-
-    this.getTypeContent();
-    this.addQuestion();
+    } else
+      this.addQuestion();
   }
 
   getTypeContent() {
@@ -93,11 +84,11 @@ export class ContentDetailComponent implements OnInit {
     return this.formPages.get('urls') as FormArray;
   }
 
-  addPage() {
+  addPage(page?: Page, index?: number) {
     this.currentPage(this.pages.length);
-    this.pages.push(new FormControl('', Validators.required));
-    this.images.push(new FormControl('', Validators.required));
-    this.urls.push(new FormControl('', Validators.required));
+    this.pages.push(new FormControl(!page ? '' : this.currentContent.pages[index].text, Validators.required));
+    this.images.push(new FormControl(!page ? '' : this.currentContent.pages[index].img, Validators.required));
+    this.urls.push(new FormControl(!page ? '' : this.getUrlFile(this.dataURItoFile(this.currentContent.pages[index].img), index), Validators.required));
   }
 
   get pageCurrentValue() {
@@ -263,32 +254,37 @@ export class ContentDetailComponent implements OnInit {
     }
   }
 
-  getUrlFile(file) {
+  getUrlFile(file, index?) {
     const reader = new FileReader();
     reader.onload = e => {
-      if (this.currentStepper === 1)
-        this.imageURL = reader.result;
+      if (!this.currentContent)
+        if (this.currentStepper === 1 && !this.currentContent)
+          this.imageURL = reader.result;
+        else
+          this.urls[this.pageCurrentValue] = reader.result;
       else
-        this.urls[this.pageCurrentValue] = reader.result;
+        this.urls[index] = reader.result;
     }
     reader.readAsDataURL(file);
   }
 
+  dataURItoFile(dataURI) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/jpeg' });
+    return new File([blob], this.currentContent.content.title, { type: 'image/jpeg' });
+  }
+
   handleFile(event) {
     var convertTostring = btoa(event.target.result);
-    if (this.currentStepper === 1)
+    if (this.currentStepper === 1 && !this.currentContent)
       this.imgContent = convertTostring;
     else if (this.currentStepper === 2)
       this.images[this.pageCurrentValue] = convertTostring;
-  }
-
-  editContent(e: ContentFile) {
-    this.formContent.patchValue({
-      id: e.id,
-      title: e.title,
-      typeContent: e.idTypeContent,
-      img: this.formContent.get('img')
-    });
   }
 
   createAnContent(): ContentFile {
@@ -303,9 +299,32 @@ export class ContentDetailComponent implements OnInit {
 
   getContentById(id: number) {
     this.contentService.getContentById(id).then((res: ContentDTO) => {
-      console.log(res);
       this.currentContent = res;
-    }).catch(error => console.log(error));
+      this.editContentDTO(this.currentContent);
+    });
+  }
+
+
+  editContentDTO(content: ContentDTO) {
+    this.formContent.setValue({
+      id: content.content.id,
+      title: content.content.title,
+      typeContent: this.typeContents.find(e => e.id == content.content.idTypeContent),
+      img: ''
+    });
+    console.log(this.currentContent);
+    this.file = this.dataURItoFile(this.currentContent.content.img);
+    console.log(this.file);
+    this.imgContent = this.currentContent.content.img;
+    this.getUrlFile(this.file);
+    this.currentContent.pages.forEach((element, index) => {
+      this.addPage(element, index)
+    });
+    console.log(this.pages.value);
+    console.log(this.images.value);
+    console.log(this.urls.value);
   }
 
 }
+
+

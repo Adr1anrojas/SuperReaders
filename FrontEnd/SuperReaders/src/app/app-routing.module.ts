@@ -11,6 +11,7 @@ import { ContentComponent } from './components/content/content.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
 
 
+
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
