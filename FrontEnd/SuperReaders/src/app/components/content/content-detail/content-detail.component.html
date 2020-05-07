@@ -35,9 +35,6 @@
                                 aria-describedby="inputGroupFileAddon01" accept="image/*" (change)="readURL($event)"
                                 [ngClass]="{'is-invalid':submitted && controlsContent.img.errors }"
                                 formControlName='img'>
-                            <div *ngIf="submitted && controlsContent.img.errors" class="invalid-feedback">
-                                Seleccione una Portada.
-                            </div>
                             <label class="custom-file-label"
                                 for="inputGroupFile01">{{!this.file?"Selecciona una portada...":this.file.name}}</label>
                         </div>

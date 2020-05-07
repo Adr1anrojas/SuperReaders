@@ -96,6 +96,12 @@
     <Build Include="dbo\Tables\School.sql" />
     <Build Include="dbo\Tables\StudentAnswer.sql" />
     <Build Include="dbo\StoredProcedures\Content\Content_TypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_GetByIdContent.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_GetByIdContent.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_GetByIdQuestion.sql" />
+    <Build Include="dbo\Tables\StudentTypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_StudentTypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_UpdateIsFirstTime.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\StoredProcedures\Login\Login_UserLoged.sql" />
