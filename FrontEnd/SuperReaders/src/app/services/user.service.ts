@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 import { ClassRoom } from '../models/classRoom';
+import { TypeContent } from '../models/typeContent';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,12 @@ export class UserService {
     return this.http.get(this.url + 'GetStudentsByClassRoom/' + idClassroom);
   }
 
-  delete(idUser: number) {
-    return this.http.delete(this.url + idUser);
+  delete(idUser: number, role: string) {
+    return this.http.delete(this.url + idUser + '/' + role);
+  }
+
+  createTypeContentStudent(typeContentStudent: TypeContent[]) {
+    return this.http.post(this.url + 'typeContentStudent', typeContentStudent);
   }
 
 }

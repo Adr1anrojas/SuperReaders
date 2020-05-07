@@ -15,5 +15,6 @@ AS
             [BirthDate], 
             [IdSchool]  
         FROM [User] U INNER JOIN [Admin] A ON A.IdUser=U.Id 
+        WHERE U.[Status] = 1
         CLOSE SYMMETRIC KEY SQLSymmetricKey;
     END

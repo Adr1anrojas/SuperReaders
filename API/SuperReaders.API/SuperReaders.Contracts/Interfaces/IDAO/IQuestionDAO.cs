@@ -34,5 +34,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <returns></returns>
         /// 
         IEnumerable<Question> GetQuestion(int id);
+
+        List<Question> GetQuestionByIdContent(int idContent);
     }
 }

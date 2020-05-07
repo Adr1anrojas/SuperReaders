@@ -13,8 +13,9 @@ AS
 			[Status], 
 			[Role], 
 			[BirthDate], 
-			[IdSchool] 
+			[IdSchool],
+			[IsFirstTime]
 		FROM [User]
-		WHERE [UserName] = @pUserName COLLATE SQL_Latin1_General_CP1_CI_AS AND CONVERT(NVARCHAR(50), (DecryptByKey([Password])))  =  @pPassword
+		WHERE [UserName] = @pUserName COLLATE SQL_Latin1_General_CP1_CI_AS AND CONVERT(NVARCHAR(50), (DecryptByKey([Password])))  =  @pPassword AND [Status] = 1
 		CLOSE SYMMETRIC KEY SQLSymmetricKey;
 	END

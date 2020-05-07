@@ -11,10 +11,11 @@ namespace SuperReaders.Models.Entities
         [Key]
         [JsonProperty("id")]
         public int Id { get; set; }
-        [JsonProperty("idStudent")]
-        public int IdStudent { get; set; }
         [JsonProperty("text")]
         public string Text { get; set; }
-        
+        [JsonProperty("isCorrect")]
+        public bool IsCorrect { get; set; }
+        [JsonProperty("idQuestion")]
+        public int IdQuestion { get; set; }
     }
 }

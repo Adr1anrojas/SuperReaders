@@ -7,4 +7,5 @@ AS
 			[IdTypeContent],
 			[Status]
 		FROM [Content]
+		WHERE [Status] = 1
 	END

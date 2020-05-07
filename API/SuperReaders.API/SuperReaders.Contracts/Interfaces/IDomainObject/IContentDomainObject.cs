@@ -14,7 +14,9 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// <param name="">
         /// <returns>Array of Users of the role Specified</returns>
         IEnumerable<Content> GetAllContents();
-        IEnumerable<Content> GetContent(int id);
+        ContentDTO GetContent(int id);
+
+        IEnumerable<TypeContent> GetTypeContent();
         /// <summary>
         /// This Method create an User of the role Specified and apply the business rules
         /// </summary>
@@ -27,7 +29,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// </summary>
         /// <param name="user">user to update</param>
         /// <returns>status code 200</returns>
-        void UpdateContent(Content content);
+        void UpdateContent(ContentDTO content);
 
         /// <summary>
         /// This Method update the status of an User of the role Specified and apply the business rules

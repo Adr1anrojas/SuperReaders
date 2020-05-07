@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
   admin: User;
   show: boolean;
   submitted = false;
-  columns: string[] = ["Nombres", "Apellidos", "Usuario", "Status", "Accion"];
+  columns: string[] = ["Nombres", "Apellidos", "Usuario", "Email", "Accion"];
   selectedMoment = new Date();
   formAdmin: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -133,7 +133,7 @@ export class AdminComponent implements OnInit {
 
   delete() {
     let idUser = this.formAdmin.get('id').value;
-    this.userService.delete(idUser).subscribe(res => {
+    this.userService.delete(idUser,"Admin").subscribe(res => {
       this.toastr.success('Hecho', 'Se elimino a un Administrador.');
       this.initAdmin();
       this.getAdmins();

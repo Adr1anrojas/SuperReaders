@@ -206,11 +206,32 @@ namespace SuperReaders.Services.DomainObject
         /// </summary>
         /// <param name="user">user to change status</param>
         /// <returns>status code 200</returns>
-        public void DeleteUser(int id)
+        public void DeleteUser(int id, string role)
         {
             try
             {
-                _iUserDAO.DeleteUser(id);
+                _iUserDAO.DeleteUser(id, role);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This Method create an typeContent of the student specified
+        /// </summary>
+        /// <param name="typeContentStudent">typeContent to user</param>
+        /// <returns></returns>
+        public void AddTypeContentStudent(List<TypeContent> typeContentStudent)
+        {
+            try
+            {
+                foreach (var item in typeContentStudent)
+                {
+                    _iUserDAO.AddTypeContentStudent(item);
+                }
+                _iUserDAO.UpdateIsFirstTime(typeContentStudent[0].IdStudent);
             }
             catch (Exception e)
             {

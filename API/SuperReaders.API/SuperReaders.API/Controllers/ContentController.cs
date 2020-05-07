@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
@@ -33,11 +37,9 @@ namespace SuperReaders.API.Controllers
             }
         }
         
-      
-
         // GET: api/Content/5
         [HttpGet("{id}", Name = "Get")]
-        public ActionResult<Content> GetContent(int id)
+        public ActionResult<ContentDTO> GetContent(int id)
         {
             try
             {
@@ -50,8 +52,25 @@ namespace SuperReaders.API.Controllers
             }
         }
 
+        // GET: api/Content/typeContent
+        [HttpGet]
+        [Route("typeContent")]
+        [DisableRequestSizeLimit]
+        public ActionResult<TypeContent> GetTypeContent()
+        {
+            try
+            {
+                return Ok(_iContentDomainObject.GetTypeContent());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
         // POST: api/Content
         [HttpPost]
+        [DisableRequestSizeLimit]
         public IActionResult AddContent([FromBody] ContentDTO content)
         {
             try
@@ -61,15 +80,15 @@ namespace SuperReaders.API.Controllers
             }
             catch (Exception e)
             {
-                if (e.Message.Equals("This Content already exists"))
+                if (e.Message.Equals("This title content already exists"))
                     return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }
-        }
+        } 
 
         // PUT: api/Content/5
         [HttpPut("{id}")]
-        public IActionResult UpdateUser([FromBody] Content content)
+        public IActionResult UpdateContent([FromBody] ContentDTO content)
         {
             try
             {
@@ -84,10 +103,9 @@ namespace SuperReaders.API.Controllers
             }
         }
 
-
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteContent(int id)
         {
             try
             {
@@ -99,7 +117,5 @@ namespace SuperReaders.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
     }
-
 }

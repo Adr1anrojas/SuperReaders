@@ -15,31 +15,21 @@
                     <td class="size-row">{{item.name}}</td>
                     <td class="size-row">{{item.teacher?item.teacher:"Sin asignar..."}}</td>
                     <td class="size-row">{{item.quantityStudents}}</td>
-                    <td class="size-row">{{item.status?'Activo':'Inactivo'}}</td>
                     <td class="icons size-row">
-                        <!-- <div class="row"> -->
-                        <!-- <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6"> -->
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Editar"
                             (click)="editClassRoom(item)" data-toggle="modal" data-target="#exampleModal">
                             <fa-icon class="fa-lg" icon="edit"></fa-icon>
                         </button>
-                        <!-- </div> -->
-                        <!-- <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6"> -->
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Eliminar"
                             data-toggle="modal" data-target="#myModal" (click)="editClassRoom(item)">
                             <fa-icon class="fa-lg" icon="trash"></fa-icon>
                         </button>
-                        <!-- </div> -->
-                        <!-- </div> -->
                     </td>
-
             </tbody>
-
         </table>
         <p class="text-center" *ngIf="classRooms.length==0">No existen Grupos registrados.</p>
     </div>
 </div>
-
 <!-- Modal EDIT/CREATE-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

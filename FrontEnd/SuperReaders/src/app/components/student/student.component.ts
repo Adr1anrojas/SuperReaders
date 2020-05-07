@@ -20,7 +20,7 @@ export class StudentComponent implements OnInit {
   student: User;
   show: boolean;
   submitted = false;
-  columns: string[] = ["Nombres", "Apellidos", "Usuario", "Grupo", "Status", "Accion"];
+  columns: string[] = ["Nombres", "Apellidos", "Usuario", "Grupo", "Accion"];
   selectedMoment = new Date();
   formStudent: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -84,7 +84,7 @@ export class StudentComponent implements OnInit {
         onlyself: true
       });
   }
-  
+
   showPassword() {
     this.show = !this.show;
   }
@@ -115,12 +115,12 @@ export class StudentComponent implements OnInit {
       this.getAllStudentsByClassRoom();
       this.initStudent();
       $("#exampleModal").modal("hide");
-      this.toastr.success('¡Hecho!', 'Se creó un Maestro.');
+      this.toastr.success('¡Hecho!', 'Se creó un Estudiante.');
     }, error => {
       if (error == 'Bad Request')
         this.toastr.error('El Nombre de usuario ya esta en uso.', '¡Error!');
       else
-        this.toastr.error('Ocurrio un problema al crear al Maestro.', '¡Error!');
+        this.toastr.error('Ocurrio un problema al crear al Estudiante.', '¡Error!');
     });
   }
 
@@ -129,11 +129,11 @@ export class StudentComponent implements OnInit {
     if (student.firstName !== studentOld.firstName || student.lastName !== studentOld.lastName || student.userName !== studentOld.userName || student.email !== studentOld.email || student.password !== studentOld.password || student.birthDate !== studentOld.birthDate) {
       this.userService.update(student).subscribe(res => {
         $("#exampleModal").modal("hide");
-        this.toastr.success('¡Hecho!', 'Se actualizo un Maestro.');
+        this.toastr.success('¡Hecho!', 'Se actualizo un Estudiante.');
         this.getAllStudentsByClassRoom();
         this.initStudent();
       }, (error => {
-        this.toastr.error('Ocurrio un problema al actualizar al Maestro.', '¡Error!');
+        this.toastr.error('Ocurrio un problema al actualizar al Estudiante.', '¡Error!');
       }));
     } else
       this.toastr.error('Se debe modificar al menos un campo.', '¡Error!');
@@ -171,12 +171,12 @@ export class StudentComponent implements OnInit {
 
   delete() {
     let idUser = this.formStudent.get('id').value;
-    this.userService.delete(idUser).subscribe(res => {
-      this.toastr.success('Hecho', 'Se elimino a un Maestro.');
+    this.userService.delete(idUser, "Student").subscribe(res => {
+      this.toastr.success('Hecho', 'Se elimino a un Estudiante.');
       this.initStudent();
       this.getAllStudentsByClassRoom();
     }, (error => {
-      this.toastr.success('Ocurrio un problema al eliminar al Maestro', '¡Error!');
+      this.toastr.success('Ocurrio un problema al eliminar al Estudiante', '¡Error!');
       this.initStudent();
     }));
   }

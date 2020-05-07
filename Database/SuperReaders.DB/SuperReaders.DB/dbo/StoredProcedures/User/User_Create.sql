@@ -21,7 +21,8 @@ AS
 			[Status], 
 			[Role], 
 			[BirthDate], 
-			[IdSchool]
+			[IdSchool],
+			[IsFirstTime]
 			)
 		VALUES
 		(
@@ -33,7 +34,8 @@ AS
 			@pStatus, 
 			@pRole, 
 			@pBirthDate, 
-			@pIdSchool
+			@pIdSchool,
+			1
 		)
 		CLOSE SYMMETRIC KEY SQLSymmetricKey
 		SELECT 

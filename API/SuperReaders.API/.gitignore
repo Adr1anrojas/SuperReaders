@@ -106,3 +106,5 @@ artifacts/
 .DS_Store
 Thumbs.db
 
+#Images
+SuperReaders.API/Img/Content/

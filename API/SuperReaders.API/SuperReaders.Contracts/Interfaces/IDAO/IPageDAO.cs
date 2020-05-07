@@ -35,5 +35,12 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <returns></returns>
         IEnumerable<Page> GetPage(int id);
 
+        /// <summary>
+        /// This Method create an Question
+        /// </summary>
+        /// <param name="question">Question Create</param>
+        /// <returns></returns>
+        List<Page> GetPagesByIdContent(int id);
+
     }
 }
