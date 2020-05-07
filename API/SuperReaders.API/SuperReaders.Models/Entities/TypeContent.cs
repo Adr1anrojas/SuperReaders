@@ -10,8 +10,15 @@ namespace SuperReaders.Models.Entities
     {
         [Key]
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
+        [JsonProperty("idStudent")]
+        public int IdStudent{ get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("isSelected")]
+        public bool IsSelected { get; set; }
+        [JsonProperty("img")]
+        public string Img { get; set; }
+
     }
 }

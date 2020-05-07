@@ -21,8 +21,9 @@
             public const string P_User_IdSchool = "@pIdSchool";
             public const string P_User_ClassRoomId = "@pIdClassRoom";
             public const string P_User_StudentId = "@pIdStudent";
-            // StoreProcedure constants
-            public const string SP_User_GetAll = "User_GetAll";
+            public const string P_User_TypeContentId = "@pIdTypeContent";
+        // StoreProcedure constants
+        public const string SP_User_GetAll = "User_GetAll";
             public const string SP_User_GetById = "User_GetById";
             public const string SP_User_GetByUserName = "User_GetByUserName";
             public const string SP_User_Create = "User_Create";
@@ -36,6 +37,8 @@
             public const string SP_User_CreateStudentToClassRoom = "User_CreateStudentToClassRoom";
             public const string SP_User_GetTeacherById = "User_GetTeacherById";
             public const string SP_User_GetStudentById = "User_GetStudentById";
+            public const string SP_User_StudentTypeContent = "User_StudentTypeContent";
+            public const string SP_User_UpdateIsFirstTime = "User_UpdateIsFirstTime";
         #endregion
 
         #region Admin

@@ -55,11 +55,11 @@ namespace SuperReaders.API.Controllers
         // GET: api/Content/typeContent
         [HttpGet]
         [Route("typeContent")]
+        [DisableRequestSizeLimit]
         public ActionResult<TypeContent> GetTypeContent()
         {
             try
             {
-
                 return Ok(_iContentDomainObject.GetTypeContent());
             }
             catch (Exception e)

@@ -75,12 +75,12 @@ namespace SuperReaders.Services.DomainObject
             img.Save(path+title+".jpeg", ImageFormat.Jpeg);
         }
 
-        private string GetImg(Content content, int option)
+        private string GetImg(string title, int option)
         {
-            string path = GetPath(content.Title, option);
+            string path = GetPath(title, option);
             try
             {
-                using (Image image = Image.FromFile(path+content.Title+".jpeg"))
+                using (Image image = Image.FromFile(path+ title + ".jpeg"))
                 {
                     using (MemoryStream m = new MemoryStream())
                     {
@@ -99,7 +99,13 @@ namespace SuperReaders.Services.DomainObject
 
         private string GetPath(string title, int option)
         {
-            var folder = Path.Combine(hostingEnvironment.ContentRootPath + (option==1? "\\Img\\Content\\" + title + "\\": "\\Img\\Content\\" + Regex.Split(title, "-page")[0] + "\\"));
+            var folder = Path.Combine(hostingEnvironment.ContentRootPath);
+            if (option == 1)
+                folder +=  "\\Img\\Content\\" + title + "\\";
+            else if (option == 2)
+                folder += "\\Img\\Content\\" + Regex.Split(title, "-page")[0] + "\\";
+            else
+                folder += "\\Img\\ContentType\\";
             return folder;
         }
 
@@ -131,7 +137,7 @@ namespace SuperReaders.Services.DomainObject
                 contents = _iContentDAO.GetAllContents().ToList();
                 foreach (Content content in contents)
                 {
-                    content.Img = GetImg(content, 1);
+                    content.Img = GetImg(content.Title, 1);
                 }
                 return contents;
             }
@@ -147,7 +153,12 @@ namespace SuperReaders.Services.DomainObject
             try
             {
                 content.content = _iContentDAO.GetContent(id);
+                content.content.Img = GetImg(content.content.Title, 1);
                 content.pages = _iPageDAO.GetPagesByIdContent(id);
+                for (int i = 0; i < content.pages.Count; i++)
+                {
+                    content.pages[i].Img = GetImg(content.content.Title + "-page" + (i + 1), 2);
+                }
                 content.questions = _iQuestionDAO.GetQuestionByIdContent(id);
                 foreach (var item in content.questions)
                 {
@@ -163,9 +174,15 @@ namespace SuperReaders.Services.DomainObject
 
         public IEnumerable<TypeContent> GetTypeContent()
         {
+            List<TypeContent> typeContent = null;
             try
             {
-                return _iContentDAO.GetTypeContent();
+                typeContent = _iContentDAO.GetTypeContent().ToList();
+                for (int i = 0; i < typeContent.Count; i++)
+                {
+                    typeContent[i].Img = GetImg(typeContent[i].Name, 3);
+                }
+                return typeContent;
             }
             catch (Exception e)
             {
