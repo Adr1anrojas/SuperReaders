@@ -26,18 +26,11 @@ namespace SuperReaders.Services.DAO
             {
                 using (IDbConnection db = connection.Connection)
                 {
-                    string sql = @"INSERT INTO [Content]
-		            ([Title], [IdTypeContent],[Status])
-		            VALUES (@Title, @IdTypeContent,@Status);
-		            SELECT CAST(SCOPE_IDENTITY() as int)";
-                    var id = db.Query<int>(sql,
-                        new
-                        {
-                            Title = content.Title,
-                            IdTypeContent = content.IdTypeContent, 
-                            Status = content.Status
-                        }).Single();
-                    return id;
+                    int result = 0;
+                    parameters.Add(Constants.P_Content_Title, content.Title);
+                    parameters.Add(Constants.P_Content_IdTypeContent, content.IdTypeContent);
+                    result = db.Query<int>(Constants.SP_Content_Create, parameters, commandType: CommandType.StoredProcedure).First();
+                    return result;
                 }
             }
             catch (Exception e)
@@ -45,7 +38,6 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
-
 
         public void DeleteContent(int id)
         {
@@ -64,9 +56,7 @@ namespace SuperReaders.Services.DAO
             }
         }
 
-    
-
-    public IEnumerable<Content> GetAllContents()
+        public IEnumerable<Content> GetAllContents()
         {
             try
             {
@@ -82,23 +72,38 @@ namespace SuperReaders.Services.DAO
             }
         }
 
-  
-           public IEnumerable<Content> GetContent(int id)
+        public Content GetContent(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
             {
-                DynamicParameters parameters = new DynamicParameters();
-                try
+                parameters.Add(Constants.P_Content_Id, id);
+                using (IDbConnection db = connection.Connection)
                 {
-                    parameters.Add(Constants.P_Content_Id, id);
-                    using (IDbConnection db = connection.Connection)
-                    {
-                        return db.Query<Content>(Constants.SP_Content_GetById, parameters, commandType: CommandType.StoredProcedure);
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw e;
+                    return db.Query<Content>(Constants.SP_Content_GetById, parameters, commandType: CommandType.StoredProcedure).First();
                 }
             }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IEnumerable<TypeContent> GetTypeContent()
+        {
+            try
+            {
+
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<TypeContent>(Constants.SP_Content_GetAllTypeContent, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public int GetContentByContentName(string title)
         {
@@ -176,7 +181,8 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
+
     }
-    }
+}
 
     

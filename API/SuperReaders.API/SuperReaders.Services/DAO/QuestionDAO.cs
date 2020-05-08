@@ -14,6 +14,11 @@ namespace SuperReaders.Services.DAO
     public class QuestionDAO :IQuestionDAO
     {
         private DbAccess connection;
+        public QuestionDAO()
+        {
+            connection = new DbAccess();
+        }
+
         public int AddQuestion(Question question)
 
         {
@@ -28,7 +33,7 @@ namespace SuperReaders.Services.DAO
                     var id = db.Query<int>(sql,
                         new
                         {
-                            IdStudent = question.IdContent,
+                            IdContent = question.IdContent,
                             Text = question.Text,
                         }).Single();
                     return id;
@@ -76,6 +81,23 @@ namespace SuperReaders.Services.DAO
             }
         }
 
+        public List<Question> GetQuestionByIdContent(int idContent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_Question_IdContent, idContent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<Question>(Constants.SP_Question_GetByIdContent, parameters, commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void UpdateQuestion(Question question)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -95,5 +117,5 @@ namespace SuperReaders.Services.DAO
             }
         }
     }
-    }
+}
 

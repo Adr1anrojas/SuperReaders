@@ -48,8 +48,11 @@ namespace SuperReaders.Services.DomainObject
                         User userResult =_iUserDAO.GetTeacherById(result.Id);
                         result.TeacherId = userResult.TeacherId;
                         result.classRoom = _iClassRoomDAO.GetClassRoomByIdTeacher(result.TeacherId).First();
-                    } else if(result.Role.Equals("Student"))
-                        result.classRoom = _iClassRoomDAO.GetClassRoomByIdStudent(result.TeacherId).First();
+                    } else if (result.Role.Equals("Student")) {
+                        User userResult = _iUserDAO.GetStudentById(result.Id);
+                        result.StudentId = userResult.StudentId;
+                        result.classRoom = _iClassRoomDAO.GetClassRoomByIdStudent(result.StudentId).First();
+                    }
                 } else
                     throw new Exception("UserName or Password invalid");
                 return result;

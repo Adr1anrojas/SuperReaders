@@ -9,7 +9,8 @@
 	[Status] bit NOT NULL,
 	[Role] nvarchar(50) NOT NULL,
 	[BirthDate] date NOT NULL,
-	[IdSchool] int NOT NULL
+	[IdSchool] int NOT NULL, 
+    [IsFirstTime] BIT NULL
 )
 GO
 ALTER TABLE [User] ADD CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([Id] ASC)

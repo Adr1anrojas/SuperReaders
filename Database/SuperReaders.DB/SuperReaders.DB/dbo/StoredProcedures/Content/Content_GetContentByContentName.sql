@@ -4,6 +4,7 @@ AS
 	BEGIN
 		SELECT 
 			[Id],
+			[Title],
 			[IdTypeContent],
 			[Status]
 		FROM [Content]

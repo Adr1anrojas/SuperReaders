@@ -2,7 +2,7 @@
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
 	[IdContent] int NOT NULL,
-	[Text] nvarchar(100) NOT NULL
+	[Text] nvarchar(MAX) NOT NULL
 )
 GO
 ALTER TABLE [Question] ADD CONSTRAINT [FK_Question_Content]

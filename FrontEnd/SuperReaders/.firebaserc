@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "appreaders": {
+      "hosting": {
+        "SuperReaders": [
+          "appreaders"
+        ]
+      }
+    }
+  }
+}

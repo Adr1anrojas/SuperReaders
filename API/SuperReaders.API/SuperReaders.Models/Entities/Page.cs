@@ -15,5 +15,7 @@ namespace SuperReaders.Models.Entities
         public string Text { get; set; }
         [JsonProperty("idContent")]
         public int IdContent { get; set; }
+        [JsonProperty("img")]
+        public string Img { get; set; }
     }
 }
