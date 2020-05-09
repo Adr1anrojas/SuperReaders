@@ -21,12 +21,15 @@ export class HomeDetailComponent implements OnInit {
   currentPageContent: number = 0;
   currentQuestion: number = 0;
   displayQuestions: Boolean = false;
+  interval: any;
+  timeLeft = 0;
   constructor(private route: ActivatedRoute, private contentService: ContentService, private loginService: LoginService, public imageService: ImageService) { }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.currentUser = this.loginService.currentUserValue();
     this.getContentById(this.id);
+    this.startTimer();
   }
 
   nextPage() {
@@ -49,6 +52,17 @@ export class HomeDetailComponent implements OnInit {
       this.currentContent = res;
       this.currentContent.questions.forEach(question => question.answers.forEach(answer => answer.isCorrect = false));
     });
+  }
+
+  startTimer() {
+    this.interval = setInterval(() => {
+      this.timeLeft++;
+      console.log(this.timeLeft);
+    }, 1000);
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 
 }
