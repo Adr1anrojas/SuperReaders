@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵflushModuleScopingQueueAsMuchAsPossible } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ContentService } from 'src/app/services/content.service';
 import { LoginResult } from 'src/app/models/loginResult';
-import { ContentFile } from 'src/app/models/contentFile';
 import { LoginService } from 'src/app/services/login.service';
 import { ContentDTO } from 'src/app/models/contentDTO';
 import { ImageService } from 'src/app/services/image.service';
-import { Answer } from 'src/app/models/answer';
-import { Question } from 'src/app/models/Question';
+
 
 @Component({
   selector: 'app-home-detail',
@@ -23,6 +21,7 @@ export class HomeDetailComponent implements OnInit {
   displayQuestions: Boolean = false;
   interval: any;
   timeLeft = 0;
+  isAnswerSelectedValid: Boolean = true;
   constructor(private route: ActivatedRoute, private contentService: ContentService, private loginService: LoginService, public imageService: ImageService) { }
 
   ngOnInit(): void {
@@ -33,7 +32,22 @@ export class HomeDetailComponent implements OnInit {
   }
 
   nextPage() {
-    this.displayQuestions ? this.currentQuestion += 1 : this.currentPageContent += 1;
+    this.displayQuestions ? this.checkAnswer(this.currentQuestion) : this.currentPageContent += 1;
+  }
+
+  checkAnswer(index: number) {
+    this.isAnswerSelectedValid = true;
+    let count = 0;
+    this.currentContent.questions[index].answers.forEach(answer => {
+      if (answer.isCorrect)
+        count++;
+    });
+    if (count > 0) {
+      if ((this.currentContent.questions.length - 1) !== index)
+        this.currentQuestion += 1;
+    }
+    else
+      this.isAnswerSelectedValid = false;
   }
 
   lastPage() {
@@ -41,10 +55,15 @@ export class HomeDetailComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.displayQuestions)
-      console.log(this.currentContent);
-    else
+    if (this.displayQuestions) {
+      this.checkAnswer(this.currentContent.questions.length - 1);
+      if (this.isAnswerSelectedValid)
+        console.log("Hecho");
+    }
+    else {
       this.displayQuestions = true;
+      this.pauseTimer();
+    }
   }
 
   getContentById(id: number) {
