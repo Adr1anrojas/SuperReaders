@@ -8,7 +8,7 @@ namespace SuperReaders.API.Helper
         private string connectionString;
         public DbAccess()
         {
-            connectionString = @"Server=localhost;Database=ReadersDB;Trusted_Connection=True;";
+            connectionString = @"Server = DESKTOP-83UF86H\SQLEXPRESS; Database = ReadersDB; Trusted_Connection = True; ";
         }
         public IDbConnection Connection
         {
