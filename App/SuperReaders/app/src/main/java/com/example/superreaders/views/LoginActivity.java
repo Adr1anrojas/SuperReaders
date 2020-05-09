@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.superreaders.R;
+import com.example.superreaders.SessionManagement;
 import com.example.superreaders.retrofit.response.LoginResponse;
 import com.example.superreaders.viewmodels.LoginViewModel;
 
@@ -35,7 +36,10 @@ public class LoginActivity extends AppCompatActivity {
         };
         final Observer<LoginResponse> observerlogin = usuario ->{
             if(!usuario.getToken().isEmpty()){
+                SessionManagement session = new SessionManagement(getApplicationContext());
+                session.createLoginSession(usuario);
                 Intent intent = new Intent(this,MainActivity.class);
+
                 startActivity(intent);
             }
         };

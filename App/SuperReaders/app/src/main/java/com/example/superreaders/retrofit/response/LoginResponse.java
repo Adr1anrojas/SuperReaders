@@ -12,6 +12,9 @@ public class LoginResponse {
     @SerializedName("teacherId")
     @Expose
     private Integer teacherId;
+    @SerializedName("studentId")
+    @Expose
+    private Integer studentId;
     @SerializedName("firstName")
     @Expose
     private String firstName;
@@ -38,37 +41,43 @@ public class LoginResponse {
     private String token;
     @SerializedName("refreshToken")
     @Expose
-    private Object refreshToken;
+    private String refreshToken;
     @SerializedName("classRoom")
     @Expose
-    private Object classRoom;
-
+    private Integer classRoom;
+    @SerializedName("isFirstTime")
+    @Expose
+    private Boolean isFirstTime;
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public LoginResponse() {
     }
 
+
     /**
-     * 
-     * @param firstName
+     *
      * @param lastName
-     * @param teacherId
      * @param role
-     * @param classRoom
-     * @param id
      * @param userName
+     * @param token
+     * @param studentId
+     * @param firstName
+     * @param teacherId
+     * @param classRoom
+     * @param isFirstTime
+     * @param id
      * @param email
      * @param idSchool
      * @param status
-     * @param token
      * @param refreshToken
      */
-    public LoginResponse(Integer id, Integer teacherId, String firstName, String lastName, String userName, String email, Integer idSchool, Boolean status, String role, String token, Object refreshToken, Object classRoom) {
+    public LoginResponse(Integer id, Integer teacherId, Integer studentId, String firstName, String lastName, String userName, String email, Integer idSchool, Boolean status, String role, String token, String refreshToken, Integer classRoom, Boolean isFirstTime) {
         super();
         this.id = id;
         this.teacherId = teacherId;
+        this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -79,6 +88,7 @@ public class LoginResponse {
         this.token = token;
         this.refreshToken = refreshToken;
         this.classRoom = classRoom;
+        this.isFirstTime = isFirstTime;
     }
 
     public Integer getId() {
@@ -95,6 +105,14 @@ public class LoginResponse {
 
     public void setTeacherId(Integer teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public String getFirstName() {
@@ -161,20 +179,29 @@ public class LoginResponse {
         this.token = token;
     }
 
-    public Object getRefreshToken() {
+    public String getRefreshToken() {
         return refreshToken;
     }
 
-    public void setRefreshToken(Object refreshToken) {
+    public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
 
-    public Object getClassRoom() {
+    public Integer getClassRoom() {
         return classRoom;
     }
 
-    public void setClassRoom(Object classRoom) {
+    public void setClassRoom(Integer classRoom) {
         this.classRoom = classRoom;
     }
+
+    public Boolean getIsFirstTime() {
+        return isFirstTime;
+    }
+
+    public void setIsFirstTime(Boolean isFirstTime) {
+        this.isFirstTime = isFirstTime;
+    }
+
 
 }

@@ -149,7 +149,4 @@
     <Build Include="dbo\StoredProcedures\Answer\Answer_Delete.sql" />
     <Build Include="dbo\StoredProcedures\User\User_GetStudentsByClassRoom.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="SuperReaders.DB.refactorlog" />
-  </ItemGroup>
 </Project>
