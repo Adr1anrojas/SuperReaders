@@ -6,6 +6,8 @@ import { ContentFile } from 'src/app/models/contentFile';
 import { LoginService } from 'src/app/services/login.service';
 import { ContentDTO } from 'src/app/models/contentDTO';
 import { ImageService } from 'src/app/services/image.service';
+import { Answer } from 'src/app/models/answer';
+import { Question } from 'src/app/models/Question';
 
 @Component({
   selector: 'app-home-detail',
@@ -16,9 +18,11 @@ export class HomeDetailComponent implements OnInit {
   id: number;
   currentUser: LoginResult;
   currentContent: ContentDTO;
-  currentPage: number = 0;
-  constructor(private route: ActivatedRoute, private contentService: ContentService, private loginService: LoginService, public imageService: ImageService) { }
+  currentPageContent: number = 0;
+  currentQuestion: number = 0;
   displayQuestions: Boolean = false;
+  constructor(private route: ActivatedRoute, private contentService: ContentService, private loginService: LoginService, public imageService: ImageService) { }
+
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.currentUser = this.loginService.currentUserValue();
@@ -26,20 +30,25 @@ export class HomeDetailComponent implements OnInit {
   }
 
   nextPage() {
-    this.currentPage += 1;
+    this.displayQuestions ? this.currentQuestion += 1 : this.currentPageContent += 1;
   }
 
   lastPage() {
-    this.currentPage -= 1;
+    this.displayQuestions ? this.currentQuestion -= 1 : this.currentPageContent -= 1;
   }
 
-  showQuestions() {
-    //update in database in content isfinish
-    this.displayQuestions = true;
+  nextStep() {
+    if (this.displayQuestions)
+      console.log(this.currentContent);
+    else
+      this.displayQuestions = true;
   }
 
   getContentById(id: number) {
-    this.contentService.getContentById(this.id).then(res => { this.currentContent = res; console.log(this.currentContent); });
+    this.contentService.getContentById(this.id).then(res => {
+      this.currentContent = res;
+      this.currentContent.questions.forEach(question => question.answers.forEach(answer => answer.isCorrect = false));
+    });
   }
 
 }
