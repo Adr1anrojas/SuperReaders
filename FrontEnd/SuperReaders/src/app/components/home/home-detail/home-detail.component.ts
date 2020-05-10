@@ -80,7 +80,7 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
         );
         this.saveAnswerStudent(studentAnswers);
         console.log("Hecho");
-        this.router.navigate[''];
+        this.router.navigate['home'];
       }
     }
     else {
@@ -94,6 +94,7 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
   getContentById(id: number) {
     this.contentService.getContentById(this.id).then(res => {
       this.currentContent = res;
+      console.log(this.currentContent);
       this.currentContent.questions.forEach(question => question.answers.forEach(answer => answer.isCorrect = false));
       this.studentContent = { idStudent: this.currentUser.studentId, idContent: this.currentContent.content.id };
       console.log(this.studentContent);

@@ -37,3 +37,14 @@
 .content{
 	cursor: pointer;
 }
+img .categories {
+    width: 150px; /* You can set the dimensions to whatever you want */
+    height: 150px;
+    object-fit: cover;
+}
+
+.content-size {
+    width: 170px!important; /* You can set the dimensions to whatever you want */
+    height: 250px!important;
+    object-fit: cover!important;
+}

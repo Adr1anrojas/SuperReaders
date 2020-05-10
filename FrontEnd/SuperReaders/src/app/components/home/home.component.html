@@ -9,10 +9,10 @@
         <div class="container">
             <hr class="mb-3">
             <div class="row text-center text-lg-left">
-                <div class="col-lg-2 col-md-3 col-6 nopad mb-1" *ngFor="let item of allTypeContent; ;let i = index">
+                <div class="col-lg-2 col-md-3 col-6 mb-1" *ngFor="let item of allTypeContent; ;let i = index">
                     <label class="image-checkbox" [ngClass]="{'image-checkbox-checked': item.isSelected}">
                         <a class="d-block mb-4 h-100">
-                            <img (click)="changeStatus(i)" class="img-fluid img-thumbnail"
+                            <img (click)="changeStatus(i)" class="img-fluid img-thumbnail categories"
                                 src="{{imgService.convertBase64ToImage(item.img)}}" alt="">
                             <h6 class="card-title font-weight-light text-center">{{item.name}}
                             </h6>
@@ -39,7 +39,7 @@
                 <div class="col-lg-2 col-md-2 col-6 nopad mb-1" *ngFor="let item of allContent; ;let i = index">
                     <label class="m-0 content">
                         <a class="d-block mb-4 h-100">
-                            <img (click)="showContent(item)" class="img-fluid"
+                            <img (click)="showContent(item)" class="img-fluid img-thumbnail content-size"
                                 src="{{imgService.convertBase64ToImage(item.img)}}" alt="">
                             <h5 class="card-title font-weight-light text-center mb-0">{{item.title}}
                             </h5>

@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit {
     this.contentService.createTypeContentStudent(typeContentStudent).subscribe(res => {
       this.currentUser.isFirstTime = false;
       this.loginService.setCurrentUser(this.currentUser);
+      this.contentService.getAllContent().subscribe((res: ContentFile[]) => { this.allContent = res; });
     }, error => this.toastr.error('Ocurrio un problema al cargar tus categorias.', '¡Error!'));
   }
 
