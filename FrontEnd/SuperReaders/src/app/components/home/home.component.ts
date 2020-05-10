@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   currentUser: LoginResult;
   allTypeContent: TypeContent[] = [];
   allContent: ContentFile[] = [];
-  constructor(private loginService: LoginService, private router: Router, private contentService: ContentService, public imgService: ImageService, private userService: UserService, private toastr: ToastrService) { }
+  constructor(private loginService: LoginService, private router: Router, private contentService: ContentService, public imgService: ImageService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.currentUser = this.loginService.currentUserValue();
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   }
 
   typeContentStudentServer(typeContentStudent: TypeContent[]) {
-    this.userService.createTypeContentStudent(typeContentStudent).subscribe(res => {
+    this.contentService.createTypeContentStudent(typeContentStudent).subscribe(res => {
       this.currentUser.isFirstTime = false;
       this.loginService.setCurrentUser(this.currentUser);
     }, error => this.toastr.error('Ocurrio un problema al cargar tus categorias.', '¡Error!'));

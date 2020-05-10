@@ -40,8 +40,4 @@ export class UserService {
     return this.http.delete(this.url + idUser + '/' + role);
   }
 
-  createTypeContentStudent(typeContentStudent: TypeContent[]) {
-    return this.http.post(this.url + 'typeContentStudent', typeContentStudent);
-  }
-
 }

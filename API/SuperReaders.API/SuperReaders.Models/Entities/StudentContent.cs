@@ -15,14 +15,14 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("idContent")]
         public int IdContent { get; set; }
         [JsonProperty("timeReading")]
-        public int TimeReading { get; set; }
+        public int? TimeReading { get; set; }
         [JsonProperty("currentPage")]
-        public int CurrentPage { get; set; }
+        public int? CurrentPage { get; set; }
         [JsonProperty("dateStart")]
-        public DateTime DateStart { get; set; }
+        public DateTime? DateStart { get; set; }
         [JsonProperty("dateFinish")]
-        public DateTime DateFinish { get; set; }
+        public DateTime? DateFinish { get; set; }
         [JsonProperty("isFinish")]
-        public bool IsFinish { get; set; }
+        public bool? IsFinish { get; set; }
     }
 }

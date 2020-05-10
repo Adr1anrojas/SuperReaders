@@ -19,13 +19,15 @@ namespace SuperReaders.Services.DomainObject
         private IPageDAO _iPageDAO;
         private IQuestionDAO _iQuestionDAO;
         private IAnswerDAO _iAnswerDAO;
+        private IUserDAO _iUserDAO;
         private readonly IHostingEnvironment hostingEnvironment;
-        public ContentDomainObject(IContentDAO iContentDAO,IPageDAO iPageDAO,IQuestionDAO iQuestionDAO,IAnswerDAO iAnswerDAO, IHostingEnvironment environment)
+        public ContentDomainObject(IContentDAO iContentDAO,IPageDAO iPageDAO,IQuestionDAO iQuestionDAO,IAnswerDAO iAnswerDAO, IHostingEnvironment environment, IUserDAO iUserDAO)
         {
             _iContentDAO = iContentDAO;
             _iPageDAO = iPageDAO;
             _iQuestionDAO = iQuestionDAO;
             _iAnswerDAO = iAnswerDAO;
+            _iUserDAO = iUserDAO;
             hostingEnvironment = environment;
         }
 
@@ -211,6 +213,108 @@ namespace SuperReaders.Services.DomainObject
             }
         }
 
+        /// <summary>
+        /// This Method create an typeContent of the student specified
+        /// </summary>
+        /// <param name="typeContentStudent">typeContent to user</param>
+        /// <returns></returns>
+        public void AddTypeContentStudent(List<TypeContent> typeContentStudent)
+        {
+            try
+            {
+                foreach (var item in typeContentStudent)
+                {
+                    _iContentDAO.AddTypeContentStudent(item);
+                }
+                _iUserDAO.UpdateIsFirstTime(typeContentStudent[0].IdStudent);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This Method create an StudentContent of the student specified
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        public StudentContent AddContentStudent(StudentContent contentStudent)
+        {
+            StudentContent result = null;
+            try
+            {
+
+                result = _iContentDAO.GetContentStudent(contentStudent);
+                if(result == null)
+                    result = _iContentDAO.AddContentStudent(contentStudent);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This Method create an StudentContent of the student specified
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        public StudentContent UpdateTimeReading(StudentContent contentStudent)
+        {
+            StudentContent result = null;
+            try
+            {
+
+                result = _iContentDAO.UpdateTimeReading(contentStudent);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This Method update an StudentContent if the student finish the content
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        public StudentContent UpdateFinishContent(StudentContent contentStudent)
+        {
+            StudentContent result = null;
+            try
+            {
+
+                result = _iContentDAO.UpdateFinishContent(contentStudent);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// This Method save the anwers of StudentContent
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        public void SaveAnswerStudent(List<StudentAnswer> studentAnswers)
+        {
+            try
+            {
+                foreach (var studentAnswer in studentAnswers)
+                {
+                    _iContentDAO.SaveAnswerStudent(studentAnswer);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
 
