@@ -1,5 +1,4 @@
 <div class="d-flex" id="wrapper">
-
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper" [class.open]="collapsed" [class.collapsed]="!collapsed">
         <div class="sidebar-heading" (click)="isCollapsed()">
@@ -12,16 +11,28 @@
             <a [routerLink]="['/home']" class="list-group-item list-group-item-action bg-light menu-home">
                 <fa-icon class="fa-2x" icon="home"></fa-icon>{{collapsed?'Inicio':''}}
             </a>
-            <a [routerLink]="['/admin']" class="list-group-item list-group-item-action bg-light">
+            <a *ngIf="currentUser.role=='Admin'" [routerLink]="['/admin']"
+                class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="user"></fa-icon>{{collapsed?'Administrador':''}}
             </a>
-            <a [routerLink]="['/teacher']" class="list-group-item list-group-item-action bg-light">
+            <a *ngIf="currentUser.role=='Admin'" [routerLink]="['/teacher']"
+                class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="user"></fa-icon>{{collapsed?'Maestros':''}}
             </a>
-            <a [routerLink]="['/student']" class="list-group-item list-group-item-action bg-light">
+            <a *ngIf="currentUser.role!=='Student'" [routerLink]="['/student']"
+                class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Alumnos':''}}
             </a>
-            <a [routerLink]="['/report']" class="list-group-item list-group-item-action bg-light">
+            <a *ngIf="currentUser.role==='Admin'" [routerLink]="['/classRoom']"
+                class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Grupos':''}}
+            </a>
+            <a *ngIf="currentUser.role==='Teacher'" [routerLink]="['/content']"
+                class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Contenido':''}}
+            </a>
+            <a *ngIf="currentUser.role=='Teacher'" [routerLink]="['/report']"
+                class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="chart-line"></fa-icon>{{collapsed?'Monitoreo':''}}
             </a>
             <br>
@@ -33,8 +44,6 @@
     <div id="page-content-wrapper">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <!-- <button class="btn btn-primary" id="menu-toggle" (click)="isCollapsed()">Toggle Menu</button> -->
-
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,10 +54,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Usuario Actual
+                            {{fullName() }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Salir</a>
+                            <a class="dropdown-item" (click)="exit()">Salir</a>
                         </div>
                     </li>
                 </ul>

@@ -1,0 +1,32 @@
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 mx-auto">
+            <div class="card size-card">
+                <div class="card-body">
+                    <form [formGroup]="formLogin" class="needs-validation" novalidate (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Usuario</label>
+                            <input type="email" class="form-control " id="exampleInputEmail1"
+                                placeholder="Nombre de Usuario" formControlName="userName"
+                                [ngClass]="{'is-invalid':submitted && controls.userName.errors }">
+                            <div *ngIf="submitted && controls.userName.errors" class="invalid-feedback">
+                                Nombre de Usuario requerido.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Contraseña</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                placeholder="Contraseña" formControlName="password"
+                                [ngClass]="{'is-invalid':submitted && controls.password.errors }">
+                            <div *ngIf="submitted && controls.password.errors" class="invalid-feedback">
+                                Contraseña requerida.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary text-uppercase btn-block">Iniciar
+                            Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

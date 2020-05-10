@@ -12,6 +12,6 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// </summary>
         /// <param name="id">ID user of Student to create</param>
         /// <returns></returns>
-        void AddStudent(int id);
+        int AddStudent(int id);
     }
 }

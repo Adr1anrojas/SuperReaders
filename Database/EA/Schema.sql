@@ -6,8 +6,11 @@
 
 /* Drop Foreign Key Constraints */
 use master
+GO
 CREATE DATABASE ReadersDB
+GO
 USE ReadersDB
+Go
 IF EXISTS (SELECT 1 FROM dbo.sysobjects WHERE id = object_id(N'[FK_Admin_User]') AND OBJECTPROPERTY(id, N'IsForeignKey') = 1) 
 ALTER TABLE [Admin] DROP CONSTRAINT [FK_Admin_User]
 GO
@@ -147,7 +150,7 @@ CREATE TABLE [Answer]
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
 	[IdStudent] int NOT NULL,
-	[Text] nvarchar(500) NOT NULL
+	[Answer] char not null,
 )
 GO
 
@@ -155,7 +158,8 @@ CREATE TABLE [ClassRoom]
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
 	[Name] nvarchar(50) NOT NULL,
-	[IdTeacher] int NOT NULL
+	[IdTeacher] int NOT NULL,
+	[Status] bit NOt NULL
 )
 GO
 
@@ -170,7 +174,8 @@ CREATE TABLE [Content]
 (
 	[Id] int NOT NULL IDENTITY (1, 1),
 	[Title] nvarchar(100) NOT NULL,
-	[IdTypeContent] int NOT NULL
+	[IdTypeContent] int NOT NULL,
+        [Status] bit NOT NULL
 )
 GO
 
@@ -197,10 +202,17 @@ CREATE TABLE [Question]
 )
 GO
 
+CREATE TABLE [OptionQuestion]
+(
+	[idQuestion] int not null,
+	[Option] char not null
+)
+GO
+
 CREATE TABLE [QuestionAnswer]
 (
 	[IdQuestion] int NOT NULL,
-	[IdAnswer] int NOT NULL
+	[Answer] char NOT NULL
 )
 GO
 
@@ -434,10 +446,9 @@ ALTER TABLE [QuestionAnswer] ADD CONSTRAINT [FK_QuestionAnswer_Question]
 	FOREIGN KEY ([IdQuestion]) REFERENCES [Question] ([Id]) ON DELETE No Action ON UPDATE No Action
 GO
 
-ALTER TABLE [QuestionAnswer] ADD CONSTRAINT [FK_QuestionAnswer_Answer]
-	FOREIGN KEY ([IdAnswer]) REFERENCES [Answer] ([Id]) ON DELETE No Action ON UPDATE No Action
+ALTER TABLE [OptionQuestion] ADD CONSTRAINT [FK_IdQuestion]
+	FOREIGN KEY ([IdQuestion]) REFERENCES [Question] ([Id]) ON DELETE No Action ON UPDATE No Action
 GO
-
 ALTER TABLE [Student] ADD CONSTRAINT [FK_Student_User]
 	FOREIGN KEY ([IdUser]) REFERENCES [User] ([Id]) ON DELETE No Action ON UPDATE No Action
 GO
