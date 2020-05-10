@@ -14,4 +14,5 @@ BEGIN
 		IsFinish
 	FROM StudentContent
 	WHERE IdStudent = @pIdStudent AND IdContent = @pId
+	ORDER BY IdStudentContent DESC
 END

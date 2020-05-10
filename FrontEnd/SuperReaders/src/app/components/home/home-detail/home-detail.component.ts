@@ -7,6 +7,7 @@ import { ContentDTO } from 'src/app/models/contentDTO';
 import { ImageService } from 'src/app/services/image.service';
 import { StudentContent } from 'src/app/models/StudentContent';
 import { StudentAnswer } from 'src/app/models/StudentAnswer';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-detail',
@@ -25,7 +26,7 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
   isAnswerSelectedValid: Boolean = true;
   studentContent: StudentContent;
   currentStudentContent: StudentContent;
-  constructor(private route: ActivatedRoute, private router: Router, private contentService: ContentService, private loginService: LoginService, public imageService: ImageService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private contentService: ContentService, private loginService: LoginService, public imageService: ImageService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -80,7 +81,7 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
         );
         this.saveAnswerStudent(studentAnswers);
         console.log("Hecho");
-        this.router.navigate['home'];
+        this.router.navigateByUrl('home');
       }
     }
     else {
@@ -96,7 +97,7 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
       this.currentContent = res;
       console.log(this.currentContent);
       this.currentContent.questions.forEach(question => question.answers.forEach(answer => answer.isCorrect = false));
-      this.studentContent = { idStudent: this.currentUser.studentId, idContent: this.currentContent.content.id };
+      this.studentContent = { idStudent: this.currentUser.studentId, idContent: this.currentContent.content.id, readAgain: false };
       console.log(this.studentContent);
       this.saveContentStudent(this.studentContent);
       this.startTimer();
@@ -115,6 +116,14 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
 
   pauseTimer() {
     clearInterval(this.interval);
+  }
+
+  readAgain() {
+    this.studentContent = { idStudent: this.currentUser.studentId, idContent: this.currentContent.content.id, readAgain: true };
+    console.log(this.studentContent);
+    this.saveContentStudent(this.studentContent);
+    this.displayQuestions = false;
+    this.startTimer();
   }
 
   saveContentStudent(contentStudent: StudentContent) {
@@ -146,7 +155,7 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
   }
 
   saveAnswerStudent(studentAnswers: StudentAnswer[]) {
-    this.contentService.saveAnswerStudent(studentAnswers).subscribe(res => console.log(res));
+    this.contentService.saveAnswerStudent(studentAnswers).subscribe(res => this.toastr.success('Acabas de terminar de leer "' + this.currentContent.content.title + '".', '¡Felicidades!'));
   }
 
 }

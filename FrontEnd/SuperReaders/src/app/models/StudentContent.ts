@@ -7,4 +7,5 @@ export class StudentContent {
     dateStart?: Date;
     dateFinish?: Date;
     isFinish?: Boolean;
+    readAgain?: Boolean;
 }

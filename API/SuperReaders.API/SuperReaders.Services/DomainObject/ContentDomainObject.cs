@@ -248,6 +248,10 @@ namespace SuperReaders.Services.DomainObject
                 result = _iContentDAO.GetContentStudent(contentStudent);
                 if(result == null)
                     result = _iContentDAO.AddContentStudent(contentStudent);
+                else if (contentStudent.ReadAgain)
+                {
+                    result = _iContentDAO.AddContentStudent(contentStudent);
+                }
                 return result;
             }
             catch (Exception e)

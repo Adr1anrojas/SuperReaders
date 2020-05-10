@@ -24,5 +24,7 @@ namespace SuperReaders.Models.Entities
         public DateTime? DateFinish { get; set; }
         [JsonProperty("isFinish")]
         public bool? IsFinish { get; set; }
+        [JsonProperty("readAgain")]
+        public bool ReadAgain { get; set; }
     }
 }

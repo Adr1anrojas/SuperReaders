@@ -3,4 +3,19 @@ ul.question {
     margin: 0;
     padding: 0;
   }
-  
+  .img-congratulations{
+    background-image: url("../../../../assets/content-finish.png");
+    width: 100%;
+    height: 450px;
+    background-repeat: no-repeat;
+}
+.btn-purple, .btn-purple:active{
+  background: #AE0086;
+  border-color: #AE0086bf;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #AE0086cc;
+  border-color: #AE0086bf;
+}

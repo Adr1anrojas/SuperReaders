@@ -1,6 +1,6 @@
-<div class="card mt-3" *ngIf="this.currentContent">
+<div class="card mt-3" *ngIf="this.currentContent && this.currentStudentContent">
     <h5 class="card-header">{{this.currentContent.content.title}}</h5>
-    <div class="card-body">
+    <div class="card-body" *ngIf="!this.currentStudentContent.isFinish">
         <div *ngIf="!this.displayQuestions">
             <div *ngFor=" let item of this.currentContent.pages; let i=index">
                 <div class="row" *ngIf="this.currentPageContent==i">
@@ -45,6 +45,20 @@
                 [ngClass]="{'ml-auto': this.displayQuestions? this.currentQuestion==0: this.currentPageContent==0}"
                 (click)="nextStep()"
                 *ngIf="this.displayQuestions ? this.currentQuestion==this.currentContent.questions.length-1: this.currentPageContent==this.currentContent.pages.length-1">Terminar</a>
+        </div>
+    </div>
+    <div class="card-body img-congratulations" *ngIf="this.currentStudentContent.isFinish">
+        <div class="container">
+            <h1 class="text-center">¡Felicidades Super Lector!</h1>
+            <h4 class="text-center">Ya has leido este Contenido</h4>
+            <h5 class="text-center">Te gustaria leerlo de nuevo?</h5>
+            <div class="row">
+                <div class="col text-center">
+                    <button class="btn btn-info mr-1" (click)="readAgain()">Claro</button>
+                    <button class="btn btn-primary btn-purple" [routerLink]="['/home']"
+                        routerLinkActive="router-link-active">En otro momento</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -18,7 +18,7 @@ BEGIN
 		@pIdStudent, 
 		@pId, 
 		0, 
-		1, 
+		0, 
 		GETDATE(), 
 		NULL, 
 		0
