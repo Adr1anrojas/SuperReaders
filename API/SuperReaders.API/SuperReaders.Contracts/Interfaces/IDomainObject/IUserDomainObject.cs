@@ -73,11 +73,5 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// <returns>status code 200</returns>
         void DeleteUser(int id, string role);
 
-        /// <summary>
-        /// This Method create an typeContent of the student specified
-        /// </summary>
-        /// <param name="typeContentStudent">typeContent to user</param>
-        /// <returns></returns>
-        void AddTypeContentStudent(List<TypeContent> typeContentStudent);
     }
 }

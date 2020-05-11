@@ -24,6 +24,8 @@ import { ResponseInterceptor } from './shared/helper/responseInterceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
+import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { ContentDetailComponent } from './components/content/content-detail/cont
     ReportComponent,
     AdminComponent,
     ClassRoomComponent,
-    ContentDetailComponent
+    ContentDetailComponent,
+    HomeDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { ContentDetailComponent } from './components/content/content-detail/cont
     { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
-})  
+})
 
 export class AppModule {
   constructor(library: FaIconLibrary) {

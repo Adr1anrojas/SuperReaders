@@ -117,5 +117,108 @@ namespace SuperReaders.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+
+        // POST: api/Content/typeContentStudent
+        /// <summary>
+        /// This EndPoint create an User of the role Specified
+        /// </summary>
+        /// <param name="user">user to create</param>
+        /// <returns>status code 200</returns>
+        [HttpPost]
+        [Route("typeContentStudent")]
+        public IActionResult AddTypeContentStudent([FromBody] List<TypeContent> typeContentStudent)
+        {
+            try
+            {
+                _iContentDomainObject.AddTypeContentStudent(typeContentStudent);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        /// api/Content/contentStudent
+        /// <summary>
+        /// This Method create an StudentContent of the student specified
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("contentStudent")]
+        public IActionResult AddContentStudent([FromBody] StudentContent contentStudent)
+        {
+            try
+            {
+                return Ok(_iContentDomainObject.AddContentStudent(contentStudent));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        /// api/Content/UpdateTimeReading
+        /// <summary>
+        /// This Method update an StudentContent of the student specified
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("UpdateTimeReading")]
+        public IActionResult UpdateTimeReading([FromBody] StudentContent contentStudent)
+        {
+            try
+            {
+                return Ok(_iContentDomainObject.UpdateTimeReading(contentStudent));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        /// api/Content/finishContent
+        /// <summary>
+        /// This Method update an StudentContent if the student finish the content
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("finishContent")]
+        public IActionResult UpdateFinishContent([FromBody] StudentContent contentStudent)
+        {
+            try
+            {
+                return Ok(_iContentDomainObject.UpdateFinishContent(contentStudent));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        /// api/Content/contentStudent
+        /// <summary>
+        /// This Method save the anwers of StudentContent
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("saveAnswerStudent")]
+        public IActionResult SaveAnswerStudent([FromBody] List<StudentAnswer> studentAnswers)
+        {
+            try
+            {
+                _iContentDomainObject.SaveAnswerStudent(studentAnswers);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
     }
 }
