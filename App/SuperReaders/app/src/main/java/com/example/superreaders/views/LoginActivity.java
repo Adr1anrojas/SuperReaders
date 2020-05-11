@@ -23,27 +23,27 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button botonlogin = findViewById(R.id.botonLogin);
+        Button buttonLogin = findViewById(R.id.buttonLogin);
         txtUser = findViewById(R.id.txtUser);
         txtPassword = findViewById(R.id.txtPassword);
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-        botonlogin.setOnClickListener(v -> {
+        buttonLogin.setOnClickListener(v -> {
             viewModel.onLogin(txtUser.getText().toString(),txtPassword.getText().toString());
 
         });
-        final Observer<String> observer = resultado ->{
-            Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG ).show();
+        final Observer<String> observer = message ->{
+            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG ).show();
         };
-        final Observer<LoginResponse> observerlogin = usuario ->{
-            if(!usuario.getToken().isEmpty()){
+        final Observer<LoginResponse> observerLogin = user ->{
+            if(!user.getToken().isEmpty()){
                 SessionManagement session = new SessionManagement(getApplicationContext());
-                session.createLoginSession(usuario);
+                session.createLoginSession(user);
                 Intent intent = new Intent(this,MainActivity.class);
-
                 startActivity(intent);
+                this.finish();
             }
         };
         viewModel.getMessageResponse().observe(this,observer);
-        viewModel.getUserLoged().observe(this,observerlogin);
+        viewModel.getUserLoged().observe(this,observerLogin);
     }
 }

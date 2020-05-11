@@ -3,14 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-<<<<<<< HEAD
   //url: "http://readersapi.azurewebsites.net/api/",
   //url: "http://localhost:55211/api/",
   url:"http://localhost:5000/api/",
-=======
-  //url: "https://readersapi.azurewebsites.net/api/",
-  url: "http://localhost:55211/api/",
->>>>>>> f2cb50922c55c979269983a63603c12918d83920
   production: false
 };
 

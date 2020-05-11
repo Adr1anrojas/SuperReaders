@@ -12,7 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginRepository {
-    public MutableLiveData<LoginResponse> userlogded  = new MutableLiveData<>();;
+    public MutableLiveData<LoginResponse> userLogged  = new MutableLiveData<>();;
     public MutableLiveData<String> messageResponse  = new MutableLiveData<>();;
     private SuperReadersService superReadersService;
     public LoginRepository(){
@@ -21,7 +21,7 @@ public class LoginRepository {
     public MutableLiveData<LoginResponse> onLogin(String userName, String password){
         if(userName.isEmpty() && password.isEmpty()) {
             messageResponse.setValue("No se aceptan vacios llanar los campos");
-            return userlogded;
+            return userLogged;
         }
         LoginRequest userCredential = new LoginRequest(userName,password,"");
         Call<LoginResponse> call = superReadersService.login(userCredential);
@@ -32,7 +32,7 @@ public class LoginRepository {
                     messageResponse.setValue("Usuario o Contraseña incorrectos");
                     return;
                 }
-                userlogded.setValue(response.body());
+                userLogged.setValue(response.body());
                 messageResponse.setValue("Usuario logueado correctamente");
             }
 
@@ -41,7 +41,7 @@ public class LoginRepository {
                 messageResponse.setValue(t.getMessage());
             }
         });
-        return userlogded;
+        return userLogged;
     }
 
 }

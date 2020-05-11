@@ -23,7 +23,7 @@ public class LoginViewModel extends ViewModel {
     public  LoginViewModel(){
        this.repository = new LoginRepository();
        messageResponse = repository.messageResponse;
-       userLoged = repository.userlogded;
+       userLoged = repository.userLogged;
    }
    public void onLogin(String userName, String password){
        userLoged = repository.onLogin(userName,password);

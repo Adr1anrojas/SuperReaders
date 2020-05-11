@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.superreaders.retrofit.response.LoginResponse;
+import com.google.gson.Gson;
 
 public class SessionManagement {
     private SharedPreferences.Editor editor;
@@ -19,24 +20,18 @@ public class SessionManagement {
     }
 
     public void createLoginSession(LoginResponse user){
-        System.out.println("Holaaaa");
-        editor.putInt("id",user.getId());
-        editor.putInt("teacherId",user.getTeacherId());
-        editor.putInt("studentId",user.getStudentId());
-        editor.putString("firstName",user.getFirstName());
-        editor.putString("lastName",user.getLastName());
-        editor.putString("userName",user.getUserName());
-        editor.putString("email",user.getEmail());
-        editor.putInt("idSchool",user.getIdSchool());
-        editor.putBoolean("status",user.getStatus());
-        editor.putString("role",user.getRole());
-        editor.putString("token", user.getToken());
-        editor.putBoolean("isLogin", true);
-        editor.putString("refreshToken",user.getRefreshToken());
-        //editor.putInt("classRoom",user.getClassRoom());
-        //editor.putBoolean("isFirstTime",user.getIsFirstTime());
+        editor.putString("currentUser",new Gson().toJson(user));
         editor.putBoolean("isLogin",true);
         // commit changes
         editor.commit();
     }
+    public void logoutUser() {
+        editor.clear();
+        editor.commit();
+    }
+    public LoginResponse getCurrentUser(){
+        String currentUserJson=pref.getString("currentUser", null);
+        return new Gson().fromJson(currentUserJson,LoginResponse.class);
+    }
+
 }

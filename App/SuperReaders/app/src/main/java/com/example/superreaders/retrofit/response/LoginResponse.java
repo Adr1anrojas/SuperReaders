@@ -1,11 +1,11 @@
 
 package com.example.superreaders.retrofit.response;
 
+import com.example.superreaders.retrofit.models.ClassRoom;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginResponse {
-
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -44,17 +44,17 @@ public class LoginResponse {
     private String refreshToken;
     @SerializedName("classRoom")
     @Expose
-    private Integer classRoom;
+    private ClassRoom classRoom;
     @SerializedName("isFirstTime")
     @Expose
     private Boolean isFirstTime;
+
     /**
      * No args constructor for use in serialization
      *
      */
     public LoginResponse() {
     }
-
 
     /**
      *
@@ -73,7 +73,7 @@ public class LoginResponse {
      * @param status
      * @param refreshToken
      */
-    public LoginResponse(Integer id, Integer teacherId, Integer studentId, String firstName, String lastName, String userName, String email, Integer idSchool, Boolean status, String role, String token, String refreshToken, Integer classRoom, Boolean isFirstTime) {
+    public LoginResponse(Integer id, Integer teacherId, Integer studentId, String firstName, String lastName, String userName, String email, Integer idSchool, Boolean status, String role, String token, String refreshToken, ClassRoom classRoom, Boolean isFirstTime) {
         super();
         this.id = id;
         this.teacherId = teacherId;
@@ -187,11 +187,11 @@ public class LoginResponse {
         this.refreshToken = refreshToken;
     }
 
-    public Integer getClassRoom() {
+    public ClassRoom getClassRoom() {
         return classRoom;
     }
 
-    public void setClassRoom(Integer classRoom) {
+    public void setClassRoom(ClassRoom classRoom) {
         this.classRoom = classRoom;
     }
 
@@ -202,6 +202,5 @@ public class LoginResponse {
     public void setIsFirstTime(Boolean isFirstTime) {
         this.isFirstTime = isFirstTime;
     }
-
 
 }
