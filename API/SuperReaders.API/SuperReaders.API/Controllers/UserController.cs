@@ -53,7 +53,6 @@ namespace SuperReaders.API.Controllers
         {
             try
             {
-                UserDAO userDAO = new UserDAO();
                 return Ok(_iUserDomainObject.GetStudents());
             }
             catch (Exception e)
@@ -74,7 +73,6 @@ namespace SuperReaders.API.Controllers
         {
             try
             {
-                UserDAO userDAO = new UserDAO();
                 return Ok(_iUserDomainObject.GetStudentsByClassRoom(idClassRoom));
             }
             catch (Exception e)
@@ -95,7 +93,6 @@ namespace SuperReaders.API.Controllers
         {
             try
             {
-                UserDAO userDAO = new UserDAO();
                 return Ok(_iUserDomainObject.GetAdmins());
             }
             catch (Exception e)
@@ -115,7 +112,6 @@ namespace SuperReaders.API.Controllers
         {
             try
             {
-                UserDAO userDAO = new UserDAO();
                 return Ok(_iUserDomainObject.GetTeachers());
             }
             catch (Exception e)
@@ -206,27 +202,5 @@ namespace SuperReaders.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
-        // POST: api/User
-        /// <summary>
-        /// This EndPoint create an User of the role Specified
-        /// </summary>
-        /// <param name="user">user to create</param>
-        /// <returns>status code 200</returns>
-        [HttpPost]
-        [Route("typeContentStudent")]
-        public IActionResult AddTypeContentStudent([FromBody] List<TypeContent> typeContentStudent)
-        {
-            try
-            {
-                _iUserDomainObject.AddTypeContentStudent(typeContentStudent);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
-        }
-
     }
 }

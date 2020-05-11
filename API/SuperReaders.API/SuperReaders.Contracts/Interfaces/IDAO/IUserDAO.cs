@@ -99,13 +99,6 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         void AddStudentToClassRoom(int idClassRoom, int idStudent);
 
         /// <summary>
-        /// This Method create an typeContent of the student specified
-        /// </summary>
-        /// <param name="typeContentStudent">typeContent to user</param>
-        /// <returns></returns>
-        void AddTypeContentStudent(TypeContent typeContentStudent);
-
-        /// <summary>
         /// This Method update if an user a selected your content
         /// </summary>
         /// <param name="idStudent">typeContent to user</param>
