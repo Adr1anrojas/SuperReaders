@@ -5,7 +5,8 @@
             <div *ngFor=" let item of this.currentContent.pages; let i=index">
                 <div class="row" *ngIf="this.currentPageContent==i">
                     <div class="col-3">
-                        <img class="img-fluid" src="{{this.imageService.convertBase64ToImage(item.img)}}" alt="">
+                        <img class="img-fluid content-size" src="{{this.imageService.convertBase64ToImage(item.img)}}"
+                            alt="">
                     </div>
                     <div class="col-9">
                         <h5 class="card-title text-center">Pagina {{i+1}}</h5>
