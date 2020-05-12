@@ -1,7 +1,7 @@
-package com.example.superreaders.retrofit.response;
+package com.example.superreaders.retrofit.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-public class ContentResponse {
+public class Content {
 
     @SerializedName("id")
     @Expose
@@ -23,7 +23,7 @@ public class ContentResponse {
      * No args constructor for use in serialization
      *
      */
-    public ContentResponse() {
+    public Content() {
     }
 
     /**
@@ -34,7 +34,7 @@ public class ContentResponse {
      * @param idTypeContent
      * @param status
      */
-    public ContentResponse(Integer id, String title, Integer idTypeContent, String img, Boolean status) {
+    public Content(Integer id, String title, Integer idTypeContent, String img, Boolean status) {
         super();
         this.id = id;
         this.title = title;

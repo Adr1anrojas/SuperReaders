@@ -48,6 +48,7 @@ public class TypeContentAdapter extends RecyclerView.Adapter<TypeContentAdapter.
         return dataset.size();
     }
     public void addListTypeContent(ArrayList<TypeContent> listTypeContent) {
+        dataset.removeAll(dataset);
         dataset.addAll(listTypeContent);
         notifyDataSetChanged();
     }

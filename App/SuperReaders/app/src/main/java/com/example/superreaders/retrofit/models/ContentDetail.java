@@ -1,18 +1,16 @@
 
-package com.example.superreaders.retrofit.response;
+package com.example.superreaders.retrofit.models;
 
 import java.util.List;
 
-import com.example.superreaders.retrofit.models.Page;
-import com.example.superreaders.retrofit.models.Question;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ContentDetailResponse {
+public class ContentDetail {
 
     @SerializedName("content")
     @Expose
-    private ContentResponse content;
+    private Content content;
     @SerializedName("pages")
     @Expose
     private List<Page> pages = null;
@@ -24,7 +22,7 @@ public class ContentDetailResponse {
      * No args constructor for use in serialization
      * 
      */
-    public ContentDetailResponse() {
+    public ContentDetail() {
     }
 
     /**
@@ -33,18 +31,18 @@ public class ContentDetailResponse {
      * @param questions
      * @param content
      */
-    public ContentDetailResponse(ContentResponse content, List<Page> pages, List<Question> questions) {
+    public ContentDetail(Content content, List<Page> pages, List<Question> questions) {
         super();
         this.content = content;
         this.pages = pages;
         this.questions = questions;
     }
 
-    public ContentResponse getContent() {
+    public Content getContent() {
         return content;
     }
 
-    public void setContent(ContentResponse content) {
+    public void setContent(Content content) {
         this.content = content;
     }
 

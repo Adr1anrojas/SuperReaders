@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*
         Button buttonLogout= findViewById(R.id.buttonLogout);
         buttonLogout.setOnClickListener( v->{
             SessionManagement session = new SessionManagement(getApplicationContext());
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         });
+         */
         recyclerView = findViewById(R.id.rv_type_content);
         typeContentAdapter = new TypeContentAdapter(this);
         recyclerView.setAdapter(typeContentAdapter);
