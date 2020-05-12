@@ -16,45 +16,31 @@ namespace SuperReaders.API.Controllers
             _iMonitoringDomainObject = iMonitoringDomainObject;
         }
 
-        // POST: api/Monitoring
-        /// <summary>
-        /// This EndPoint create an User of the role Specified
-        /// </summary>
-        /// <param name="monitoring">user to create</param>
-        /// <returns>status code 200</returns>
-        /*[HttpPost]
-        public IActionResult AddMonitoring([FromBody] Monitoring monitoring)
+        // GET: api/Monitoring/2
+        [HttpGet("{id}")]
+        public ActionResult<MonitoringClassRoom> GetByMonitoringClassRoom(int id)
         {
             try
             {
-                _iMonitoringDomainObject.AddMonitoring(monitoring);
-                return Ok();
+
+                return Ok(_iMonitoringDomainObject.GetByMonitoringClassRoom(id));
             }
             catch (Exception e)
             {
-                if (e.Message.Equals("This user already exists"))
-                    return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }
-        }*/
-        // PUT: api/User
-        /// <summary>
-        /// This EndPoint update an User of the role Specified
-        /// </summary>
-        /// <param name="monitoring">user to update</param>
-        /// <returns>status code 200</returns>
-        [HttpPut]
-        public IActionResult UpdateMonitoring([FromBody] Monitoring monitoring)
+        }
+        // GET: api/Monitoring/Student/1
+        [HttpGet("Student/{id}")]
+        public ActionResult<MonitoringStudent> GetByMonitoringStudent(int id)
         {
             try
             {
-                _iMonitoringDomainObject.UpdateMonitoring(monitoring);
-                return Ok();
+
+                return Ok(_iMonitoringDomainObject.GetByMonitoringStudent(id));
             }
             catch (Exception e)
             {
-                if (e.Message.Equals("This user already exists"))
-                    return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }
         }

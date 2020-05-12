@@ -16,38 +16,56 @@ namespace SuperReaders.Services.DomainObject
             _iMonitoringDAO = iMonitoringDAO;
         
         }
-        /// <summary>
-        /// This EndPoint create an User of the role Specified
-        /// </summary>
-        /// <param name="user">user to create</param>
-        /// <returns>status code 200</returns>
-        /*public void AddMonitoring(Monitoring monitoring)
+
+        public IEnumerable<MonitoringContentMoreRead> GetByContentMoreRead(int id)
         {
+            throw new NotImplementedException();
+        }
+     
+        public IEnumerable<MonitoringClassRoom> GetByMonitoringClassRoom(int id)
+        {
+            List<MonitoringClassRoom> monitoringClassRoomsFinal = new List<MonitoringClassRoom>();
+            MonitoringClassRoom monitoringClassRoom = new MonitoringClassRoom();
+
             try
             {
-                int result = _iMonitoringDAO.AddMonitoring(monitoring);
-       
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }*/
-        // <summary>
-        /// This EndPoint update an User of the role Specified
-        /// </summary>
-        /// <param name="user">user to update</param>
-        /// <returns>status code 200</returns>
-        public void UpdateMonitoring(Monitoring monitoring)
-        {
-            try
-            {
-                _iMonitoringDAO.UpdateMonitoring(monitoring);
+            
+                monitoringClassRoom.Student = new List<MonitoringClassRoomStudent>();
+                monitoringClassRoom.Student=_iMonitoringDAO.GetByMonitoringClassRoomStudent(id);
+                int count = monitoringClassRoom.Student.Count();
+                int SumContentFinished = monitoringClassRoom.Student.Sum(x=> x.ContentFinished);
+                decimal averageContentRead = 0;
+                monitoringClassRoom.contentMoreReads = new List<MonitoringContentMoreRead>();
+                monitoringClassRoom.contentMoreReads= _iMonitoringDAO.GetByContentMoreRead(id);
+                if (count!=0)
+                {
+                    averageContentRead = (decimal)SumContentFinished / count;
+                }
+           
+                monitoringClassRoom.averageContentRead = averageContentRead;
+                monitoringClassRoomsFinal.Add(monitoringClassRoom);
+                return monitoringClassRoomsFinal;
+
             }
             catch (Exception e)
             {
                 throw e;
             }
         }
+        public IEnumerable<MonitoringStudent> GetByMonitoringStudent(int id)
+        {
+   
+            try
+            {    
+                return (_iMonitoringDAO.GetByMonitoringStudent(id));
+         
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
     }
 }

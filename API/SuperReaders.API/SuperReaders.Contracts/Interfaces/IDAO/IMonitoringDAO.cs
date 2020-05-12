@@ -7,19 +7,38 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
 {
     public interface IMonitoringDAO
     {
-        /// <summary>
-        /// This Method create an User of the role Teacher
-        /// </summary>
-        /// <param name="id">ID of user Teacher to create</param>
-        /// <returns></returns>
-        /*int AddMonitoring(Monitoring monitoring);*/
-
+        IEnumerable<MonitoringClassRoomStudent> GetByMonitoringClassRoomStudent(int id);
 
         /// <summary>
-        /// This Method update an User of the role Specified and Access the data
+        /// This Method create an ClassRoom of Specified and Access the data
         /// </summary>
-        /// <param name="user">user to update</param>
+        /// <param name="classRoom">ClassRoom to create</param>
         /// <returns></returns>
-        void UpdateMonitoring(Monitoring monitoring);
+        /// 
+        IEnumerable<MonitoringClassRoom> GetByMonitoringClassRoom(int id);
+
+        /// <summary>
+        /// This Method create an ClassRoom of Specified and Access the data
+        /// </summary>
+        /// <param name="classRoom">ClassRoom to create</param>
+        /// <returns></returns>
+        /// 
+          IEnumerable<MonitoringStudent> GetByMonitoringStudent(int id);
+
+        /// <summary>
+        /// This Method create an ClassRoom of Specified and Access the data
+        /// </summary>
+        /// <param name="classRoom">ClassRoom to create</param>
+        /// <returns></returns>
+        /// 
+        IEnumerable<MonitoringContentMoreRead> GetByContentMoreRead(int id);
+
+        /// <summary>
+        /// This Method create an ClassRoom of Specified and Access the data
+        /// </summary>
+        /// <param name="classRoom">ClassRoom to create</param>
+        /// <returns></returns>
+        /// 
+
     }
 }

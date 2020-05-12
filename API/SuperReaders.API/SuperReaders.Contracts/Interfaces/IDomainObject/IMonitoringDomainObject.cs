@@ -7,18 +7,30 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
 {
     public interface IMonitoringDomainObject
     {
-        /// <summary>
-        /// This Method return all Users of the role Specified and apply the business rules
-        /// </summary>
-        /// <param name="">
-        /// <returns>Array of Users of the role Specified</returns>
-       /* void AddMonitoring(Monitoring monitoring);*/
+        IEnumerable<MonitoringClassRoom> GetByMonitoringClassRoom(int id);
 
         /// <summary>
-        /// This Method update an User of the role Specified and apply the business rules
+        /// This Method create an ClassRoom of Specified and Access the data
         /// </summary>
-        /// <param name="user">user to update</param>
-        /// <returns>status code 200</returns>
-        void UpdateMonitoring(Monitoring monitoring);
+        /// <param name="classRoom">ClassRoom to create</param>
+        /// <returns></returns>
+        /// 
+        IEnumerable<MonitoringStudent> GetByMonitoringStudent(int id);
+
+        /// <summary>
+        /// This Method create an ClassRoom of Specified and Access the data
+        /// </summary>
+        /// <param name="classRoom">ClassRoom to create</param>
+        /// <returns></returns>
+        /// 
+        IEnumerable<MonitoringContentMoreRead> GetByContentMoreRead(int id);
+
+        /// <summary>
+        /// This Method create an ClassRoom of Specified and Access the data
+        /// </summary>
+        /// <param name="classRoom">ClassRoom to create</param>
+        /// <returns></returns>
+        /// 
+
     }
 }
