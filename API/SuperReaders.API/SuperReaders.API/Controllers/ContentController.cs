@@ -68,6 +68,22 @@ namespace SuperReaders.API.Controllers
             }
         }
 
+        // GET: api/Content/contentByTypeContent
+        [HttpGet]
+        [Route("contentByTypeContent")]
+        [DisableRequestSizeLimit]
+        public ActionResult<TypeContent> GetContentbyTypeContent()
+        {
+            try
+            {
+                return Ok(_iContentDomainObject.GetContentByTypeContent());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
         // POST: api/Content
         [HttpPost]
         [DisableRequestSizeLimit]

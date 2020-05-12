@@ -173,7 +173,22 @@ namespace SuperReaders.Services.DomainObject
                 throw e;
             }
         }
-
+        public IEnumerable<TypeContent> GetContentByTypeContent() {
+            List<TypeContent> typeContent = null;
+            try
+            {
+                typeContent = _iContentDAO.GetTypeContent().ToList();
+                foreach (TypeContent type in typeContent)
+                {
+                    type.Img = GetImg(type.Name, 3);
+                    type.Contents = GetContentByIdTypeContent(type.Id).ToList();
+                }
+                return typeContent;
+            }
+            catch (Exception e) {
+                throw e;
+            }
+        }
         public IEnumerable<TypeContent> GetTypeContent()
         {
             List<TypeContent> typeContent = null;
@@ -313,6 +328,24 @@ namespace SuperReaders.Services.DomainObject
                 {
                     _iContentDAO.SaveAnswerStudent(studentAnswer);
                 }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IEnumerable<Content> GetContentByIdTypeContent(int idTypeContent)
+        {
+            List<Content> contents;
+            try
+            {
+                contents = _iContentDAO.GetContentByIdTypeContent(idTypeContent).ToList();
+                foreach (Content content in contents)
+                {
+                    content.Img = GetImg(content.Title, 1);
+                }
+                return contents;
             }
             catch (Exception e)
             {

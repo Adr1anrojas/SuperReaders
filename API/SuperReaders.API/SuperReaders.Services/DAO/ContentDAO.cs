@@ -324,6 +324,22 @@ namespace SuperReaders.Services.DAO
             }
         }
 
+        public IEnumerable<Content> GetContentByIdTypeContent(int idTypeContent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_Content_IdTypeContent, idTypeContent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<Content>(Constants.SP_Content_GetContentByIdTypeContent, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
 
