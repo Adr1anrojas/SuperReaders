@@ -17,6 +17,8 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         Content GetContent(int id);
 
         IEnumerable<TypeContent> GetTypeContent();
+
+        IEnumerable<Content> GetContentByIdTypeContent(int idTypeContent);
         /// <summary>
         /// This Method create an Content and Access the data
         /// </summary>
