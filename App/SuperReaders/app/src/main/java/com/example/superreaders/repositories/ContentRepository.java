@@ -75,7 +75,6 @@ public class ContentRepository {
         return responseContentDetail;
     }
     public MutableLiveData<List<TypeContent>> getTypeContent(){
-        System.out.println("Holaa");
         Call<List<TypeContent>> call = superReadersService.getTypeContent();
         call.enqueue(new Callback<List<TypeContent>>() {
             @Override
@@ -100,5 +99,28 @@ public class ContentRepository {
             }
         });
         return responseTypeContent;
+    }
+    public void saveTypeContentStudent(List<TypeContent> contenStudent ){
+        Call<Void> call = superReadersService.saveTypeContentStudent(contenStudent);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(!response.isSuccessful()) {
+                    try {
+                        messageResponse.setValue("Error: "+response.errorBody().string());
+                    } catch (IOException e) {
+                        messageResponse.setValue("Error: "+e.getMessage());
+                    }
+                    return;
+                }
+                messageResponse.setValue("Se guardaron las preferencias correctamente");
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                messageResponse.setValue("Error: "+t.getMessage());
+            }
+        });
+
     }
 }

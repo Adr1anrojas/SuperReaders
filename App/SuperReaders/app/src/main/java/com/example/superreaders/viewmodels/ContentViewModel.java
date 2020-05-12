@@ -37,4 +37,10 @@ public class ContentViewModel extends ViewModel {
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;
     }
+    public MutableLiveData<String> getMessage() {
+        return message;
+    }
+    public void saveTypeContentStudent(List<TypeContent> typeContentStudent){
+        repository.saveTypeContentStudent(typeContentStudent);
+    }
 }

@@ -7,12 +7,14 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superreaders.R;
+import com.example.superreaders.SessionManagement;
 import com.example.superreaders.retrofit.models.TypeContent;
 
 import java.util.ArrayList;
@@ -22,10 +24,12 @@ public class TypeContentAdapter extends RecyclerView.Adapter<TypeContentAdapter.
 
     private ArrayList<TypeContent> dataset;
     private Context context;
+    ArrayList<TypeContent> typeContentSelected;
 
     public TypeContentAdapter(Context context) {
         this.context = context;
         dataset = new ArrayList<>();
+        typeContentSelected = new ArrayList<>();
     }
 
     @Override
@@ -37,10 +41,20 @@ public class TypeContentAdapter extends RecyclerView.Adapter<TypeContentAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TypeContent typeContent = dataset.get(position);
+
         holder.nameTextView.setText(typeContent.getName());
         byte[] decodedString = Base64.decode(typeContent.getImg(), Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         holder.pictureImageView.setImageBitmap(decodedByte);
+        holder.checkBox.setOnClickListener( v->{
+                if (holder.checkBox.isChecked()){
+                    typeContentSelected.add(typeContent);
+                }
+                else if(!holder.checkBox.isChecked()){
+                    typeContentSelected.remove(typeContent);
+                }
+            }
+        );
     }
 
     @Override
@@ -58,12 +72,14 @@ public class TypeContentAdapter extends RecyclerView.Adapter<TypeContentAdapter.
 
         private ImageView pictureImageView;
         private TextView nameTextView;
+        private CheckBox checkBox;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             pictureImageView = (ImageView) itemView.findViewById(R.id.type_content_poster);
             nameTextView = (TextView) itemView.findViewById(R.id.nameTextView);
+            checkBox = (CheckBox) itemView.findViewById(R.id.checkbox);
         }
     }
 }

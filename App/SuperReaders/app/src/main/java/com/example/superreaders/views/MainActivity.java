@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         /*
         Button buttonLogout= findViewById(R.id.buttonLogout);
         buttonLogout.setOnClickListener( v->{
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             this.finish();
         });
          */
+        SessionManagement sessionManagement =new SessionManagement(this);
         recyclerView = findViewById(R.id.rv_type_content);
         typeContentAdapter = new TypeContentAdapter(this);
         recyclerView.setAdapter(typeContentAdapter);
@@ -48,6 +50,19 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this,3);
         recyclerView.setLayoutManager(layoutManager);
         viewModel = ViewModelProviders.of(this).get(ContentViewModel.class);
+        Button buttonConfirm = findViewById(R.id.buttonConfirm);
+        buttonConfirm.setOnClickListener( v->{
+            List<TypeContent> typeContentsSelected = typeContentAdapter.typeContentSelected;
+            if(typeContentsSelected.isEmpty()){
+                Toast.makeText(this,"Seleccione almenos una categoria",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                for (TypeContent e:typeContentsSelected){
+                    e.setIdStudent(sessionManagement.getCurrentUser().getStudentId());
+                }
+                viewModel.saveTypeContentStudent(typeContentsSelected);
+            }
+        });
         //viewModel.getTypeContent();
         final Observer<String> observer = message ->{
             Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG ).show();
@@ -58,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         viewModel.getTypeContent().observe(this,observerTypeContent);
+        viewModel.getMessage().observe(this,observer);
 
     }
 }
