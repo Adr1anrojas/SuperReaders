@@ -1,3 +1,4 @@
+import { ContentMoreRead } from './../../models/contentmoreread';
 import { ReportStudent } from 'src/app/models/reportStudent';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,19 +13,24 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class ReportComponent implements OnInit {
 
-  reports: Report ;
+  reports: Report[]  = [];
   detailStudent: ReportStudent;
   idStudent: number;
+  suma: number;
   currentUser: LoginResult;
+
+
   constructor(private route: Router, private reportService: ReportService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.currentUser = this.loginService.currentUserValue();
     this.getAllMonitoringByClassRoom();
+
   }
+
   getAllMonitoringByClassRoom() {
 
-    this.reportService.getMonitoringById(this.currentUser.classRoom.id).subscribe((res: Report) => {
+    this.reportService.getMonitoringById(this.currentUser.classRoom.id).subscribe((res: Report[]) => {
       this.reports = res;
     });
   }
@@ -34,5 +40,4 @@ export class ReportComponent implements OnInit {
       this.detailStudent = res;
     });
   }
-
 }

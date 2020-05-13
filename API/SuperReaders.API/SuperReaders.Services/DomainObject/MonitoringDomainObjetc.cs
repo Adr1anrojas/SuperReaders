@@ -34,15 +34,19 @@ namespace SuperReaders.Services.DomainObject
                 monitoringClassRoom.Student=_iMonitoringDAO.GetByMonitoringClassRoomStudent(id);
                 int count = monitoringClassRoom.Student.Count();
                 int SumContentFinished = monitoringClassRoom.Student.Sum(x=> x.ContentFinished);
+                int SumContentNotFinished = monitoringClassRoom.Student.Sum(x => x.ContentNotFinished);
                 decimal averageContentRead = 0;
+                decimal averageContentNotRead = 0;
                 monitoringClassRoom.contentMoreReads = new List<MonitoringContentMoreRead>();
                 monitoringClassRoom.contentMoreReads= _iMonitoringDAO.GetByContentMoreRead(id);
                 if (count!=0)
                 {
                     averageContentRead = (decimal)SumContentFinished / count;
+                    averageContentNotRead = (decimal)SumContentNotFinished / count;
                 }
-           
+                monitoringClassRoom.contentReadFromMoreRead = monitoringClassRoom.contentMoreReads.Sum(x => x.More); ;
                 monitoringClassRoom.averageContentRead = averageContentRead;
+                monitoringClassRoom.averageContentNotRead = averageContentNotRead;
                 monitoringClassRoomsFinal.Add(monitoringClassRoom);
                 return monitoringClassRoomsFinal;
 

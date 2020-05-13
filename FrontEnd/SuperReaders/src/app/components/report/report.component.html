@@ -1,5 +1,3 @@
-<h5 class="bt-3">Monitoreo</h5>
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <!-- Page Heading -->
@@ -8,30 +6,75 @@
 
   </div>
 
+
   <!-- Content Row -->
-  <div class="row" *ngIf="reports">
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4" *ngFor="let item of reports">
-      <div class="card border-left-primary shadow h-100 py-2">
+  <div class="row"  *ngFor="let item of reports">
+
+    <div class="col-xl-3 col-md-6 mb-4" *ngFor="let item2 of item.contentMoreReads">
+      <div class="card border-left-info shadow h-100 py-2">
         <div class="card-body">
-          <div class="row no-gutters align-items-center" *ngFor="let item2 of item">
+          <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div
-                class="text-xs font-weight-bold text-primary text-uppercase mb-1"
-              >
-              {{item2.title}}
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1"> {{item2.title}} </div>
+              <div class="row no-gutters align-items-center" >
+
+                <div class="col-auto">
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">%{{(item2.more/item.contentReadFromMoreRead)*100}}</div>
+                </div>
+                <div class="col">
+                  <div class="progress progress-sm mr-2">
+
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{(item2.more/item.contentReadFromMoreRead)*100}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">{{item2.more}}</div>
             </div>
             <div class="col-auto">
-              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
+<!-- Orders -->
+<div class="orders">
+  <div class="row">
+      <div class="col-xl-8">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="box-title">Estudiantes </h4>
+              </div>
+              <div class="card-body--">
+                  <div class="table-stats order-table ov-h">
+                      <table class="table "  >
+                          <thead *ngFor="let item of reports" >
+                              <tr>
+                                  <th class="Numero">#</th>
+                                  <th>ID</th>
+                                  <th>Nombre</th>
+                                  <th>Apellido</th>
+                                  <th>Contenidos Leidos</th>
+                                  <th>Tiempo de lectura</th>
+                                  <th>Contenido Finalizado</th>
+                                  <th>Contenido No Finalizado</th>
+                              </tr>
+                          </thead>
+                          <tbody >
+                              <tr  *ngFor="let item2 of item.students">
+                                  <td >{{item2.id}}</td>
+                                  <td >{{item2.firstName}}</td>
+                                  <td >{{item2.lastName}}</td>
+                                  <td >{{item2.contentRead}}</td>
+                                  <td >{{item2.timeReading}}</td>
+                                  <td >{{item2.contentFinished}}</td>
+                                  <td >{{item2.contentNotFinished}}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div> <!-- /.table-stats -->
+              </div>
+          </div> <!-- /.card -->
+      </div>  <!-- /.col-lg-8 -->
 
   <!-- Content Row -->
 
