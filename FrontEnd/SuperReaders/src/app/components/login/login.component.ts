@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { LoginCredential } from 'src/app/models/loginCredential';
 import { LoginService } from 'src/app/services/login.service';
@@ -19,11 +19,19 @@ export class LoginComponent implements OnInit {
   });
   userCredential: LoginCredential;
   submitted = false;
+  public innerWidth: any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event) { this.innerWidth = window.innerWidth; }
+  isMovil: boolean = false;
   constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     if (this.loginService.isLogged)
       this.router.navigate(['/home']);
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth);
+    if (this.innerWidth <= 768)
+      this.isMovil = true;
   }
 
   onSubmit() {
@@ -50,5 +58,5 @@ export class LoginComponent implements OnInit {
   get controls() {
     return this.formLogin.controls;
   }
-  
+
 }

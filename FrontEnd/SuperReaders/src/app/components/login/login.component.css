@@ -1,7 +1,9 @@
 .img-center{
     background-image: url("../../../assets/ReadersPanelRight.png");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
 }
 .size-form{
     width: 80%;
@@ -9,8 +11,10 @@
 .font-login{
     font-family: cursive
 }
-
 .btn-primary.login-btn {
 	background-color: #79CFCD;
 	border-color: #79CFCD;
+}
+.height-img{
+    height: 100vh;
 }
