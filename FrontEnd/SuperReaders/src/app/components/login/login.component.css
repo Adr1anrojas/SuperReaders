@@ -1,3 +1,16 @@
-.size-card{
-    max-width: 500px;
+.img-center{
+    background-image: url("../../../assets/ReadersPanelRight.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.size-form{
+    width: 80%;
+}
+.font-login{
+    font-family: cursive
+}
+
+.btn-primary.login-btn {
+	background-color: #79CFCD;
+	border-color: #79CFCD;
 }

@@ -1,32 +1,45 @@
-<div class="container h-100">
-    <div class="row align-items-center h-100">
-        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 mx-auto">
-            <div class="card size-card">
-                <div class="card-body">
-                    <form [formGroup]="formLogin" class="needs-validation" novalidate (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Usuario</label>
-                            <input type="email" class="form-control " id="exampleInputEmail1"
-                                placeholder="Nombre de Usuario" formControlName="userName"
-                                [ngClass]="{'is-invalid':submitted && controls.userName.errors }">
-                            <div *ngIf="submitted && controls.userName.errors" class="invalid-feedback">
-                                Nombre de Usuario requerido.
-                            </div>
+<div class="container-fluid h-100">
+    <div class="row">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 img-left pl-0 pr-0">
+            <img src="../../../assets/ReadersPanelLeft.png" alt="" class="img-fluid ">
+        </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 img-center pl-0 pr-0">
+            <div class="row h-100 justify-content-center img-center">
+                <form [formGroup]="formLogin" class="needs-validation size-form mt-5" novalidate
+                    (ngSubmit)="onSubmit()">
+                    <h1 class="font-login">Super Lectores</h1>
+                    <p class="font-login">
+                        Bienvenido a Super Lectores. <br>
+                        Aqui podras encontrar las historias, cuentos <br>
+                        y fabulas de todas tus generos favoritos. <br>
+                        Lee, imagina y crece.
+                    </p>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Usuario</label>
+                        <input type="email" class="form-control " id="exampleInputEmail1"
+                            placeholder="Nombre de Usuario" formControlName="userName"
+                            [ngClass]="{'is-invalid':submitted && controls.userName.errors }">
+                        <div *ngIf="submitted && controls.userName.errors" class="invalid-feedback">
+                            Nombre de Usuario requerido.
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                placeholder="Contraseña" formControlName="password"
-                                [ngClass]="{'is-invalid':submitted && controls.password.errors }">
-                            <div *ngIf="submitted && controls.password.errors" class="invalid-feedback">
-                                Contraseña requerida.
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Contraseña</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña"
+                            formControlName="password"
+                            [ngClass]="{'is-invalid':submitted && controls.password.errors }">
+                        <div *ngIf="submitted && controls.password.errors" class="invalid-feedback">
+                            Contraseña requerida.
                         </div>
-                        <button type="submit" class="btn btn-primary text-uppercase btn-block">Iniciar
-                            Sesión</button>
-                    </form>
-                </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary login-btn text-uppercase btn-block">Iniciar
+                        Sesión</button>
+                </form>
             </div>
         </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 pl-0 pr-0">
+            <img src="../../../assets/ReadersPanelRight.png" alt="" class="img-fluid">
+        </div>
     </div>
+
 </div>
