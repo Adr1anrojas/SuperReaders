@@ -9,7 +9,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context=".views.MainActivity">
+    tools:context=".ui.content.TypeContentActivity">
 
     <TextView
         android:layout_width="wrap_content"

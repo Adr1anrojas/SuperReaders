@@ -1,4 +1,4 @@
-package com.example.superreaders.viewmodels;
+package com.example.superreaders.ui.login;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

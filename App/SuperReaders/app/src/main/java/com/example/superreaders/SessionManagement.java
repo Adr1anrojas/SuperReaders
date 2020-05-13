@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 public class SessionManagement {
     private SharedPreferences.Editor editor;
     private Context _context;
-    public SharedPreferences pref;
+    private SharedPreferences pref;
     private int PRIVATE_MODE = 0;
     private static final String PREF_NAME = "_store";
 
@@ -32,6 +32,9 @@ public class SessionManagement {
     public LoginResponse getCurrentUser(){
         String currentUserJson=pref.getString("currentUser", null);
         return new Gson().fromJson(currentUserJson,LoginResponse.class);
+    }
+    public boolean isLogin(){
+        return  pref.getBoolean("isLogin",false);
     }
 
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.superreaders.retrofit.models.TypeContent;
 import com.example.superreaders.retrofit.models.ContentDetail;
 import com.example.superreaders.retrofit.models.Content;
+import com.example.superreaders.retrofit.models.TypeContentDetail;
 import com.example.superreaders.retrofit.services.RetrofitService;
 import com.example.superreaders.retrofit.services.SuperReadersService;
 
@@ -19,10 +20,14 @@ import retrofit2.Response;
 public class ContentRepository {
     private SuperReadersService superReadersService;
     public MutableLiveData<String> messageResponse = new MutableLiveData<>();
-    MutableLiveData<ContentDetail> responseContentDetail = new MutableLiveData<>();
-    MutableLiveData<List<Content>> responseContent = new MutableLiveData<>();
-    ArrayList<Content> contentList = new ArrayList<Content>();
-    MutableLiveData<List<TypeContent>> responseTypeContent = new MutableLiveData<>();
+    public MutableLiveData<Boolean> status = new MutableLiveData<>();
+    public MutableLiveData<ContentDetail> responseContentDetail = new MutableLiveData<>();
+    public MutableLiveData<List<Content>> responseContent = new MutableLiveData<>();
+    private ArrayList<Content> contentList = new ArrayList<Content>();
+
+    public MutableLiveData<List<TypeContentDetail>> responseContentByType = new MutableLiveData<>();
+    private ArrayList<TypeContentDetail> typeContentDetailsList= new ArrayList<TypeContentDetail>();
+    public MutableLiveData<List<TypeContent>> responseTypeContent = new MutableLiveData<>();
     ArrayList<TypeContent> typeContentList = new ArrayList<TypeContent>();
     public ContentRepository(){
         superReadersService = RetrofitService.createService(SuperReadersService.class);
@@ -88,7 +93,6 @@ public class ContentRepository {
                     return;
                 }
                 typeContentList.removeAll(typeContentList);
-                System.out.println(response.body().size());
                 typeContentList.addAll(response.body());
                 responseTypeContent.setValue(typeContentList);
             }
@@ -100,8 +104,8 @@ public class ContentRepository {
         });
         return responseTypeContent;
     }
-    public void saveTypeContentStudent(List<TypeContent> contenStudent ){
-        Call<Void> call = superReadersService.saveTypeContentStudent(contenStudent);
+    public void saveTypeContentStudent(List<TypeContent> contentStudent ){
+        Call<Void> call = superReadersService.saveTypeContentStudent(contentStudent);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -113,7 +117,7 @@ public class ContentRepository {
                     }
                     return;
                 }
-                messageResponse.setValue("Se guardaron las preferencias correctamente");
+                status.setValue(true);
             }
 
             @Override
@@ -122,5 +126,31 @@ public class ContentRepository {
             }
         });
 
+    }
+    public MutableLiveData<List<TypeContentDetail>> getContentByTypeContent(){
+        Call<List<TypeContentDetail>> call = superReadersService.getContentByContentType();
+        call.enqueue(new Callback<List<TypeContentDetail>>() {
+            @Override
+            public void onResponse(Call<List<TypeContentDetail>> call, Response<List<TypeContentDetail>> response) {
+                if(!response.isSuccessful()) {
+                    try {
+                        messageResponse.setValue("Error: "+response.errorBody().string());
+                    } catch (IOException e) {
+                        messageResponse.setValue("Error: "+e.getMessage());
+                    }
+                    return;
+                }
+                typeContentDetailsList.removeAll(typeContentDetailsList);
+                typeContentDetailsList.addAll(response.body());
+                responseContentByType.setValue(typeContentDetailsList);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<TypeContentDetail>> call, Throwable t) {
+                messageResponse.setValue("Error: "+t.getMessage());
+            }
+        });
+        return responseContentByType;
     }
 }

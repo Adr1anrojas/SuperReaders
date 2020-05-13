@@ -1,8 +1,7 @@
-package com.example.superreaders.views;
+package com.example.superreaders.ui.content;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,38 +9,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.Toast;
 
 import com.example.superreaders.R;
 import com.example.superreaders.SessionManagement;
 import com.example.superreaders.retrofit.models.TypeContent;
-import com.example.superreaders.retrofit.response.LoginResponse;
-import com.example.superreaders.viewmodels.ContentViewModel;
-import com.example.superreaders.viewmodels.LoginViewModel;
+import com.example.superreaders.ui.home.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class TypeContentActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TypeContentAdapter typeContentAdapter;
     private ContentViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        /*
-        Button buttonLogout= findViewById(R.id.buttonLogout);
-        buttonLogout.setOnClickListener( v->{
-            SessionManagement session = new SessionManagement(getApplicationContext());
-            session.logoutUser();
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
-            this.finish();
-        });
-         */
+        setContentView(R.layout.activity_typecontent);
         SessionManagement sessionManagement =new SessionManagement(this);
         recyclerView = findViewById(R.id.rv_type_content);
         typeContentAdapter = new TypeContentAdapter(this);
@@ -63,9 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 viewModel.saveTypeContentStudent(typeContentsSelected);
             }
         });
-        //viewModel.getTypeContent();
-        final Observer<String> observer = message ->{
+        final Observer<String> observerMsg = message ->{
             Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG ).show();
+        };
+        final Observer<Boolean> observerStatus = status ->{
+            Intent intent = new Intent(this,HomeActivity.class);
+            startActivity(intent);
+            this.finish();
         };
         final Observer<List<TypeContent>> observerTypeContent= type ->{
             if(type!=null){
@@ -73,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         viewModel.getTypeContent().observe(this,observerTypeContent);
-        viewModel.getMessage().observe(this,observer);
+        viewModel.getMessage().observe(this,observerMsg);
+        viewModel.getStatus().observe(this,observerStatus);
 
     }
 }

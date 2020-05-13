@@ -19,18 +19,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface SuperReadersService {
-    /// ClassRoom
-    /*
-    @GET("ClassRoom/all")
-    Call<List<ClassRoomResponse>> getAllClassRoom();
-    @POST("ClassRoom")
-    Call<ClassRoomResponse> saveClassRoom(@Body ClassRoomRequest body);
-    @GET("ClassRoom/{id}")
-    Call<List<ClassRoomResponse>> getAllClassRoomById(@Path("id") int idClassroom);
-    @PUT("ClassRoom")
-    Call<ClassRoomResponse>updateClassRoom(@Body ClassRoomResponse body); // Response porque el se requiere el id
-     */
-    // Usuarios
+    // Users
     @GET("User/GetTeachers")
     Call<List<UserResponse>> getAllTeachers();
     @GET("User/GetStudents")
@@ -38,7 +27,7 @@ public interface SuperReadersService {
     //Login
     @POST("Login")
     Call<LoginResponse> login(@Body LoginRequest body);
-    //Contenido
+    //Content
     @GET("Content")
     Call<List<Content>> getAllContent();
     @GET("Content/{id}")

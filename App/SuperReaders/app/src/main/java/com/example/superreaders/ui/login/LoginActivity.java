@@ -1,4 +1,4 @@
-package com.example.superreaders.views;
+package com.example.superreaders.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -13,7 +13,8 @@ import android.widget.Toast;
 import com.example.superreaders.R;
 import com.example.superreaders.SessionManagement;
 import com.example.superreaders.retrofit.response.LoginResponse;
-import com.example.superreaders.viewmodels.LoginViewModel;
+import com.example.superreaders.ui.content.TypeContentActivity;
+import com.example.superreaders.ui.home.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
     LoginViewModel viewModel;
@@ -23,6 +24,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        SessionManagement session = new SessionManagement(getApplicationContext());
+        if(session.isLogin()) {
+            onLogin(session.getCurrentUser());
+        }
         Button buttonLogin = findViewById(R.id.buttonLogin);
         txtUser = findViewById(R.id.txtUser);
         txtPassword = findViewById(R.id.txtPassword);
@@ -36,14 +41,22 @@ public class LoginActivity extends AppCompatActivity {
         };
         final Observer<LoginResponse> observerLogin = user ->{
             if(!user.getToken().isEmpty()){
-                SessionManagement session = new SessionManagement(getApplicationContext());
                 session.createLoginSession(user);
-                Intent intent = new Intent(this,MainActivity.class);
-                startActivity(intent);
-                this.finish();
+                onLogin(user);
             }
         };
         viewModel.getMessageResponse().observe(this,observer);
         viewModel.getUserLoged().observe(this,observerLogin);
+    }
+    public void onLogin(LoginResponse user){
+        Intent intent = new Intent(this, HomeActivity.class);
+        if(user.getRole().equals("Student")) {
+            if (user.getIsFirstTime())
+                intent = new Intent(this, TypeContentActivity.class);
+            else
+                intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+            this.finish();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.superreaders.viewmodels;
+package com.example.superreaders.ui.content;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +11,7 @@ import com.example.superreaders.repositories.ContentRepository;
 import com.example.superreaders.retrofit.models.TypeContent;
 import com.example.superreaders.retrofit.models.ContentDetail;
 import com.example.superreaders.retrofit.models.Content;
+import com.example.superreaders.retrofit.models.TypeContentDetail;
 
 import java.util.List;
 
@@ -18,10 +19,22 @@ public class ContentViewModel extends ViewModel {
     private ContentRepository repository;
     private MutableLiveData<List<Content>> allContent;
     private MutableLiveData<List<ContentDetail>> content;
+
+    public MutableLiveData<List<TypeContentDetail>> getAllContentByType() {
+        return allContentByType;
+    }
+
+    private MutableLiveData<List<TypeContentDetail>> allContentByType;
     private MutableLiveData<String> message;
+    public MutableLiveData<Boolean> getStatus() {
+        return status;
+    }
+    private MutableLiveData<Boolean> status;
     public ContentViewModel(){
         this.repository = new ContentRepository();
         message = repository.messageResponse;
+        status =  repository.status;
+        allContentByType = repository.responseContentByType;
     }
     public MutableLiveData<List<Content>> getAllContent(){
         return allContent = repository.getAllContent();
@@ -43,4 +56,9 @@ public class ContentViewModel extends ViewModel {
     public void saveTypeContentStudent(List<TypeContent> typeContentStudent){
         repository.saveTypeContentStudent(typeContentStudent);
     }
+    public MutableLiveData<List<TypeContentDetail>> getContentByType(){
+        return  repository.getContentByTypeContent();
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.superreaders.views;
+package com.example.superreaders.ui.content;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superreaders.R;
-import com.example.superreaders.SessionManagement;
 import com.example.superreaders.retrofit.models.TypeContent;
 
 import java.util.ArrayList;
