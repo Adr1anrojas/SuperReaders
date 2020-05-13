@@ -2,9 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { LoginCredential } from 'src/app/models/loginCredential';
 import { LoginService } from 'src/app/services/login.service';
-import { LoginResult } from 'src/app/models/loginResult';
 import { Router } from '@angular/router';
-import { Pipe, PipeTransform } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -29,8 +27,7 @@ export class LoginComponent implements OnInit {
     if (this.loginService.isLogged)
       this.router.navigate(['/home']);
     this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
-    if (this.innerWidth <= 768)
+    if (this.innerWidth <= 1024)
       this.isMovil = true;
   }
 
