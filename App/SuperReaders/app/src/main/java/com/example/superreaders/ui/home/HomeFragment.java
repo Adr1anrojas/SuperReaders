@@ -4,9 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -25,6 +29,7 @@ public class HomeFragment extends Fragment {
 
     private ContentViewModel contentViewModel;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     private MyItemGroupAdapter typeContentAdapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,12 +42,22 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView=view.findViewById(R.id.rv_content_type);
         ContentViewModel viewModel = ViewModelProviders.of(this).get(ContentViewModel.class);
+        FrameLayout cl = view.findViewById(R.id.fh_container);
+        progressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleLarge);
+        // Crea layout parameters para el ProgressBar
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams( FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        progressBar.setLayoutParams(lp);
+        //Define como indeterminado.
+        progressBar.setIndeterminate(true);
+        // Agrega el ProgressBar al Layout
+        cl.addView(progressBar);
         final Observer<List<TypeContentDetail>> observerTypeContent= type ->{
             if(type!=null){
                 typeContentAdapter = new MyItemGroupAdapter(getContext(),type);
                 recyclerView.setAdapter(typeContentAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                progressBar.setVisibility(View.INVISIBLE);
             }
         };
         viewModel.getContentByType();

@@ -36,5 +36,11 @@ public class SessionManagement {
     public boolean isLogin(){
         return  pref.getBoolean("isLogin",false);
     }
+    public void updateCurrentUser(LoginResponse currentUser){
+        editor.clear();
+        editor.putString("currentUser",new Gson().toJson(currentUser));
+        editor.putBoolean("isLogin",true);
+        editor.commit();
 
+    }
 }

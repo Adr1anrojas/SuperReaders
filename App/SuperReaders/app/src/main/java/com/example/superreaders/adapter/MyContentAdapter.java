@@ -1,8 +1,10 @@
 package com.example.superreaders.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +12,22 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superreaders.R;
 import com.example.superreaders.retrofit.models.Content;
+import com.example.superreaders.retrofit.models.ContentDetail;
+import com.example.superreaders.ui.content.ContentActivity;
+import com.example.superreaders.ui.content.ContentViewModel;
+import com.example.superreaders.ui.home.HomeActivity;
 
 import java.util.List;
+import java.util.Observable;
 
 public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyViewHolder> {
     private Context context;
@@ -44,6 +54,7 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             holder.contentImg.setImageBitmap(decodedByte);
         }
+        holder.content=content;
     }
 
     @Override
@@ -51,19 +62,34 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
         return (dataContent!=null?dataContent.size():0);
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView contentTitle;
         ImageView contentImg;
+        Content content;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             contentTitle = itemView.findViewById(R.id.textViewContent);
             contentImg = itemView.findViewById(R.id.imageViewContent);
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(e->
+                    {
 
-        }
-        @Override
-        public void onClick(View v) {
-            System.out.println("Olaaa");
+                        AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
+                        Intent intent = new Intent(itemView.getContext(), ContentActivity.class);
+                        ContentViewModel viewModel = new ContentViewModel();
+
+                        final Observer<String> observer = message ->{
+                            Toast.makeText(itemView.getContext(),message,Toast.LENGTH_LONG ).show();
+                        };
+                        final Observer<ContentDetail> observerContent = myContent ->{
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("content",myContent);
+                            intent.putExtras(bundle);
+                            activity.startActivity(intent);
+                        };
+                        viewModel.getContentById(content.getId()).observe(activity,observerContent);
+                        viewModel.getMessage().observe(activity,observer);
+                    }
+            );
         }
     }
 }

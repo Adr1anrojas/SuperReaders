@@ -1,4 +1,4 @@
-package com.example.superreaders.ui.content;
+package com.example.superreaders.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,7 +23,7 @@ public class TypeContentAdapter extends RecyclerView.Adapter<TypeContentAdapter.
 
     private ArrayList<TypeContent> dataset;
     private Context context;
-    ArrayList<TypeContent> typeContentSelected;
+    public ArrayList<TypeContent> typeContentSelected;
 
     public TypeContentAdapter(Context context) {
         this.context = context;

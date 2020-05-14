@@ -1,7 +1,10 @@
 package com.example.superreaders.retrofit.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-public class Content {
+
+import java.io.Serializable;
+
+public class Content implements Serializable {
 
     @SerializedName("id")
     @Expose

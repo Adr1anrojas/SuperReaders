@@ -13,9 +13,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.content.ContentActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
             android:name=".ui.home.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.content.TypeContentActivity" />
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.superreaders.R;
 import com.example.superreaders.retrofit.models.Content;
 import com.example.superreaders.retrofit.models.TypeContentDetail;
-import com.example.superreaders.ui.content.TypeContentAdapter;
 
 import java.util.List;
 

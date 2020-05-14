@@ -1,7 +1,7 @@
 package com.example.superreaders.retrofit.services;
 
 
-import com.example.superreaders.retrofit.Enviroment;
+import com.example.superreaders.retrofit.Environment;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,7 +19,7 @@ public class RetrofitService {
 
     private static Retrofit retrofit = new Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(Enviroment.API)
+            .baseUrl(Environment.API)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
