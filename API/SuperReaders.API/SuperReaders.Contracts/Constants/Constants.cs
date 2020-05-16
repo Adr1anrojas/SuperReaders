@@ -73,7 +73,8 @@
             public const string SP_Content_Update = "Content_Update";
             public const string SP_Content_GetAllContents = "Content_GetContents";
             public const string SP_Content_GetAllTypeContent = "Content_TypeContent";
-            public const string SP_Content_GetById = "Content_GetById";
+            public const string SP_Content_GetContentByIdTypeContent = "Content_GetByIdTypeContent";
+             public const string SP_Content_GetById = "Content_GetById";
             public const string SP_Content_CreateStudentContent = "Content_CreateStudentContent";
             public const string SP_Content_GetStudentContent = "Content_GetStudentContent";
             public const string SP_Content_UpdateTimeReading = "Content_UpdateTimeReading";
@@ -107,6 +108,7 @@
             // StoreProcedure constants
             public const string SP_TypeContent_Create = "TypeContent_Create";
             public const string SP_TypeContent_Update = "TypeContent_Update";
+
         #endregion
 
         #region Page
