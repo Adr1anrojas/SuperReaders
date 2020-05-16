@@ -1,9 +1,8 @@
 <h5 class="mt-3">Administradores</h5>
-<div class="card mt-3">
-    <!-- <h5 class="card-header">Administradores</h5> -->
+<button type="button" class="btn btn-danger add mb-3" data-toggle="modal" data-target="#exampleModal"
+    (click)=initAdmin()>+</button>
+<div class="card mt-5 margin-card">
     <div class="card-body">
-        <button type="button" class="btn btn-danger add mb-3" data-toggle="modal" data-target="#exampleModal"
-            (click)=initAdmin()>+</button>
         <table class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg">
             <thead>
                 <tr>
@@ -15,117 +14,105 @@
                     <td class="size-row">{{item.firstName}}</td>
                     <td class="size-row">{{item.lastName}}</td>
                     <td class="size-row">{{item.userName}}</td>
-                    <td class="size-row">{{item.status?'Activo':'Inactivo'}}</td>
+                    <td class="size-row">{{item.email}}</td>
                     <td class="icons size-row">
-                        <!-- <div class="row"> -->
-                        <!-- <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6"> -->
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Editar"
                             (click)="editAdmin(item)" data-toggle="modal" data-target="#exampleModal">
                             <fa-icon class="fa-lg" icon="edit"></fa-icon>
                         </button>
-                        <!-- </div> -->
-                        <!-- <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6"> -->
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Eliminar"
                             data-toggle="modal" data-target="#myModal" (click)="editAdmin(item)">
                             <fa-icon class="fa-lg" icon="trash"></fa-icon>
                         </button>
-                        <!-- </div> -->
-                        <!-- </div> -->
                     </td>
-
             </tbody>
-
         </table>
         <p class="text-center" *ngIf="admins.length==0">No existen Administradores registrados.</p>
     </div>
 </div>
-
 <!-- Modal EDIT/CREATE-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Administrador</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{this.isUpdate?'Actualizar ':'Crear '}} Administrador
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" novalidate (ngSubmit)="onSubmit()">
+                <form [formGroup]="formAdmin" class="needs-validation" novalidate (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="form-group col col-sm-6 col-md-6 col-lg-6 col-xl-6 pr-1">
                             <label for="firstName">Nombres*</label>
                             <input type="text" class="form-control" id="firstName" placeholder="Nombres"
-                                [(ngModel)]="admin.firstName" name="firstName" [formControl]="firstName"
-                                [ngClass]="{'is-invalid':firstName.invalid && admin.firstName == '' && (firstName.dirty || firstName.touched) }">
-                            <div *ngIf="firstName.invalid && admin.firstName == '' && (firstName.dirty || firstName.touched)"
-                                class="invalid-feedback">
-                                Campo requerido
+                                name="firstName" formControlName="firstName"
+                                [ngClass]="{'is-invalid':submitted && controls.firstName.errors }">
+                            <div *ngIf="submitted && controls.firstName.errors" class="invalid-feedback">
+                                Nombre de Usuario requerido.
                             </div>
                         </div>
                         <div class="form-group col col-sm-6 col-md-6 col-lg-6 col-xl-6 pl-1">
                             <label for="lastName">Apellidos*</label>
                             <input type="text" class="form-control" id="lastName" placeholder="Apellidos"
-                                [(ngModel)]="admin.lastName" name="lastName" [formControl]="lastName"
-                                [ngClass]="{'is-invalid':lastName.invalid && admin.lastName == '' && (lastName.dirty || lastName.touched) }">
-                            <div *ngIf="lastName.invalid && admin.lastName == '' && (lastName.dirty || lastName.touched)"
-                                class="invalid-feedback">
+                                name="lastName" formControlName="lastName"
+                                [ngClass]="{'is-invalid':submitted && controls.lastName.errors }">
+                            <div *ngIf="submitted && controls.lastName.errors" class="invalid-feedback">
                                 Campo requerido
                             </div>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="userName">Nombre de Usuario*</label>
-                        <input type="text" class="form-control" id="userName" placeholder="Apellidos"
-                            [(ngModel)]="admin.userName" name="userName" [formControl]="userName"
-                            [ngClass]="{'is-invalid':userName.invalid && admin.userName == '' && (userName.dirty || userName.touched) }">
-                        <div *ngIf="userName.invalid && admin.userName == '' && (userName.dirty || userName.touched)"
-                            class="invalid-feedback">
+                        <input type="text" class="form-control" id="userName" placeholder="Apellidos" name="userName"
+                            formControlName="userName"
+                            [ngClass]="{'is-invalid':submitted && controls.userName.errors }">
+                        <div *ngIf="submitted && controls.userName.errors" class="invalid-feedback">
                             Campo requerido
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="email">Correo*</label>
-                        <input type="email" class="form-control" id="email" placeholder="Correo"
-                            [(ngModel)]="admin.email" name="email" [formControl]="email"
-                            [ngClass]="{'is-invalid':email.invalid && (email.dirty || email.touched) }">
-                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
-                            <div *ngIf="email.errors.required || this.admin.email === ''">
-                                Campo requerido.
-                            </div>
-                            <div *ngIf="email.errors.email && this.admin.email !== ''">
-                                Proporcione un correo valido.
-                            </div>
+                        <input type="email" class="form-control" id="email" placeholder="Correo" name="email"
+                            formControlName="email" [ngClass]="{'is-invalid':submitted && controls.email.errors }">
+                        <div *ngIf="submitted && controls.email.errors" class="invalid-feedback">
+                            <div *ngIf="controls.email.errors.required">El Correo es requerido.</div>
+                            <div *ngIf="controls.email.errors.email">El correo debe ser valido.</div>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="password">Contraseña*</label>
                         <div class="input-group">
                             <input [type]="show ? 'text' : 'password'" class="form-control" id="password"
-                                placeholder="Contraseña" [(ngModel)]="admin.password" name="password"
-                                [formControl]="password"
-                                [ngClass]="{'is-invalid':password.invalid && admin.password == '' && (password.dirty || password.touched) }">
+                                placeholder="Contraseña" name="password" formControlName="password"
+                                [ngClass]="{'is-invalid':submitted && controls.password.errors }">
                             <div class="input-group-append">
                                 <span class="input-group-text eye" (click)="showPassword()">
                                     <fa-icon class="fa-lg icon-eye" icon="eye"></fa-icon>
                                 </span>
                             </div>
-                            <div *ngIf="password.invalid && admin.password == '' && (password.dirty || password.touched)"
-                                class="invalid-feedback">
-                                Campo requerido
+                            <div *ngIf="submitted && controls.password.errors" class="invalid-feedback">
+                                <div *ngIf="controls.password.errors.required"> Campo requerido</div>
+                                <div *ngIf="controls.password.errors.minlength">La Contraseña debe tener minimo 6
+                                    caracteres.</div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label>Fecha de Nacimiento*</label>
                         <div class="input-group">
-                            <input class="form-control" disabled [owlDateTime]="dt3" [(ngModel)]="admin.birthDate"
-                                name="date">
+                            <input class="form-control" [owlDateTime]="dt3" name="date" formControlName="date"
+                                [ngClass]="{'is-invalid':submitted && !isValidDate }">
                             <span class="trigger datepicker" [owlDateTimeTrigger]="dt3">
                                 <fa-icon class="fa-lg" icon="calendar"></fa-icon>
                             </span>
-                            <owl-date-time [pickerType]="'calendar'" disabled="false" #dt3></owl-date-time>
+                            <owl-date-time [pickerType]="'calendar'" disabled="false" #dt3>
+                            </owl-date-time>
+                        </div>
+                        <div *ngIf="submitted && !isValidDate" class="invalid-feedback">
+                            Fecha requerida.
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -141,7 +128,6 @@
 
 <!-- MODAL DELETE -->
 <div class="bs-example">
-    <!-- Modal HTML -->
     <div id="myModal" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -150,7 +136,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>¿Esta seguro de eliminar al usuario {{this.admin.userName}}</p>
+                    <p>¿Esta seguro de eliminar al usuario {{this.formAdmin.get('userName').value}}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="initAdmin()" data-dismiss="modal"

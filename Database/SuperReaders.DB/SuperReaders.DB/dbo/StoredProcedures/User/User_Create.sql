@@ -10,7 +10,7 @@ CREATE PROC User_Create
 @pIdSchool AS INT
 AS
 	BEGIN
-		DECLARE @encriptedPassword AS BINARY(64)= HASHBYTES('SHA2_256', @pPassword)
+		OPEN SYMMETRIC KEY SQLSymmetricKey DECRYPTION BY CERTIFICATE SelfSignedCertificate;
 		INSERT INTO [User]
 		( 
 			[FirstName], 
@@ -21,7 +21,8 @@ AS
 			[Status], 
 			[Role], 
 			[BirthDate], 
-			[IdSchool]
+			[IdSchool],
+			[IsFirstTime]
 			)
 		VALUES
 		(
@@ -29,12 +30,14 @@ AS
 			@pLastName, 
 			@pUserName, 
 			@pEmail,
-			@encriptedPassword, 
+			EncryptByKey(Key_GUID('SQLSymmetricKey'), @pPassword), 
 			@pStatus, 
 			@pRole, 
 			@pBirthDate, 
-			@pIdSchool
+			@pIdSchool,
+			1
 		)
+		CLOSE SYMMETRIC KEY SQLSymmetricKey
 		SELECT 
 			[Id],
 			[FirstName], 

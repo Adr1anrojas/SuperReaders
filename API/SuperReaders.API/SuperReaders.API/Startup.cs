@@ -56,16 +56,15 @@ namespace SuperReaders.API
             {
                 app.UseHsts();
             }
-            app.UseCors(Constants.CorsPolicy);
+            app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors(Constants.CorsPolicy);
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
         }
     }
 }

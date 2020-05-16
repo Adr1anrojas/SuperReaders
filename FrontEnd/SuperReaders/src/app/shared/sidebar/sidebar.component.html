@@ -11,16 +11,28 @@
             <a [routerLink]="['/home']" class="list-group-item list-group-item-action bg-light menu-home">
                 <fa-icon class="fa-2x" icon="home"></fa-icon>{{collapsed?'Inicio':''}}
             </a>
-            <a [routerLink]="['/admin']" class="list-group-item list-group-item-action bg-light">
+            <a *ngIf="currentUser.role=='Admin'" [routerLink]="['/admin']"
+                class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="user"></fa-icon>{{collapsed?'Administrador':''}}
             </a>
-            <a [routerLink]="['/teacher']" class="list-group-item list-group-item-action bg-light">
+            <a *ngIf="currentUser.role=='Admin'" [routerLink]="['/teacher']"
+                class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="user"></fa-icon>{{collapsed?'Maestros':''}}
             </a>
-            <a [routerLink]="['/student']" class="list-group-item list-group-item-action bg-light">
+            <a *ngIf="currentUser.role!=='Student'" [routerLink]="['/student']"
+                class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Alumnos':''}}
             </a>
-            <a [routerLink]="['/report']" class="list-group-item list-group-item-action bg-light">
+            <a *ngIf="currentUser.role==='Admin'" [routerLink]="['/classRoom']"
+                class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Grupos':''}}
+            </a>
+            <a *ngIf="currentUser.role==='Teacher'" [routerLink]="['/content']"
+                class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Contenido':''}}
+            </a>
+            <a *ngIf="currentUser.role=='Teacher'" [routerLink]="['/report']"
+                class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="chart-line"></fa-icon>{{collapsed?'Monitoreo':''}}
             </a>
             <br>

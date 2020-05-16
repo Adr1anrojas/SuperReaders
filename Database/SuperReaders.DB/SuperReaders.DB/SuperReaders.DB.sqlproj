@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{6957d440-ca97-4d2a-ac3a-7d17c0125cee}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -66,6 +66,9 @@
     <Folder Include="dbo\StoredProcedures\Content" />
     <Folder Include="dbo\StoredProcedures\ClassRoom" />
     <Folder Include="dbo\StoredProcedures\Login" />
+    <Folder Include="dbo\StoredProcedures\Answer" />
+    <Folder Include="dbo\StoredProcedures\Page" />
+    <Folder Include="dbo\StoredProcedures\Question" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Admin.sql" />
@@ -76,7 +79,6 @@
     <Build Include="dbo\Tables\ContentDetail.sql" />
     <Build Include="dbo\Tables\Page.sql" />
     <Build Include="dbo\Tables\Question.sql" />
-    <Build Include="dbo\Tables\QuestionAnswer.sql" />
     <Build Include="dbo\Tables\Student.sql" />
     <Build Include="dbo\Tables\StudentContent.sql" />
     <Build Include="dbo\Tables\Teacher.sql" />
@@ -92,6 +94,68 @@
     <Build Include="dbo\StoredProcedures\Student\Student_Create.sql" />
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\School.sql" />
+    <Build Include="dbo\Tables\StudentAnswer.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_TypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_GetByIdContent.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_GetByIdContent.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_GetByIdQuestion.sql" />
+    <Build Include="dbo\Tables\StudentTypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_StudentTypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_UpdateIsFirstTime.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_CreateStudentContent.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetStudentContent.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_UpdateTimeReading.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_UpdateFinishContent.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_SaveAnswerStudent.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetContentByIdTypeContent.sql" />
+  </ItemGroup>
+  <ItemGroup>
     <Build Include="dbo\StoredProcedures\Login\Login_UserLoged.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetAdmins.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetStudents.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetTeachers.sql" />
+    <Build Include="dbo\StoredProcedures\Login\Login_Helper.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_Create.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetAll.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetByIdTeacher.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetByName.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_Update.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_Create.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetAll.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetByIdClassRoom.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoomDetail_GetByIdStudent.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_CreateStudentToClassRoom.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetByIdStudent.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetTeacherById.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetStudentById.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetAllAvailable.sql" />
+    <Build Include="dbo\StoredProcedures\ClassRoom\ClassRoom_GetAllWithInfo.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetContentByContentName.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetContents.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Content\ContentDetail_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Content\TypeContent_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\Page\Page_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_GetById.sql" />
+    <Build Include="dbo\StoredProcedures\Question\Question_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Question\QuestionAnswer_Create.sql" />
+    <Build Include="dbo\StoredProcedures\Answer\Answer_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\User\User_GetStudentsByClassRoom.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SuperReaders.DB.refactorlog" />
   </ItemGroup>
 </Project>

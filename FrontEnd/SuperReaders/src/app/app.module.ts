@@ -22,6 +22,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptor } from './shared/helper/jtwInterceptor';
 import { ResponseInterceptor } from './shared/helper/ResponseInterceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ClassRoomComponent } from './components/class-room/class-room.component';
+import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
+import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +39,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ContentComponent,
     TeacherComponent,
     ReportComponent,
-    AdminComponent
+    AdminComponent,
+    ClassRoomComponent,
+    ContentDetailComponent,
+    HomeDetailComponent
   ],
   imports: [
     BrowserModule,

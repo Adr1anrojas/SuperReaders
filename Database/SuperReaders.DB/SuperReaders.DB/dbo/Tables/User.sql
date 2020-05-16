@@ -5,11 +5,12 @@
 	[LastName] nvarchar(50) NOT NULL,
 	[UserName] nvarchar(50) NOT NULL,
 	[Email] nvarchar(50) NULL,
-	[Password] BINARY(64) NOT NULL,
+	[Password] VARBINARY(MAX) NOT NULL,
 	[Status] bit NOT NULL,
 	[Role] nvarchar(50) NOT NULL,
 	[BirthDate] date NOT NULL,
-	[IdSchool] int NOT NULL
+	[IdSchool] int NOT NULL, 
+    [IsFirstTime] BIT NULL
 )
 GO
 ALTER TABLE [User] ADD CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([Id] ASC)

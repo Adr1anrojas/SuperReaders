@@ -1,0 +1,36 @@
+.table thead th {
+    text-align: center;
+}
+.add{
+    margin-left: -35px;
+    border-radius: 50%;
+    float: right;
+}
+.margin-card {
+    margin-top: 3.3rem!important;
+}
+.icons{
+    padding: 0px;
+    margin: 0px;
+    margin-top: 10px;
+    align-items: center;
+    text-align: center;
+    border: 0px;
+}
+.size-row {
+    width: 20%;
+}
+.datepicker{
+    padding-top: 5px;
+    padding-left: 18px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}
+.eye{
+    width: 67px;
+    padding: 5px 5px 5px 18px;
+}

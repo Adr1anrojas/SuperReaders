@@ -5,6 +5,8 @@ using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDomainObject;
 using SuperReaders.Models.Entities;
 using SuperReaders.Services.DomainObject;
+using SuperReaders.Services.DAO;
+using System.Collections.Generic;
 
 namespace SuperReaders.API.Controllers
 {
@@ -39,6 +41,85 @@ namespace SuperReaders.API.Controllers
             }
         }
 
+        // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        /// 
+        [HttpGet("GetStudents")]
+        public ActionResult<User> GetStudents()
+        {
+            try
+            {
+                return Ok(_iUserDomainObject.GetStudents());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Students
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Students</returns>
+        /// 
+        [HttpGet("GetStudentsByClassRoom/{idClassRoom}")]
+        public ActionResult<User> GetStudentsByClassRoom(int idClassRoom)
+        {
+            try
+            {
+                return Ok(_iUserDomainObject.GetStudentsByClassRoom(idClassRoom));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Admins
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Admins</returns>
+        /// 
+        [HttpGet("GetAdmins")]
+        public ActionResult<User> GetAdmins()
+        {
+            try
+            {
+                return Ok(_iUserDomainObject.GetAdmins());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+         // GET: api/User
+        /// <summary>
+        /// This EndPoint return all Teachers
+        /// </summary>
+        /// <param name="">
+        /// <returns>Array of Teachers</returns>
+        /// 
+        [HttpGet("GetTeachers")]
+        public ActionResult<User> GetTeachers()
+        {
+            try
+            {
+                return Ok(_iUserDomainObject.GetTeachers());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
         // GET: api/User/id
         /// <summary>
         /// This EndPoint return an User by ID of the role Specified
@@ -50,7 +131,6 @@ namespace SuperReaders.API.Controllers
         {
             try
             {
-               
                 return Ok(_iUserDomainObject.GetUser(id));
             }
             catch (Exception e)
@@ -109,12 +189,12 @@ namespace SuperReaders.API.Controllers
         /// </summary>
         /// <param name="user">user to change status</param>
         /// <returns>status code 200</returns>
-        [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        [HttpDelete("{id}/{role}")]
+        public IActionResult DeleteUser(int id, string role)
         {
             try
             {
-                _iUserDomainObject.DeleteUser(id);
+                _iUserDomainObject.DeleteUser(id, role);
                 return Ok();
             }
             catch (Exception e)
@@ -122,6 +202,5 @@ namespace SuperReaders.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
     }
 }

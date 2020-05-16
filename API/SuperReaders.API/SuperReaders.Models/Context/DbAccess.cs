@@ -9,6 +9,7 @@ namespace SuperReaders.API.Helper
         public DbAccess()
         {
             connectionString = @"Server=E-AAROJAS;Database=ReadersDB;Trusted_Connection=True;";
+            //connectionString = @"Server = tcp:readers.database.windows.net,1433; Initial Catalog = ReadersDB; Persist Security Info = False; User ID = readers; Password = Lector123;";
         }
         public IDbConnection Connection
         {

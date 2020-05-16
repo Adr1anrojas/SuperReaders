@@ -25,7 +25,7 @@ namespace SuperReaders.API.Controllers
         [HttpPost]
         public ActionResult<LoginResult> Login([FromBody] LoginCredential user)
         {
-            IEnumerable <LoginResult> result;
+            LoginResult result;
             try
                 {
                 result = _iLoginDomainObject.Login(user);   

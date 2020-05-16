@@ -6,7 +6,7 @@
 	[TimeReading] int NOT NULL,
 	[CurrentPage] int NOT NULL,
 	[DateStart] datetime NOT NULL,
-	[DateFinish] datetime NOT NULL,
+	[DateFinish] datetime NULL,
 	[IsFinish] bit NOT NULL
 )
 GO
