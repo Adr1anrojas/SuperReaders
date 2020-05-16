@@ -41,47 +41,47 @@ INSERT INTO TypeContent([Name]) VALUES('Aventura'),('Suspenso'), ('Leyendas'),('
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'Aladino y la lampara maravillosa')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(1,'Erase una vez un muchacho llamado Aladino que vivía en el lejano Oriente con su madre, en una casa sencilla y humilde. Tenían lo justo para vivir, así que cada día, Aladino recorría el centro de la ciudad en busca de algún alimento que llevarse a la boca. \n
-		En una ocasión paseaba entre los puestos de fruta del mercado, cuando se cruzó con un hombre muy extraño con pinta de extranjero. Aladino se quedó sorprendido al escuchar que le llamaba por su nombre. \n
-		– ¿Tú eres Aladino, el hijo del sastre, verdad? \n
-		– Sí, y es cierto que mi padre era sastre, pero… ¿Quién es usted? \n
+	(1,'Erase una vez un muchacho llamado Aladino que vivía en el lejano Oriente con su madre, en una casa sencilla y humilde. Tenían lo justo para vivir, así que cada día, Aladino recorría el centro de la ciudad en busca de algún alimento que llevarse a la boca. '+char(13)+'
+		En una ocasión paseaba entre los puestos de fruta del mercado, cuando se cruzó con un hombre muy extraño con pinta de extranjero. Aladino se quedó sorprendido al escuchar que le llamaba por su nombre. '+char(13)+'
+		– ¿Tú eres Aladino, el hijo del sastre, verdad? '+char(13)+'
+		– Sí, y es cierto que mi padre era sastre, pero… ¿Quién es usted? '+char(13)+'
 		– ¡Soy tu tío! No me reconoces porque hace muchos años que no vengo por aquí. Veo que llevas ropas muy viejas y me apena verte tan flaco. Imagino que en tu casa no sobra el dinero…'),
-	(1,'Aladino bajó el cabeza un poco avergonzado. Parecía un mendigo y su cara morena estaba tan huesuda que le hacía parecer mucho mayor. \n
-		– Yo te ayudaré, pero a cambio necesito que me hagas un favor. Ven conmigo y si haces lo que te indique, te daré una moneda de plata. \n
-		A Aladino le sorprendió  la oferta de ese desconocido, pero como no tenía nada que perder, le acompañó hasta una zona apartada del bosque. Una vez allí, se pararon frente a una cueva escondida en la montaña. La entrada era muy estrecha. \n
+	(1,'Aladino bajó el cabeza un poco avergonzado. Parecía un mendigo y su cara morena estaba tan huesuda que le hacía parecer mucho mayor. '+char(13)+'
+		– Yo te ayudaré, pero a cambio necesito que me hagas un favor. Ven conmigo y si haces lo que te indique, te daré una moneda de plata. '+char(13)+'
+		A Aladino le sorprendió  la oferta de ese desconocido, pero como no tenía nada que perder, le acompañó hasta una zona apartada del bosque. Una vez allí, se pararon frente a una cueva escondida en la montaña. La entrada era muy estrecha. '+char(13)+'
 		– Aladino, yo soy demasiado grande y no quepo por el agujero. Entra tú y tráeme una lámpara de aceite muy antigua  que verás al fondo del pasadizo. No quiero que toques nada más, sólo la lámpara ¿Entendido?'),
-	(1,'Aladino dijo sí con la cabeza y penetró en un largo corredor bajo tierra que terminaba en una gran sala con paredes de piedra. Cuando accedió a ella, se quedó asombrado. Efectivamente, vio la vieja lámpara encendida, pero eso no era todo: la tenue luz le permitió distinguir cientos de joyas, monedas y piedras preciosas, amontonadas en el suelo  ¡Jamás había visto tanta riqueza! \n
+	(1,'Aladino dijo sí con la cabeza y penetró en un largo corredor bajo tierra que terminaba en una gran sala con paredes de piedra. Cuando accedió a ella, se quedó asombrado. Efectivamente, vio la vieja lámpara encendida, pero eso no era todo: la tenue luz le permitió distinguir cientos de joyas, monedas y piedras preciosas, amontonadas en el suelo  ¡Jamás había visto tanta riqueza! '+char(13)+'
 		Se dio prisa en coger la lámpara, pero no pudo evitar llenarse los bolsillos todo lo que pudo de algunos de esos tesoros que encontró. Lo que más le gustó, fue un ostentoso y brillante anillo que se puso en el dedo índice. '),
-	(1,'– ¡Qué anillo tan bonito! ¡Y encaja perfectamente en mi dedo! \n
-		Volvió hacia la entrada y al asomar la cabeza por el orificio, el hombre le dijo: \n
-		– Dame la lámpara, Aladino. \n
-		– Te la daré, pero antes déjame salir de aquí. \n
-		– ¡Te he dicho que primero quiero que me des la lámpara! \n
-		– ¡No, no pienso hacerlo! \n
-		El extranjero se enfureció tanto que tapó la entrada con una gran losa de piedra, dejando al chico encerrado en el húmedo y oscuro pasadizo subterráneo. \n
+	(1,'– ¡Qué anillo tan bonito! ¡Y encaja perfectamente en mi dedo! '+char(13)+'
+		Volvió hacia la entrada y al asomar la cabeza por el orificio, el hombre le dijo: '+char(13)+'
+		– Dame la lámpara, Aladino. '+char(13)+'
+		– Te la daré, pero antes déjame salir de aquí. '+char(13)+'
+		– ¡Te he dicho que primero quiero que me des la lámpara! '+char(13)+'
+		– ¡No, no pienso hacerlo! '+char(13)+'
+		El extranjero se enfureció tanto que tapó la entrada con una gran losa de piedra, dejando al chico encerrado en el húmedo y oscuro pasadizo subterráneo. '+char(13)+'
 		¿Qué podía hacer ahora? ¿Cómo salir de ahí con vida?…'),
-	(1,'Recorrió el lugar con la miraba tratando de encontrar una solución. Estaba absorto en sus pensamientos cuando, sin querer, acarició el anillo y de él salió un genio ¡Aladino casi se muere del susto! \n
-		– ¿Qué deseas, mi amo? Pídeme lo que quieras que te lo concederé. \n
-		El chico, con los ojos llenos de lágrimas, le dijo: \n 
-		– Oh, bueno… Yo sólo quiero regresar a mi casa. \n
-		En cuanto pronunció estas palabras, como por arte de magia apareció en su hogar. Su madre le recibió con un gran abrazo. Con unos nervios que le temblaba todo el cuerpo, intentó contarle a la buena mujer todo lo sucedido. Después, más tranquilo, cogió un paño de algodón para limpiar la sucia y vieja lámpara de aceite. En cuanto la frotó, otro genio salió de ella. \n
+	(1,'Recorrió el lugar con la miraba tratando de encontrar una solución. Estaba absorto en sus pensamientos cuando, sin querer, acarició el anillo y de él salió un genio ¡Aladino casi se muere del susto! '+char(13)+'
+		– ¿Qué deseas, mi amo? Pídeme lo que quieras que te lo concederé. '+char(13)+'
+		El chico, con los ojos llenos de lágrimas, le dijo: '+char(13)+' 
+		– Oh, bueno… Yo sólo quiero regresar a mi casa. '+char(13)+'
+		En cuanto pronunció estas palabras, como por arte de magia apareció en su hogar. Su madre le recibió con un gran abrazo. Con unos nervios que le temblaba todo el cuerpo, intentó contarle a la buena mujer todo lo sucedido. Después, más tranquilo, cogió un paño de algodón para limpiar la sucia y vieja lámpara de aceite. En cuanto la frotó, otro genio salió de ella. '+char(13)+'
 		– Estoy aquí para concederle un deseo, señor.'),
-	(1,'Aladino y su madre se miraron estupefactos ¡Dos genios en un día era mucho más de lo que uno podía esperar! El muchacho se lanzó a pedir lo que más le apetecía en ese momento. \n
-		– ¡Estamos deseando comer! ¿Qué tal alguna cosa rica para saciar toda el hambre acumulada durante años? \n
-		Acto seguido, la vieja mesa de madera del comedor se llenó de deliciosos manjares que en su vida habían probado. Sin duda, disfrutaron de la mejor comida que podían imaginar. Pero eso no acabó ahí porque, a partir de entonces y gracias a la lámpara que ahora estaba en su poder, Aladino y su madre vivieron cómodamente; todo lo que necesitaban podían pedírselo al genio. Procuraban no abusar de él y se limitaban a solicitar lo justo para vivir sin estrecheces, pero no volvió a faltarles de nada. \n
+	(1,'Aladino y su madre se miraron estupefactos ¡Dos genios en un día era mucho más de lo que uno podía esperar! El muchacho se lanzó a pedir lo que más le apetecía en ese momento. '+char(13)+'
+		– ¡Estamos deseando comer! ¿Qué tal alguna cosa rica para saciar toda el hambre acumulada durante años? '+char(13)+'
+		Acto seguido, la vieja mesa de madera del comedor se llenó de deliciosos manjares que en su vida habían probado. Sin duda, disfrutaron de la mejor comida que podían imaginar. Pero eso no acabó ahí porque, a partir de entonces y gracias a la lámpara que ahora estaba en su poder, Aladino y su madre vivieron cómodamente; todo lo que necesitaban podían pedírselo al genio. Procuraban no abusar de él y se limitaban a solicitar lo justo para vivir sin estrecheces, pero no volvió a faltarles de nada. '+char(13)+'
 		Un día, en uno de sus paseos matutinos, Aladino vio pasar, subida en una litera, a una mujer bellísima de la que se enamoró instantáneamente. Era la hija del sultán. Regresó a casa y como no podía dejar de pensar en ella, le dijo a su madre que tenía que hacer todo lo posible para que fuera su esposa.'),
-	(1,'¡Esta vez sí tendría que abusar un poco de la generosidad del genio para llevar a cabo su plan! Frotó la lámpara maravillosa y le pidió tener una vivienda lujosa con hermosos jardines, y  cómo no, ropas adecuadas para presentarse ante el sultán, a quien quería pedir la mano de su hija. Solicitó también un séquito de lacayos montados sobre esbeltos corceles, que tiraran de carruajes repletos de riquezas para ofrecer al poderoso emperador. Con todo esto se presentó ante él y tan impresionado quedó, que aceptó que su bella y bondadosa hija fuera su esposa. \n
-		Aladino y la princesa Halima, que así se llamaba, se casaron unas semanas después y desde el principio, fueron muy felices. Tenían amor y vivían el uno para el otro. \n
+	(1,'¡Esta vez sí tendría que abusar un poco de la generosidad del genio para llevar a cabo su plan! Frotó la lámpara maravillosa y le pidió tener una vivienda lujosa con hermosos jardines, y  cómo no, ropas adecuadas para presentarse ante el sultán, a quien quería pedir la mano de su hija. Solicitó también un séquito de lacayos montados sobre esbeltos corceles, que tiraran de carruajes repletos de riquezas para ofrecer al poderoso emperador. Con todo esto se presentó ante él y tan impresionado quedó, que aceptó que su bella y bondadosa hija fuera su esposa. '+char(13)+'
+		Aladino y la princesa Halima, que así se llamaba, se casaron unas semanas después y desde el principio, fueron muy felices. Tenían amor y vivían el uno para el otro. '+char(13)+'
 		Pero una tarde, Halima vio por la casa la vieja lámpara de aceite y como no sabía nada, se la vendió a un trapero que iba por las calles comprando cachivaches. Por desgracia, resultó ser el hombre malvado que había encerrado a Aladino en la cueva. Deseando vengarse, el viejo recurrió al genio de la lámpara y le ordenó, como nuevo dueño, que todo lo que tenía Aladino, incluida su mujer, fuera trasladado a un lugar muy lejano.'),
-	(1,'Y así fue… Cuando el pobre Aladino regresó a su hogar, no estaba su casa, ni sus criados, ni su esposa… Ya no tenía nada de nada. \n
-		Comenzó a llorar con desesperación y recordó que el anillo que llevaba en su dedo índice también podía ayudarle. Lo acarició y pidió al genio que le devolviera todo lo que era suyo pero, desgraciadamente, el genio del anillo no era tan poderoso como el de la lámpara. \n
+	(1,'Y así fue… Cuando el pobre Aladino regresó a su hogar, no estaba su casa, ni sus criados, ni su esposa… Ya no tenía nada de nada. '+char(13)+'
+		Comenzó a llorar con desesperación y recordó que el anillo que llevaba en su dedo índice también podía ayudarle. Lo acarició y pidió al genio que le devolviera todo lo que era suyo pero, desgraciadamente, el genio del anillo no era tan poderoso como el de la lámpara. '+char(13)+'
 		– Mi amo, es imposible para mí concederte esa petición, pero sí puedo llevarte hasta donde está tu mujer.'),
-	(1,'Aladino aceptó y automáticamente se encontró en un lejano lugar junto a su bella Halima, que por fortuna, estaba sana y salva. Sabían que sólo había una opción: recuperar la lámpara maravillosa como fuera para poder regresar a la ciudad con todas sus posesiones. Juntos, idearon un nuevo plan. Pidieron al genio del anillo una dosis de veneno y Aladino fue a esconderse. A  la hora de la cena, Halima entró sigilosamente en la cocina del malvado extranjero y  lo echó en el vino sin que éste se diera cuenta. En cuanto se sirvió una copa y mojó sus labios, cayó dormido en un sueño que, tal como les había prometido  el genio, duraría cientos de años. \n
+	(1,'Aladino aceptó y automáticamente se encontró en un lejano lugar junto a su bella Halima, que por fortuna, estaba sana y salva. Sabían que sólo había una opción: recuperar la lámpara maravillosa como fuera para poder regresar a la ciudad con todas sus posesiones. Juntos, idearon un nuevo plan. Pidieron al genio del anillo una dosis de veneno y Aladino fue a esconderse. A  la hora de la cena, Halima entró sigilosamente en la cocina del malvado extranjero y  lo echó en el vino sin que éste se diera cuenta. En cuanto se sirvió una copa y mojó sus labios, cayó dormido en un sueño que, tal como les había prometido  el genio, duraría cientos de años. '+char(13)+'
 		Aladino y Halima se abrazaron y corrieron a recuperar su lámpara. Fue entonces cuando le contó a su mujer toda la historia y el poder que la lámpara de aceite tenía.'),
-	(1,'– Y ahora que ya lo sabes todo, querida, volvamos a nuestro hogar. \n
-		Frotó la lámpara y como siempre, salió el gran genio que siempre concedía todos los deseos de su señor. \n
-		– ¿Qué deseas esta vez, mi amo? \n
-		– ¡Hoy me alegro más que nunca de verte! ¡Llévanos a casa, viejo amigo! – dijo Aladino riendo de felicidad. \n
+	(1,'– Y ahora que ya lo sabes todo, querida, volvamos a nuestro hogar. '+char(13)+'
+		Frotó la lámpara y como siempre, salió el gran genio que siempre concedía todos los deseos de su señor. '+char(13)+'
+		– ¿Qué deseas esta vez, mi amo? '+char(13)+'
+		– ¡Hoy me alegro más que nunca de verte! ¡Llévanos a casa, viejo amigo! – dijo Aladino riendo de felicidad. '+char(13)+'
 		¡Y así fue! Halima y Aladino regresaron,  y con ellos, todo lo que el viejo les había robado. A partir de entonces, guardaron la lámpara maravillosa a buen recaudo y continuaron siendo tan felices como lo habían sido hasta entonces.')
 
 
@@ -137,15 +137,15 @@ INSERT INTO Answer(IdQuestion,IsCorrect,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'Atrapados en Tururulandia')
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(2,'Tururulandia era un pequeño y precioso país de juguete que había hecho Paulina Perfectina con sus construcciones. Paulina cuidaba constantemente Tururulandia para que todo estuviera en orden, y mantenía los muñecos rojos junto a sus casas rojas, y los niños verdes jugando en los columpios de los parques verdes, y los papás hablando todo el día junto a la plaza. Era un país tan bonito y perfecto, que Paulina soñaba con poder llegar a vivir un día en Tururulandia. \n
+	(2,'Tururulandia era un pequeño y precioso país de juguete que había hecho Paulina Perfectina con sus construcciones. Paulina cuidaba constantemente Tururulandia para que todo estuviera en orden, y mantenía los muñecos rojos junto a sus casas rojas, y los niños verdes jugando en los columpios de los parques verdes, y los papás hablando todo el día junto a la plaza. Era un país tan bonito y perfecto, que Paulina soñaba con poder llegar a vivir un día en Tururulandia. '+char(13)+'
         Y sin saber cómo ni por qué, su sueño se cumplió, y un día despertó en mitad de Tururulandia, vestida toda de rosa, y hecha de piececitas de juguete. ¡qué maravilla! ¡ todo era como ella conocía! Y era realmente precioso.'),
-	(2,'Paulina esta totalmente feliz, y tras la primera sorpresa, corrió a ver los columpios de los niños del parque verde. Pero antes de que pudiera llegar, una mano gigante la alcanzó, y tomándola de un brazo, la llevó de nuevo junto al gran palacio rosa. Paulina quedó un poco extrañada, pero enseguida lo olvidó, porque vio sus queridas casas rojas, y hacia allí se dirigió. Pero nuevamente, antes de llegar a ellas, la gran mano volvió a aparecer, y la volvió a dejar junto al palacio. \n
+	(2,'Paulina esta totalmente feliz, y tras la primera sorpresa, corrió a ver los columpios de los niños del parque verde. Pero antes de que pudiera llegar, una mano gigante la alcanzó, y tomándola de un brazo, la llevó de nuevo junto al gran palacio rosa. Paulina quedó un poco extrañada, pero enseguida lo olvidó, porque vio sus queridas casas rojas, y hacia allí se dirigió. Pero nuevamente, antes de llegar a ellas, la gran mano volvió a aparecer, y la volvió a dejar junto al palacio. '+char(13)+'
         - No te esfuerces-dijo una princesita rosa que asomaba por uno de los balcones- nunca podrás abandonar la zona rosa'),
-	(2,'Entonces la princesita explicó a Paulina cómo la gran mano nunca dejaba moverse a nadie en Tururulandia, y que aquel era el país más triste del mundo, porque nadie podía decidir qué hacía ni dónde iba. Y Paulita miró las caras de todas las figuritas y muñecos, y comprobó que era verdad. Y se dio cuenta de que aquella gran mano era la suya, la que utilizaba siempre para mantenerlo todo como ella quería. \n
-        - ¿Pero entonces? ¿No os gusta vivir en un país tan bonito y organizado? - terminó preguntando Paulina. \n
-        - Si no podemos elegir qué hacemos o a dónde vamos, ¿para qué nos sirve todo esto? \n
+	(2,'Entonces la princesita explicó a Paulina cómo la gran mano nunca dejaba moverse a nadie en Tururulandia, y que aquel era el país más triste del mundo, porque nadie podía decidir qué hacía ni dónde iba. Y Paulita miró las caras de todas las figuritas y muñecos, y comprobó que era verdad. Y se dio cuenta de que aquella gran mano era la suya, la que utilizaba siempre para mantenerlo todo como ella quería. '+char(13)+'
+        - ¿Pero entonces? ¿No os gusta vivir en un país tan bonito y organizado? - terminó preguntando Paulina. '+char(13)+'
+        - Si no podemos elegir qué hacemos o a dónde vamos, ¿para qué nos sirve todo esto? '+char(13)+'
         - le respondieron - Si tan sólo tuviéramos un día para ver otras cosas... ¿no lo entiendes?'),
-	(2,'Y vaya si lo entendió. Tras unos pocos días sin poder decidir nada por sí misma, ni moverse del castillo rosa, Paulina estaba profundamente triste; tanto, que su precioso país le daba totalmente igual. \n
+	(2,'Y vaya si lo entendió. Tras unos pocos días sin poder decidir nada por sí misma, ni moverse del castillo rosa, Paulina estaba profundamente triste; tanto, que su precioso país le daba totalmente igual. '+char(13)+'
         Hasta que una mañana, se despertó de nuevo en su vida normal, y al llegar junto a su país de juguete, lo primero que hizo fue cambiar las figuritas de sitio. Y así, cada vez que encontraba una fuera de su lugar, en vez de devolverla inmediatamente a su sitio, esperaba un día, para que tuviera tiempo de disfrutar de aquel bello país.')
 
 INSERT INTO Question(IdContent,Text)
@@ -188,34 +188,34 @@ INSERT INTO Answer(IdQuestion,IsCorrect,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'Blancanieves y los 7 enanitos')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(3,'Blancanieves era una niña muy bonita y de dulce corazón. Siendo pequeña, su madre murió y su padre volvió a casarse con otra mujer, una malvada reina de nombre Grimhilde. Era una mujer terrible que envidiaba a la joven princesa por su belleza. \n
-		La madrastra de Blancanieves también era muy vanidosa, tenía un espejo mágico que siempre le decía quién era la mujer más hermosa de todo el reino. Por eso, cada día y como parte de su rutina, ella le preguntaba: \n
-		– Espejito, espejito, ¿Podrías decirme tu quién es la más guapa de todo el reino? \n
-		– Eres tú mi señora, la mujer más hermosa de todas \n
+	(3,'Blancanieves era una niña muy bonita y de dulce corazón. Siendo pequeña, su madre murió y su padre volvió a casarse con otra mujer, una malvada reina de nombre Grimhilde. Era una mujer terrible que envidiaba a la joven princesa por su belleza. '+char(13)+'
+		La madrastra de Blancanieves también era muy vanidosa, tenía un espejo mágico que siempre le decía quién era la mujer más hermosa de todo el reino. Por eso, cada día y como parte de su rutina, ella le preguntaba: '+char(13)+'
+		– Espejito, espejito, ¿Podrías decirme tu quién es la más guapa de todo el reino? '+char(13)+'
+		– Eres tú mi señora, la mujer más hermosa de todas '+char(13)+'
 		- respondía el espejo con voz profunda y oscura.'),
-	(3,'Con el paso del tiempo, Blancanieves creció y se convirtió en una hermosa jovencita. Cierto día, cuando Grimhilde preguntó al espejo quién era la más bonita este respondió: \n
-		– Mi señora, eres muy hermosa, pero Blancanieves te ha superado. \n
-		Al escuchar tal respuesta, la malvada reina enfureció, pues no podía concebir que una niña fuera más hermosa que ella. Por eso, reunió a sus sirvientes y al cazador del castillo y les ordenó: \n
+	(3,'Con el paso del tiempo, Blancanieves creció y se convirtió en una hermosa jovencita. Cierto día, cuando Grimhilde preguntó al espejo quién era la más bonita este respondió: '+char(13)+'
+		– Mi señora, eres muy hermosa, pero Blancanieves te ha superado. '+char(13)+'
+		Al escuchar tal respuesta, la malvada reina enfureció, pues no podía concebir que una niña fuera más hermosa que ella. Por eso, reunió a sus sirvientes y al cazador del castillo y les ordenó: '+char(13)+'
 		— Mi querido espejo ha dicho que Blancanieves es más hermosa que yo. Os ordeno que lleven a Blancanieves al bosque y acaben con ella. Para estar segura que habéis cumplido con mi orden, quiero que me traigan su corazón en una caja. '),
-	(3,'Los sirvientes y el cazador se llevaron a Blancanieves a dar un paseo por el bosque. La joven no sospechó nada y se entretuvo jugando con los pajaritos y las flores del bosque. Los sirvientes no pudieron cumplir la orden, la joven era muy noble y buena como para morir por su mano. \n
-		— Huye muy lejos, tu madrastra te quiere muerta \n
-		— advirtió el cazador \n
+	(3,'Los sirvientes y el cazador se llevaron a Blancanieves a dar un paseo por el bosque. La joven no sospechó nada y se entretuvo jugando con los pajaritos y las flores del bosque. Los sirvientes no pudieron cumplir la orden, la joven era muy noble y buena como para morir por su mano. '+char(13)+'
+		— Huye muy lejos, tu madrastra te quiere muerta '+char(13)+'
+		— advirtió el cazador '+char(13)+'
 		— Yo le llevaré el corazón de un jabalí para engañarla y ganar tiempo.'),
-	(3,'Blancanieves huyó a través del bosque durante horas, cuando estaba muy agotada y a punto de desfallecer, encontró una bonita cabaña en el bosque. Entró y descubrió que todo en su interior era muy pequeño y sucio. Había 7 sillas, siete camas y siete platos con comida. Blancanieves estaba muy hambrienta y cansada, así que se comió todo, limpió la casita y se fue a dormir sobre las siete camitas. \n
+	(3,'Blancanieves huyó a través del bosque durante horas, cuando estaba muy agotada y a punto de desfallecer, encontró una bonita cabaña en el bosque. Entró y descubrió que todo en su interior era muy pequeño y sucio. Había 7 sillas, siete camas y siete platos con comida. Blancanieves estaba muy hambrienta y cansada, así que se comió todo, limpió la casita y se fue a dormir sobre las siete camitas. '+char(13)+'
 		Los dueños de esta cabaña eran 7 enanitos que trabajaban en una mina cercana. Al descubrir su casa invadida por tan hermosa niña sus corazones se enternecieron. Blancanieves les contó los terribles planes de su madrastra y ellos le permitieron quedarse '),
-	(3,'La malvada reina Grimhilde no se daba por vencida y volvió a preguntar a su espejo quién era la mujer más guapa de todo el reino. El espejo no podía mentir, así que respondió: \n
-		— Tu eres hermosa, pero Blancanieves sigue siendo la mujer más guapa de todas. \n
-		— Eso es imposible, me trajeron su corazón en una caja \n
-		— espetó llena de furia. \n
+	(3,'La malvada reina Grimhilde no se daba por vencida y volvió a preguntar a su espejo quién era la mujer más guapa de todo el reino. El espejo no podía mentir, así que respondió: '+char(13)+'
+		— Tu eres hermosa, pero Blancanieves sigue siendo la mujer más guapa de todas. '+char(13)+'
+		— Eso es imposible, me trajeron su corazón en una caja '+char(13)+'
+		— espetó llena de furia. '+char(13)+'
 		— Fue engañada, mi ama. Blancanieves no está muerta, vive en una cabaña del bosque con siete enanitos. '),
-	(3,'La madrastra enfadada decidió terminar el trabajo por su cuenta. Envenenó varias manzanas, se disfrazó de humilde anciana y se dirigió a la casita de los enanos. Al llegar, tocó la puerta y Blancanieves la recibió. \n
-		— ¿Quién es? \n
-		— Ay mi niña, soy una pobre anciana que vive cerca de aquí. Vine a traerte estas hermosas manzanas.  \n
-		Blancanieves no pudo resistirse a la mágica belleza de las manzanas. Tomó una y pronto cayó muerta sobre el suelo. La malvada madrastra marchó entonces, riendo macabramente porque había logrado su cometido, ahora era la mujer más bella de todas. \n
+	(3,'La madrastra enfadada decidió terminar el trabajo por su cuenta. Envenenó varias manzanas, se disfrazó de humilde anciana y se dirigió a la casita de los enanos. Al llegar, tocó la puerta y Blancanieves la recibió. '+char(13)+'
+		— ¿Quién es? '+char(13)+'
+		— Ay mi niña, soy una pobre anciana que vive cerca de aquí. Vine a traerte estas hermosas manzanas.  '+char(13)+'
+		Blancanieves no pudo resistirse a la mágica belleza de las manzanas. Tomó una y pronto cayó muerta sobre el suelo. La malvada madrastra marchó entonces, riendo macabramente porque había logrado su cometido, ahora era la mujer más bella de todas. '+char(13)+'
 		La terrible mujer se marchaba riendo mucho y muy alegre de que por fin había logrado acabar con Blancanieves y ser ella la más hermosa de todas. '),
-	(3,'Cuando los enanitos llegaron a casa y descubrieron lo que había pasado, se pusieron muy tristes. Construyeron una hermosa caja de cristal en la que dejaron a Blancanieves, luego la llevaron al bosque.\n
-		Un día, un príncipe paseaba por el lugar, descubrió a Blancanieves y prendado de su belleza y triste por la suerte de los enanitos, abrió la caja y besó a Blancanieves. \n
-		Aquel beso lleno de amor deshizo el hechizo de la malvada bruja, la joven despertó y pronto se vio rodeada de sus siete enanitos y un príncipe encantador. \n
+	(3,'Cuando los enanitos llegaron a casa y descubrieron lo que había pasado, se pusieron muy tristes. Construyeron una hermosa caja de cristal en la que dejaron a Blancanieves, luego la llevaron al bosque.'+char(13)+'
+		Un día, un príncipe paseaba por el lugar, descubrió a Blancanieves y prendado de su belleza y triste por la suerte de los enanitos, abrió la caja y besó a Blancanieves. '+char(13)+'
+		Aquel beso lleno de amor deshizo el hechizo de la malvada bruja, la joven despertó y pronto se vio rodeada de sus siete enanitos y un príncipe encantador. '+char(13)+'
 		El príncipe se casó con Blancanieves y la llevó a vivir a su palacio junto a los siete enanitos. Todos fueron felices para siempre.')
 
 
@@ -278,24 +278,24 @@ INSERT INTO Question(IdContent,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'El viaje de las hijas del sultan')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(4,'Hubo una vez un viejo sultán preocupado porque aún no había decidido a cuál de sus hijas dejar el trono. Su amigo el visir le aconsejó: \n
-		- Ponlas a prueba. La vida es un largo viaje ¿no? Pues llévalas a un lugar remoto y que cada un viaje hasta aquí por su cuenta. Júzgalas a su vuelta por lo que hayan aprendido. \n
-		- ¿Y si algo les ocurriera? \n
+	(4,'Hubo una vez un viejo sultán preocupado porque aún no había decidido a cuál de sus hijas dejar el trono. Su amigo el visir le aconsejó: '+char(13)+'
+		- Ponlas a prueba. La vida es un largo viaje ¿no? Pues llévalas a un lugar remoto y que cada un viaje hasta aquí por su cuenta. Júzgalas a su vuelta por lo que hayan aprendido. '+char(13)+'
+		- ¿Y si algo les ocurriera? '+char(13)+'
 		- No se preocupe, majestad. Dejaré que les guarde y acompañe un animal de su elección.'),
-	(4,'Ara y Taira, las princesas, fueron llevadas muy lejos, y allí pudieron elegir su animal protector. Ara eligió un magnífico y poderoso tigre que no desentonaba ni con la belleza ni con el carácter valiente e impetuoso de la princesa. \n
-		- Me encanta ese tigre- dijo Taira- pero yo no lo escogería para un viaje tan largo. Los tigres son peligrosos y difíciles de controlar. \n
-		- No te preocupes, hermanita, yo sabré dominarlo- respondió Ara al emprender el camino de vuelta. \n
-		Taira pasó algún tiempo conociendo a los animales antes de elegir su compañero. Y aunque los animales bellos y exóticos le parecían maravillosos, se decidió por un perro de ojos inteligentes, simpático y bonachón, con el que se entendía a las mil maravillas. \n'),
-	(4,'El viaje resultó muy extraño. Cada vez que pasaban por algún pueblo o ciudad, Ara y su tigre levantaban gran admiración y eran acogidos con fiestas y celebraciones, mientras Taira y su perro pasaban prácticamente desapercibidos. Pero el resto del tiempo, cuando viajaban alejados de la gente, Taira disfrutaban de todo tipo de juegos con su perro, mientras que Ara apenas conseguía dominar la ira y la fuerza del tigre, y vivía angustiada pensando que en cualquier momento el animal pudiera llegar a atacarla. Y lo hizo varias veces, aunque las heridas nunca llegaron a ser graves. \n
-		Cuando Ara y su tigre llegaron al palacio también fueron recibidos entre aclamaciones. Al poco llegó Taira, y el visir recordó entonces al sultán: \n
-		- Ha llegado la hora de decidirse. Preguntadles qué tal fue el viaje y qué han aprendido. \n'),
-	(4,'- ¿Qué necesidad hay? - replicó el sultán - Mira a Ara y su magnífico tigre, tienen una imagen perfecta y todo el mundo los adora. \n
-		- Preguntadles de todas formas - insistió el visir- seguro que tienen magníficas historias que contar. \n
-		- Cierto, eso seguro... ¿Queridas hijas? ¿Qué tal vuestro viaje? \n
+	(4,'Ara y Taira, las princesas, fueron llevadas muy lejos, y allí pudieron elegir su animal protector. Ara eligió un magnífico y poderoso tigre que no desentonaba ni con la belleza ni con el carácter valiente e impetuoso de la princesa. '+char(13)+'
+		- Me encanta ese tigre- dijo Taira- pero yo no lo escogería para un viaje tan largo. Los tigres son peligrosos y difíciles de controlar. '+char(13)+'
+		- No te preocupes, hermanita, yo sabré dominarlo- respondió Ara al emprender el camino de vuelta. '+char(13)+'
+		Taira pasó algún tiempo conociendo a los animales antes de elegir su compañero. Y aunque los animales bellos y exóticos le parecían maravillosos, se decidió por un perro de ojos inteligentes, simpático y bonachón, con el que se entendía a las mil maravillas. '+char(13)+''),
+	(4,'El viaje resultó muy extraño. Cada vez que pasaban por algún pueblo o ciudad, Ara y su tigre levantaban gran admiración y eran acogidos con fiestas y celebraciones, mientras Taira y su perro pasaban prácticamente desapercibidos. Pero el resto del tiempo, cuando viajaban alejados de la gente, Taira disfrutaban de todo tipo de juegos con su perro, mientras que Ara apenas conseguía dominar la ira y la fuerza del tigre, y vivía angustiada pensando que en cualquier momento el animal pudiera llegar a atacarla. Y lo hizo varias veces, aunque las heridas nunca llegaron a ser graves. '+char(13)+'
+		Cuando Ara y su tigre llegaron al palacio también fueron recibidos entre aclamaciones. Al poco llegó Taira, y el visir recordó entonces al sultán: '+char(13)+'
+		- Ha llegado la hora de decidirse. Preguntadles qué tal fue el viaje y qué han aprendido. '+char(13)+''),
+	(4,'- ¿Qué necesidad hay? - replicó el sultán - Mira a Ara y su magnífico tigre, tienen una imagen perfecta y todo el mundo los adora. '+char(13)+'
+		- Preguntadles de todas formas - insistió el visir- seguro que tienen magníficas historias que contar. '+char(13)+'
+		- Cierto, eso seguro... ¿Queridas hijas? ¿Qué tal vuestro viaje? '+char(13)+'
 		Ara apenas tuvo tiempo de responder, porque Taira se lanzó a hablar sin parar. Se le había hecho tan corto, y lo había pasado tan bien con su perro, que no dejaba de dar las gracias a su padre por habérselo regalado, y le pidió conservarlo para siempre. Y mientras Taira contaba sus mil historias, el sultán vio en lo ojos de la bella Ara una pequeña lágrima de envidia ¡se le había hecho tan largo! ¡y todo por haber elegido aquel tigre brusco y salvaje! '),
-	(4,'El visir, viendo que el sultán había comprendido, gritó con voz potente: \n
-		- Ya no hay necesidad de trucos ¡Al sal halam! \n
-		... y una nube mágica devolvió al perro y al tigre su forma humana. Eran dos de los muchos príncipes que llevaban años cortejando a las hijas del sultán. Las dos reconocieron enseguida al tigre: era Agra, el más apuesto y poderoso de sus pretendientes, del que ambas habían estado enamoradas durante años. El perro era Asalim, un joven del que apenas recordaban nada. Pero tenía los ojos y la sonrisa de su querido compañero de juegos, y Taira se lanzó a sus brazos y corrió a pedir permiso a su padre para celebrar la boda. \n
+	(4,'El visir, viendo que el sultán había comprendido, gritó con voz potente: '+char(13)+'
+		- Ya no hay necesidad de trucos ¡Al sal halam! '+char(13)+'
+		... y una nube mágica devolvió al perro y al tigre su forma humana. Eran dos de los muchos príncipes que llevaban años cortejando a las hijas del sultán. Las dos reconocieron enseguida al tigre: era Agra, el más apuesto y poderoso de sus pretendientes, del que ambas habían estado enamoradas durante años. El perro era Asalim, un joven del que apenas recordaban nada. Pero tenía los ojos y la sonrisa de su querido compañero de juegos, y Taira se lanzó a sus brazos y corrió a pedir permiso a su padre para celebrar la boda. '+char(13)+'
 		Agra estiró las manos hacia Ara con una sonrisa: hacían una pareja admirable. Pero en sus ojos la princesa reconoció la fiereza y agresividad que tantas veces mostró su compañero de viaje. Y no tuvo ninguna duda: perdería el trono y su amor de juventud, pero no pasaría toda su vida en compañía de un tigre al que nunca podría controlar.')
 
 
@@ -346,11 +346,11 @@ INSERT INTO Question(IdContent,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'Gorg el gigante')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(5,'Gorg el gigante vivía desde hacía siglos en la Cueva de la Ira. Los gigantes eran seres pacíficos y solitarios hasta que el rey Cío el Terrible les acusó de arruinar las cosechas y ordenó la gran caza de gigantes. Sólo Gorg había sobrevivido, y desde entonces se había convertido en el más feroz de los seres que habían existido nunca; resultaba totalmente invencible y había acabado con cuantos habían tratado de adentrarse en su cueva, sin importar lo valientes o poderosos que fueran. \n
+	(5,'Gorg el gigante vivía desde hacía siglos en la Cueva de la Ira. Los gigantes eran seres pacíficos y solitarios hasta que el rey Cío el Terrible les acusó de arruinar las cosechas y ordenó la gran caza de gigantes. Sólo Gorg había sobrevivido, y desde entonces se había convertido en el más feroz de los seres que habían existido nunca; resultaba totalmente invencible y había acabado con cuantos habían tratado de adentrarse en su cueva, sin importar lo valientes o poderosos que fueran. '+char(13)+'
 		Muchos reyes posteriores, avergonzados por las acciones de Cío, habían tratado de sellar la paz con Gorg, pero todo había sido en vano, pues su furia y su ira le llevaban a acabar con cuantos humanos veía, sin siquiera escucharlos. Y aunque los reyes dejaron tranquilo al gigante, no disminuyó su odio a los humanos, pues muchos aventureros y guerreros llegaban de todas partes tratando de hacerse con el fabuloso tesoro que guardaba la cueva en su interior.'),
-	(5,'Sin embargo, un día la joven princesa fue mordida por una serpiente de los pantanos, cuyo antídoto tenía una elaboración secreta que sólo los gigantes conocían, así que el rey se vio obligado a suplicar al gigante su ayuda. Envió a sus mejores guerreros y a sus más valientes caballeros con la promesa de casarse con la princesa, pero ni sus mágicos escudos, ni las más poderosas armas, ni las más brillantes armaduras pudieron nada contra la furia del gigante. Finalmente, el rey suplicó ayuda a todo el reino: con la promesa de casarse con la princesa, y con la ayuda de los grandes magos, cualquier valiente podía acercarse a la entrada de la cueva, pedir la protección de algún conjuro, y tratar de conseguir la ayuda del gigante. \n
+	(5,'Sin embargo, un día la joven princesa fue mordida por una serpiente de los pantanos, cuyo antídoto tenía una elaboración secreta que sólo los gigantes conocían, así que el rey se vio obligado a suplicar al gigante su ayuda. Envió a sus mejores guerreros y a sus más valientes caballeros con la promesa de casarse con la princesa, pero ni sus mágicos escudos, ni las más poderosas armas, ni las más brillantes armaduras pudieron nada contra la furia del gigante. Finalmente, el rey suplicó ayuda a todo el reino: con la promesa de casarse con la princesa, y con la ayuda de los grandes magos, cualquier valiente podía acercarse a la entrada de la cueva, pedir la protección de algún conjuro, y tratar de conseguir la ayuda del gigante. '+char(13)+'
 		Muchos lo intentaron armados de mil distintas maneras, protegidos por los más formidables conjuros, desde la Fuerza Prodigiosa a la Invisibilidad, pero todos sucumbieron. Finalmente, un joven músico apareció en la cueva armado sólo con un arpa, haciendo su petición a los magos: "quiero convertirme en una bella flor y tener la voz de un ángel".'),
-	(5,'Así apareció en el umbral de la cueva una flor de increíble belleza, entonando una preciosa melodía al son del arpa. Al oír tan bella música, tan alejada de las armas y guerreros a que estaba acostumbrado, la ira del gigante fue disminuyendo. La flor siguió cantando mientras se acercaba al gigante, quien terminó tomándola en su mano para escucharla mejor. Y la canción se fue tornando en la historia de una joven princesa a punto de morir, a quien sólo un gigante de buen corazón podría salvar. El gigante, conmovido, escuchaba con emoción, y tanta era su calma y su tranquilidad, que finalmente la flor pudo dejar de cantar, y con voz suave contó la verdadera historia, la necesidad que tenía la princesa de la ayuda del gigante, y los deseos del rey de conseguir una paz justa y duradera. \n
+	(5,'Así apareció en el umbral de la cueva una flor de increíble belleza, entonando una preciosa melodía al son del arpa. Al oír tan bella música, tan alejada de las armas y guerreros a que estaba acostumbrado, la ira del gigante fue disminuyendo. La flor siguió cantando mientras se acercaba al gigante, quien terminó tomándola en su mano para escucharla mejor. Y la canción se fue tornando en la historia de una joven princesa a punto de morir, a quien sólo un gigante de buen corazón podría salvar. El gigante, conmovido, escuchaba con emoción, y tanta era su calma y su tranquilidad, que finalmente la flor pudo dejar de cantar, y con voz suave contó la verdadera historia, la necesidad que tenía la princesa de la ayuda del gigante, y los deseos del rey de conseguir una paz justa y duradera. '+char(13)+'
 	El gigante, cansado de tantas luchas, viendo que era verdad lo que escuchaba, abandonó su cueva y su ira para curar a la princesa. Y el joven músico, quien además de domar la ira del gigante, conquistó el corazón de la princesa y de todo el reino, se convirtió en el mejor de los reyes.')
 
 
@@ -397,29 +397,29 @@ INSERT INTO Answer(IdQuestion,IsCorrect,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'La Cenicienta')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(6,'Había una vez, en un hermoso país, un rico comerciante que vivía feliz en compañía de su esposa y su hermosa hija. Un oscuro día, el comerciante enviudó, su esposa había contraído una misteriosa y terrible enfermedad. \n
-		Fue así como empezó a vivir en soledad con su hija, en una enorme finca a las afueras del pueblo. Con el paso de los años, el padre de la joven decidió volver a casarse, por lo que contrajo matrimonio con una señora respetable, Lady Tremaine, una viuda con dos hijas, Drizella y Anastasia. \n
+	(6,'Había una vez, en un hermoso país, un rico comerciante que vivía feliz en compañía de su esposa y su hermosa hija. Un oscuro día, el comerciante enviudó, su esposa había contraído una misteriosa y terrible enfermedad. '+char(13)+'
+		Fue así como empezó a vivir en soledad con su hija, en una enorme finca a las afueras del pueblo. Con el paso de los años, el padre de la joven decidió volver a casarse, por lo que contrajo matrimonio con una señora respetable, Lady Tremaine, una viuda con dos hijas, Drizella y Anastasia. '+char(13)+'
 		El padre de la joven murió de forma inesperada y esto selló el destino de la joven. Lady Tremaine era una mujer muy cruel y egoísta, solo deseaba el bienestar de sus hijas y odiaba a su hijastra porque era más bonita y noble. '),
-	(6,'Obligó a la joven a trabajar hasta el cansancio, tanto trabajó que su nombre pasó a ser Cenicienta, pues sus ropas siempre estaban llenas de cenizas de la chimenea. La pobre Cenicienta era la sirvienta de su propia casa, era humillada y maltratada, pero no por eso dejó de ser gentil. Su amabilidad la hizo convertirse en amiga de los ratones y pájaros que vivían cerca de la casa. \n
-		Un día, mientras Cenicienta preparaba el desayuno, el malvado gato de Lady Tremaine, Lucifer, persiguió a uno de los ratones, Gus. El ratoncito en su inocencia se escondió detrás de la taza de té de Anastasia, dándole un susto de muerte. Anastasia acusó a Cenicienta ante su madre y está la castigó con tareas extras. \n
+	(6,'Obligó a la joven a trabajar hasta el cansancio, tanto trabajó que su nombre pasó a ser Cenicienta, pues sus ropas siempre estaban llenas de cenizas de la chimenea. La pobre Cenicienta era la sirvienta de su propia casa, era humillada y maltratada, pero no por eso dejó de ser gentil. Su amabilidad la hizo convertirse en amiga de los ratones y pájaros que vivían cerca de la casa. '+char(13)+'
+		Un día, mientras Cenicienta preparaba el desayuno, el malvado gato de Lady Tremaine, Lucifer, persiguió a uno de los ratones, Gus. El ratoncito en su inocencia se escondió detrás de la taza de té de Anastasia, dándole un susto de muerte. Anastasia acusó a Cenicienta ante su madre y está la castigó con tareas extras. '+char(13)+'
 		Y así pasaron los días, hasta que llegó a la casa una invitación. El rey ofrecía un baile para que su hijo, el príncipe, escogiera su esposa.'),
-	(6,'Drizella y Anastasia enloquecieron de alegría. Empezaron a pelear por los vestidos más hermosos y a gritar con sus estridentes voces hasta que Lady Tremaine intervino y le ordenó a la pobre Cenicienta que las peinara y creara para ellas los vestidos más hermosos. \n
-		 — ¿Si lo hago podré ir? La invitación dice que deben ir todas las doncellas casaderas del reino—dijo Cenicienta con humildad. \n
-		 — Si terminas tus tareas podrás ir—la malvada madrastra rompió a reír—. Si encuentras un vestido y no vas con esos harapos. No quiero que relacionen a mis hijas contigo. \n
+	(6,'Drizella y Anastasia enloquecieron de alegría. Empezaron a pelear por los vestidos más hermosos y a gritar con sus estridentes voces hasta que Lady Tremaine intervino y le ordenó a la pobre Cenicienta que las peinara y creara para ellas los vestidos más hermosos. '+char(13)+'
+		 — ¿Si lo hago podré ir? La invitación dice que deben ir todas las doncellas casaderas del reino—dijo Cenicienta con humildad. '+char(13)+'
+		 — Si terminas tus tareas podrás ir—la malvada madrastra rompió a reír—. Si encuentras un vestido y no vas con esos harapos. No quiero que relacionen a mis hijas contigo. '+char(13)+'
 		 Y así, Cenicienta añadió a sus tareas el tener que diseñar y coser vestidos para sus hermanas, probar peinados en ellas y maquillarlas. Solo con la ayuda de los pajaritos y ratoncitos pudo terminar sus tareas y arreglar un viejo y hermoso vestido que había heredado de su madre para poder asistir al baile. '),
-	(6,'Al ver a Cenicienta bajar del ático más hermosa que ellas, la envidia de Drizella y Anastasia fue tal que se arrojaron sobre ella y destruyeron su vestido, acusándola de ladrona. La pobre Cenicienta corrió a refugiarse entre las calabazas, no paraba de llorar por haber perdido el vestido de su madre y no poder asistir al baile. \n
-		Tanto lloró Cenicienta que fue escuchada por el hada madrina de los imposibles, quien se dirigió a su lado y la consoló. \n
-		—Puedes ir al baile, pero debes regresar antes del término de las 12 campanadas que anuncian la medianoche—advirtió. \n
+	(6,'Al ver a Cenicienta bajar del ático más hermosa que ellas, la envidia de Drizella y Anastasia fue tal que se arrojaron sobre ella y destruyeron su vestido, acusándola de ladrona. La pobre Cenicienta corrió a refugiarse entre las calabazas, no paraba de llorar por haber perdido el vestido de su madre y no poder asistir al baile. '+char(13)+'
+		Tanto lloró Cenicienta que fue escuchada por el hada madrina de los imposibles, quien se dirigió a su lado y la consoló. '+char(13)+'
+		—Puedes ir al baile, pero debes regresar antes del término de las 12 campanadas que anuncian la medianoche—advirtió. '+char(13)+'
 		Cenicienta estuvo de acuerdo y observó con asombro como el hada madrina convirtió su vestido harapiento y roto en un hermoso vestido blanco cubierto de diamantes. El hada también le dio dos hermosas zapatillas de cristal.'),
-	(6,'Como faltaba un carruaje, el hada madrina transformó una calabaza del huerto en uno, los ratones los convirtió en caballos, al caballo de la finca en un cochero y al perro en un lacayo. \n
-		Así, Cenicienta acudió al baile, donde el príncipe, cansado de sonsas doncellas, se había negado a bailar con ellas, hasta que sus ojos se toparon con Cenicienta, fue amor a primera vista. El príncipe la invitó a bailar y no se separaron durante toda la noche. Cenicienta se distrajo tanto que no escuchó el reloj empezar a dar las campanadas que anunciaban la medianoche. Cuando lo hizo, corrió fuera del castillo, dejando detrás una de sus zapatillas de cristal. \n
-		Cenicienta llegó a la finca y descubrió que de su hermoso vestido solo quedaba una zapatilla de cristal. La escondió en su ático y esperó al regreso de su madrastra y hermanastras.  \n
+	(6,'Como faltaba un carruaje, el hada madrina transformó una calabaza del huerto en uno, los ratones los convirtió en caballos, al caballo de la finca en un cochero y al perro en un lacayo. '+char(13)+'
+		Así, Cenicienta acudió al baile, donde el príncipe, cansado de sonsas doncellas, se había negado a bailar con ellas, hasta que sus ojos se toparon con Cenicienta, fue amor a primera vista. El príncipe la invitó a bailar y no se separaron durante toda la noche. Cenicienta se distrajo tanto que no escuchó el reloj empezar a dar las campanadas que anunciaban la medianoche. Cuando lo hizo, corrió fuera del castillo, dejando detrás una de sus zapatillas de cristal. '+char(13)+'
+		Cenicienta llegó a la finca y descubrió que de su hermoso vestido solo quedaba una zapatilla de cristal. La escondió en su ático y esperó al regreso de su madrastra y hermanastras.  '+char(13)+'
 		Mientras tanto en el palacio, el Gran Duque informó al Rey de la fuga de Cenicienta y que el príncipe había jurado casarse con ella. Lamentablemente, solo tenían en su poder la zapatilla de cristal, por lo que el príncipe debería casarse con la doncella a la cual le quedara tan delicada y fina pieza.'),
-	(6,'Y así, el Duque empezó a recorrer todas las casas del reino donde viviera una doncella para probar la delicada zapatilla de cristal, pero a ninguna le quedó. Entonces, se dirigió a casa de Cenicienta, donde lo esperaba Lady Tremaine y sus hijas.  \n
-		Lady Tremaine había escuchado tararear a Cenicienta la canción del baile en el palacio y sospechó de ella, por eso y antes que llegara el Duque, la encerró en el ático. \n
+	(6,'Y así, el Duque empezó a recorrer todas las casas del reino donde viviera una doncella para probar la delicada zapatilla de cristal, pero a ninguna le quedó. Entonces, se dirigió a casa de Cenicienta, donde lo esperaba Lady Tremaine y sus hijas.  '+char(13)+'
+		Lady Tremaine había escuchado tararear a Cenicienta la canción del baile en el palacio y sospechó de ella, por eso y antes que llegara el Duque, la encerró en el ático. '+char(13)+'
 		Cuando llega el Duque, los dos ratoncitos amigos de Cenicienta, Jaq y Gus robaron la llave del ático y con ayuda de otros animales logran evadir al terrible Lucifer. '),
-	(6,'Las hermanastras de Cenicienta no habían logrado que sus pies entraran en la zapatilla y el Duque estaba cada vez más desesperado. Para su suerte, Cenicienta llegó en ese momento y pidió probar la zapatilla. Lady Tremaine hizo tropezar al Duque, provocando que la zapatilla cayera al suelo y se rompiera en miles de pedazos. \n
-		El Gran Duque se llenó de terror, pero Cenicienta sacó de su bolsillo la otra zapatilla de cristal, demostrando que ella era la doncella de la cual estaba enamorado el príncipe. El Duque probó la zapatilla en los pies de Cenicienta y esta calzó perfectamente. \n
+	(6,'Las hermanastras de Cenicienta no habían logrado que sus pies entraran en la zapatilla y el Duque estaba cada vez más desesperado. Para su suerte, Cenicienta llegó en ese momento y pidió probar la zapatilla. Lady Tremaine hizo tropezar al Duque, provocando que la zapatilla cayera al suelo y se rompiera en miles de pedazos. '+char(13)+'
+		El Gran Duque se llenó de terror, pero Cenicienta sacó de su bolsillo la otra zapatilla de cristal, demostrando que ella era la doncella de la cual estaba enamorado el príncipe. El Duque probó la zapatilla en los pies de Cenicienta y esta calzó perfectamente. '+char(13)+'
 		Poco tiempo después, se celebró la boda entre Cenicienta y el Príncipe, quienes vivieron felices para siempre.')
 
 
@@ -488,7 +488,7 @@ INSERT INTO Question(IdContent,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'La invitacion para el Gran Baile')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(7,'Un príncipe terriblemente desordenado nunca hace caso a sus padres cuando le piden orden. La princesa del reino vecino, de la que está enamorado en secreto, organiza un gran baile e invita a todos los príncipes de los alrededores. El príncipe está emocionado y lo prepara todo con esmero, pero el día del baile no encuentra la invitación entre el desorden de su cuarto. El busca desesperado y no la encuentra, y al final decide ordenar todo su cuarto, encontrando la invitación justo encima de la mesa. Para cuando llega al baile ya se marchaban todos y se vuelve muy triste y habiendo aprendido la lección. \n
+	(7,'Un príncipe terriblemente desordenado nunca hace caso a sus padres cuando le piden orden. La princesa del reino vecino, de la que está enamorado en secreto, organiza un gran baile e invita a todos los príncipes de los alrededores. El príncipe está emocionado y lo prepara todo con esmero, pero el día del baile no encuentra la invitación entre el desorden de su cuarto. El busca desesperado y no la encuentra, y al final decide ordenar todo su cuarto, encontrando la invitación justo encima de la mesa. Para cuando llega al baile ya se marchaban todos y se vuelve muy triste y habiendo aprendido la lección. '+char(13)+'
 	Pero tuvo suerte, y como no encontró novio, la princesa repitió el baile poco después, y como esta vez tuvo todo ordenado, no perdió la invitación y pudo conocer a la princesa, que también se enamoró de él.')
 	
 INSERT INTO Question(IdContent,Text)
@@ -526,10 +526,10 @@ INSERT INTO Answer(IdQuestion,IsCorrect,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'La princesa de fuego')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(8,'Hubo una vez una princesa increíblemente rica, bella y sabia. Cansada de pretendientes falsos que se acercaban a ella para conseguir sus riquezas, hizo publicar que se casaría con quien le llevase el regalo más valioso, tierno y sincero a la vez. El palacio se llenó de flores y regalos de todos los tipos y colores, de cartas de amor incomparables y de poetas enamorados. Y entre todos aquellos regalos magníficos, descubrió una piedra; una simple y sucia piedra. Intrigada, hizo llamar a quien se la había regalado. A pesar de su curiosidad, mostró estar muy ofendida cuando apareció el joven, y este se explicó diciendo: \n
+	(8,'Hubo una vez una princesa increíblemente rica, bella y sabia. Cansada de pretendientes falsos que se acercaban a ella para conseguir sus riquezas, hizo publicar que se casaría con quien le llevase el regalo más valioso, tierno y sincero a la vez. El palacio se llenó de flores y regalos de todos los tipos y colores, de cartas de amor incomparables y de poetas enamorados. Y entre todos aquellos regalos magníficos, descubrió una piedra; una simple y sucia piedra. Intrigada, hizo llamar a quien se la había regalado. A pesar de su curiosidad, mostró estar muy ofendida cuando apareció el joven, y este se explicó diciendo: '+char(13)+'
 		- Esa piedra representa lo más valioso que os puedo regalar, princesa: es mi corazón. Y también es sincera, porque aún no es vuestro y es duro como una piedra. Sólo cuando se llene de amor se ablandará y será más tierno que ningún otro.'),
 	(8,'El joven se marchó tranquilamente, dejando a la princesa sorprendida y atrapada. Quedó tan enamorada que llevaba consigo la piedra a todas partes, y durante meses llenó al joven de regalos y atenciones, pero su corazón seguía siendo duro como la piedra en sus manos. Desanimada, terminó por arrojar la piedra al fuego; al momento vio cómo se deshacía la arena, y de aquella piedra tosca surgía una bella figura de oro. Entonces comprendió que ella misma tendría que ser como el fuego, y transformar cuanto tocaba separando lo inútil de lo importante.'),
-	(8,'Durante los meses siguientes, la princesa se propuso cambiar en el reino, y como con la piedra, dedicó su vida, su sabiduría y sus riquezas a separar lo inútil de lo importante. Acabó con el lujo, las joyas y los excesos, y las gentes del país tuvieron comida y libros. Cuantos trataban con la princesa salían encantados por su carácter y cercanía, y su sola presencia transmitía tal calor humano y pasión por cuanto hacía, que comenzaron a llamarla cariñosamente "La princesa de fuego". \n
+	(8,'Durante los meses siguientes, la princesa se propuso cambiar en el reino, y como con la piedra, dedicó su vida, su sabiduría y sus riquezas a separar lo inútil de lo importante. Acabó con el lujo, las joyas y los excesos, y las gentes del país tuvieron comida y libros. Cuantos trataban con la princesa salían encantados por su carácter y cercanía, y su sola presencia transmitía tal calor humano y pasión por cuanto hacía, que comenzaron a llamarla cariñosamente "La princesa de fuego". '+char(13)+'
 		Y como con la piedra, su fuego deshizo la dura corteza del corazón del joven, que tal y como había prometido, resultó ser tan tierno y justo que hizo feliz a la princesa hasta el fin de sus días')
 
 INSERT INTO Question(IdContent,Text)
@@ -572,27 +572,27 @@ INSERT INTO Question(IdContent,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'La Sirenita')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(9,'En el fondo de los océanos había un precioso palacio en el cual vivía el Rey del Mar junto a sus cinco hijas, bellísimas sirenas. La más joven, la Sirenita, además de ser la más hermosa, poseía una voz maravillosa. \n
-		Cuando cantaba, todos los habitantes del fondo del mar acudían para escucharla. Además de cantar, Sirenita soñaba con salir a la superficie para ver el cielo y conocer el mundo de los hombres, como lo relataban sus hermanas. \n
-		Pero su padre le decía que solo cuando cumpliera los 15 años tendría su permiso para hacerlo. Pasados los años, finalmente llegaron el cumpleaños y el regalo tan deseados. \n
+	(9,'En el fondo de los océanos había un precioso palacio en el cual vivía el Rey del Mar junto a sus cinco hijas, bellísimas sirenas. La más joven, la Sirenita, además de ser la más hermosa, poseía una voz maravillosa. '+char(13)+'
+		Cuando cantaba, todos los habitantes del fondo del mar acudían para escucharla. Además de cantar, Sirenita soñaba con salir a la superficie para ver el cielo y conocer el mundo de los hombres, como lo relataban sus hermanas. '+char(13)+'
+		Pero su padre le decía que solo cuando cumpliera los 15 años tendría su permiso para hacerlo. Pasados los años, finalmente llegaron el cumpleaños y el regalo tan deseados. '+char(13)+'
 		Sirenita por fin pudo salir a respirar el aire y ver el cielo, después de oír los consejos de su padre: Recuerda que el mundo de arriba no es el nuestro, sólo podemos admirarlo. Somos hijos del mar. Sé prudente y no te acerques a los hombres'),
-	(9,'Y al emergerse del agua Sirenita se quedó de boca abierta. Todo era nuevo para ella. Y todo era hermoso, ¡fascinante! Sirenita era feliz. Pasados unos minutos, Sirenita pudo observar, con asombro, que un barco se acercaba y paraba. Se puso a escuchar voces. Y pensó en lo cuanto le gustaría hablar con ellos. \n
-		Pero miró a su larga cola y comprendió que eso era imposible. Continuó mirando al barco. A bordo había una gran fiesta de aniversario. El capitán del barco cumplía veinte años de edad. \n
-		Sirenita se quedó atónita al ver el joven. Era alto, moreno, de porte real, y sonreía feliz. La Sirenita sintió una extraña sensación de alegría y sufrimiento a la vez. \n
+	(9,'Y al emergerse del agua Sirenita se quedó de boca abierta. Todo era nuevo para ella. Y todo era hermoso, ¡fascinante! Sirenita era feliz. Pasados unos minutos, Sirenita pudo observar, con asombro, que un barco se acercaba y paraba. Se puso a escuchar voces. Y pensó en lo cuanto le gustaría hablar con ellos. '+char(13)+'
+		Pero miró a su larga cola y comprendió que eso era imposible. Continuó mirando al barco. A bordo había una gran fiesta de aniversario. El capitán del barco cumplía veinte años de edad. '+char(13)+'
+		Sirenita se quedó atónita al ver el joven. Era alto, moreno, de porte real, y sonreía feliz. La Sirenita sintió una extraña sensación de alegría y sufrimiento a la vez. '+char(13)+'
 		Algo que jamás había sentido en su corazón. La fiesta seguía hasta que repentinamente un viento fuerte agitó las olas, sacudiendo y posteriormente volcando el barco. Sirenita vio como el joven capitán caía al mar.'),
-	(9,'Nadó lo que pudo para socorrerlo, hasta que le tuvo en sus brazos. El joven estaba inconsciente, pero Sirenita nadó lo que pudo para llevarlo hasta tierra. Depositó el cuerpo del joven sobre la arena de la playa y estuvo frotando sus manos intentando despertarlo. \n
-		Pero un murmullo de voces que se aproximaban la obligaron a refugiarse en el mar. Desde el mar, vio como el joven recobraba el conocimiento y agradecía, equivocadamente, a una joven dama por haberle salvado la vida. \n
+	(9,'Nadó lo que pudo para socorrerlo, hasta que le tuvo en sus brazos. El joven estaba inconsciente, pero Sirenita nadó lo que pudo para llevarlo hasta tierra. Depositó el cuerpo del joven sobre la arena de la playa y estuvo frotando sus manos intentando despertarlo. '+char(13)+'
+		Pero un murmullo de voces que se aproximaban la obligaron a refugiarse en el mar. Desde el mar, vio como el joven recobraba el conocimiento y agradecía, equivocadamente, a una joven dama por haberle salvado la vida. '+char(13)+'
 		Sirenita volvió a la mansión paterna y les contó toda su experiencia. Después pasó días llorando en su habitación. Se había enamorado del joven capitán pero sentía que jamás podría estar con él.'),
-	(9,'Días después, Sirenita acudió desesperada a la casa de la Hechicera de los Abismos. Quería deshacerse de su cola de pez a cualquier precio. E hicieron un trato: Sirenita tendría dos piernas a cambio de regalar su hermosa voz a la hechicera que le advirtió: "Si el hombre que amas se casa con otra, tu cuerpo desaparecerá en el agua como la espuma de una ola". \n
-		Asintiendo a las condiciones de la hechicera, Sirenita bebió la pócima mágica e inmediatamente perdió el conocimiento. Cuando despertó se encontraba tendida en la arena de la playa, y a su lado estaba el joven capitán que intentaba ayudarla a levantarse. Y le dijo: "te llevaré al castillo y te curaré". \n
+	(9,'Días después, Sirenita acudió desesperada a la casa de la Hechicera de los Abismos. Quería deshacerse de su cola de pez a cualquier precio. E hicieron un trato: Sirenita tendría dos piernas a cambio de regalar su hermosa voz a la hechicera que le advirtió: "Si el hombre que amas se casa con otra, tu cuerpo desaparecerá en el agua como la espuma de una ola". '+char(13)+'
+		Asintiendo a las condiciones de la hechicera, Sirenita bebió la pócima mágica e inmediatamente perdió el conocimiento. Cuando despertó se encontraba tendida en la arena de la playa, y a su lado estaba el joven capitán que intentaba ayudarla a levantarse. Y le dijo: "te llevaré al castillo y te curaré". '+char(13)+'
 		Durante los días siguientes, Sirenita pasó a vestirse como una dama, y acompañaba al príncipe en sus paseos. Era invitada a los bailes de la corte pero como no podía hablar, no podía explicar al príncipe lo que había sucedido en la noche que le salvó.'),
-	(9,'El príncipe no paraba de pensar en la dama que pensaba haber salvado su vida y Sirenita se daba cuenta de eso. Pero el destino le reservaba otra sorpresa. \n
-		Un día, avistaron un gran barco que se acercaba al puerto. El barco traía una desconocida que enseguida llamó la atención del príncipe. Sirenita sintió un agudo dolor en su corazón, y sintió que perdería a su príncipe para siempre. \n
-		El príncipe quedó prendado de la joven desconocida, que no era otra que la bruja disfrazada, y al haberle robado su voz, el príncipe creyó que era su salvadora y se enamoró de ella.  \n
+	(9,'El príncipe no paraba de pensar en la dama que pensaba haber salvado su vida y Sirenita se daba cuenta de eso. Pero el destino le reservaba otra sorpresa. '+char(13)+'
+		Un día, avistaron un gran barco que se acercaba al puerto. El barco traía una desconocida que enseguida llamó la atención del príncipe. Sirenita sintió un agudo dolor en su corazón, y sintió que perdería a su príncipe para siempre. '+char(13)+'
+		El príncipe quedó prendado de la joven desconocida, que no era otra que la bruja disfrazada, y al haberle robado su voz, el príncipe creyó que era su salvadora y se enamoró de ella.  '+char(13)+'
 		Le pidió matrimonio, y para celebrarlo fueron invitados a hacer un gran viaje por mar al día siguiente, acompañados también por la Sirenita. Al caer la noche, Sirenita, recordando el acuerdo que había hecho con la hechicera, estaba dispuesta a sacrificar su vida y a desaparecer en el mar, hasta que escuchó la llamada de sus hermanas.'),
-	(9,'- ¡Sirenita! ¡Sirenita! ¡Somos nosotras, tus hermanas!. Escucha con atención, hay una forma de romper el hechizo y recuperar la voz que la bruja te ha robado. Si besas al príncipe conseguirás que se enamore de ti y se rompa el encantamiento. \n
-		La Sirenita corrió y corrió hasta el gran salón donde iba a comenzar la ceremonia de boda. Se lanzó a los brazos del príncipe y le besó, dejando a todos boquiabiertos. \n
-		La hechicera recuperó su desagradable voz y aspecto, y la Sirenita pudo explicar lo que había ocurrido realmente. La bruja fue encerrada en el calabozo, y el príncipe se disculpó con la Sirenita. \n
+	(9,'- ¡Sirenita! ¡Sirenita! ¡Somos nosotras, tus hermanas!. Escucha con atención, hay una forma de romper el hechizo y recuperar la voz que la bruja te ha robado. Si besas al príncipe conseguirás que se enamore de ti y se rompa el encantamiento. '+char(13)+'
+		La Sirenita corrió y corrió hasta el gran salón donde iba a comenzar la ceremonia de boda. Se lanzó a los brazos del príncipe y le besó, dejando a todos boquiabiertos. '+char(13)+'
+		La hechicera recuperó su desagradable voz y aspecto, y la Sirenita pudo explicar lo que había ocurrido realmente. La bruja fue encerrada en el calabozo, y el príncipe se disculpó con la Sirenita. '+char(13)+'
 		Esa misma tarde se celebró la boda entre la Sirenita y el príncipe, y todos cantaron para celebrar su amor.')
 
 
@@ -636,18 +636,18 @@ INSERT INTO Answer(IdQuestion,IsCorrect,Text)
 INSERT INTO Content(IdTypeContent, Status, Title) VALUES(4, 1, 'Las princesas del lago')	
 INSERT INTO [Page](IdContent,Text) 
 	VALUES
-	(10,'Había una vez dos bellas princesas María la mayor y Alejandra la menor que, siendo aún pequeñas, habían sido raptadas por un rey enemigo. Éste había ordenado llevarlas a un lago perdido, y abandonarlas en una pequeña isla, donde permanecerían para siempre custodiadas por un terrible monstruo marino. \n
+	(10,'Había una vez dos bellas princesas María la mayor y Alejandra la menor que, siendo aún pequeñas, habían sido raptadas por un rey enemigo. Éste había ordenado llevarlas a un lago perdido, y abandonarlas en una pequeña isla, donde permanecerían para siempre custodiadas por un terrible monstruo marino. '+char(13)+'
 		Sólo cuando el malvado rey y su corte de brujos y adivinos fueron derrotados, pudieron en aquel país descubrir que en el destino estaba escrito que llegaría el día en que un valiente príncipe liberaría a las princesas de su encierro.'),
 	(10,'Cuando el viento llevó la noticia a la isla, llenó de esperanza la vida de las princesas. La más pequeña, mucho más bella y dulce que su hermana, esperaba pacientemente a su enamorado, moldeando pequeños adornos de flores y barro, y cantando canciones de amor.La mayor, sin embargo, no se sentía a gusto esperando sin más. "Algo tendré que hacer para ayudar al príncipe a rescatarme. Que por lo menos sepa dónde estoy, o cómo es el monstruo que me vigila." Y decidida a facilitar el trabajo del príncipe, se dedicó a crear hogueras, construir torres, cavar túneles y mil cosas más. Pero el temible monstruo marino fastidiaba siempre sus planes.'),
-	(10,'Con el paso del tiempo, la hermana mayor se sentía más incómoda. Sabía que el príncipe elegiría a la pequeña, así que no tenía mucho sentido seguir esperando. Desde entonces, la joven dedicó sus esfuerzos a tratar de escapar de la isla y del monstruo, sin preocuparse por si finalmente el príncipe aparecería para salvarla o no. \n
+	(10,'Con el paso del tiempo, la hermana mayor se sentía más incómoda. Sabía que el príncipe elegiría a la pequeña, así que no tenía mucho sentido seguir esperando. Desde entonces, la joven dedicó sus esfuerzos a tratar de escapar de la isla y del monstruo, sin preocuparse por si finalmente el príncipe aparecería para salvarla o no. '+char(13)+'
 		Cada mañana preparaba un plan de huída diferente, que el gran monstruo siempre terminaba arruinando. Los intentos de fuga y las capturas se sucedían día tras día, y se convirtieron en una especie de juego de ingenio entre la princesa y su guardián. Cada intento de escapada era más original e ingenioso, y cada forma de descubrirlo más sutil y sorprendente. Ponían tanto empeño e imaginación en sus planes, que al acabar el juego pasaban horas comentando amistosamente cómo habían preparado su estrategia. Y al salir la luna, se despedían hasta el día siguiente y el monstruo volvía a las profundidades del lago.'),
-	(10,'Un día, el monstruo despidió a la princesa diciendo: \n
-		- Mañana te dejaré marchar. Eres una joven lista y valiente. No mereces seguir atrapada. \n
-		Pero a la mañana siguiente la princesa no intentó escapar. Se quedó sentada junto a la orilla, esperando a que apareciera el monstruo. \n
-		- ¿Por qué no te has marchado? \n
-		- No quería dejarte aquí solo. Es verdad que das bastante miedo, y eres enorme, pero tú también eres listo y mereces algo más que vigilar princesas. ¿Por qué no vienes conmigo? \n
+	(10,'Un día, el monstruo despidió a la princesa diciendo: '+char(13)+'
+		- Mañana te dejaré marchar. Eres una joven lista y valiente. No mereces seguir atrapada. '+char(13)+'
+		Pero a la mañana siguiente la princesa no intentó escapar. Se quedó sentada junto a la orilla, esperando a que apareciera el monstruo. '+char(13)+'
+		- ¿Por qué no te has marchado? '+char(13)+'
+		- No quería dejarte aquí solo. Es verdad que das bastante miedo, y eres enorme, pero tú también eres listo y mereces algo más que vigilar princesas. ¿Por qué no vienes conmigo? '+char(13)+'
 		- No puedo- respondió con gran pena el monstruo-. No puedo separarme de la isla, pues a ella me ata una gran cadena. Tienes que irte sola.'),
-	(10,'La joven se acercó a la horrible fiera y la abrazó con todas sus fuerzas. Tan fuerte lo hizo, que el animal explotó en mil pedazos. Y de entre tantos pedacitos, surgió un joven risueño y delgaducho, pero con esa misma mirada inteligente que tenía su amigo el monstruo. \n
+	(10,'La joven se acercó a la horrible fiera y la abrazó con todas sus fuerzas. Tan fuerte lo hizo, que el animal explotó en mil pedazos. Y de entre tantos pedacitos, surgió un joven risueño y delgaducho, pero con esa misma mirada inteligente que tenía su amigo el monstruo. '+char(13)+'
 		Así descubrieron las princesas a su príncipe salvador, quien había estado con ellas desde el principio, sin saber que para que pudiera salvarlas antes debían liberarlo a él. Algo que sólo había llegado a ocurrir gracias al ánimo y la actitud de la hermana mayor.Y el joven príncipe, que era listo, no tuvo ninguna duda para elegir con qué princesa casarse.')
 
 INSERT INTO Question(IdContent,Text)

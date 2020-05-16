@@ -1,5 +1,5 @@
 package com.example.superreaders.retrofit;
 
 public class Environment {
-    public static final String API = "https://fd96b18d.ngrok.io/Api/";//put your base url here
+    public static final String API = "http://e7adc1ab.ngrok.io/Api/";//put your base url here
 }
