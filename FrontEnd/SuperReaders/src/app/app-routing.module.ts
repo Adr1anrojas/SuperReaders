@@ -10,6 +10,7 @@ import { ClassRoomComponent } from './components/class-room/class-room.component
 import { ContentComponent } from './components/content/content.component';
 import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'report', component: ReportComponent },
   { path: 'classRoom', component: ClassRoomComponent },
   { path: 'content', component: ContentComponent },
-  { path: 'contentdetail/:id', component: ContentDetailComponent }
+  { path: 'contentdetail/:id', component: ContentDetailComponent },
+  { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({

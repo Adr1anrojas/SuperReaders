@@ -25,6 +25,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
 import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { HomeDetailComponent } from './components/home/home-detail/home-detail.c
     AdminComponent,
     ClassRoomComponent,
     ContentDetailComponent,
-    HomeDetailComponent
+    HomeDetailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
