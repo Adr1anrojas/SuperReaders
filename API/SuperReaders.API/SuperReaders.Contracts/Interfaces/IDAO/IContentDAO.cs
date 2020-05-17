@@ -1,4 +1,5 @@
-﻿using SuperReaders.Models.Entities;
+﻿using SuperReaders.Models.DTO;
+using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -99,5 +100,7 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="studentAnswer"></param>
         /// <returns></returns>
         void SaveAnswerStudent(StudentAnswer studentAnswer);
+
+        IEnumerable<StudentTypeContent> GetContentByPreferenceStudent(int idStudent);
     }
 }

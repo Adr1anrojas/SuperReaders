@@ -74,7 +74,8 @@
             public const string SP_Content_GetAllContents = "Content_GetContents";
             public const string SP_Content_GetAllTypeContent = "Content_TypeContent";
             public const string SP_Content_GetContentByIdTypeContent = "Content_GetByIdTypeContent";
-             public const string SP_Content_GetById = "Content_GetById";
+            public const string SP_Content_GetContentByPreferenceStudent = "Content_GetContentByPreferenceStudent";
+            public const string SP_Content_GetById = "Content_GetById";
             public const string SP_Content_CreateStudentContent = "Content_CreateStudentContent";
             public const string SP_Content_GetStudentContent = "Content_GetStudentContent";
             public const string SP_Content_UpdateTimeReading = "Content_UpdateTimeReading";

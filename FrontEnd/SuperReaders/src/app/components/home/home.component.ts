@@ -19,14 +19,17 @@ export class HomeComponent implements OnInit {
   currentUser: LoginResult;
   allTypeContent: TypeContent[] = [];
   allContent: ContentFile[] = [];
+  contentPreferences: ContentFile[] = [];
   constructor(private loginService: LoginService, private router: Router, private contentService: ContentService, public imgService: ImageService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.currentUser = this.loginService.currentUserValue();
     if (this.currentUser.isFirstTime && this.currentUser.role == 'Student')
       this.contentService.getTypeContent().subscribe((res: TypeContent[]) => { this.allTypeContent = res; });
-    else if (!this.currentUser.isFirstTime && this.currentUser.role == 'Student')
+    else if (!this.currentUser.isFirstTime && this.currentUser.role == 'Student') {
+      this.contentService.getAllContentByPreferenceStudent(this.currentUser.studentId).subscribe((res: ContentFile[]) => { this.contentPreferences = res; });
       this.contentService.getAllContent().subscribe((res: ContentFile[]) => { this.allContent = res; });
+    }
   }
 
   selectedCategories() {

@@ -2,6 +2,7 @@
 using SuperReaders.API.Helper;
 using SuperReaders.Contracts.Constants;
 using SuperReaders.Contracts.Interfaces.IDAO;
+using SuperReaders.Models.DTO;
 using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -340,6 +341,24 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
+
+        public IEnumerable<StudentTypeContent> GetContentByPreferenceStudent(int idStudent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_Content_IdStudent, idStudent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    return db.Query<StudentTypeContent>(Constants.SP_Content_GetContentByPreferenceStudent, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e) 
+            {
+                throw e;
+            }
+        }
+
     }
 }
 
