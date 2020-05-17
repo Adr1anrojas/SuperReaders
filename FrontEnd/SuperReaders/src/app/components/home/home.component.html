@@ -1,7 +1,10 @@
-<h5 class="mt-3">Inicio</h5>
+<h5 class="mt-3" *ngIf="this.currentUser && this.currentUser.role!=='Student'">Inicio</h5>
 <div class="card">
-    <div class="card-body" *ngIf="this.currentUser && this.currentUser.role!=='Student'">
+    <div class="card-body" id="img-background" *ngIf="this.currentUser && this.currentUser.role=='Teacher'">
         <img class="img-home" src="../../../assets/bg-home.jpg" alt="">
+    </div>
+    <div class="card-body" *ngIf="this.currentUser && this.currentUser.role=='Admin'">
+        <img class="img-admin" src="../../../assets/home-admin.jpeg" alt="">
     </div>
     <div class="card-body" *ngIf="this.currentUser.isFirstTime && this.currentUser.role == 'Student'">
         <h4 class="card-title text-center font-weight-light">Bienvenido SuperLector!</h4>
@@ -32,19 +35,46 @@
         </div>
 
     </div>
-    <!-- ALL CONTENT -->
+
+
+    <!-- PREFERENCES -->
     <div class="card-body" *ngIf="!this.currentUser.isFirstTime && this.currentUser.role == 'Student'">
         <div class="container-fluid">
-            <div class="row text-center text-lg-left">
-                <div class="col-lg-2 col-md-2 col-6 nopad mb-1" *ngFor="let item of allContent; ;let i = index">
-                    <label class="m-0 content">
-                        <a class="d-block mb-4 h-100">
-                            <img (click)="showContent(item)" class="img-fluid img-thumbnail content-size"
-                                src="{{imgService.convertBase64ToImage(item.img)}}" alt="">
-                            <h5 class="card-title font-weight-light text-center mb-0">{{item.title}}
-                            </h5>
-                        </a>
-                    </label>
+            <div *ngIf="contentPreferences">
+                <h4>Recomendados</h4><hr>
+                <div class="row text-center text-lg-left">
+                    <div class="col-lg-2 col-md-2 col-12 nopad mb-1"
+                        *ngFor="let item of contentPreferences; ;let i = index">
+                        <label class="m-0 content">
+                            <a class="d-block mb-4 h-100">
+                                <img (click)="showContent(item)" class="img-fluid img-thumbnail content-size"
+                                    src="{{imgService.convertBase64ToImage(item.img)}}" alt="">
+                                <h5 class="card-title font-weight-light text-center mb-0">{{item.title}}
+                                </h5>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALL CONTENT -->
+        <div class="container-fluid">
+            <div *ngFor="let category of allContent; let i = index;">
+                <div *ngIf="category.contents.length>0">
+                    <h4>{{category.name}}</h4><hr>
+                    <div class="row text-center text-lg-left">
+                        <div class="col-lg-2 col-md-2 col-12 nopad mb-1" *ngFor="let item of category.contents">
+                            <label class="m-0 content">
+                                <a class="d-block mb-4 h-100">
+                                    <img (click)="showContent(item)" class="img-fluid img-thumbnail content-size"
+                                        src="{{imgService.convertBase64ToImage(item.img)}}" alt="">
+                                    <h5 class="card-title font-weight-light text-center mb-0">{{item.title}}
+                                    </h5>
+                                </a>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

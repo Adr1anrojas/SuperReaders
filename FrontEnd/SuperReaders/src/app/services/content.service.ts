@@ -58,4 +58,12 @@ export class ContentService {
     return this.http.post(this.url + 'saveAnswerStudent', studentAnswers);
   }
 
+  getAllContentByPreferenceStudent(idStudent: number) {
+    return this.http.get(this.url + 'contentByPreferenceStudent/' + idStudent);
+  }
+
+  getAllContentByTypeContent() {
+    return this.http.get<TypeContent[]>(this.url + 'contentByTypeContent');
+  }
+
 }

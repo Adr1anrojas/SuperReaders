@@ -73,5 +73,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// <param name="studentAnswer"></param>
         /// <returns></returns>
         void SaveAnswerStudent(List<StudentAnswer> studentAnswers);
+
+        List<Content> GetContentByPreferenceStudent(int idStudent);
     }
 }

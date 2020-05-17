@@ -18,15 +18,18 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 export class HomeComponent implements OnInit {
   currentUser: LoginResult;
   allTypeContent: TypeContent[] = [];
-  allContent: ContentFile[] = [];
+  allContent: TypeContent[] = [];
+  contentPreferences: ContentFile[] = [];
   constructor(private loginService: LoginService, private router: Router, private contentService: ContentService, public imgService: ImageService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.currentUser = this.loginService.currentUserValue();
     if (this.currentUser.isFirstTime && this.currentUser.role == 'Student')
       this.contentService.getTypeContent().subscribe((res: TypeContent[]) => { this.allTypeContent = res; });
-    else if (!this.currentUser.isFirstTime && this.currentUser.role == 'Student')
-      this.contentService.getAllContent().subscribe((res: ContentFile[]) => { this.allContent = res; });
+    else if (!this.currentUser.isFirstTime && this.currentUser.role == 'Student') {
+      this.contentService.getAllContentByPreferenceStudent(this.currentUser.studentId).subscribe((res: ContentFile[]) => { this.contentPreferences = res ? res : []; });
+      this.contentService.getAllContentByTypeContent().subscribe((res: TypeContent[]) => { this.allContent = res ? res : []; });
+    }
   }
 
   selectedCategories() {
@@ -52,7 +55,7 @@ export class HomeComponent implements OnInit {
     this.contentService.createTypeContentStudent(typeContentStudent).subscribe(res => {
       this.currentUser.isFirstTime = false;
       this.loginService.setCurrentUser(this.currentUser);
-      this.contentService.getAllContent().subscribe((res: ContentFile[]) => { this.allContent = res; });
+      this.contentService.getAllContent().subscribe((res: TypeContent[]) => { this.allContent = res; });
     }, error => this.toastr.error('Ocurrio un problema al cargar tus categorias.', '¡Error!'));
   }
 
