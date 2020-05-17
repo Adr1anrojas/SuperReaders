@@ -63,7 +63,7 @@ import { ContentDetailComponent } from './components/content/content-detail/cont
     { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
-})  
+})
 
 export class AppModule {
   constructor(library: FaIconLibrary) {

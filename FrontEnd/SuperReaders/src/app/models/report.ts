@@ -5,6 +5,7 @@ export class Report {
     averageContentRead: number;
     contentReadFromMoreRead: number;
     averageContentNotRead: number;
-    students: Student[];
     contentMoreReads: ContentMoreRead[];
+    student: Student[];
+
 }
