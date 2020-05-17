@@ -2,7 +2,7 @@ CREATE PROC User_Create
 @pFirstName AS NVARCHAR(50), 
 @pLastName AS NVARCHAR(50), 
 @pUserName AS NVARCHAR(50), 
-@pEmail AS NVARCHAR(50), 
+@pEmail AS NVARCHAR(50) = NULL, 
 @pPassword AS NVARCHAR(50), 
 @pStatus AS BIT, 
 @pRole AS NVARCHAR(50), 

@@ -61,7 +61,7 @@
         <!-- ALL CONTENT -->
         <div class="container-fluid">
             <div *ngFor="let category of allContent; let i = index;">
-                <div *ngIf="category.contents.length>0">
+                <div *ngIf="category.contents">
                     <h4>{{category.name}}</h4><hr>
                     <div class="row text-center text-lg-left">
                         <div class="col-lg-2 col-md-2 col-12 nopad mb-1" *ngFor="let item of category.contents">

@@ -108,6 +108,7 @@
     <Build Include="dbo\StoredProcedures\Content\Content_UpdateFinishContent.sql" />
     <Build Include="dbo\StoredProcedures\Content\Content_SaveAnswerStudent.sql" />
     <Build Include="dbo\StoredProcedures\Content\Content_GetContentByIdTypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetContentByPreferenceStudent.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\StoredProcedures\Login\Login_UserLoged.sql" />
@@ -154,8 +155,5 @@
     <Build Include="dbo\StoredProcedures\Question\QuestionAnswer_Create.sql" />
     <Build Include="dbo\StoredProcedures\Answer\Answer_Delete.sql" />
     <Build Include="dbo\StoredProcedures\User\User_GetStudentsByClassRoom.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="SuperReaders.DB.refactorlog" />
   </ItemGroup>
 </Project>
