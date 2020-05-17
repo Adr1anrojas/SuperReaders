@@ -2,6 +2,11 @@
     width: 100%;
     height: 100%;
 }
+.img-admin{
+  width: 100%;
+  height: 75vh;
+}
+
 .nopad {
 	padding-left: 0 !important;
 	padding-right: 0 !important;
@@ -33,4 +38,18 @@
 }
 .image-checkbox-checked .fa {
   display: block !important;
+}
+.content{
+	cursor: pointer;
+}
+.categories {
+    width: 130px; /* You can set the dimensions to whatever you want */
+    height: 130px;
+    object-fit: cover;
+}
+
+.content-size {
+    width: 170px!important; /* You can set the dimensions to whatever you want */
+    height: 250px!important;
+    object-fit: cover!important;
 }

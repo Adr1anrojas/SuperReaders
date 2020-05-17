@@ -1,4 +1,5 @@
-﻿using SuperReaders.Models.Entities;
+﻿using SuperReaders.Models.DTO;
+using SuperReaders.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +18,8 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         Content GetContent(int id);
 
         IEnumerable<TypeContent> GetTypeContent();
+
+        IEnumerable<Content> GetContentByIdTypeContent(int idTypeContent);
         /// <summary>
         /// This Method create an Content and Access the data
         /// </summary>
@@ -55,5 +58,49 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         /// <param name="id">user to change status</param>
         /// <returns></returns>
         void AddQuestionAnswer(int idQuestion, int idAnswer );
+
+        /// <summary>
+        /// This Method create an typeContent of the student specified
+        /// </summary>
+        /// <param name="typeContentStudent">typeContent to user</param>
+        /// <returns></returns>
+        void AddTypeContentStudent(TypeContent typeContentStudent);
+
+        /// <summary>
+        /// This Method create an StudentContent of the student specified
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        StudentContent AddContentStudent(StudentContent contentStudent);
+
+        /// <summary>
+        /// This Method update an StudentContent of the student specified
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        StudentContent UpdateTimeReading(StudentContent contentStudent);
+
+        /// <summary>
+        /// This Method create an StudentContent of the student specified
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        StudentContent GetContentStudent(StudentContent contentStudent);
+
+        /// <summary>
+        /// This Method update an StudentContent if the student finish the content
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        StudentContent UpdateFinishContent(StudentContent contentStudent);
+
+        /// <summary>
+        /// This Method save the anwers of StudentContent
+        /// </summary>
+        /// <param name="studentAnswer"></param>
+        /// <returns></returns>
+        void SaveAnswerStudent(StudentAnswer studentAnswer);
+
+        IEnumerable<StudentTypeContent> GetContentByPreferenceStudent(int idStudent);
     }
 }

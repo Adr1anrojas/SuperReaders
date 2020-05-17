@@ -30,7 +30,6 @@ namespace SuperReaders.Models.Helper
                 services.AddScoped<IPageDAO, PageDAO>();
                 services.AddScoped<IQuestionDAO, QuestionDAO>();
                 services.AddScoped<IAnswerDAO, AnswerDAO>();
-                services.AddScoped<IQuestionAnswerDAO, QuestionAnswerDAO>();
             #endregion
 
             #region ClassRoom

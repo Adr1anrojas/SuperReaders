@@ -73,16 +73,30 @@
             public const string SP_Content_Update = "Content_Update";
             public const string SP_Content_GetAllContents = "Content_GetContents";
             public const string SP_Content_GetAllTypeContent = "Content_TypeContent";
+            public const string SP_Content_GetContentByIdTypeContent = "Content_GetByIdTypeContent";
+            public const string SP_Content_GetContentByPreferenceStudent = "Content_GetContentByPreferenceStudent";
             public const string SP_Content_GetById = "Content_GetById";
+            public const string SP_Content_CreateStudentContent = "Content_CreateStudentContent";
+            public const string SP_Content_GetStudentContent = "Content_GetStudentContent";
+            public const string SP_Content_UpdateTimeReading = "Content_UpdateTimeReading";
+            public const string SP_Content_UpdateFinishContent = "Content_UpdateFinishContent";
+            public const string SP_Content_SaveAnswerStudent = "Content_SaveAnswerStudent";
             //Parameter constant 
             public const string P_Content_Id = "@pId";
+            public const string P_Content_IdStudent = "@pIdStudent";
+            public const string P_Content_IdAnswer = "@pIdAnswer";
             public const string P_Content_Title = "@pTitle";
             public const string P_Content_IdTypeContent = "@pIdTypeContent";
             public const string P_Content_Status = "@pStatus";
-            #endregion
+            public const string P_Content_TimeReading = "@pTimeReading";
+            public const string P_Content_CurrentPage = "@pCurrentPage";
+            public const string P_Content_DateStart = "@pDateStart";
+            public const string P_Content_DateFinish = "@pDateFinish";
+            public const string P_Content_IsFinish = "@pisFinish";
+        #endregion
 
         #region ContentDetail
-            public const string P_ContentDetail_IdClassRoom = "@pIdClassRoom";
+        public const string P_ContentDetail_IdClassRoom = "@pIdClassRoom";
             public const string P_ContentDetail_IdContent = "@pIdContent";
             // StoreProcedure constants
             public const string SP_ContentDetail_Create = "ContentDetail_Create";
@@ -95,6 +109,7 @@
             // StoreProcedure constants
             public const string SP_TypeContent_Create = "TypeContent_Create";
             public const string SP_TypeContent_Update = "TypeContent_Update";
+
         #endregion
 
         #region Page

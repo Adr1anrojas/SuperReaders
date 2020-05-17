@@ -306,28 +306,6 @@ namespace SuperReaders.Services.DAO
                 throw e;
             }
         }
-        /// <summary>
-        /// This Method create an typeContent of the student specified
-        /// </summary>
-        /// <param name="typeContentStudent">typeContent to user</param>
-        /// <returns></returns>
-        public void AddTypeContentStudent(TypeContent typeContentStudent)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            try
-            {
-                parameters.Add(Constants.P_User_StudentId, typeContentStudent.IdStudent);
-                parameters.Add(Constants.P_User_TypeContentId, typeContentStudent.Id);
-                using (IDbConnection db = connection.Connection)
-                {
-                    db.Query<TypeContent>(Constants.SP_User_StudentTypeContent, parameters, commandType: CommandType.StoredProcedure);
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
 
         /// <summary>
         /// This Method update if an user a selected your content
