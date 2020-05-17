@@ -36,11 +36,7 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.pauseTimer();
-    console.log("Saliendo...");
-    console.log("timeleft " + this.timeLeft);
-    console.log("tiempo actual " + this.currentStudentContent.timeReading);
     this.currentStudentContent.timeReading += this.timeLeft;
-    console.log("Tiempo actualizado " + this.currentStudentContent.timeReading);
     this.currentStudentContent.currentPage = this.currentPageContent;
     this.updateTimeReading();
   }
@@ -80,7 +76,6 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
           })
         );
         this.saveAnswerStudent(studentAnswers);
-        console.log("Hecho");
         this.router.navigateByUrl('home');
       }
     }
@@ -95,10 +90,8 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
   getContentById(id: number) {
     this.contentService.getContentById(this.id).then(res => {
       this.currentContent = res;
-      console.log(this.currentContent);
       this.currentContent.questions.forEach(question => question.answers.forEach(answer => answer.isCorrect = false));
       this.studentContent = { idStudent: this.currentUser.studentId, idContent: this.currentContent.content.id, readAgain: false };
-      console.log(this.studentContent);
       this.saveContentStudent(this.studentContent);
       this.startTimer();
     });
@@ -110,7 +103,6 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
         this.updateTimeReading();
       }
       this.timeLeft++;
-      console.log(this.timeLeft);
     }, 1000);
   }
 
@@ -120,7 +112,6 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
 
   readAgain() {
     this.studentContent = { idStudent: this.currentUser.studentId, idContent: this.currentContent.content.id, readAgain: true };
-    console.log(this.studentContent);
     this.saveContentStudent(this.studentContent);
     this.displayQuestions = false;
     this.startTimer();
@@ -129,7 +120,6 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
   saveContentStudent(contentStudent: StudentContent) {
     this.contentService.saveContentStudent(contentStudent).subscribe((res: StudentContent) => {
       this.currentStudentContent = res;
-      console.log(this.currentStudentContent);
       this.currentPageContent = this.currentStudentContent.currentPage;
       if (this.currentStudentContent.isFinish) {
         this.pauseTimer();
@@ -139,19 +129,16 @@ export class HomeDetailComponent implements OnInit, OnDestroy {
   }
 
   updateTimeReading() {
-    console.log(this.currentStudentContent.timeReading);
     this.currentStudentContent.timeReading += this.timeLeft;
-    console.log("Tiempo actualizado " + this.currentStudentContent.timeReading);
     this.currentStudentContent.currentPage = this.currentPageContent;
     this.contentService.updateTimeReading(this.currentStudentContent).subscribe((res: StudentContent) => {
-      console.log("res update", res);
       this.currentStudentContent = res;
       this.timeLeft = 0;
     });
   }
 
   updateFinishContent(studentContent: StudentContent) {
-    this.contentService.updateFinishContent(studentContent).subscribe(res => console.log(res));
+    this.contentService.updateFinishContent(studentContent).subscribe();
   }
 
   saveAnswerStudent(studentAnswers: StudentAnswer[]) {
