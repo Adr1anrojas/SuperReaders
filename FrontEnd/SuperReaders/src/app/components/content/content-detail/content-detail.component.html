@@ -57,7 +57,7 @@
                         <select class="form-control" id="selectTypeContent" formControlName="typeContent"
                             [ngClass]="{'is-invalid':submitted && (controlsContent.typeContent.errors || !controlsContent.typeContent.value) }">
                             <option selected *ngIf="isUpdate" [ngValue]="this.formContent.get('typeContent').value">
-                                {{this.formContent.get('typeContent').value.name}}</option>
+                                {{this.formContent.get('typeContent').value}}</option>
                             <option *ngFor="let item of typeContents" [ngValue]="item">
                                 {{item.name}}
                             </option>
@@ -75,7 +75,7 @@
                     {{!this.formContent.get('title').value || this.formContent.get('title').invalid ?"Titulo":this.formContent.get('title').value}}
                 </h5>
                 <div class="card size">
-                    <img [src]="imageURL" class="card-img">
+                    <img [src]="imageURL" class="card-img size-img-1">
                 </div>
                 <div class="container-fluid mt-2">
                     <div class="row">
@@ -158,7 +158,7 @@
                                         </div>
                                     </div>
                                     <div class="card size" *ngIf="this.pageCurrentValue===idx">
-                                        <img [src]="this.urls[idx] ?this.urls[idx]: ''" class="card-img">
+                                        <img [src]="this.urls[idx] ?this.urls[idx]: ''" class="card-img size-img-1">
                                     </div>
                                 </div>
                             </div>
