@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
     if (this.currentUser.isFirstTime && this.currentUser.role == 'Student')
       this.contentService.getTypeContent().subscribe((res: TypeContent[]) => { this.allTypeContent = res; });
     else if (!this.currentUser.isFirstTime && this.currentUser.role == 'Student') {
-      this.contentService.getAllContentByPreferenceStudent(this.currentUser.studentId).subscribe((res: ContentFile[]) => { this.contentPreferences = res; });
-      this.contentService.getAllContentByTypeContent().subscribe((res: TypeContent[]) => { this.allContent = res; console.log(this.allContent) });
+      this.contentService.getAllContentByPreferenceStudent(this.currentUser.studentId).subscribe((res: ContentFile[]) => { this.contentPreferences = res ? res : []; });
+      this.contentService.getAllContentByTypeContent().subscribe((res: TypeContent[]) => { this.allContent = res ? res : []; });
     }
   }
 

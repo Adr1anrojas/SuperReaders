@@ -355,19 +355,20 @@ namespace SuperReaders.Services.DomainObject
 
         public List<Content> GetContentByPreferenceStudent(int idStudent)
         {
-            List<Content> contentStudent = null;
-            List<StudentTypeContent> studentTypeContents = null;
+            List<Content> contentStudent = new List<Content>();
+            List<StudentTypeContent> studentTypeContents = new List<StudentTypeContent>();
             try
             {
                 studentTypeContents = _iContentDAO.GetContentByPreferenceStudent(idStudent).ToList();
                 foreach (StudentTypeContent studentTypeContent in studentTypeContents)
                 {
                     var contents = _iContentDAO.GetContentByIdTypeContent(studentTypeContent.IdTypeContent).ToList();
-                    foreach (Content content in contents)
-                    {
-                        content.Img = GetImg(content.Title, 1);
-                        contentStudent.Add(content);
-                    }
+                    if(contents.Count>0)
+                        foreach (Content content in contents)
+                        {
+                            content.Img = GetImg(content.Title, 1);
+                            contentStudent.Add(content);
+                        }
                 }
                 return contentStudent;
             }
