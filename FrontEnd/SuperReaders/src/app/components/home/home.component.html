@@ -1,4 +1,4 @@
-<h5 class="mt-3">Inicio</h5>
+<h5 class="mt-3" *ngIf="this.currentUser && this.currentUser.role!=='Student'">Inicio</h5>
 <div class="card">
     <div class="card-body" id="img-background" *ngIf="this.currentUser && this.currentUser.role=='Teacher'">
         <img class="img-home" src="../../../assets/bg-home.jpg" alt="">
@@ -41,9 +41,9 @@
     <div class="card-body" *ngIf="!this.currentUser.isFirstTime && this.currentUser.role == 'Student'">
         <div class="container-fluid">
             <div *ngIf="contentPreferences">
-                <h4>Tus contenidos de Interes</h4>
+                <h4>Recomendados</h4><hr>
                 <div class="row text-center text-lg-left">
-                    <div class="col-lg-2 col-md-2 col-6 nopad mb-1"
+                    <div class="col-lg-2 col-md-2 col-12 nopad mb-1"
                         *ngFor="let item of contentPreferences; ;let i = index">
                         <label class="m-0 content">
                             <a class="d-block mb-4 h-100">
@@ -62,9 +62,9 @@
         <div class="container-fluid">
             <div *ngFor="let category of allContent; let i = index;">
                 <div *ngIf="category.contents.length>0">
-                    <h4>{{category.name}}</h4>
+                    <h4>{{category.name}}</h4><hr>
                     <div class="row text-center text-lg-left">
-                        <div class="col-lg-2 col-md-2 col-6 nopad mb-1" *ngFor="let item of category.contents">
+                        <div class="col-lg-2 col-md-2 col-12 nopad mb-1" *ngFor="let item of category.contents">
                             <label class="m-0 content">
                                 <a class="d-block mb-4 h-100">
                                     <img (click)="showContent(item)" class="img-fluid img-thumbnail content-size"
