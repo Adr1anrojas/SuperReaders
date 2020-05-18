@@ -26,7 +26,7 @@ namespace SuperReaders.Services.DAO
                 using (IDbConnection db = connection.Connection)
                 {
                     parameters.Add(Constants.P_Teacher_UserId, id);
-                    parameters.Add(Constants.P_Teacher_ClassRoomId, id);
+                    parameters.Add(Constants.P_Teacher_ClassRoomId, idClassRoom);
                     db.ExecuteScalar<User>(Constants.SP_Teacher_Create, parameters, commandType: CommandType.StoredProcedure);
                 }
             }

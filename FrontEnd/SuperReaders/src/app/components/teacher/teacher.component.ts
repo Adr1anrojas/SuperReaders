@@ -147,10 +147,11 @@ export class TeacherComponent implements OnInit {
 
   delete() {
     let idUser = this.formTeacher.get('id').value;
-    this.userService.delete(idUser,"Teacher").subscribe(res => {
+    this.userService.delete(idUser, "Teacher").subscribe(res => {
       this.toastr.success('Hecho', 'Se elimino a un Maestro.');
       this.initTeacher();
       this.getTeachers();
+      this.getClassRooms();
     }, (error => {
       this.toastr.success('Ocurrio un problema al eliminar al Maestro', '¡Error!');
       this.initTeacher();
