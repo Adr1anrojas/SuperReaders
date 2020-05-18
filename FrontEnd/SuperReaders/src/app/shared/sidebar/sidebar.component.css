@@ -26,7 +26,7 @@ body {
 }
 
 #sidebar-wrapper.collapsed .list-group {
-    width: 6rem;
+    width: 5rem;
     transition: width 0.4s;
 }
   
@@ -69,8 +69,8 @@ body {
 
 .icon-logo{
     height: 50px;
-    margin-left: 5px;
-    margin-right: 15px;
+    margin-left: 3px;
+    /* margin-right: 15px; */
 }
 
 ::ng-deep fa-icon{
@@ -95,3 +95,42 @@ br{
     overflow:hidden;
     white-space:nowrap;  
 } 
+.security-icon{
+    color: #FFBF00;
+    stroke: black;
+    stroke-width: 5;
+}
+.teacher-icon{
+    color:#EF5EA6;
+    stroke: black;
+    stroke-width: 5;
+}
+.students-icon{
+    color:#39529B;
+    stroke: black;
+    stroke-width: 5;
+}
+
+.home-icon{
+    color: #357A46;
+    stroke: black;
+    stroke-width: 5;
+}
+
+.group-icon{
+    color: #F47E38;
+    stroke: black;
+    stroke-width: 5;
+}
+
+.content-icon{
+    color: #349CD6;
+    stroke: black;
+    stroke-width: 5;
+}
+
+.report-icon{
+    color: #DD234C;
+    stroke: black;
+    stroke-width: 5;
+}
