@@ -1,32 +1,7 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
-  <!-- Page Heading -->
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h2 class="h3 mb-0 text-gray-800">Monitoreo </h2>
-
-  </div>
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h3 class="h3 mb-0 text-gray-800">Listado de libros mas leidos </h3>
-
-</div>
-<div class="row">
-  <div style="display: block">
-    <canvas mdbChart
-        [chartType]="chartType"
-        [datasets]="chartDatasets"
-        [labels]="chartLabels"
-        [colors]="chartColors"
-        [options]="chartOptions"
-        [legend]="true"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)">
-    </canvas>
-  </div>
-</div>
-
-  <!-- Content Row -->
+<div class="container-fluid" style="margin-top: 10px;">
+  <h4 >Monitoreo </h4> <hr>
+  <h5>Listado de Contenidos Más Leidos </h5> <hr>
   <div class="row"  *ngFor="let item of reports">
-
     <div class="col-xl-3 col-md-6 mb-4" *ngFor="let item2 of item.contentMoreReads">
       <div class="card border-left-info shadow h-100 py-2">
         <div class="card-body">
@@ -34,13 +9,11 @@
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1"> {{item2.title}} </div>
               <div class="row no-gutters align-items-center" >
-
                 <div class="col-auto">
-                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">%{{(item2.more/item.contentReadFromMoreRead)*100}}</div>
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">% {{item2.more/item.contentReadFromMoreRead*100 | number:'2.1-2' }}</div>
                 </div>
                 <div class="col">
                   <div class="progress progress-sm mr-2">
-
                     <div class="progress-bar bg-info" role="progressbar" style="width: {{((item2.more/item.contentReadFromMoreRead)*100)}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
@@ -53,31 +26,56 @@
         </div>
       </div>
     </div>
+    <p class="text-center" *ngIf="item.contentMoreReads.length==0">No existen registro de Contenidos.</p>
+  </div>
+  <div class="row" >
+    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      <canvas
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="chartData"
+      [labels]="labels"
+      [options]="chartOptions"
+      [legend]="true"
+      [colors]="colors"
+      (chartClick)="onChartClick($event)">
+  </canvas>
+    </div>
+    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6" >
+      <canvas baseChart
+        [data]="pieChartData"
+        [labels]="labelspie"
+        [chartType]="'pie'"
+        [colors]="pieChartColors"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+  <div>
   </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-plain table-plain-bg">
                     <div class="card-header ">
-                        <h4 class="card-title">Listado de Alumnos</h4>
+                        <h5 class="card-title">Listado de Alumnos</h5>
                     </div>
                     <div class="card-body table-full-width table-responsive">
                         <table class="table table-hover" *ngFor="let item of reports">
                             <thead>
-                                <th>id</th>
                                 <th>Nombre</th>
                                   <th>Apellidos</th>
-                                  <th>Contenidos ledios</th>
+                                  <th>Contenidos leidos</th>
                                   <th>tiempo de lectura</th>
                                   <th>Contenidos finalizados</th>
                                   <th>Contenidos no finalizados</th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item2 of item.student">
-                                     <td>{{item2.id}}</td>
                                      <td>{{item2.firstName}}</td>
                                      <td>{{item2.lastName}}</td>
                                      <td>{{item2.contentRead}}</td>
-                                     <td>{{item2.timeReading}}</td>
+                                     <td>{{item2.timeReading}}
+                                     </td>
                                      <td>{{item2.contentFinished}}</td>
                                      <td>{{item2.contentNotFinished}}</td>
                                 </tr>
@@ -88,7 +86,4 @@
             </div>
         </div>
     </div>
-
-
-
-
+    <input type="button" (click)="getValue()" value="presione" />

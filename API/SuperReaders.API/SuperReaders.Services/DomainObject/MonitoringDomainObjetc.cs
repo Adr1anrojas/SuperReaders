@@ -35,6 +35,7 @@ namespace SuperReaders.Services.DomainObject
                 int count = monitoringClassRoom.Student.Count();
                 int SumContentFinished = monitoringClassRoom.Student.Sum(x=> x.ContentFinished);
                 int SumContentNotFinished = monitoringClassRoom.Student.Sum(x => x.ContentNotFinished);
+
                 decimal averageContentRead = 0;
                 decimal averageContentNotRead = 0;
                 monitoringClassRoom.contentMoreReads = new List<MonitoringContentMoreRead>();
@@ -47,6 +48,8 @@ namespace SuperReaders.Services.DomainObject
                 monitoringClassRoom.contentReadFromMoreRead = monitoringClassRoom.contentMoreReads.Sum(x => x.More); ;
                 monitoringClassRoom.averageContentRead = averageContentRead;
                 monitoringClassRoom.averageContentNotRead = averageContentNotRead;
+                monitoringClassRoom.sumContentNotFinished = SumContentNotFinished;
+                monitoringClassRoom.sumContentFinished = SumContentFinished;
                 monitoringClassRoomsFinal.Add(monitoringClassRoom);
                 return monitoringClassRoomsFinal;
 

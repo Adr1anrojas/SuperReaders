@@ -24,7 +24,7 @@ import { ResponseInterceptor } from './shared/helper/ResponseInterceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
-
+import { ChartsModule } from 'ng2-charts'
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +56,8 @@ import { ContentDetailComponent } from './components/content/content-detail/cont
       positionClass: 'toast-top-center',
       preventDuplicates: true
     }),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -11,11 +11,16 @@ namespace SuperReaders.Models.Entities
     {
         [JsonProperty("averageContentRead")]
         public decimal averageContentRead { get; set; }
-        [JsonProperty("contentRead")]
-        public int contentReadFromMoreRead { get; set; }
         [JsonProperty("contentReadFromMoreRead")]
-        public decimal averageContentNotRead { get; set; }
+        public int contentReadFromMoreRead { get; set; }
         [JsonProperty("averageContentNotRead")]
+        public decimal averageContentNotRead { get; set; }
+        [JsonProperty("sumContentFinished")]
+        public int sumContentFinished { get; set; }
+
+        [JsonProperty("sumContentNotFinished")]
+        public int sumContentNotFinished { get; set; }
+        [JsonProperty("contentMoreReads")]
         public IEnumerable<MonitoringContentMoreRead> contentMoreReads { get; set; }
         [JsonProperty("student")]
         public IEnumerable<MonitoringClassRoomStudent> Student { get; set; }
