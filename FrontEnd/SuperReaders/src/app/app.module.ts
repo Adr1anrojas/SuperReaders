@@ -24,6 +24,7 @@ import { ResponseInterceptor } from './shared/helper/ResponseInterceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
+import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
 import { ChartsModule } from 'ng2-charts'
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ChartsModule } from 'ng2-charts'
     ReportComponent,
     AdminComponent,
     ClassRoomComponent,
-    ContentDetailComponent
+    ContentDetailComponent,
+    HomeDetailComponent
   ],
   imports: [
     BrowserModule,

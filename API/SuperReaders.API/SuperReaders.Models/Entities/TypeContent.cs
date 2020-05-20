@@ -19,6 +19,6 @@ namespace SuperReaders.Models.Entities
         public bool IsSelected { get; set; }
         [JsonProperty("img")]
         public string Img { get; set; }
-
+        public List<Content> ?Contents { get; set; }
     }
 }

@@ -9,7 +9,7 @@ import { ContentService } from 'src/app/services/content.service';
 import { ToastrService } from 'ngx-toastr';
 import { TypeContent } from 'src/app/models/typeContent';
 import { ImageService } from 'src/app/services/image.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-content-detail',
@@ -55,21 +55,15 @@ export class ContentDetailComponent implements OnInit {
   answerIsEmpty: number = 0;
   id: number = 0;
   currentContent: ContentDTO;
-  constructor(private toastr: ToastrService, private contentService: ContentService, public imageService: ImageService, private route: ActivatedRoute) { }
+  constructor(private toastr: ToastrService, private contentService: ContentService, public imageService: ImageService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.getTypeContent();
+    this.contentService.getTypeContent().subscribe((res: TypeContent[]) => this.typeContents = res);
     if (this.id !== 0) {
       this.getContentById(this.id);
     } else
       this.addQuestion();
-  }
-
-  getTypeContent() {
-    this.contentService.getTypeContent().subscribe((res: TypeContent[]) => {
-      this.typeContents = res;
-    });
   }
 
   get pages(): FormArray {
@@ -180,6 +174,7 @@ export class ContentDetailComponent implements OnInit {
       this.submitted = false;
       this.imgContent = null;
       this.imageURL = null;
+      this.router.navigate(['content']);
     }, error => {
       if (error == 'Bad Request')
         this.toastr.error('El titulo del Contenido esta en uso.', '¡Error!');
@@ -306,12 +301,14 @@ export class ContentDetailComponent implements OnInit {
 
 
   editContentDTO(content: ContentDTO) {
-    this.formContent.setValue({
+    let typeContent: TypeContent = this.typeContents.find(e => e.id == content.content.id);
+    this.formContent.patchValue({
       id: content.content.id,
       title: content.content.title,
-      typeContent: this.typeContents.find(e => e.id == content.content.idTypeContent),
+      typeContent: content.content.id,
       img: ''
     });
+
     console.log(this.currentContent);
     this.file = this.dataURItoFile(this.currentContent.content.img);
     console.log(this.file);
