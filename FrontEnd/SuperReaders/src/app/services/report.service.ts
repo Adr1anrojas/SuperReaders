@@ -8,10 +8,13 @@ import { HttpClient } from '@angular/common/http';
 export class ReportService {
   url = environment.url + 'Monitoring/';
   constructor(private http: HttpClient) { }
-  getMonitoringById(id: number) {
+
+  getMonitoringByIdClassRoom(id: number) {
     return this.http.get(this.url + id);
   }
+
   getMonitoringByStudent(id: number) {
     return this.http.get(this.url + "Student/" + id);
   }
+
 }

@@ -25,7 +25,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
 import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
-import { ChartsModule } from 'ng2-charts'
+import { ChartsModule } from 'ng2-charts';
+import { ReportDetailComponent } from './components/report/report-detail/report-detail.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { ChartsModule } from 'ng2-charts'
     AdminComponent,
     ClassRoomComponent,
     ContentDetailComponent,
-    HomeDetailComponent
+    HomeDetailComponent,
+    ReportDetailComponent
   ],
   imports: [
     BrowserModule,

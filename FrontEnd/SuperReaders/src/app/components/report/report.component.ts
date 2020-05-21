@@ -6,6 +6,7 @@ import { ReportService } from 'src/app/services/report.service';
 import { Report } from 'src/app/models/report';
 import { LoginResult } from 'src/app/models/loginResult';
 import { LoginService } from 'src/app/services/login.service';
+import { Student } from 'src/app/models/student';
 
 @Component({
   selector: 'app-report',
@@ -13,167 +14,48 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-// Pie
-reports: Report [] = []  ;
-detailStudent: ReportStudent;
-idStudent: number;
-suma: number;
-currentUser: LoginResult;
-pieChartData: number[] = [50, 30];
-
-pieChartLegend = true;
-pieChartColors = [
-  {
-    backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)']
-  },
-];
-  chartOptions = {
-    responsive: true    // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
-  }
-  labelspie =  ['Contenidos Finalizados'];
-  labels =  ['Contenidos Finalizados','Contenidos no Finalizados'];
-
+  // Pie
+  reports: Report[] = [];
+  detailStudent: ReportStudent;
+  idStudent: number;
+  currentUser: LoginResult;
+  pieChartData: number[] = [];
+  students: Student[] = [];
+  pieChartLegend = true;
+  pieChartColors = [{ backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)'] },];
+  chartOptions = { responsive: true };   // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
+  labelspie = ['Contenidos Finalizados', 'Contenidos no Finalizados'];
+  labels = ['Contenidos Finalizados'];
   // STATIC DATA FOR THE CHART IN JSON FORMAT.
-  chartData = [
-    {
-      label: 'Jose ramon',
-      data: [4]
-    },
-    {
-      label: 'Francisco Barraza',
-      data: [2]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [5]
-    },
-    {
-      label: 'Jose ramon',
-      data: [4]
-    },
-    {
-      label: 'Francisco Barraza',
-      data: [4]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [5]
-    },
-    {
-      label: 'Jose ramon',
-      data: [5]
-    },
-    {
-      label: 'Francisco Barraza',
-      data: [4]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [3]
-    },
-    {
-      label: 'Jose ramon',
-      data: [4]
-    },
-    {
-      label: 'Francisco Barraza',
-      data: [1]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [2]
-    },
-    {
-      label: 'Jose ramon',
-      data: [4]
-    },
-    {
-      label: 'Francisco Barraza',
-      data: [1]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [1]
-    },
-    {
-      label: 'Jose ramon',
-      data: [4]
-    },
-    {
-      label: 'Francisco Barraza',
-      data: [1]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [4]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [1]
-    },
-    {
-      label: 'Jose ramon',
-      data: [4]
-    },
-    {
-      label: 'Francisco Barraza',
-      data: [1]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [4]
-    }, {
-      label: 'Francisco Javier',
-      data: [1]
-    },
-    {
-      label: 'Jose ramon',
-      data: [4]
-    },
-    {
-      label: 'Francisco Barraza',
-      data: [1]
-    },
-    {
-      label: 'Francisco Javier',
-      data: [4]
-    }
-  ];
-
+  chartData = [];
   // CHART COLOR.
-  colors = [
+  colors = [];
+  columns: string[] = ['Nombre', 'Apellidos', 'Tiempo de lectura', 'Contenidos leidos', 'Contenidos finalizados', 'Contenidos no finalizados', 'Accion'];
 
-  ]
-
-
-
-
-  constructor(private route: Router, private reportService: ReportService, private loginService: LoginService) { }
+  constructor(private route: Router, private reportService: ReportService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.currentUser = this.loginService.currentUserValue();
     this.getAllMonitoringByClassRoom();
-
   }
 
-  getValue()
-  {
-    this.reports.forEach(element => {
-      this.suma = element.sumContentFinished;
-      alert("El valor esta por lelga");
-      alert( this.suma);
-    });
-
-  }
   getAllMonitoringByClassRoom() {
-
-    this.reportService.getMonitoringById(this.currentUser.classRoom.id).subscribe((res: Report []) => {
+    this.reportService.getMonitoringByIdClassRoom(this.currentUser.classRoom.id).subscribe((res: Report[]) => {
       this.reports = res;
-      this.getValue();
+      let contentRead = 0, contentNotRead = 0;
+      this.reports.forEach(report => {
+        report.student.forEach(student => {
+          this.students.push(student);
+          this.chartData.push({ label: student.firstName + ' ' + student.lastName, data: [student.contentFinished] });
+        });
+        contentRead = report.sumContentFinished;
+        contentNotRead = report.sumContentNotFinished;
+      });
+      this.pieChartData = [contentRead, contentNotRead];
     });
   }
-  getMonitoringByStudent() {
 
+  getMonitoringByStudent() {
     this.reportService.getMonitoringByStudent(this.idStudent).subscribe((res: ReportStudent) => {
       this.detailStudent = res;
     });
@@ -182,4 +64,9 @@ pieChartColors = [
   onChartClick(event) {
     console.log(event);
   }
+
+  viewDetail(student: Student) {
+    this.router.navigateByUrl('report/detail', { state: { student: student } });
+  }
+
 }
