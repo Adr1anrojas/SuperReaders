@@ -190,8 +190,16 @@ namespace SuperReaders.Services.DomainObject
         /// <returns>status code 200</returns>
         public void UpdateUser(User user)
         {
+            int exitsUserName = 0;
             try
             {
+                var checkUser = _iUserDAO.GetUser(user.Id).FirstOrDefault();
+                if(checkUser.UserName != user.UserName)
+                {
+                    exitsUserName = _iUserDAO.GetUserByUserName(user.UserName);
+                    if (exitsUserName == 1)
+                        throw new Exception("This userName already exists");
+                } 
                 _iUserDAO.UpdateUser(user);
             }
             catch (Exception e)
