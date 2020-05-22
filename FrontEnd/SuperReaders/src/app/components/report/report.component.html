@@ -5,7 +5,7 @@
   <hr>
   <div class="row" *ngFor="let item of reports">
     <div class="col-xl-3 col-md-6 mb-4" *ngFor="let item2 of item.contentMoreReads">
-      <div class="card border-left-info shadow h-100 py-2">
+      <div class="card border-left-info shadow h-100 py-2" style="border-left: solid 6px blue;">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
@@ -32,23 +32,30 @@
     </div>
     <p class="text-center" *ngIf="item.contentMoreReads.length==0">No existen registro de Contenidos.</p>
   </div>
-  <div class="row">
-    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6" *ngIf="chartData.length>0">
+  <div class="row" >
+    <div class="col col-sm-5 col-md-5 col-lg-5 col-xl-5 border-left-info shadow h-100 py-2"  *ngIf="chartData.length>0">
       <canvas baseChart [chartType]="'bar'" [datasets]="chartData" [labels]="labels" [options]="chartOptions"
         [legend]="true" [colors]="colors" (chartClick)="onChartClick($event)">
       </canvas>
     </div>
-    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6" *ngIf="pieChartData.length>0">
+    <div class="col col-sm-1 col-md-1 col-lg-1 col-xl-1" style="margin-top: 20px;"></div>
+    <div class="col col-sm-5 col-md-5 col-lg-5 col-xl-5 border-left-info shadow h-100 py-2" *ngIf="pieChartData.length>0">
       <canvas baseChart [data]="pieChartData" [labels]="labelspie" [chartType]="'pie'" [colors]="pieChartColors"
         [legend]="pieChartLegend">
       </canvas>
     </div>
+
   </div>
-  <div>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col col-sm-5 col-md-5 col-lg-5 col-xl-5 border-left-info shadow h-100 py-2" *ngIf="chartHorizontalData.length>0">
+      <canvas baseChart [chartType]="'horizontalBar'" [datasets]="chartHorizontalData" [labels]="labelsChartHorizontal" [options]="chartOptions"
+        [legend]="true" [colors]="colors" (chartClick)="onChartClick($event)">
+      </canvas>
+    </div>
   </div>
-  <div class="row">
+  <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
     <div class="col-md-12">
-      <div class="card card-plain table-plain-bg">
+      <div class="card card-plain table-plain-bg border-left-info shadow h-100 py-2">
         <div class="card-header ">
           <h5 class="card-title">Alumnos</h5>
         </div>
@@ -58,8 +65,8 @@
               <th *ngFor="let column of columns">{{column}}</th>
             </thead>
             <tbody>
-              <tr *ngFor="let student of students">
-                <td>{{student.firstName}}</td>
+              <tr *ngFor="let student of students"  [ngStyle]="{'background-color': student.contentRead!=0  ? '#e9ecef' :  '#FB553E' }">
+                <td >{{student.firstName}}</td>
                 <td>{{student.lastName}}</td>
                 <td>{{student.timeReading}}</td>
                 <td>{{student.contentRead}}</td>
