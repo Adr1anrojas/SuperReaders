@@ -66,9 +66,18 @@
             public const string SP_Student_Create = "Student_Create";
         #endregion
 
+        #region Monitoring 
+        // Parameter constants
+        public const string P_Monitoring_pIdClassRoom = "@pIdClassRoom";
+        public const string P_Monitoring_pIdStudent = "@pIdStudent";
+        public const string SP_Monitoring_GetByClassRoom = "Monitoring_GetByClassRoom";
+        public const string SP_Monitoring_GetByStudent = "Monitoring_GetByStudent";
+        public const string SP_Monitoring_GetByContentMoreReading = "Monitoring_GetByContentMoreReading";
+        #endregion
+
         #region Content
-            // StoreProcedure constants
-            public const string SP_Content_Create = "Content_Create";
+        // StoreProcedure constants
+        public const string SP_Content_Create = "Content_Create";
             public const string SP_Content_Delete = "Content_Delete";
             public const string SP_Content_Update = "Content_Update";
             public const string SP_Content_GetAllContents = "Content_GetContents";

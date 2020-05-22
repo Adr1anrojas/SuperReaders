@@ -25,8 +25,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ClassRoomComponent } from './components/class-room/class-room.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
 import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
-
-
+import { ChartsModule } from 'ng2-charts';
+import { ReportDetailComponent } from './components/report/report-detail/report-detail.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +42,8 @@ import { HomeDetailComponent } from './components/home/home-detail/home-detail.c
     AdminComponent,
     ClassRoomComponent,
     ContentDetailComponent,
-    HomeDetailComponent
+    HomeDetailComponent,
+    ReportDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +60,8 @@ import { HomeDetailComponent } from './components/home/home-detail/home-detail.c
       positionClass: 'toast-top-center',
       preventDuplicates: true
     }),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

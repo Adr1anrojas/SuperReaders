@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,10 +8,9 @@ namespace SuperReaders.Models.Entities
 {
     public class Admin
     {
-        [Key]
-        [JsonProperty("id")]
+
         public int Id { get; set; }
-        [JsonProperty("idUser")]
+   
         public int IdUser { get; set; } 
     }
 }
