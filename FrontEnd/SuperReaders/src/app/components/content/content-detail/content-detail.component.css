@@ -164,3 +164,6 @@ body {
     border-radius: 50%;
     float: right;
 }
+.size-img-1{
+	max-height: 200px;
+}

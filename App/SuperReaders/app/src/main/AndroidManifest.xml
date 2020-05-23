@@ -10,6 +10,7 @@
         android:label="Super Lectores"
         android:roundIcon="@drawable/iconsidebarright"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.content.AnswerActivity"></activity>

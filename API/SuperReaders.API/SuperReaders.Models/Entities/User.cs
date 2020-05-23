@@ -22,11 +22,11 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("userName")]
         public string UserName { get; set; }
         [JsonProperty("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [JsonProperty("role")]
         public string Role { get; set; }
         [JsonProperty("password")]
-        public string? Password { get; set; }
+        public string Password { get; set; }
         [JsonProperty("birthDate")]
         public DateTime BirthDate { get; set; }
         [JsonProperty("idSchool")]

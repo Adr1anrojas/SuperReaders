@@ -1,5 +1,5 @@
 .img-center{
-    background-image: url("../../../assets/ReadersPanelRight.png");
+    background-image: url("../../../assets/ReadersPanelCenter.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -17,4 +17,7 @@
 }
 .height-img{
     height: 100vh;
+}
+.img-left{
+    transform: rotate(180deg);
 }

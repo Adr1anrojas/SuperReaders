@@ -1,10 +1,9 @@
 <div class="container-fluid h-100">
     <div class="row">
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 img-left pl-0 pr-0" *ngIf="!isMovil">
-            <img src="../../../assets/ReadersPanelLeft.png" alt="" class="img-fluid height-img">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 img-left pl-0 pr-0" *ngIf="!isMovil">
+            <img src="../../../assets/ReadersPanelRight.png" alt="" class="img-fluid height-img">
         </div>
-        <div class="pl-0 pr-0 height-img"
-            [ngClass]="this.isMovil? 'col-12':'col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4'">
+        <div class="pl-0 pr-0 height-img" [ngClass]="this.isMovil? 'col-12':'col-sm-4 col-md-4 col-lg-4 col-xl-4'">
             <div class="row h-100 justify-content-center img-center">
                 <form [formGroup]="formLogin" class="needs-validation size-form mt-5" novalidate
                     (ngSubmit)="onSubmit()">
@@ -40,7 +39,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 pl-0 pr-0" *ngIf="!isMovil">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 pl-0 pr-0" *ngIf="!isMovil">
             <img src="../../../assets/ReadersPanelRight.png" alt="" class="img-fluid height-img">
         </div>
     </div>

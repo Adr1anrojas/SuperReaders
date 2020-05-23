@@ -75,21 +75,14 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
 
                         AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
                         Intent intent = new Intent(itemView.getContext(), ContentActivity.class);
-                        ContentViewModel viewModel = new ContentViewModel();
-
-                        final Observer<String> observer = message ->{
-                            Toast.makeText(itemView.getContext(),message,Toast.LENGTH_LONG ).show();
-                        };
-                        final Observer<ContentDetail> observerContent = myContent ->{
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("content",myContent);
-                            intent.putExtras(bundle);
-                            activity.startActivity(intent);
-                        };
-                        viewModel.getContentById(content.getId()).observe(activity,observerContent);
-                        viewModel.getMessage().observe(activity,observer);
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("idContent",content.getId());
+                        bundle.putString("Title",content.getTitle());
+                        intent.putExtras(bundle);
+                        activity.startActivity(intent);
                     }
             );
         }
     }
+
 }

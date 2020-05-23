@@ -1,0 +1,9 @@
+<div *ngIf="student">
+    <h5>Información del Alumno {{student.firstName + ' ' + student.lastName}}</h5>
+    <!-- Poner el detalle a partir de aqui abajo antes de este div -->
+</div>
+<div class="container-fluid mt-2">
+    <div class="row">
+        <button type="button" class="btn btn-primary ml-auto mt-3" [routerLink]="['/report']">Regresar</button>
+    </div>
+</div>

@@ -23,6 +23,10 @@ namespace SuperReaders.Models.Helper
                 services.AddScoped<ITeacherDAO, TeacherDAO>();
                 services.AddScoped<IStudentDAO, StudentDAO>();
             #endregion
+            #region Monitoring
+            services.AddScoped<IMonitoringDomainObject, MonitoringDomainObjetc>();
+            services.AddScoped<IMonitoringDAO, MonitoringDAO>();
+            #endregion
 
             #region Content
                 services.AddScoped<IContentDomainObject, ContentDomainObject>();

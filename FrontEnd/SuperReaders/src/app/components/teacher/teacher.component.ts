@@ -109,7 +109,10 @@ export class TeacherComponent implements OnInit {
         this.getClassRooms();
         this.initTeacher();
       }, (error => {
-        this.toastr.error('Ocurrio un problema al actualizar al Maestro.', '¡Error!');
+        if (error == 'Bad Request')
+          this.toastr.error('El Nombre de usuario ya esta en uso.', '¡Error!');
+        else
+          this.toastr.error('Ocurrio un problema al actualizar al Maestro.', '¡Error!');
       }));
     } else
       this.toastr.error('Se debe modificar al menos un campo.', '¡Error!');
@@ -147,10 +150,11 @@ export class TeacherComponent implements OnInit {
 
   delete() {
     let idUser = this.formTeacher.get('id').value;
-    this.userService.delete(idUser,"Teacher").subscribe(res => {
+    this.userService.delete(idUser, "Teacher").subscribe(res => {
       this.toastr.success('Hecho', 'Se elimino a un Maestro.');
       this.initTeacher();
       this.getTeachers();
+      this.getClassRooms();
     }, (error => {
       this.toastr.success('Ocurrio un problema al eliminar al Maestro', '¡Error!');
       this.initTeacher();

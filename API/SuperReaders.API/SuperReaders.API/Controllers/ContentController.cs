@@ -236,5 +236,26 @@ namespace SuperReaders.API.Controllers
             }
         }
 
+        /// api/Content/contentStudent
+        /// <summary>
+        /// This Method save the anwers of StudentContent
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("contentByPreferenceStudent/{idStudent}")]
+        public IActionResult GetContentByPreferenceStudent(int idStudent)
+        {
+            try
+            {
+                return Ok(_iContentDomainObject.GetContentByPreferenceStudent(idStudent));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+
     }
 }

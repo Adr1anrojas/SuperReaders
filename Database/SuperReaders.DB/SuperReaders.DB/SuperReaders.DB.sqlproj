@@ -69,6 +69,7 @@
     <Folder Include="dbo\StoredProcedures\Answer" />
     <Folder Include="dbo\StoredProcedures\Page" />
     <Folder Include="dbo\StoredProcedures\Question" />
+    <Folder Include="dbo\StoredProcedures\Monitor" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Admin.sql" />
@@ -108,6 +109,10 @@
     <Build Include="dbo\StoredProcedures\Content\Content_UpdateFinishContent.sql" />
     <Build Include="dbo\StoredProcedures\Content\Content_SaveAnswerStudent.sql" />
     <Build Include="dbo\StoredProcedures\Content\Content_GetContentByIdTypeContent.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetContentByPreferenceStudent.sql" />
+    <Build Include="dbo\StoredProcedures\Monitor\Monitoring_GetByClassRoom.sql" />
+    <Build Include="dbo\StoredProcedures\Monitor\Monitoring_GetByContentMoreReading.sql" />
+    <Build Include="dbo\StoredProcedures\Monitor\Monitoring_GetByStudent.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\StoredProcedures\Login\Login_UserLoged.sql" />

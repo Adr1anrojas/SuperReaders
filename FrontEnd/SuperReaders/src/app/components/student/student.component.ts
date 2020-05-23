@@ -27,7 +27,6 @@ export class StudentComponent implements OnInit {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     userName: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     date: new FormControl({ value: '', disabled: true }, Validators.required),
     classRoom: new FormControl('', Validators.required),
@@ -126,14 +125,17 @@ export class StudentComponent implements OnInit {
 
   updatestudent(student: User) {
     var studentOld = this.studentsCopy.find(e => e.id === student.id);
-    if (student.firstName !== studentOld.firstName || student.lastName !== studentOld.lastName || student.userName !== studentOld.userName || student.email !== studentOld.email || student.password !== studentOld.password || student.birthDate !== studentOld.birthDate) {
+    if (student.firstName !== studentOld.firstName || student.lastName !== studentOld.lastName || student.userName !== studentOld.userName || student.password !== studentOld.password || student.birthDate !== studentOld.birthDate) {
       this.userService.update(student).subscribe(res => {
         $("#exampleModal").modal("hide");
         this.toastr.success('¡Hecho!', 'Se actualizo un Estudiante.');
         this.getAllStudentsByClassRoom();
         this.initStudent();
       }, (error => {
-        this.toastr.error('Ocurrio un problema al actualizar al Estudiante.', '¡Error!');
+        if (error == 'Bad Request')
+          this.toastr.error('El Nombre de usuario ya esta en uso.', '¡Error!');
+        else
+          this.toastr.error('Ocurrio un problema al actualizar al Estudiante.', '¡Error!');
       }));
     } else
       this.toastr.error('Se debe modificar al menos un campo.', '¡Error!');
@@ -145,7 +147,6 @@ export class StudentComponent implements OnInit {
       firstName: e.firstName,
       lastName: e.lastName,
       userName: e.userName,
-      email: e.email,
       password: e.password,
       date: e.birthDate,
       classRoom: e.classRoom,
@@ -159,7 +160,6 @@ export class StudentComponent implements OnInit {
       firstName: this.formStudent.get('firstName').value,
       lastName: this.formStudent.get('lastName').value,
       userName: this.formStudent.get('userName').value,
-      email: this.formStudent.get('email').value,
       role: "Student",
       password: this.formStudent.get('password').value,
       birthDate: this.formStudent.get('date').value,

@@ -97,7 +97,10 @@ export class AdminComponent implements OnInit {
         this.getAdmins();
         this.initAdmin();
       }, (error => {
-        this.toastr.error('Ocurrio un problema al actualizar al Administrador.', '¡Error!');
+        if (error == 'Bad Request')
+          this.toastr.error('El Nombre de usuario ya esta en uso.', '¡Error!');
+        else
+          this.toastr.error('Ocurrio un problema al actualizar al Administrador.', '¡Error!');
       }));
     } else
       this.toastr.error('Se debe modificar al menos un campo.', '¡Error!');
@@ -133,7 +136,7 @@ export class AdminComponent implements OnInit {
 
   delete() {
     let idUser = this.formAdmin.get('id').value;
-    this.userService.delete(idUser,"Admin").subscribe(res => {
+    this.userService.delete(idUser, "Admin").subscribe(res => {
       this.toastr.success('Hecho', 'Se elimino a un Administrador.');
       this.initAdmin();
       this.getAdmins();

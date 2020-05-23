@@ -29,6 +29,7 @@ public class ContentRepository {
     private ArrayList<TypeContentDetail> typeContentDetailsList= new ArrayList<TypeContentDetail>();
     public MutableLiveData<List<TypeContent>> responseTypeContent = new MutableLiveData<>();
     ArrayList<TypeContent> typeContentList = new ArrayList<TypeContent>();
+
     public ContentRepository(){
         superReadersService = RetrofitService.createService(SuperReadersService.class);
     }
