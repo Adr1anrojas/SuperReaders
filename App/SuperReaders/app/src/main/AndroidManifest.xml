@@ -6,17 +6,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/iconsidebarright"
+        android:label="Super Lectores"
+        android:roundIcon="@drawable/iconsidebarright"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.content.AnswerActivity"></activity>
         <activity
             android:name=".ui.content.ContentActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="@string/title_activity_home"

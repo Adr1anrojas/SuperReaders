@@ -2,6 +2,7 @@ package com.example.superreaders.ui.content;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -50,6 +51,10 @@ public class ContentActivity extends AppCompatActivity {
 
             if(currentpage+1==pages.size()){
                 buttonNext.setText("Terminar");
+                buttonNext.setOnClickListener(e->{
+                    Intent intent = new Intent(this, TypeContentActivity.class);
+                    startActivity(intent);
+                });
                 return;
             }
             buttonNext.setOnClickListener(e->{
@@ -66,6 +71,10 @@ public class ContentActivity extends AppCompatActivity {
                 }
                 if(currentpage==pages.size()-1){
                     buttonNext.setText("Terminar");
+                    buttonNext.setOnClickListener(x->{
+                        Intent intent = new Intent(this, AnswerActivity.class);
+                        startActivity(intent);
+                    });
                 }
 
             }
@@ -76,7 +85,7 @@ public class ContentActivity extends AppCompatActivity {
                         buttonNext.setText("Siguiente");
                     currentpage--;
                     img= pages.get(currentpage).getImg();
-                    decodedString = Base64.decode((img!=null)?img:"", Base64.DEFAULT);
+                    decodedString = Base64.decode((img!=null)?img:" ", Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                     imageView.setImageBitmap(decodedByte);
                     pageText.setText(pages.get(currentpage).getText());

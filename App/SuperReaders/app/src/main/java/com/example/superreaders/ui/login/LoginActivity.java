@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         viewModel.getUserLoged().observe(this,observerLogin);
     }
     public void onLogin(LoginResponse user){
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent;
         if(user.getRole().equals("Student")) {
             if (user.getIsFirstTime())
                 intent = new Intent(this, TypeContentActivity.class);
