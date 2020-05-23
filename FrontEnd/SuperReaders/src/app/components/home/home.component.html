@@ -46,10 +46,27 @@
                 <div class="row text-center text-lg-left">
                     <div class="col-lg-2 col-md-2 col-12 nopad mb-1"
                         *ngFor="let item of contentPreferences; ;let i = index">
-                        <label class="m-0 content">
-                            <a class="d-block mb-4 h-100">
-                                <img (click)="showContent(item)" class="img-fluid img-thumbnail content-size"
+                        <label class="m-0 content container">
+                            <a class="d-block mb-4 h-100 ">
+                                <img class="img-fluid img-thumbnail content-size fade"
                                     src="{{imgService.convertBase64ToImage(item.img)}}" alt="">
+                                <div class="middle">
+                                    <div class="row">
+                                        <!-- <div class="col-6">
+                                            <button class="btn icons ml-3" data-toggle="tooltip" data-placement="top"
+                                                title="Favoritos">
+                                                <fa-icon class="fa-2x" icon="heart"></fa-icon>
+                                            </button>
+                                        </div> -->
+                                        <div class="col-12">
+                                            <button class="btn icons" data-toggle="tooltip" data-placement="top"
+                                                title="Leer" (click)="showContent(item)">
+                                                <fa-icon class="fa-3x" style="color: #376AAE;" icon="play-circle">
+                                                </fa-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <h5 class="card-title font-weight-light text-center mb-0">{{item.title}}
                                 </h5>
                             </a>
@@ -66,10 +83,27 @@
                 <hr>
                 <div class="row text-center text-lg-left">
                     <div class="col-lg-2 col-md-2 col-12 nopad mb-1" *ngFor="let item of category.contents">
-                        <label class="m-0 content">
+                        <label class="m-0 content container">
                             <a class="d-block mb-4 h-100">
-                                <img (click)="showContent(item)" class="img-fluid img-thumbnail content-size"
+                                <img (click)="showContent(item)" class="img-fluid img-thumbnail content-size fade"
                                     src="{{imgService.convertBase64ToImage(item.img)}}" alt="">
+                                <div class="middle">
+                                    <div class="row">
+                                        <!-- <div class="col-6">
+                                            <button class="btn icons ml-3" data-toggle="tooltip" data-placement="top"
+                                                title="Favoritos">
+                                                <fa-icon class="fa-2x" icon="heart"></fa-icon>
+                                            </button>
+                                        </div> -->
+                                        <div class="col-12">
+                                            <button class="btn icons" data-toggle="tooltip" data-placement="top"
+                                                title="Leer" (click)="showContent(item)">
+                                                <fa-icon class="fa-3x" style="color: #376AAE;" icon="play-circle">
+                                                </fa-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <h5 class="card-title font-weight-light text-center mb-0">{{item.title}}
                                 </h5>
                             </a>

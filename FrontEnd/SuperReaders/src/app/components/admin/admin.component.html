@@ -1,6 +1,6 @@
 <h5 class="mt-3">Administradores</h5>
 <button type="button" class="btn btn-danger add mb-3" data-toggle="modal" data-target="#exampleModal"
-    (click)=initAdmin()>+</button>
+    (click)=initAdmin() data-placement="top" title="Crear Administrador">+</button>
 <div class="card mt-5 margin-card">
     <div class="card-body">
         <table class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg">
@@ -18,11 +18,11 @@
                     <td class="icons size-row">
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Editar"
                             (click)="editAdmin(item)" data-toggle="modal" data-target="#exampleModal">
-                            <fa-icon class="fa-lg" icon="edit"></fa-icon>
+                            <fa-icon class="fa-lg icon-edit" icon="edit"></fa-icon>
                         </button>
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Eliminar"
                             data-toggle="modal" data-target="#myModal" (click)="editAdmin(item)">
-                            <fa-icon class="fa-lg" icon="trash"></fa-icon>
+                            <fa-icon class="fa-lg icon-delete" icon="trash"></fa-icon>
                         </button>
                     </td>
             </tbody>

@@ -17,12 +17,12 @@
                         </p>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Usuario</label>
-                        <input type="email" class="form-control " id="exampleInputEmail1"
-                            placeholder="Nombre de Usuario" formControlName="userName"
+                        <label for="exampleInputEmail1">Super Lector(a)</label>
+                        <input type="email" class="form-control " id="exampleInputEmail1" placeholder="Super Lector(a)"
+                            formControlName="userName"
                             [ngClass]="{'is-invalid':submitted && controls.userName.errors }">
                         <div *ngIf="submitted && controls.userName.errors" class="invalid-feedback">
-                            Nombre de Usuario requerido.
+                            Super Lector(a) requerido.
                         </div>
                     </div>
                     <div class="form-group">
