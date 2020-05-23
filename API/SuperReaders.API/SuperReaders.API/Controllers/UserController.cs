@@ -177,7 +177,7 @@ namespace SuperReaders.API.Controllers
             }
             catch (Exception e)
             {
-                if (e.Message.Equals("This user already exists"))
+                if (e.Message.Equals("This userName already exists"))
                     return BadRequest(e.Message);
                 return StatusCode(500, e.Message);
             }

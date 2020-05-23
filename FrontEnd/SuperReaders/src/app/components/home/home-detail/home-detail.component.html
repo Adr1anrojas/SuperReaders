@@ -45,7 +45,9 @@
             <a class="btn btn-primary mr-3 text-white"
                 [ngClass]="{'ml-auto': this.displayQuestions? this.currentQuestion==0: this.currentPageContent==0}"
                 (click)="nextStep()"
-                *ngIf="this.displayQuestions ? this.currentQuestion==this.currentContent.questions.length-1: this.currentPageContent==this.currentContent.pages.length-1">Terminar</a>
+                *ngIf="this.displayQuestions ? this.currentQuestion==this.currentContent.questions.length-1: this.currentPageContent==this.currentContent.pages.length-1">
+                {{!this.displayQuestions? 'Responder Actividad':'Terminar'}}
+            </a>
         </div>
     </div>
     <div class="card-body img-congratulations" *ngIf="this.currentStudentContent.isFinish">
