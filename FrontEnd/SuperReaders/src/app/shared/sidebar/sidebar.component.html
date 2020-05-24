@@ -23,14 +23,19 @@
                 class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Alumnos':''}}
             </a>
+            
+          
             <a *ngIf="currentUser.role==='Admin'" [routerLink]="['/classRoom']"
                 class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Grupos':''}}
             </a>
+          
+           
             <a *ngIf="currentUser.role==='Teacher'" [routerLink]="['/content']"
                 class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="users"></fa-icon>{{collapsed?'Contenido':''}}
             </a>
+            
             <a *ngIf="currentUser.role=='Teacher'" [routerLink]="['/report']"
                 class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x" icon="chart-line"></fa-icon>{{collapsed?'Monitoreo':''}}
@@ -56,7 +61,9 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{fullName() }}
                         </a>
+                        
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" [routerLink]="['/profile']">Perfil</a>
                             <a class="dropdown-item" (click)="exit()">Salir</a>
                         </div>
                     </li>
