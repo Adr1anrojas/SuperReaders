@@ -1,11 +1,11 @@
-<div class="container-fluid" style="margin-top: 10px;">
-  <h4>Monitoreo </h4>
+
+  <h4 class="mt-3">Monitoreo </h4>
   <hr>
   <h5>Contenidos Más Leidos </h5>
   <hr>
   <div class="row" *ngFor="let item of reports">
-    <div class="col-xl-3 col-md-6 mb-4" *ngFor="let item2 of item.contentMoreReads">
-      <div class="card border-left-info shadow h-100 py-2">
+    <div class="col-xl-3 col-md-6 mb-2 ml-1" *ngFor="let item2 of item.contentMoreReads">
+      <div class="card border-left-info shadow h-100 py-2 border-text" >
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
@@ -30,50 +30,63 @@
         </div>
       </div>
     </div>
-    <p class="text-center" *ngIf="item.contentMoreReads.length==0">No existen registro de Contenidos.</p>
+
   </div>
-  <div class="row">
-    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6" *ngIf="chartData.length>0">
+  <p class="text-center" *ngIf="reports.length==0">No existen registro de Contenidos.</p>
+  <hr>
+  <h5>Monitoreo de alumnos </h5>
+  <hr>
+  <div class="row mt-2 ml-1" >
+    <p *ngIf="chartData.length==0">Sin registro de contenidos</p>
+    <div class="col col-sm-5 col-md-5 col-lg-5 col-xl-5 border-left-info shadow h-100 py-2"  *ngIf="chartData.length>0">
       <canvas baseChart [chartType]="'bar'" [datasets]="chartData" [labels]="labels" [options]="chartOptions"
         [legend]="true" [colors]="colors" (chartClick)="onChartClick($event)">
       </canvas>
     </div>
-    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6" *ngIf="pieChartData.length>0">
+    <div class="ml-4 mt-3" ></div>
+    <p *ngIf="pieChartData.length==0">Sin registro de contenidos</p>
+    <div class="col col-sm-5 col-md-5 col-lg-5 col-xl-5 border-left-info shadow h-100 py-2" *ngIf="pieChartData.length>0">
       <canvas baseChart [data]="pieChartData" [labels]="labelspie" [chartType]="'pie'" [colors]="pieChartColors"
         [legend]="pieChartLegend">
       </canvas>
     </div>
+
   </div>
-  <div>
+  <div class="row mt-3 ml-1" >
+    <p *ngIf="chartHorizontalData.length==0">Sin registro de contenidos</p>
+    <div class="col col-sm-5 col-md-5 col-lg-5 col-xl-5 border-left-info shadow h-100 py-2" *ngIf="chartHorizontalData.length>0">
+      <canvas baseChart [chartType]="'horizontalBar'" [datasets]="chartHorizontalData" [labels]="labelsChartHorizontal" [options]="chartOptions"
+        [legend]="true" [colors]="colors" (chartClick)="onChartClick($event)">
+      </canvas>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card card-plain table-plain-bg">
-        <div class="card-header ">
-          <h5 class="card-title">Alumnos</h5>
-        </div>
-        <div class="card-body table-full-width table-responsive">
-          <table class="table table-hover">
-            <thead>
+  <hr>
+  <h5>Listado de alumnos </h5>
+  <hr>
+  <div class="row mb-5" >
+      <div class="col-md-12">
+        <div class="card card-plain table-plain-bg border-left-info shadow h-100 py-2">
+          <div class="card-body table-full-width table-responsive">
+            <table class="table table-hover">
+              <thead class="header header-table">
               <th *ngFor="let column of columns">{{column}}</th>
             </thead>
             <tbody>
-              <tr *ngFor="let student of students">
-                <td>{{student.firstName}}</td>
+              <tr *ngFor="let student of students"  >
+                <td >{{student.firstName}}</td>
                 <td>{{student.lastName}}</td>
                 <td>{{student.timeReading}}</td>
                 <td>{{student.contentRead}}</td>
                 <td>{{student.contentFinished}}</td>
                 <td>{{student.contentNotFinished}}</td>
-                <td> <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Detalle"
+                <td> <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Ver detalle"
                     (click)="viewDetail(student)">
-                    <fa-icon class="fa-lg" icon="eye"></fa-icon>
+                    <fa-icon class="fa-lg icon-eye" icon="eye"></fa-icon>
                   </button></td>
               </tr>
             </tbody>
           </table>
+          <p class="text-center" *ngIf="students.length==0">No existen alumnos registrados.</p>
         </div>
       </div>
     </div>
-  </div>
-</div>

@@ -35,7 +35,7 @@ export class ClassRoomComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    if (this.formClassRoom.valid) {
+    if (this.formClassRoom.valid && this.formClassRoom.get('name').value.trim() !== '') {
       let classRoom = this.createAnGroup();
       if (classRoom.id === 0) {
         this.createclassRoom(classRoom);

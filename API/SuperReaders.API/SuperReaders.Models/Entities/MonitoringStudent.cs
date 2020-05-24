@@ -14,7 +14,7 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("timeReading")]
-        public int TimeReading { get; set; }
+        public decimal TimeReading { get; set; }
         [JsonProperty("currentPage")]
         public int CurrentPage { get; set; }
         [JsonProperty("dateStart")]

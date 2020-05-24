@@ -34,3 +34,43 @@
     width: 67px;
     padding: 5px 5px 5px 18px;
 }
+.header-table {
+  background-color: #F47E38;
+  color:white;
+}
+.close:hover {
+  color: white;
+}
+.header-modal {
+  background-color: #F47E38;
+  color:white;
+}
+.btn-guardar {
+  background-color: #F47E38 !important;
+  color:white;
+  border-color: #F47E38 !important;
+}
+.btn-guardar:hover {
+  background: rgb(196, 127, 87) !important;
+  border-color:rgb(196, 127, 87) !important;
+  color: white !important;
+}
+.btn-guardar:active {
+  background: #F47E38 !important;
+  border-color: rgb(196, 127, 87)!important;
+}
+
+.icon-modal {
+  color:white;
+}
+.modal-content {
+
+  border: 1px solid #F47E38;
+}
+.modal-footer {
+  background-color: #9c9cd21a;
+}
+.btn-mas {
+  background-color: #F47E38;
+  color:white;
+}

@@ -18,7 +18,7 @@ namespace SuperReaders.Models.Entities
         [JsonProperty("contentRead")]
         public int ContentRead { get; set; }
         [JsonProperty("timeReading")]
-        public int TimeReading { get; set; }
+        public decimal TimeReading { get; set; }
         [JsonProperty("contentFinished")]
         public int ContentFinished { get; set; }
         [JsonProperty("contentNotFinished")]

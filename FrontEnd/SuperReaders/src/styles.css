@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~ng-pick-datetime/assets/style/picker.min.css";
 
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 /* Styles to Datepickers */
+
 .cdk-overlay-container {
     position: fixed;
     pointer-events: none;
@@ -13,6 +14,7 @@
     position: absolute;
     z-index: 9999999 !important;
 }
+
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
     pointer-events: none;
     top: 0;
@@ -23,15 +25,32 @@
     position: absolute;
     z-index: 9999999 !important;
 }
-#toast-container > div {
-    opacity:1;
+
+#toast-container>div {
+    opacity: 1;
     width: 50%;
     height: 50%;
 }
+
 @media (max-width: 768px) {
-    #toast-container > div {
-        opacity:1;
+    #toast-container>div {
+        opacity: 1;
         width: 90%;
         height: 50%;
     }
+}
+.icon-delete {
+  color: #C82333;
+}
+.icon-edit {
+    color: #39529B;
+}
+.align-left {
+  text-align: left !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+  box-shadow: none !important;
 }

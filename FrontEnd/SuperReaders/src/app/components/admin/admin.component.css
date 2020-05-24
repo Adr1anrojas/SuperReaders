@@ -34,6 +34,45 @@
     width: 67px;
     padding: 5px 5px 5px 18px;
 }
-.icon-eye{
+.header-table {
+  background-color: #FFBF00;
+  color:white;
+}
+.close:hover {
+  color: white;
+}
 
+
+.header-modal {
+  background-color: #FFBF00;
+  color:white;
+}
+.btn-guardar {
+  background-color: #FFBF00 !important;
+  color:white;
+  border-color: #FFBF00 !important;
+}
+.btn-guardar:hover {
+  background: rgb(219, 180, 62) !important;
+  border-color: rgb(221, 184, 73) !important;
+  color: white !important;
+}
+.btn-guardar:active {
+  background: #FFBF00 !important;
+  border-color: rgb(238, 199, 83) !important;
+}
+
+.icon-modal {
+  color:white;
+}
+.modal-content {
+
+  border: 1px solid #FFBF00;
+}
+.modal-footer {
+  background-color: #9c9cd21a;
+}
+.btn-mas {
+  background-color: #FFBF00;
+  color:white;
 }

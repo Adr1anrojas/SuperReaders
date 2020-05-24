@@ -16,21 +16,23 @@ import { Student } from 'src/app/models/student';
 export class ReportComponent implements OnInit {
   // Pie
   reports: Report[] = [];
-  detailStudent: ReportStudent;
+
   idStudent: number;
   currentUser: LoginResult;
   pieChartData: number[] = [];
   students: Student[] = [];
   pieChartLegend = true;
-  pieChartColors = [{ backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)'] },];
+  pieChartColors = [{ backgroundColor: ['#2ec553', 'red'] }];
   chartOptions = { responsive: true };   // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
   labelspie = ['Contenidos Finalizados', 'Contenidos no Finalizados'];
   labels = ['Contenidos Finalizados'];
+  labelsChartHorizontal = ['Contenidos Leidos'];
   // STATIC DATA FOR THE CHART IN JSON FORMAT.
   chartData = [];
+  chartHorizontalData = [];
   // CHART COLOR.
   colors = [];
-  columns: string[] = ['Nombre', 'Apellidos', 'Tiempo de lectura', 'Contenidos leidos', 'Contenidos finalizados', 'Contenidos no finalizados', 'Accion'];
+  columns: string[] = ['Nombres', 'Apellidos', 'Tiempo de lectura', 'Contenidos leidos', 'Contenidos finalizados', 'Contenidos no finalizados', 'Accion'];
 
   constructor(private route: Router, private reportService: ReportService, private loginService: LoginService, private router: Router) { }
 
@@ -47,17 +49,12 @@ export class ReportComponent implements OnInit {
         report.student.forEach(student => {
           this.students.push(student);
           this.chartData.push({ label: student.firstName + ' ' + student.lastName, data: [student.contentFinished] });
+          this.chartHorizontalData.push({ label: student.firstName + ' ' + student.lastName , data: [student.contentRead] });
         });
         contentRead = report.sumContentFinished;
         contentNotRead = report.sumContentNotFinished;
       });
       this.pieChartData = [contentRead, contentNotRead];
-    });
-  }
-
-  getMonitoringByStudent() {
-    this.reportService.getMonitoringByStudent(this.idStudent).subscribe((res: ReportStudent) => {
-      this.detailStudent = res;
     });
   }
 
