@@ -32,3 +32,43 @@
 .margin-card {
     margin-top: 3.3rem!important;
 }
+.header-table {
+  background-color: #39529B;
+  color:white;
+}
+.close:hover {
+  color: white;
+}
+.header-modal {
+  background-color: #39529B;
+  color:white;
+}
+.btn-guardar {
+  background-color: #39529B;
+  color:white;
+  border-color: #39529B !important;
+}
+.btn-guardar:hover {
+  background: rgb(102, 125, 196) !important;
+  border-color: rgb(102, 125, 196) !important;
+  color: white;
+}
+.btn-guardar:active {
+  background: rgb(102, 125, 196)B !important;
+  border-color:rgb(102, 125, 196)!important;
+}
+.icon-modal {
+  color:white;
+}
+.modal-content {
+
+  border: 1px solid #39529B;
+
+}
+.modal-footer {
+  background-color: #9c9cd21a;
+}
+.btn-mas {
+  background-color: #39529B;
+  color:white;
+}
