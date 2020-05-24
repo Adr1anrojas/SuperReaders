@@ -50,13 +50,13 @@ public interface SuperReadersService {
     Call<List<TypeContentDetail>> getContentByContentType();
 
     @POST("Content/contentStudent")
-    Call<Void> saveContentStudent(@Body StudentContent body);
+    Call<StudentContent> saveContentStudent(@Body StudentContent body);
 
     @PUT("Content/UpdateTimeReading")
-    Call<Void> updateTimeReading(@Body StudentContent body);
+    Call<StudentContent> updateTimeReading(@Body StudentContent body);
 
     @PUT("Content/finishContent")
-    Call<Void> updateFinishContent(@Body StudentContent body);
-    @PUT("Content/saveAnswerStudent")
+    Call<StudentContent> updateFinishContent(@Body StudentContent body);
+    @POST("Content/saveAnswerStudent")
     Call<Void> saveAnswerStudent(@Body List<StudentAnswer> body);
 }

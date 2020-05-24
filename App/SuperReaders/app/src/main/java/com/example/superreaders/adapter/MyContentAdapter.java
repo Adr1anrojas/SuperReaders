@@ -26,6 +26,7 @@ import com.example.superreaders.ui.content.ContentActivity;
 import com.example.superreaders.ui.content.ContentViewModel;
 import com.example.superreaders.ui.home.HomeActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Observable;
 
@@ -50,9 +51,7 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
         Content content = dataContent.get(position);
         holder.contentTitle.setText(content.getTitle());
         if (content.getImg()!=null) {
-            byte[] decodedString = Base64.decode(content.getImg(), Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            holder.contentImg.setImageBitmap(decodedByte);
+            holder.contentImg.setImageBitmap(getImage(content.getImg()));
         }
         holder.content=content;
     }
@@ -84,5 +83,17 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
             );
         }
     }
+      private  final Bitmap DEFAULT_BITMAP= Bitmap.createBitmap(  1,1,Bitmap.Config.ARGB_8888);
+    public Bitmap getImage(String base64img) {
+        byte[] decodedString = Base64.decode((base64img != null) ? base64img : "", Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        if(bitmap!=null) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
+            byte[] byteArray = bytes.toByteArray();
+            return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        }
+        return DEFAULT_BITMAP;
 
+    }
 }

@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.superreaders.repositories.ContentRepository;
+import com.example.superreaders.retrofit.models.StudentAnswer;
+import com.example.superreaders.retrofit.models.StudentContent;
 import com.example.superreaders.retrofit.models.TypeContent;
 import com.example.superreaders.retrofit.models.ContentDetail;
 import com.example.superreaders.retrofit.models.Content;
@@ -25,6 +27,12 @@ public class ContentViewModel extends ViewModel {
     }
 
     private MutableLiveData<List<TypeContentDetail>> allContentByType;
+    private MutableLiveData<StudentContent> contentStudent;
+
+    public MutableLiveData<StudentContent> getContentStudent() {
+        return contentStudent;
+    }
+
     private MutableLiveData<String> message;
     public MutableLiveData<Boolean> getStatus() {
         return status;
@@ -35,6 +43,7 @@ public class ContentViewModel extends ViewModel {
         message = repository.messageResponse;
         status =  repository.status;
         allContentByType = repository.responseContentByType;
+        contentStudent = repository.contentStudent;
     }
     public MutableLiveData<List<Content>> getAllContent(){
         return allContent = repository.getAllContent();
@@ -56,9 +65,23 @@ public class ContentViewModel extends ViewModel {
     public void saveTypeContentStudent(List<TypeContent> typeContentStudent){
         repository.saveTypeContentStudent(typeContentStudent);
     }
+    public void saveContentStudent(StudentContent studentContent){
+        repository.saveContentStudent(studentContent);
+
+    }
     public MutableLiveData<List<TypeContentDetail>> getContentByType(){
         return  repository.getContentByTypeContent();
     }
 
 
+    public void updateTimeReading(StudentContent studentContent) {
+        repository.updateTimeReading(studentContent);
+    }
+    public void  updateFinishContent(StudentContent studentContent){
+        repository.updateFinishContent(studentContent);
+
+    }
+    public  void saveAnswerStudent(List<StudentAnswer> sa){
+        repository.saveAnswerStudent(sa);
+    }
 }

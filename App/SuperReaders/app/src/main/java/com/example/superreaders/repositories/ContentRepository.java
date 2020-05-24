@@ -2,6 +2,8 @@ package com.example.superreaders.repositories;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.superreaders.retrofit.models.StudentAnswer;
+import com.example.superreaders.retrofit.models.StudentContent;
 import com.example.superreaders.retrofit.models.TypeContent;
 import com.example.superreaders.retrofit.models.ContentDetail;
 import com.example.superreaders.retrofit.models.Content;
@@ -29,7 +31,7 @@ public class ContentRepository {
     private ArrayList<TypeContentDetail> typeContentDetailsList= new ArrayList<TypeContentDetail>();
     public MutableLiveData<List<TypeContent>> responseTypeContent = new MutableLiveData<>();
     ArrayList<TypeContent> typeContentList = new ArrayList<TypeContent>();
-
+    public MutableLiveData<StudentContent> contentStudent = new MutableLiveData<>();
     public ContentRepository(){
         superReadersService = RetrofitService.createService(SuperReadersService.class);
     }
@@ -153,5 +155,92 @@ public class ContentRepository {
             }
         });
         return responseContentByType;
+    }
+    public void saveContentStudent(StudentContent studentContent){
+        Call<StudentContent> call =superReadersService.saveContentStudent(studentContent);
+        call.enqueue(new Callback<StudentContent>() {
+            @Override
+            public void onResponse(Call<StudentContent> call, Response<StudentContent> response) {
+                if(!response.isSuccessful()) {
+                    try {
+                        messageResponse.setValue("Error: "+response.errorBody().string());
+                    } catch (IOException e) {
+                        messageResponse.setValue("Error: "+e.getMessage());
+                    }
+                    return;
+                }
+                contentStudent.setValue(response.body());
+            }
+            @Override
+            public void onFailure(Call<StudentContent> call, Throwable t) {
+                messageResponse.setValue("Error: "+t.getMessage());
+            }
+        });
+
+    }
+    public  void updateTimeReading(StudentContent studentContent){
+        Call<StudentContent> call =superReadersService.updateTimeReading(studentContent);
+        call.enqueue(new Callback<StudentContent>() {
+            @Override
+            public void onResponse(Call<StudentContent> call, Response<StudentContent> response) {
+                if(!response.isSuccessful()) {
+                    try {
+                        messageResponse.setValue("Error: "+response.errorBody().string());
+                    } catch (IOException e) {
+                        messageResponse.setValue("Error: "+e.getMessage());
+                    }
+                    return;
+                }
+                contentStudent.setValue(response.body());
+            }
+            @Override
+            public void onFailure(Call<StudentContent> call, Throwable t) {
+                messageResponse.setValue("Error: "+t.getMessage());
+            }
+        });
+
+    }
+    public void  updateFinishContent(StudentContent studentContent){
+        Call<StudentContent> call =superReadersService.updateFinishContent(studentContent);
+        call.enqueue(new Callback<StudentContent>() {
+            @Override
+            public void onResponse(Call<StudentContent> call, Response<StudentContent> response) {
+                if(!response.isSuccessful()) {
+                    try {
+                        messageResponse.setValue("Error: "+response.errorBody().string());
+                    } catch (IOException e) {
+                        messageResponse.setValue("Error: "+e.getMessage());
+                    }
+                    return;
+                }
+                contentStudent.setValue(response.body());
+            }
+            @Override
+            public void onFailure(Call<StudentContent> call, Throwable t) {
+                messageResponse.setValue("Error: "+t.getMessage());
+            }
+        });
+    }
+    public  void saveAnswerStudent(List<StudentAnswer> answers){
+        Call<Void> call = superReadersService.saveAnswerStudent(answers);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(!response.isSuccessful()) {
+                    try {
+                        messageResponse.setValue("Error: "+response.errorBody().string());
+                    } catch (IOException e) {
+                        messageResponse.setValue("Error: "+e.getMessage());
+                    }
+                    return;
+                }
+                status.setValue(true);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                messageResponse.setValue("Error: "+t.getMessage());
+            }
+        });
     }
 }

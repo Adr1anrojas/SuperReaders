@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class StudentContent implements Serializable {
 
-	@SerializedName("idStudentcontent")
+	@SerializedName("idStudentContent")
 	private Integer idStudentcontent;
 
-	@SerializedName("CurrentPage")
+	@SerializedName("currentPage")
 	private Integer currentPage;
 
 	@SerializedName("dateStart")

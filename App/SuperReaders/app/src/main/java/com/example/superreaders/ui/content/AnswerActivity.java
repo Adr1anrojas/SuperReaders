@@ -1,6 +1,7 @@
 package com.example.superreaders.ui.content;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,8 +17,10 @@ import com.example.superreaders.R;
 import com.example.superreaders.adapter.AnswersAdapter;
 import com.example.superreaders.retrofit.models.Answer;
 import com.example.superreaders.retrofit.models.Question;
+import com.example.superreaders.retrofit.models.StudentAnswer;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
@@ -35,6 +38,8 @@ public class AnswerActivity extends AppCompatActivity {
     public static Stack<Integer> posSelected;
     private Button buttonNext,buttonBack;
     private AnswersAdapter adapter;
+    private int idStudent;
+    private List<StudentAnswer> answersStudent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +50,7 @@ public class AnswerActivity extends AppCompatActivity {
             posSelected = new Stack<Integer>();
             textViewQuestion = findViewById(R.id.textViewQuestion);
             questions = (List<Question>) data.getSerializable("Questions");
+            idStudent = data.getInt("idStudent");
             setTitle(data.getString("Title"));
             recyclerView = findViewById(R.id.recyclerAnswer);
             recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
@@ -85,7 +91,7 @@ public class AnswerActivity extends AppCompatActivity {
                 }
                 if (currentQuestion == questions.size() - 1) {
                     buttonNext.setText("Terminar");
-                    buttonNext.setOnClickListener(e -> finish());
+                    buttonNext.setOnClickListener(e ->saveAnswers() );
                 }
             }
             else{
@@ -102,5 +108,25 @@ public class AnswerActivity extends AppCompatActivity {
         }
         recyclerView.setAdapter(adapter);
         selected=null;
+    }
+    public void saveAnswers(){
+        ArrayList<Answer> temp= new ArrayList<Answer>(answers);
+        answersStudent= new ArrayList<>();
+        StudentAnswer sa;
+        for(Answer a:temp){
+            sa = new StudentAnswer();
+            sa.setIdStudent(idStudent);
+            sa.setIdAnswer(a.getId());
+            answersStudent.add(sa);
+        }
+        ContentViewModel viewModel = new ContentViewModel();
+        final Observer<Boolean> observer = status -> {
+            if(status){
+                Toast.makeText(this,"Acabas de leer "+getTitle(),Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        };
+        viewModel.saveAnswerStudent(answersStudent);
+        viewModel.getStatus().observe(this,observer);
     }
 }
