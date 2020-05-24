@@ -54,6 +54,15 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         StudentContent AddContentStudent(StudentContent contentStudent);
 
         /// <summary>
+        /// This Method assign the content by group
+        /// </summary>
+        /// <param name="idClassRoom"></param>
+        /// <param name="idContent"></param>
+        /// <returns></returns>
+
+        void AddContentToStudentByClassRoom(int idClassRoom, int idContent);
+
+        /// <summary>
         /// This Method update an StudentContent of the student specified
         /// </summary>
         /// <param name="contentStudent"></param>
@@ -75,5 +84,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         void SaveAnswerStudent(List<StudentAnswer> studentAnswers);
 
         List<Content> GetContentByPreferenceStudent(int idStudent);
+
+        List<Content> GetAllAsignmentsByStudent(int idStudent);
     }
 }

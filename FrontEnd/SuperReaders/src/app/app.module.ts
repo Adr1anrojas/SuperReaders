@@ -26,7 +26,8 @@ import { ClassRoomComponent } from './components/class-room/class-room.component
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
 import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
 import { ChartsModule } from 'ng2-charts';
-import { ReportDetailComponent } from './components/report/report-detail/report-detail.component'
+import { ReportDetailComponent } from './components/report/report-detail/report-detail.component';
+import { AssingComponent } from './components/assing/assing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { ReportDetailComponent } from './components/report/report-detail/report-
     ClassRoomComponent,
     ContentDetailComponent,
     HomeDetailComponent,
-    ReportDetailComponent
+    ReportDetailComponent,
+    AssingComponent
   ],
   imports: [
     BrowserModule,

@@ -377,6 +377,50 @@ namespace SuperReaders.Services.DomainObject
                 throw e;
             }
         }
+
+        /// <summary>
+        /// This Method assign the content by group
+        /// </summary>
+        /// <param name="idClassRoom"></param>
+        /// <param name="idContent"></param>
+        /// <returns></returns>
+        public void AddContentToStudentByClassRoom(int idClassRoom, int idContent)
+        {
+            
+            try
+            {
+                var existAssing = _iContentDAO.GetContentToStudentByClassRoom(idClassRoom, idContent);
+                if(existAssing == null)
+                    _iContentDAO.AddContentToStudentByClassRoom(idClassRoom, idContent);
+                else
+                {
+                    existAssing.IsAssignment = !existAssing.IsAssignment;
+                    _iContentDAO.UpdateContentToStudentByClassRoom(existAssing.IdClassRoom, existAssing.IdContent, existAssing.IsAssignment);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<Content> GetAllAsignmentsByStudent(int idStudent)
+        {
+            List<Content> result = null;
+            try
+            {
+                result = _iContentDAO.GetAllAsignmentsByStudent(idStudent);
+                foreach (Content content in result)
+                {
+                    content.Img = GetImg(content.Title, 1);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return result;
+        }
     }
 }
 

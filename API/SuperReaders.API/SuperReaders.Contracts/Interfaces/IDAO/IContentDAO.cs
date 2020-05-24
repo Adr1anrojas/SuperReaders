@@ -102,5 +102,30 @@ namespace SuperReaders.Contracts.Interfaces.IDAO
         void SaveAnswerStudent(StudentAnswer studentAnswer);
 
         IEnumerable<StudentTypeContent> GetContentByPreferenceStudent(int idStudent);
+
+        /// <summary>
+        /// This Method assign the content by group
+        /// </summary>
+        /// <param name="idClassRoom"></param>
+        /// <param name="idContent"></param>
+        /// <returns></returns>
+        void AddContentToStudentByClassRoom(int idClassRoom, int idContent);
+
+        /// <summary>
+        /// This Method assign the content by group
+        /// </summary>
+        /// <param name="idClassRoom"></param>
+        /// <param name="idContent"></param>
+        /// <returns></returns>
+        ContentDetail GetContentToStudentByClassRoom(int idClassRoom, int idContent);
+
+        /// <summary>
+        /// This Method assign the content by group
+        /// </summary>
+        /// <param name="idClassRoom"></param>
+        /// <param name="idContent"></param>
+        /// <returns></returns>
+        void UpdateContentToStudentByClassRoom(int idClassRoom, int idContent, bool isAssignment);
+        List<Content> GetAllAsignmentsByStudent(int idStudent);
     }
 }
