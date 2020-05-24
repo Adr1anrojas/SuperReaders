@@ -51,9 +51,22 @@ public class ContentActivity extends AppCompatActivity {
     private int timeLeft=0;
     private Observer<StudentContent> observerStudenContent;
     private final CharSequence [] options={"Claro","En otro momento"};
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(viewModel!=null)
+            updateTimer();
+    }
+
+
     @Override
     protected void onPause() {
         super.onPause();
+        if(timer!=null){
+            timer.cancel();
+            timer.purge();
+        }
         updateTimeRead();
 
     }
@@ -61,8 +74,8 @@ public class ContentActivity extends AppCompatActivity {
         if(studentContent!=null) {
             studentContent.setCurrentPage(currentpage);
             studentContent.setTimeReading(studentContent.getTimeReading()+timeLeft);
-            viewModel.getContentStudent().removeObserver(observerStudenContent);
             viewModel.updateTimeReading(studentContent);
+            timeLeft=0;
         }
     }
     Timer timer;
@@ -82,8 +95,10 @@ public class ContentActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(timer!=null)
+        if(timer!=null){
             timer.cancel();
+            timer.purge();
+        }
         updateTimeRead();
     }
 
@@ -137,8 +152,10 @@ public class ContentActivity extends AppCompatActivity {
                     }
                     buttonNext.setOnClickListener(e -> nextButtonAction());
                     buttonBack.setOnClickListener(e -> backButtonAction());
+                    viewModel.getContentStudent().removeObserver(observerStudenContent);
                     updateTimer();
                 }else {
+                    this.studentContent=null;
                     final AlertDialog.Builder alertOptions = new AlertDialog.Builder(this);
                     alertOptions.setTitle("¡Felicidades contenido leido! \n Te gustaria leerlo de nuevo?");
                     alertOptions.setItems(options, new DialogInterface.OnClickListener() {
