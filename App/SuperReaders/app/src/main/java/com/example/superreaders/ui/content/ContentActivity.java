@@ -82,7 +82,8 @@ public class ContentActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        timer.cancel();
+        if(timer!=null)
+            timer.cancel();
         updateTimeRead();
     }
 
