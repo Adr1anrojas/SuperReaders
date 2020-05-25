@@ -18,6 +18,3 @@
 .height-img{
     height: 100vh;
 }
-.img-left{
-    transform: rotate(180deg);
-}

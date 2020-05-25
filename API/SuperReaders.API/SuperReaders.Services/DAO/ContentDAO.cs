@@ -359,6 +359,90 @@ namespace SuperReaders.Services.DAO
             }
         }
 
+        /// <summary>
+        /// This Method assign the content by group
+        /// </summary>
+        /// <param name="idClassRoom"></param>
+        /// <param name="idContent"></param>
+        /// <returns></returns>
+        public void AddContentToStudentByClassRoom(int idClassRoom, int idContent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_ContentDetail_IdClassRoom, idClassRoom);
+                parameters.Add(Constants.P_ContentDetail_IdContent, idContent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    db.Query<ContentDetail>(Constants.SP_Content_AddContentToStudentByClassRoom, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public ContentDetail GetContentToStudentByClassRoom(int idClassRoom, int idContent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            ContentDetail result = null;
+            try
+            {
+                parameters.Add(Constants.P_ContentDetail_IdClassRoom, idClassRoom);
+                parameters.Add(Constants.P_ContentDetail_IdContent, idContent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    result = db.Query<ContentDetail>(Constants.SP_Content_GetContentToStudentByClassRoom, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                }
+                return result;
+                
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void UpdateContentToStudentByClassRoom(int idClassRoom, int idContent, bool isAssignment)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            try
+            {
+                parameters.Add(Constants.P_ContentDetail_IdClassRoom, idClassRoom);
+                parameters.Add(Constants.P_ContentDetail_IdContent, idContent);
+                parameters.Add(Constants.P_Content_IsAssignment, isAssignment);
+                using (IDbConnection db = connection.Connection)
+                {
+                    db.Query<ContentDetail>(Constants.SP_Content_UpdateContentToStudentByClassRoom, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<Content> GetAllAsignmentsByStudent(int idStudent)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            List<Content> result = null;
+            try
+            {
+                parameters.Add(Constants.P_Content_IdStudent, idStudent);
+                using (IDbConnection db = connection.Connection)
+                {
+                    var iResult = db.Query<Content>(Constants.SP_Content_GetAllAsignmentsByStudent, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    if (iResult.Count > 0)
+                        result = iResult;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return result;
+        }
     }
 }
 

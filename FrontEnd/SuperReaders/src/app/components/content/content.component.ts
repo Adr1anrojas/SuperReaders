@@ -5,6 +5,9 @@ import { ContentFile } from 'src/app/models/contentFile';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageService } from 'src/app/services/image.service';
 import { ToastrService } from 'ngx-toastr';
+import { ContentDetail } from 'src/app/models/contentDetail';
+import { LoginResult } from 'src/app/models/loginResult';
+import { LoginService } from 'src/app/services/login.service';
 declare var $: any;
 @Component({
   selector: 'app-content',
@@ -16,7 +19,7 @@ export class ContentComponent implements OnInit {
   currentContent: ContentFile = new ContentFile();
   base64textString: string;
   imgUrl: any[] = [];
-  constructor(private route: Router, private contentService: ContentService, private domSanitizer: DomSanitizer, public imgService: ImageService, private toastr: ToastrService) { }
+  constructor(private route: Router, private contentService: ContentService, private domSanitizer: DomSanitizer, public imgService: ImageService, private toastr: ToastrService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.getContents();
@@ -47,5 +50,19 @@ export class ContentComponent implements OnInit {
       this.toastr.success('¡Hecho!', 'Se elimino el Contenido.');
     }, error => this.toastr.error('Ocurrio un problema al eliminar el Contenido.', '¡Error!'));
   }
+
+  showModalAssing(item: ContentFile) {
+    this.currentContent = item;
+    $("#asignContent").modal("show");
+  }
+
+  asignContentByGroup() {
+    let currentUser: LoginResult = this.loginService.currentUserValue();
+    let contentAsign: ContentDetail = { idClassRoom: currentUser.classRoom.id, idContent: this.currentContent.id, isAssignment: true };
+    this.contentService.asignContentByGroup(contentAsign).subscribe(res => {
+      this.toastr.success('¡Hecho!', 'Se asigno el Contenido.');
+    }, error => this.toastr.error('Ocurrio un problema al asignar el Contenido.', '¡Error!'));
+  }
+
 
 }
