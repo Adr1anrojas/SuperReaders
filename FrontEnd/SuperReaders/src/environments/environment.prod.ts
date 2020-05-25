@@ -1,5 +1,5 @@
 export const environment = {
   //url: "https://readersapi.azurewebsites.net/api/",
-  url: "http://localhost:55211/api/",
+  url: "https://superreadersapi20200524080453.azurewebsites.net/api/",
   production: true
 };
