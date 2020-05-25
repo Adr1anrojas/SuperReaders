@@ -15,6 +15,10 @@ export class ReportDetailComponent implements OnInit {
   state$: Observable<object>;
   student: Student;
   detailStudent: ReportStudent [] = [];
+  labelsChartHorizontal = ['Contenidos',];
+  chartHorizontalData = [];
+  colors = [];
+  chartOptions = { responsive: true };   // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE)
   columns: string[] = ['Titulo', 'Nombre','Tiempo de lectura','Pagina actual','Fecha de inicio','Fecha de finalizacion','Finalizado','Respuestas correctas','Respuestas incorrectas' ];
   constructor(public activatedRoute: ActivatedRoute, private reportService: ReportService) { }
 
@@ -25,6 +29,11 @@ export class ReportDetailComponent implements OnInit {
   getMonitoringByStudent() {
     this.reportService.getMonitoringByStudent(this.student.id).subscribe((res: ReportStudent[]) => {
       this.detailStudent = res;
+      this.detailStudent.forEach(student => {
+
+        this.chartHorizontalData.push({ label: student.title  , data: [student.timeReading] });
+      });
+
     });
   }
   getStudent() {

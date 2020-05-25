@@ -1,21 +1,22 @@
+
 <h5 class="mt-3">Administradores</h5>
-<button type="button" class="btn btn-danger add mb-3" data-toggle="modal" data-target="#exampleModal"
+<button type="button" class="btn btn-primary add mb-3 btn-guardar" data-toggle="modal" data-target="#exampleModal"
     (click)=initAdmin() data-placement="top" title="Crear Administrador">+</button>
-<div class="card mt-5 margin-card">
-    <div class="card-body">
-        <table class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg">
-            <thead>
-                <tr>
-                    <th scope="col" *ngFor="let item of columns">{{item}}</th>
+<div class="card card-plain table-plain-bg border-left-info shadow h-100 py-2 mt-5">
+    <div class="card-body table-full-width table-responsive">
+        <table class="table table-hover ">
+            <thead class="header header-table">
+                <tr >
+                    <th class="align-left"  scope="col" *ngFor="let item of columns">{{item}}</th>
                 </tr>
             </thead>
             <tbody *ngFor="let item of admins">
                 <tr>
-                    <td class="size-row">{{item.firstName}}</td>
-                    <td class="size-row">{{item.lastName}}</td>
-                    <td class="size-row">{{item.userName}}</td>
-                    <td class="size-row">{{item.email}}</td>
-                    <td class="icons size-row">
+                    <td >{{item.firstName}}</td>
+                    <td >{{item.lastName}}</td>
+                    <td >{{item.userName}}</td>
+                    <td >{{item.email}}</td>
+                    <td class="icons align-left" >
                         <button class="btn icons" data-toggle="tooltip" data-placement="top" title="Editar"
                             (click)="editAdmin(item)" data-toggle="modal" data-target="#exampleModal">
                             <fa-icon class="fa-lg icon-edit" icon="edit"></fa-icon>
@@ -30,15 +31,17 @@
         <p class="text-center" *ngIf="admins.length==0">No existen Administradores registrados.</p>
     </div>
 </div>
+
+
 <!-- Modal EDIT/CREATE-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header header-modal">
                 <h5 class="modal-title" id="exampleModalLabel">{{this.isUpdate?'Actualizar ':'Crear '}} Administrador
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close icon-modal " data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -46,21 +49,21 @@
                 <form [formGroup]="formAdmin" class="needs-validation" novalidate (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="form-group col col-sm-6 col-md-6 col-lg-6 col-xl-6 pr-1">
-                            <label for="firstName">Nombres*</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Nombres"
+                            <label for="firstName">Nombre(s)*</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Nombre(s)"
                                 name="firstName" formControlName="firstName"
                                 [ngClass]="{'is-invalid':submitted && controls.firstName.errors }">
                             <div *ngIf="submitted && controls.firstName.errors" class="invalid-feedback">
-                                Nombre de Usuario requerido.
+                                Nombre(s) requerido.
                             </div>
                         </div>
                         <div class="form-group col col-sm-6 col-md-6 col-lg-6 col-xl-6 pl-1">
-                            <label for="lastName">Apellidos*</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Apellidos"
+                            <label for="lastName">Apellido(s)*</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Apellido(s)"
                                 name="lastName" formControlName="lastName"
                                 [ngClass]="{'is-invalid':submitted && controls.lastName.errors }">
                             <div *ngIf="submitted && controls.lastName.errors" class="invalid-feedback">
-                                Campo requerido
+                                Apellido(s) requerido.
                             </div>
                         </div>
                     </div>
@@ -70,7 +73,7 @@
                             formControlName="userName"
                             [ngClass]="{'is-invalid':submitted && controls.userName.errors }">
                         <div *ngIf="submitted && controls.userName.errors" class="invalid-feedback">
-                            Campo requerido
+                            Nombre de usuario requerido.
                         </div>
                     </div>
                     <div class="form-group ">
@@ -78,8 +81,8 @@
                         <input type="email" class="form-control" id="email" placeholder="Correo" name="email"
                             formControlName="email" [ngClass]="{'is-invalid':submitted && controls.email.errors }">
                         <div *ngIf="submitted && controls.email.errors" class="invalid-feedback">
-                            <div *ngIf="controls.email.errors.required">El Correo es requerido.</div>
-                            <div *ngIf="controls.email.errors.email">El correo debe ser valido.</div>
+                            <div *ngIf="controls.email.errors.required">Correo requerido.</div>
+                            <div *ngIf="controls.email.errors.email">Correo  invalido.</div>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -94,7 +97,7 @@
                                 </span>
                             </div>
                             <div *ngIf="submitted && controls.password.errors" class="invalid-feedback">
-                                <div *ngIf="controls.password.errors.required"> Campo requerido</div>
+                                <div *ngIf="controls.password.errors.required"> Contraseña requerida</div>
                                 <div *ngIf="controls.password.errors.minlength">La Contraseña debe tener minimo 6
                                     caracteres.</div>
                             </div>
@@ -116,9 +119,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
                             (click)="initAdmin()">Cancelar</button>
-                        <button type="submit" class="btn btn-danger">Guardar</button>
+                        <button type="submit" class="btn btn-primary btn-guardar ">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -131,17 +134,17 @@
     <div id="myModal" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header header-modal">
                     <h5 class="modal-title">Confirmación</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close icon-modal" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <p>¿Esta seguro de eliminar al usuario {{this.formAdmin.get('userName').value}}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="initAdmin()" data-dismiss="modal"
+                    <button type="button" class="btn btn-danger" (click)="initAdmin()" data-dismiss="modal"
                         data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" (click)="delete()"
+                    <button type="button" class="btn btn-primary btn-guardar" (click)="delete()"
                         data-dismiss="modal">Aceptar</button>
                 </div>
             </div>

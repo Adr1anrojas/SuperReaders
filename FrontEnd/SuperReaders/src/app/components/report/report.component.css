@@ -1,0 +1,46 @@
+.header-table {
+  background-color: #DD234C;
+  color:white;
+}
+.close:hover {
+  color: white;
+}
+.header-modal {
+  background-color: #DD234C;
+  color:white;
+}
+.btn-guardar {
+  background-color: #DD234C;
+  color:white;
+  border-color: #DD234C !important;
+}
+.btn-guardar:hover {
+  background: rgb(223, 107, 132)  !important;
+  border-color: rgb(223, 107, 132) !important;
+  color: white;
+}
+.btn-guardar:active {
+  background: rgb(223, 107, 132) !important;
+  border-color: rgb(223, 107, 132) !important;
+}
+.icon-modal {
+  color:white;
+}
+.modal-content {
+
+  border: 1px solid #DD234C;
+
+}
+.modal-footer {
+  background-color: #9c9cd21a;
+}
+.btn-mas {
+  background-color: #DD234C;
+  color:white;
+}
+.icon-eye {
+  color:#DD234C;
+}
+.border-text {
+  border-left: solid 6px #349CD6;
+}
