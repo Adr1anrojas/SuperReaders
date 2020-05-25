@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ContentDetail } from 'src/app/models/contentDetail';
 import { LoginResult } from 'src/app/models/loginResult';
 import { LoginService } from 'src/app/services/login.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var $: any;
 @Component({
   selector: 'app-content',
@@ -19,15 +20,17 @@ export class ContentComponent implements OnInit {
   currentContent: ContentFile = new ContentFile();
   base64textString: string;
   imgUrl: any[] = [];
-  constructor(private route: Router, private contentService: ContentService, private domSanitizer: DomSanitizer, public imgService: ImageService, private toastr: ToastrService, private loginService: LoginService) { }
+  constructor(private route: Router, private contentService: ContentService, private domSanitizer: DomSanitizer, public imgService: ImageService, private toastr: ToastrService, private loginService: LoginService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getContents();
   }
 
   getContents() {
+    setTimeout(() => this.spinner.show(), 3);
     this.contentService.getAllContent().subscribe((res: ContentFile[]) => {
       this.content = res;
+      this.spinner.hide();
     }, error => console.log(error));
   }
 
