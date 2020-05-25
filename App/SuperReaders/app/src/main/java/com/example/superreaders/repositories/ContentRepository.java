@@ -35,17 +35,12 @@ public class ContentRepository {
     public ContentRepository(){
         superReadersService = RetrofitService.createService(SuperReadersService.class);
     }
-    public MutableLiveData<List<Content>> getAllContent() {
-        Call<List<Content>> call = superReadersService.getAllContent();
+    public MutableLiveData<List<Content>> getAllContent(String token) {
+        Call<List<Content>> call = superReadersService.getAllContent(token);
         call.enqueue(new Callback<List<Content>>() {
             @Override
             public void onResponse(Call<List<Content>> call, Response<List<Content>> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                     return;
                 }
                 contentList.removeAll(contentList);
@@ -54,22 +49,16 @@ public class ContentRepository {
             }
             @Override
             public void onFailure(Call<List<Content>> call, Throwable t) {
-                messageResponse.setValue("Error "+t.getMessage());
             }
         });
         return responseContent;
     }
-    public MutableLiveData<ContentDetail> getContentById(int idContent){
-        Call<ContentDetail> call = superReadersService.getContentById(idContent);
+    public MutableLiveData<ContentDetail> getContentById(int idContent,String token){
+        Call<ContentDetail> call = superReadersService.getContentById(idContent,token);
         call.enqueue(new Callback<ContentDetail>() {
             @Override
             public void onResponse(Call<ContentDetail> call, Response<ContentDetail> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        messageResponse.setValue("Error: "+e.getMessage());
-                    }
                     return;
                 }
                 responseContentDetail.setValue(response.body());
@@ -77,22 +66,16 @@ public class ContentRepository {
 
             @Override
             public void onFailure(Call<ContentDetail> call, Throwable t) {
-                messageResponse.setValue("Error: "+t.getMessage());
             }
         });
         return responseContentDetail;
     }
-    public MutableLiveData<List<TypeContent>> getTypeContent(){
-        Call<List<TypeContent>> call = superReadersService.getTypeContent();
+    public MutableLiveData<List<TypeContent>> getTypeContent(String token){
+        Call<List<TypeContent>> call = superReadersService.getTypeContent(token);
         call.enqueue(new Callback<List<TypeContent>>() {
             @Override
             public void onResponse(Call<List<TypeContent>> call, Response<List<TypeContent>> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        messageResponse.setValue("Error: "+e.getMessage());
-                    }
                     return;
                 }
                 typeContentList.removeAll(typeContentList);
@@ -102,22 +85,16 @@ public class ContentRepository {
 
             @Override
             public void onFailure(Call<List<TypeContent>> call, Throwable t) {
-                messageResponse.setValue("Error: "+t.getMessage());
             }
         });
         return responseTypeContent;
     }
-    public void saveTypeContentStudent(List<TypeContent> contentStudent ){
-        Call<Void> call = superReadersService.saveTypeContentStudent(contentStudent);
+    public void saveTypeContentStudent(List<TypeContent> contentStudent , String token){
+        Call<Void> call = superReadersService.saveTypeContentStudent(contentStudent,token);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        messageResponse.setValue("Error: "+e.getMessage());
-                    }
                     return;
                 }
                 status.setValue(true);
@@ -125,22 +102,16 @@ public class ContentRepository {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                messageResponse.setValue("Error: "+t.getMessage());
             }
         });
 
     }
-    public MutableLiveData<List<TypeContentDetail>> getContentByTypeContent(){
-        Call<List<TypeContentDetail>> call = superReadersService.getContentByContentType();
+    public MutableLiveData<List<TypeContentDetail>> getContentByTypeContent(String token){
+        Call<List<TypeContentDetail>> call = superReadersService.getContentByContentType(token);
         call.enqueue(new Callback<List<TypeContentDetail>>() {
             @Override
             public void onResponse(Call<List<TypeContentDetail>> call, Response<List<TypeContentDetail>> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        messageResponse.setValue("Error: "+e.getMessage());
-                    }
                     return;
                 }
                 typeContentDetailsList.removeAll(typeContentDetailsList);
@@ -151,87 +122,63 @@ public class ContentRepository {
 
             @Override
             public void onFailure(Call<List<TypeContentDetail>> call, Throwable t) {
-                messageResponse.setValue("Error: "+t.getMessage());
             }
         });
         return responseContentByType;
     }
-    public void saveContentStudent(StudentContent studentContent){
-        Call<StudentContent> call =superReadersService.saveContentStudent(studentContent);
+    public void saveContentStudent(StudentContent studentContent, String token){
+        Call<StudentContent> call =superReadersService.saveContentStudent(studentContent,token);
         call.enqueue(new Callback<StudentContent>() {
             @Override
             public void onResponse(Call<StudentContent> call, Response<StudentContent> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        messageResponse.setValue("Error: "+e.getMessage());
-                    }
                     return;
                 }
                 contentStudent.setValue(response.body());
             }
             @Override
             public void onFailure(Call<StudentContent> call, Throwable t) {
-                messageResponse.setValue("Error: "+t.getMessage());
             }
         });
 
     }
-    public  void updateTimeReading(StudentContent studentContent){
-        Call<StudentContent> call =superReadersService.updateTimeReading(studentContent);
+    public  void updateTimeReading(StudentContent studentContent,String token){
+        Call<StudentContent> call =superReadersService.updateTimeReading(studentContent,token);
         call.enqueue(new Callback<StudentContent>() {
             @Override
             public void onResponse(Call<StudentContent> call, Response<StudentContent> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        messageResponse.setValue("Error: "+e.getMessage());
-                    }
                     return;
                 }
                 contentStudent.setValue(response.body());
             }
             @Override
             public void onFailure(Call<StudentContent> call, Throwable t) {
-                messageResponse.setValue("Error: "+t.getMessage());
             }
         });
 
     }
-    public void  updateFinishContent(StudentContent studentContent){
-        Call<StudentContent> call =superReadersService.updateFinishContent(studentContent);
+    public void  updateFinishContent(StudentContent studentContent,String token){
+        Call<StudentContent> call =superReadersService.updateFinishContent(studentContent,token);
         call.enqueue(new Callback<StudentContent>() {
             @Override
             public void onResponse(Call<StudentContent> call, Response<StudentContent> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        messageResponse.setValue("Error: "+e.getMessage());
-                    }
                     return;
                 }
                 contentStudent.setValue(response.body());
             }
             @Override
             public void onFailure(Call<StudentContent> call, Throwable t) {
-                messageResponse.setValue("Error: "+t.getMessage());
             }
         });
     }
-    public  void saveAnswerStudent(List<StudentAnswer> answers){
-        Call<Void> call = superReadersService.saveAnswerStudent(answers);
+    public  void saveAnswerStudent(List<StudentAnswer> answers, String token){
+        Call<Void> call = superReadersService.saveAnswerStudent(answers, token);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(!response.isSuccessful()) {
-                    try {
-                        messageResponse.setValue("Error: "+response.errorBody().string());
-                    } catch (IOException e) {
-                        messageResponse.setValue("Error: "+e.getMessage());
-                    }
                     return;
                 }
                 status.setValue(true);
@@ -239,7 +186,6 @@ public class ContentRepository {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                messageResponse.setValue("Error: "+t.getMessage());
             }
         });
     }

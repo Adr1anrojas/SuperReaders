@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superreaders.R;
+import com.example.superreaders.SessionManagement;
 import com.example.superreaders.adapter.MyItemGroupAdapter;
 import com.example.superreaders.retrofit.models.Content;
 import com.example.superreaders.retrofit.models.TypeContentDetail;
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
     private ContentViewModel contentViewModel;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+    private String token;
     private MyItemGroupAdapter typeContentAdapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public class HomeFragment extends Fragment {
         progressBar.setIndeterminate(true);
         // Agrega el ProgressBar al Layout
         cl.addView(progressBar);
+        SessionManagement session = new SessionManagement(getContext());
+        token = session.getCurrentUser().getToken();
         final Observer<List<TypeContentDetail>> observerTypeContent= type ->{
             if(type!=null){
                 typeContentAdapter = new MyItemGroupAdapter(getContext(),type);
@@ -60,7 +64,7 @@ public class HomeFragment extends Fragment {
                 progressBar.setVisibility(View.INVISIBLE);
             }
         };
-        viewModel.getContentByType();
+        viewModel.getContentByType(token);
         viewModel.getAllContentByType().observe(this.getActivity(),observerTypeContent);
     }
 }

@@ -29,11 +29,13 @@ public class TypeContentActivity extends AppCompatActivity {
     private TypeContentAdapter typeContentAdapter;
     private ContentViewModel viewModel;
     private ProgressBar progressBar;
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_typecontent);
         SessionManagement sessionManagement =new SessionManagement(this);
+        token = sessionManagement.getCurrentUser().getToken();
         recyclerView = findViewById(R.id.rv_type_content);
         typeContentAdapter = new TypeContentAdapter(this);
         recyclerView.setAdapter(typeContentAdapter);
@@ -63,7 +65,7 @@ public class TypeContentActivity extends AppCompatActivity {
                 for (TypeContent e:typeContentsSelected){
                     e.setIdStudent(currentUser.getStudentId());
                 }
-                viewModel.saveTypeContentStudent(typeContentsSelected);
+                viewModel.saveTypeContentStudent(typeContentsSelected,token);
             }
         });
         final Observer<String> observerMsg = message ->{
@@ -80,7 +82,7 @@ public class TypeContentActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
             }
         };
-        viewModel.getTypeContent().observe(this,observerTypeContent);
+        viewModel.getTypeContent(token).observe(this,observerTypeContent);
         viewModel.getMessage().observe(this,observerMsg);
         viewModel.getStatus().observe(this,observerStatus);
 

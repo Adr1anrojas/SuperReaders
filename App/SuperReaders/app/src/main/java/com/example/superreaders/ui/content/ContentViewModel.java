@@ -45,43 +45,38 @@ public class ContentViewModel extends ViewModel {
         allContentByType = repository.responseContentByType;
         contentStudent = repository.contentStudent;
     }
-    public MutableLiveData<List<Content>> getAllContent(){
-        return allContent = repository.getAllContent();
+    public MutableLiveData<List<Content>> getAllContent(String token){
+        return allContent = repository.getAllContent(token);
     }
-    public MutableLiveData<ContentDetail> getContentById(int idContent){
-        return  repository.getContentById(idContent);
+    public MutableLiveData<ContentDetail> getContentById(int idContent, String token){
+        return  repository.getContentById(idContent,token);
     }
-    public MutableLiveData<List<TypeContent>> getTypeContent(){
-        return repository.getTypeContent();
-    }
-    public Bitmap decodeImage(String encodedImage){
-        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        return decodedByte;
+    public MutableLiveData<List<TypeContent>> getTypeContent(String token){
+        return repository.getTypeContent(token);
     }
     public MutableLiveData<String> getMessage() {
         return message;
     }
-    public void saveTypeContentStudent(List<TypeContent> typeContentStudent){
-        repository.saveTypeContentStudent(typeContentStudent);
+    public void saveTypeContentStudent(List<TypeContent> typeContentStudent,String token){
+        repository.saveTypeContentStudent(typeContentStudent,token);
     }
-    public void saveContentStudent(StudentContent studentContent){
-        repository.saveContentStudent(studentContent);
+    public void saveContentStudent(StudentContent studentContent,String token){
+        repository.saveContentStudent(studentContent,token);
 
     }
-    public MutableLiveData<List<TypeContentDetail>> getContentByType(){
-        return  repository.getContentByTypeContent();
+    public MutableLiveData<List<TypeContentDetail>> getContentByType(String token){
+        return  repository.getContentByTypeContent(token);
     }
 
 
-    public void updateTimeReading(StudentContent studentContent) {
-        repository.updateTimeReading(studentContent);
+    public void updateTimeReading(StudentContent studentContent,String token) {
+        repository.updateTimeReading(studentContent,token);
     }
-    public void  updateFinishContent(StudentContent studentContent){
-        repository.updateFinishContent(studentContent);
+    public void  updateFinishContent(StudentContent studentContent,String token){
+        repository.updateFinishContent(studentContent,token);
 
     }
-    public  void saveAnswerStudent(List<StudentAnswer> sa){
-        repository.saveAnswerStudent(sa);
+    public  void saveAnswerStudent(List<StudentAnswer> sa,String token){
+        repository.saveAnswerStudent(sa,token);
     }
 }

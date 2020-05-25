@@ -38,7 +38,7 @@ public class LoginRepository {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                messageResponse.setValue(t.getMessage());
+                messageResponse.setValue("Usuario logueado correctamente");
             }
         });
         return userLogged;

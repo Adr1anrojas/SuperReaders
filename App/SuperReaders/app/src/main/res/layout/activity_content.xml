@@ -27,7 +27,6 @@
                 android:layout_height="match_parent"
                 android:textColor="#000000"
                 android:maxLines="200"
-                android:lines="18"
                 android:text=""
                 android:textSize="18sp"
                 android:scrollbars = "vertical"

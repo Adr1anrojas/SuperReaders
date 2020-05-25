@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superreaders.R;
+import com.example.superreaders.SessionManagement;
 import com.example.superreaders.adapter.AnswersAdapter;
 import com.example.superreaders.retrofit.models.Answer;
 import com.example.superreaders.retrofit.models.Question;
@@ -40,12 +41,15 @@ public class AnswerActivity extends AppCompatActivity {
     private AnswersAdapter adapter;
     private int idStudent;
     private List<StudentAnswer> answersStudent;
+    private String token ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
         Bundle data = this.getIntent().getExtras();
         if(data!=null) {
+            SessionManagement session = new SessionManagement(this);
+            token = session.getCurrentUser().getToken();
             answers = new Stack<Answer>();
             posSelected = new Stack<Integer>();
             textViewQuestion = findViewById(R.id.textViewQuestion);
@@ -126,7 +130,7 @@ public class AnswerActivity extends AppCompatActivity {
                 finish();
             }
         };
-        viewModel.saveAnswerStudent(answersStudent);
+        viewModel.saveAnswerStudent(answersStudent,token);
         viewModel.getStatus().observe(this,observer);
     }
 }

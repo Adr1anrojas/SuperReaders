@@ -13,6 +13,8 @@ public class SessionManagement {
     private int PRIVATE_MODE = 0;
     private static final String PREF_NAME = "_store";
 
+
+
     public SessionManagement(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.superreaders.R;
 import com.example.superreaders.retrofit.models.TypeContent;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 
@@ -42,9 +43,7 @@ public class TypeContentAdapter extends RecyclerView.Adapter<TypeContentAdapter.
         TypeContent typeContent = dataset.get(position);
 
         holder.nameTextView.setText(typeContent.getName());
-        byte[] decodedString = Base64.decode(typeContent.getImg(), Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        holder.pictureImageView.setImageBitmap(decodedByte);
+        holder.pictureImageView.setImageBitmap(getImage(typeContent.getImg()));
         holder.checkBox.setOnClickListener( v->{
                 if (holder.checkBox.isChecked()){
                     typeContentSelected.add(typeContent);
@@ -80,5 +79,18 @@ public class TypeContentAdapter extends RecyclerView.Adapter<TypeContentAdapter.
             nameTextView = (TextView) itemView.findViewById(R.id.nameTextView);
             checkBox = (CheckBox) itemView.findViewById(R.id.checkbox);
         }
+    }
+    private  final Bitmap DEFAULT_BITMAP= Bitmap.createBitmap(  1,1,Bitmap.Config.ARGB_8888);
+    public Bitmap getImage(String base64img) {
+        byte[] decodedString = Base64.decode((base64img != null) ? base64img : "", Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        if(bitmap!=null) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
+            byte[] byteArray = bytes.toByteArray();
+            return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        }
+        return DEFAULT_BITMAP;
+
     }
 }

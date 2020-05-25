@@ -1,6 +1,7 @@
 package com.example.superreaders.retrofit.services;
 
 
+import com.example.superreaders.SessionManagement;
 import com.example.superreaders.retrofit.Environment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,9 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitService {
     private static OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
             .retryOnConnectionFailure(true)
-            .connectTimeout(70, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .writeTimeout(120, TimeUnit.SECONDS)
+            .connectTimeout(5, TimeUnit.MINUTES)
+            .readTimeout(5, TimeUnit.MINUTES)
+            .writeTimeout(5, TimeUnit.MINUTES)
             .build();
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
@@ -32,5 +33,4 @@ public class RetrofitService {
     public static <S> S createService(Class<S> serviceClass) {
         return retrofit.create(serviceClass);
     }
-
 }

@@ -51,7 +51,7 @@ public class ContentActivity extends AppCompatActivity {
     private int timeLeft=0;
     private Observer<StudentContent> observerStudenContent;
     private final CharSequence [] options={"Claro","En otro momento"};
-
+    private String token;
     @Override
     protected void onResume() {
         super.onResume();
@@ -74,7 +74,7 @@ public class ContentActivity extends AppCompatActivity {
         if(studentContent!=null) {
             studentContent.setCurrentPage(currentpage);
             studentContent.setTimeReading(studentContent.getTimeReading()+timeLeft);
-            viewModel.updateTimeReading(studentContent);
+            viewModel.updateTimeReading(studentContent,token);
             timeLeft=0;
         }
     }
@@ -105,6 +105,8 @@ public class ContentActivity extends AppCompatActivity {
     @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SessionManagement session = new SessionManagement(this);
+        token = session.getCurrentUser().getToken();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
         Bundle data = this.getIntent().getExtras();
@@ -166,7 +168,7 @@ public class ContentActivity extends AppCompatActivity {
                                 studentContent.setIdStudent(sessionManagement.getCurrentUser().getStudentId());
                                 studentContent.setIdContent(contentDTO.getContent().getId());
                                 studentContent.setReadAgain(true);
-                                viewModel.saveContentStudent(studentContent);
+                                viewModel.saveContentStudent(studentContent,token);
                             } else{
                                 finish();
                             }
@@ -182,10 +184,10 @@ public class ContentActivity extends AppCompatActivity {
                 studentContent.setIdStudent(sessionManagement.getCurrentUser().getStudentId());
                 studentContent.setIdContent(contentDTO.getContent().getId());
                 studentContent.setReadAgain(false);
-                viewModel.saveContentStudent(studentContent);
+                viewModel.saveContentStudent(studentContent,token);
                 viewModel.getContentStudent().observe(this,observerStudenContent);
             };
-            viewModel.getContentById(idContent).observe(this, observerContent);
+            viewModel.getContentById(idContent,token).observe(this, observerContent);
             viewModel.getMessage().observe(this, observer);
         }
     }
@@ -224,7 +226,7 @@ public class ContentActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AnswerActivity.class);
             Bundle bundle = new Bundle();
             viewModel.getContentStudent().removeObserver(observerStudenContent);
-            viewModel.updateFinishContent(studentContent);
+            viewModel.updateFinishContent(studentContent,token);
             bundle.putSerializable("Questions", (Serializable) contentDTO.getQuestions());
             bundle.putString("Title",contentDTO.getContent().getTitle());
             SessionManagement sessionManagement = new SessionManagement(this);
