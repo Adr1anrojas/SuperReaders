@@ -11,6 +11,7 @@ import { ContentComponent } from './components/content/content.component';
 import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
 import { ContentDetailComponent } from './components/content/content-detail/content-detail.component';
 import { ReportDetailComponent } from './components/report/report-detail/report-detail.component';
+import { AssingComponent } from './components/assing/assing.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'report/detail', component: ReportDetailComponent },
   { path: 'classRoom', component: ClassRoomComponent },
   { path: 'content', component: ContentComponent },
-  { path: 'contentdetail/:id', component: ContentDetailComponent }
+  { path: 'contentdetail/:id', component: ContentDetailComponent },
+  { path: 'assign', component: AssingComponent }
 ];
 
 @NgModule({

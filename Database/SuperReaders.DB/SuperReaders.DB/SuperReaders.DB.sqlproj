@@ -113,6 +113,10 @@
     <Build Include="dbo\StoredProcedures\Monitor\Monitoring_GetByClassRoom.sql" />
     <Build Include="dbo\StoredProcedures\Monitor\Monitoring_GetByContentMoreReading.sql" />
     <Build Include="dbo\StoredProcedures\Monitor\Monitoring_GetByStudent.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_AddContentToStudentByClassRoom.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetContentToStudentByClassRoom.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_UpdateContentToStudentByClassRoom.sql" />
+    <Build Include="dbo\StoredProcedures\Content\Content_GetAllAsignmentsByStudent.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\StoredProcedures\Login\Login_UserLoged.sql" />

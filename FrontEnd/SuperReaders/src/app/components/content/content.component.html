@@ -14,11 +14,14 @@
                         </div>
                     </div>
                     <div class="card-actions text-center">
-                        <button type="button" class="btn btn-outline-warning" (click)="editContent(item)">
+                        <button type="button" class="btn btn-outline-warning mr-1" (click)="editContent(item)">
                             <fa-icon icon="edit" class="mr-0"></fa-icon>
                         </button>
-                        <button type="button" class="btn btn-outline-danger" (click)="showModalDelete(item)">
-                            <fa-icon icon="trash " class="mr-0"></fa-icon>
+                        <button type="button" class="btn btn-outline-danger mr-1" (click)="showModalDelete(item)">
+                            <fa-icon icon="trash" class="mr-0"></fa-icon>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" (click)="showModalAssing(item)">
+                            <fa-icon icon="file-signature" class="mr-0"></fa-icon>
                         </button>
                     </div>
                 </div>
@@ -45,6 +48,30 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
                         data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary" (click)="deleteContent()"
+                        data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL ASIGN -->
+<div class="bs-example">
+    <!-- Modal HTML -->
+    <div id="asignContent" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Esta seguro de Asignar el contenido {{this.currentContent.title}} al Grupo?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="asignContentByGroup()"
                         data-dismiss="modal">Aceptar</button>
                 </div>
             </div>

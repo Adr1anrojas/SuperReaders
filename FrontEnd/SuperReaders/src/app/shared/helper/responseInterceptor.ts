@@ -8,10 +8,10 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: LoginService, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
+    constructor(private authenticationService: LoginService, private toastr: ToastrService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        setTimeout(() => this.spinner.hide(), 500);
+        // setTimeout(() => this.spinner.hide(), 500);
         return next.handle(request).pipe(catchError(err => {
             if (err.status === 401) {
                 this.toastr.error('Su sesión ha expirado.', '¡Error!');
