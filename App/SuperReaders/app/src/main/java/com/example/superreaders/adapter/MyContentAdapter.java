@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -11,11 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +55,9 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
         Content content = dataContent.get(position);
         holder.contentTitle.setText(content.getTitle());
         if (content.getImg()!=null) {
-            holder.contentImg.setImageBitmap(getImage(content.getImg()));
+            Bitmap img =getImage(content.getImg());
+            holder.contentImg.setImageBitmap(img);
+            holder.linearLayout.setBackgroundColor(getDominantColor(img));
         }
         holder.content=content;
     }
@@ -65,10 +71,12 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
         TextView contentTitle;
         ImageView contentImg;
         Content content;
+        LinearLayout linearLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             contentTitle = itemView.findViewById(R.id.textViewContent);
             contentImg = itemView.findViewById(R.id.imageViewContent);
+            linearLayout = itemView.findViewById(R.id.layoutCardContent);
             itemView.setOnClickListener(e->
                     {
 
@@ -77,6 +85,7 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
                         Bundle bundle = new Bundle();
                         bundle.putInt("idContent",content.getId());
                         bundle.putString("Title",content.getTitle());
+                        bundle.putInt("colorBar",getDominantColor(getImage(content.getImg())));
                         intent.putExtras(bundle);
                         activity.startActivity(intent);
                     }
@@ -95,5 +104,44 @@ public class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.MyVi
         }
         return DEFAULT_BITMAP;
 
+    }
+    public static int getDominantColor(Bitmap bitmap) {
+        if (null == bitmap) return Color.TRANSPARENT;
+
+        int redBucket    = 0;
+        int greenBucket  = 0;
+        int blueBucket   = 0;
+        int alphaBucket  = 0;
+
+        boolean hasAlpha = bitmap.hasAlpha();
+        int pixelCount   = bitmap.getWidth() * bitmap.getHeight();
+        int[] pixels     = new int[pixelCount];
+
+        bitmap.getPixels(
+                pixels,
+                0,
+                bitmap.getWidth(),
+                0,
+                0,
+                bitmap.getWidth(),
+                bitmap.getHeight()
+        );
+
+        for (int y = 0, h = bitmap.getHeight(); y < h; y++){
+            for (int x = 0, w = bitmap.getWidth(); x < w; x++){
+                int color   =  pixels[x + y * w];            // x + y * width
+                redBucket   += (color >> 16) & 0xFF;         // Color.red
+                greenBucket += (color >> 8) & 0xFF;          // Color.greed
+                blueBucket  += (color & 0xFF);               // Color.blue
+                if (hasAlpha) alphaBucket += (color >>> 24); // Color.alpha
+            }
+        }
+
+        return Color.argb(
+                (hasAlpha) ? (alphaBucket / pixelCount) : 255,
+                redBucket / pixelCount,
+                greenBucket / pixelCount,
+                blueBucket / pixelCount
+        );
     }
 }

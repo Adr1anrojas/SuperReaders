@@ -1,5 +1,6 @@
 package com.example.superreaders.ui.content;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -11,11 +12,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,6 +55,7 @@ public class ContentActivity extends AppCompatActivity {
     private ScrollView scrollText;
     private ContentViewModel viewModel;
     private int timeLeft=0;
+    private int colorBar;
     private Observer<StudentContent> observerStudenContent;
     private final CharSequence [] options={"Claro","En otro momento"};
     private String token;
@@ -103,6 +109,7 @@ public class ContentActivity extends AppCompatActivity {
         updateTimeRead();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +132,14 @@ public class ContentActivity extends AppCompatActivity {
         ll.addView(progressBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (data != null) {
+            colorBar = data.getInt("colorBar");
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(colorBar));
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(colorBar-8);
+            buttonBack.setBackgroundColor(colorBar);
+            buttonNext.setBackgroundColor(colorBar);
             int idContent = data.getInt("idContent");
             String title = data.getString("Title");
             setTitle(title);
@@ -142,7 +157,7 @@ public class ContentActivity extends AppCompatActivity {
                     pages = contentDTO.getPages();
                     base64img = pages.get(currentpage).getImg();
                     imageView.setImageBitmap(getImage(base64img));
-                    pageText.setText(pages.get(currentpage).getText());
+                    pageText.setText(pages.get(currentpage).getText().replace("\\n","\n"));
                     pageText.setMovementMethod(new ScrollingMovementMethod());
                     pageText.scrollTo(0, 0);
                     scrollText.scrollTo(0,0);
@@ -215,7 +230,7 @@ public class ContentActivity extends AppCompatActivity {
         if (currentpage < pages.size()) {
             base64img = pages.get(currentpage).getImg();
             imageView.setImageBitmap(getImage(base64img));
-            pageText.setText(pages.get(currentpage).getText());
+            pageText.setText(pages.get(currentpage).getText().replace("\\n","\n"));
             pageText.scrollTo(0,0);
             scrollText.scrollTo(0,0);
         }
@@ -233,6 +248,7 @@ public class ContentActivity extends AppCompatActivity {
             viewModel.updateFinishContent(studentContent,token);
             bundle.putSerializable("Questions", (Serializable) contentDTO.getQuestions());
             bundle.putString("Title",contentDTO.getContent().getTitle());
+            bundle.putInt("colorBar",colorBar);
             SessionManagement sessionManagement = new SessionManagement(this);
             bundle.putInt("idStudent",sessionManagement.getCurrentUser().getStudentId());
             intent.putExtras(bundle);
@@ -251,7 +267,7 @@ public class ContentActivity extends AppCompatActivity {
             currentpage--;
             base64img = pages.get(currentpage).getImg();
             imageView.setImageBitmap(getImage(base64img));
-            pageText.setText(pages.get(currentpage).getText());
+            pageText.setText(pages.get(currentpage).getText().replace("\\n","\n"));
             pageText.scrollTo(0,0);
             scrollText.scrollTo(0,0);
             if (currentpage == 0) {

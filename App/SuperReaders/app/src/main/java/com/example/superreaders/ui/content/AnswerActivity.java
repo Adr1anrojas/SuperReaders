@@ -1,12 +1,17 @@
 package com.example.superreaders.ui.content;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -42,12 +47,19 @@ public class AnswerActivity extends AppCompatActivity {
     private int idStudent;
     private List<StudentAnswer> answersStudent;
     private String token ;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
         Bundle data = this.getIntent().getExtras();
         if(data!=null) {
+            int colorBar = data.getInt("colorBar");
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(colorBar));
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(colorBar-8);
             SessionManagement session = new SessionManagement(this);
             token = session.getCurrentUser().getToken();
             answers = new Stack<Answer>();
@@ -61,6 +73,8 @@ public class AnswerActivity extends AppCompatActivity {
             changeQuestion(currentQuestion);
             buttonNext = findViewById(R.id.buttonNext);
             buttonBack = findViewById(R.id.buttonBack);
+            buttonBack.setBackgroundColor(colorBar);
+            buttonNext.setBackgroundColor(colorBar);
             buttonNext.setOnClickListener(e->buttonNextAction());
             buttonBack.setOnClickListener(e->buttonBackAction());
         }

@@ -50,6 +50,8 @@
             android:layout_width="176dp"
             android:layout_height="56dp"
             android:text="Iniciar sesion"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.413"
