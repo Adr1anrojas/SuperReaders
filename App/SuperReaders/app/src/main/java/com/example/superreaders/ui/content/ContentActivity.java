@@ -47,6 +47,7 @@ public class ContentActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private ContentDetail contentDTO;
     private StudentContent studentContent;
+    private ScrollView scrollText;
     private ContentViewModel viewModel;
     private int timeLeft=0;
     private Observer<StudentContent> observerStudenContent;
@@ -114,6 +115,7 @@ public class ContentActivity extends AppCompatActivity {
         pageText = findViewById(R.id.textPage);
         buttonBack = findViewById(R.id.buttonBack);
         buttonNext = findViewById(R.id.buttonNext);
+        scrollText = findViewById(R.id.scrollText);
         LinearLayout ll = findViewById(R.id.contentlayout);
         progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleLarge);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -143,6 +145,7 @@ public class ContentActivity extends AppCompatActivity {
                     pageText.setText(pages.get(currentpage).getText());
                     pageText.setMovementMethod(new ScrollingMovementMethod());
                     pageText.scrollTo(0, 0);
+                    scrollText.scrollTo(0,0);
                     if (currentpage > 0) {
                         buttonBack.setVisibility(View.VISIBLE);
                     }
@@ -214,6 +217,7 @@ public class ContentActivity extends AppCompatActivity {
             imageView.setImageBitmap(getImage(base64img));
             pageText.setText(pages.get(currentpage).getText());
             pageText.scrollTo(0,0);
+            scrollText.scrollTo(0,0);
         }
         if (currentpage == pages.size() - 1) {
             buttonNext.setText("Terminar");
@@ -249,6 +253,7 @@ public class ContentActivity extends AppCompatActivity {
             imageView.setImageBitmap(getImage(base64img));
             pageText.setText(pages.get(currentpage).getText());
             pageText.scrollTo(0,0);
+            scrollText.scrollTo(0,0);
             if (currentpage == 0) {
                 buttonBack.setVisibility(View.INVISIBLE);
             }
