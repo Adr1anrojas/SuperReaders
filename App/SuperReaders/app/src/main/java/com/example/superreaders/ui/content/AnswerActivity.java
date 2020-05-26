@@ -18,12 +18,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.superreaders.ColorUtil;
 import com.example.superreaders.R;
 import com.example.superreaders.SessionManagement;
 import com.example.superreaders.adapter.AnswersAdapter;
 import com.example.superreaders.retrofit.models.Answer;
 import com.example.superreaders.retrofit.models.Question;
 import com.example.superreaders.retrofit.models.StudentAnswer;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,7 +61,7 @@ public class AnswerActivity extends AppCompatActivity {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(colorBar-8);
+            window.setStatusBarColor(ColorUtil.darken(colorBar,5));
             SessionManagement session = new SessionManagement(this);
             token = session.getCurrentUser().getToken();
             answers = new Stack<Answer>();
@@ -113,7 +115,7 @@ public class AnswerActivity extends AppCompatActivity {
                 }
             }
             else{
-                Toast.makeText(this,"Porfavor selecione una respuesta",Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(this,"Porfavor selecione una respuesta",R.style.toastBad).show();
             }
         }
     }
@@ -140,7 +142,7 @@ public class AnswerActivity extends AppCompatActivity {
         ContentViewModel viewModel = new ContentViewModel();
         final Observer<Boolean> observer = status -> {
             if(status){
-                Toast.makeText(this,"Acabas de leer "+getTitle(),Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(this,"¡Felicidades!\nAcabas de leer\n"+getTitle(),R.style.toastGood).show();
                 finish();
             }
         };

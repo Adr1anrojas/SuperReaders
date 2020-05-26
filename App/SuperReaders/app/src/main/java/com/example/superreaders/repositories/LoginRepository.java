@@ -20,7 +20,7 @@ public class LoginRepository {
     }
     public MutableLiveData<LoginResponse> onLogin(String userName, String password){
         if(userName.isEmpty() && password.isEmpty()) {
-            messageResponse.setValue("No se aceptan vacios llanar los campos");
+            messageResponse.setValue("No se aceptan vacios llenar los campos");
             return userLogged;
         }
         LoginRequest userCredential = new LoginRequest(userName,password,"");
@@ -33,12 +33,11 @@ public class LoginRepository {
                     return;
                 }
                 userLogged.setValue(response.body());
-                messageResponse.setValue("Usuario logueado correctamente");
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                messageResponse.setValue("Usuario logueado correctamente");
+                messageResponse.setValue("Usuario o Contraseña incorrectos");
             }
         });
         return userLogged;

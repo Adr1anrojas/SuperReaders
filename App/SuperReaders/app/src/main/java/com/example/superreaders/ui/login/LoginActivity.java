@@ -15,6 +15,7 @@ import com.example.superreaders.SessionManagement;
 import com.example.superreaders.retrofit.response.LoginResponse;
 import com.example.superreaders.ui.content.TypeContentActivity;
 import com.example.superreaders.ui.home.HomeActivity;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 public class LoginActivity extends AppCompatActivity {
     LoginViewModel viewModel;
@@ -37,11 +38,13 @@ public class LoginActivity extends AppCompatActivity {
 
         });
         final Observer<String> observer = message ->{
-            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG ).show();
+            StyleableToast.makeText(getApplicationContext(),message,R.style.toastBad).show();
         };
         final Observer<LoginResponse> observerLogin = user ->{
             if(!user.getToken().isEmpty()){
                 session.createLoginSession(user);
+                if(user.getRole().equals("Student"))
+                    StyleableToast.makeText(getApplicationContext(),"¡Bienvenido!\nLector",R.style.toastGood).show();
                 onLogin(user);
             }
         };

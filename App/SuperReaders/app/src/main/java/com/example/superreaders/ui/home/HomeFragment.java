@@ -19,11 +19,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superreaders.R;
 import com.example.superreaders.SessionManagement;
+import com.example.superreaders.adapter.MyContentAdapter;
 import com.example.superreaders.adapter.MyItemGroupAdapter;
 import com.example.superreaders.retrofit.models.Content;
+import com.example.superreaders.retrofit.models.TypeContent;
 import com.example.superreaders.retrofit.models.TypeContentDetail;
 import com.example.superreaders.ui.content.ContentViewModel;
 
+import java.util.Collections;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -33,6 +36,7 @@ public class HomeFragment extends Fragment {
     private ProgressBar progressBar;
     private String token;
     private MyItemGroupAdapter typeContentAdapter;
+    private List<Content> preferences;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -55,15 +59,24 @@ public class HomeFragment extends Fragment {
         cl.addView(progressBar);
         SessionManagement session = new SessionManagement(getContext());
         token = session.getCurrentUser().getToken();
+        final Observer<List<Content>> observerPreferences = contents -> {
+            preferences=contents;
+        };
         final Observer<List<TypeContentDetail>> observerTypeContent= type ->{
             if(type!=null){
+                TypeContentDetail tcd=new TypeContentDetail();
+                tcd.setName("Recomendados");
+                Collections.shuffle(preferences);
+                tcd.setContents(preferences);
+                type.add(0,tcd);
                 typeContentAdapter = new MyItemGroupAdapter(getContext(),type);
                 recyclerView.setAdapter(typeContentAdapter);
-                recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 progressBar.setVisibility(View.INVISIBLE);
             }
         };
+        viewModel.getContentByPreferenceStudent(session.getCurrentUser().getStudentId(),token);
+        viewModel.allContent.observe(this.getActivity(),observerPreferences);
         viewModel.getContentByType(token);
         viewModel.getAllContentByType().observe(this.getActivity(),observerTypeContent);
     }

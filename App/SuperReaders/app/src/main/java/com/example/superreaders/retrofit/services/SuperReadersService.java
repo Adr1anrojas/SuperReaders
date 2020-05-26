@@ -40,7 +40,8 @@ public interface SuperReadersService {
 
     @GET("Content/{id}")
     Call<ContentDetail> getContentById(@Path("id") int idContent,@Header("Authorization") String authHeader);
-
+    @GET("ContENT/contentByPreferenceStudent/{id}")
+    Call<List<Content>> getContentByPreferenceStudent(@Path("id") int idContent,@Header("Authorization") String authHeader );
     @GET("Content/typeContent")
     Call<List<TypeContent>> getTypeContent(@Header("Authorization") String authHeader);
 

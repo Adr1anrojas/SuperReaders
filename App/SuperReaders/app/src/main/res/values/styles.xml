@@ -16,5 +16,17 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="toastGood">
+        <item name="stTextColor">#ffffff</item>
+        <item name="stColorBackground">#28a745</item>
+        <item name="stIconStart">@drawable/ic_done_black_24dp</item>
+        <item name="stLength">SHORT</item>
+    </style>
+    <style name="toastBad">
+        <item name="stTextColor">#ffffff</item>
+        <item name="stColorBackground">#dc3545</item>
+        <item name="stIconStart">@drawable/ic_error</item>
+        <item name="stLength">SHORT</item>
+    </style>
 
 </resources>

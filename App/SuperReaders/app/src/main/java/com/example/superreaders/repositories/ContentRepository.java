@@ -142,7 +142,7 @@ public class ContentRepository {
         });
 
     }
-    public  void updateTimeReading(StudentContent studentContent,String token){
+    public void updateTimeReading(StudentContent studentContent,String token){
         Call<StudentContent> call =superReadersService.updateTimeReading(studentContent,token);
         call.enqueue(new Callback<StudentContent>() {
             @Override
@@ -173,7 +173,7 @@ public class ContentRepository {
             }
         });
     }
-    public  void saveAnswerStudent(List<StudentAnswer> answers, String token){
+    public void saveAnswerStudent(List<StudentAnswer> answers, String token){
         Call<Void> call = superReadersService.saveAnswerStudent(answers, token);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -188,5 +188,24 @@ public class ContentRepository {
             public void onFailure(Call<Void> call, Throwable t) {
             }
         });
+    }
+    public MutableLiveData<List <Content>>getContentByPreferenceStudent(int id, String token){
+        Call<List<Content>> call = superReadersService.getContentByPreferenceStudent(id,token);
+        call.enqueue(new Callback<List<Content>>() {
+            @Override
+            public void onResponse(Call<List<Content>> call, Response<List<Content>> response) {
+                if(!response.isSuccessful()) {
+                    return;
+                }
+                contentList.removeAll(contentList);
+                contentList.addAll(response.body());
+                responseContent.setValue(contentList);
+            }
+
+            @Override
+            public void onFailure(Call<List<Content>> call, Throwable t) {
+            }
+        });
+        return responseContent;
     }
 }

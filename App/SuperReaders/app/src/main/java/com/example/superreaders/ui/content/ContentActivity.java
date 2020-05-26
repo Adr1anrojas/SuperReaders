@@ -30,6 +30,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.superreaders.ColorUtil;
 import com.example.superreaders.R;
 import com.example.superreaders.SessionManagement;
 import com.example.superreaders.retrofit.models.ContentDetail;
@@ -134,14 +135,14 @@ public class ContentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (data != null) {
             colorBar = data.getInt("colorBar");
-            if(getLuminance(colorBar)>210){
+            if(ColorUtil.getLuminance(colorBar)>210){
                 colorBar = Color.rgb(117, 117, 117);
             }
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(colorBar));
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(colorBar-8);
+            window.setStatusBarColor(ColorUtil.darken(colorBar,5));
             buttonBack.setBackgroundColor(colorBar);
             buttonNext.setBackgroundColor(colorBar);
             int idContent = data.getInt("idContent");
@@ -284,10 +285,6 @@ public class ContentActivity extends AppCompatActivity {
         finish();
         return true;
     }
-    public static int getLuminance(int argb) {
-        int lum= (   77  * ((argb>>16)&255)
-                + 150 * ((argb>>8)&255)
-                + 29  * ((argb)&255))>>8;
-        return lum;
-    }
+
+
 }

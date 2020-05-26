@@ -1,9 +1,5 @@
 package com.example.superreaders.ui.content;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -19,7 +15,7 @@ import java.util.List;
 
 public class ContentViewModel extends ViewModel {
     private ContentRepository repository;
-    private MutableLiveData<List<Content>> allContent;
+    public MutableLiveData<List<Content>> allContent;
     private MutableLiveData<List<ContentDetail>> content;
 
     public MutableLiveData<List<TypeContentDetail>> getAllContentByType() {
@@ -42,11 +38,15 @@ public class ContentViewModel extends ViewModel {
         this.repository = new ContentRepository();
         message = repository.messageResponse;
         status =  repository.status;
+        allContent = repository.responseContent;
         allContentByType = repository.responseContentByType;
         contentStudent = repository.contentStudent;
     }
     public MutableLiveData<List<Content>> getAllContent(String token){
         return allContent = repository.getAllContent(token);
+    }
+    public void getContentByPreferenceStudent(int id, String token){
+        allContent = repository.getContentByPreferenceStudent(id, token);
     }
     public MutableLiveData<ContentDetail> getContentById(int idContent, String token){
         return  repository.getContentById(idContent,token);
