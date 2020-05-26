@@ -134,7 +134,6 @@ public class ContentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (data != null) {
             colorBar = data.getInt("colorBar");
-            System.out.println(getLuminance(colorBar));
             if(getLuminance(colorBar)>210){
                 colorBar = Color.rgb(117, 117, 117);
             }
