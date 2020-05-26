@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -133,6 +134,10 @@ public class ContentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (data != null) {
             colorBar = data.getInt("colorBar");
+            System.out.println(getLuminance(colorBar));
+            if(getLuminance(colorBar)>210){
+                colorBar = Color.rgb(117, 117, 117);
+            }
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(colorBar));
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -279,5 +284,11 @@ public class ContentActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         finish();
         return true;
+    }
+    public static int getLuminance(int argb) {
+        int lum= (   77  * ((argb>>16)&255)
+                + 150 * ((argb>>8)&255)
+                + 29  * ((argb)&255))>>8;
+        return lum;
     }
 }
