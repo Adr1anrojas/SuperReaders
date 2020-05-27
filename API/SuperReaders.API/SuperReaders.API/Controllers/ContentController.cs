@@ -268,8 +268,7 @@ namespace SuperReaders.API.Controllers
         {
             try
             {
-                _iContentDomainObject.AddContentToStudentByClassRoom(content.IdClassRoom, content.IdContent);
-                return Ok();
+                return Ok(_iContentDomainObject.AddContentToStudentByClassRoom(content.IdClassRoom, content.IdContent));
             }
             catch (Exception e) 
             {

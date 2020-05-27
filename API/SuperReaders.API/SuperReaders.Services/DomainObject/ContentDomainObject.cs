@@ -384,9 +384,9 @@ namespace SuperReaders.Services.DomainObject
         /// <param name="idClassRoom"></param>
         /// <param name="idContent"></param>
         /// <returns></returns>
-        public void AddContentToStudentByClassRoom(int idClassRoom, int idContent)
+        public int AddContentToStudentByClassRoom(int idClassRoom, int idContent)
         {
-            
+            int result = 0;
             try
             {
                 var existAssing = _iContentDAO.GetContentToStudentByClassRoom(idClassRoom, idContent);
@@ -396,12 +396,14 @@ namespace SuperReaders.Services.DomainObject
                 {
                     existAssing.IsAssignment = !existAssing.IsAssignment;
                     _iContentDAO.UpdateContentToStudentByClassRoom(existAssing.IdClassRoom, existAssing.IdContent, existAssing.IsAssignment);
+                    result = existAssing.IsAssignment ? 1 : 0;
                 }
             }
             catch (Exception e)
             {
                 throw e;
             }
+            return result;
         }
 
         public List<Content> GetAllAsignmentsByStudent(int idStudent)

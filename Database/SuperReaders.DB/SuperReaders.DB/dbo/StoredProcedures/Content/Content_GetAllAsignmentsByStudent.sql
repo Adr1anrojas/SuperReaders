@@ -11,5 +11,5 @@ BEGIN
 	INNER JOIN ContentDetail CD ON C.Id = CD.IdContent
 	INNER JOIN ClassRoom CR ON CD.IdClassRoom = CR.Id
 	INNER JOIN ClassRoomDetail CRD ON CR.Id = CRD.IdClassRoom
-	WHERE CRD.IdStudent = @pIdStudent
+	WHERE CRD.IdStudent = @pIdStudent AND C.Status = 1 AND CD.IsAssignment = 1
 END

@@ -60,7 +60,7 @@ namespace SuperReaders.Contracts.Interfaces.IDomainObject
         /// <param name="idContent"></param>
         /// <returns></returns>
 
-        void AddContentToStudentByClassRoom(int idClassRoom, int idContent);
+        int AddContentToStudentByClassRoom(int idClassRoom, int idContent);
 
         /// <summary>
         /// This Method update an StudentContent of the student specified

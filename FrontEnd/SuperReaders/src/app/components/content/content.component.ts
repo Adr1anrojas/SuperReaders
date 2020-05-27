@@ -63,7 +63,10 @@ export class ContentComponent implements OnInit {
     let currentUser: LoginResult = this.loginService.currentUserValue();
     let contentAsign: ContentDetail = { idClassRoom: currentUser.classRoom.id, idContent: this.currentContent.id, isAssignment: true };
     this.contentService.asignContentByGroup(contentAsign).subscribe(res => {
-      this.toastr.success('¡Hecho!', 'Se asigno el Contenido.');
+      if (res == 0)
+        this.toastr.success('¡Hecho!', 'Se quito el Contenido.');
+      else
+        this.toastr.success('¡Hecho!', 'Se agrego el Contenido.');
     }, error => this.toastr.error('Ocurrio un problema al asignar el Contenido.', '¡Error!'));
   }
 
