@@ -11,5 +11,7 @@ namespace SuperReaders.Models.Entities
         public int IdClassRoom { get; set; }
         [JsonProperty("idContent")]
         public int IdContent { get; set; }
+        [JsonProperty("isAssignment")]
+        public bool IsAssignment { get; set; }
     }
 }

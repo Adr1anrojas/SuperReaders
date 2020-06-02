@@ -1,7 +1,8 @@
 ﻿CREATE TABLE [ContentDetail]
 (
 	[IdClassRoom] int NOT NULL,
-	[IdContent] int NOT NULL
+	[IdContent] int NOT NULL, 
+    [IsAssignment] BIT NOT NULL DEFAULT 0
 )
 GO
 ALTER TABLE [ContentDetail] ADD CONSTRAINT [FK_ContentDetail_ClassRoom]

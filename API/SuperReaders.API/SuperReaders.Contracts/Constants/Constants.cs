@@ -4,8 +4,8 @@
     {
         #region ConfigAPI
             public const string CorsPolicy = "CorsPolicy";
-            //public const string OriginAllow = "http://appreaders.web.app";
-            public const string OriginAllow = "http://localhost:4200";
+            public const string OriginAllow = "https://appreaders.web.app";
+            //public const string OriginAllow = "http://localhost:4200";
         #endregion
         #region User 
             // Parameter constants
@@ -90,6 +90,11 @@
             public const string SP_Content_UpdateTimeReading = "Content_UpdateTimeReading";
             public const string SP_Content_UpdateFinishContent = "Content_UpdateFinishContent";
             public const string SP_Content_SaveAnswerStudent = "Content_SaveAnswerStudent";
+            public const string SP_Content_AddContentToStudentByClassRoom = "Content_AddContentToStudentByClassRoom";
+            public const string SP_Content_GetContentToStudentByClassRoom = "Content_GetContentToStudentByClassRoom";
+            public const string SP_Content_UpdateContentToStudentByClassRoom = "Content_UpdateContentToStudentByClassRoom";
+            public const string SP_Content_GetAllAsignmentsByStudent = "Content_GetAllAsignmentsByStudent";
+
             //Parameter constant 
             public const string P_Content_Id = "@pId";
             public const string P_Content_IdStudent = "@pIdStudent";
@@ -102,10 +107,11 @@
             public const string P_Content_DateStart = "@pDateStart";
             public const string P_Content_DateFinish = "@pDateFinish";
             public const string P_Content_IsFinish = "@pisFinish";
+            public const string P_Content_IsAssignment = "@pIsAssignment";
         #endregion
 
         #region ContentDetail
-        public const string P_ContentDetail_IdClassRoom = "@pIdClassRoom";
+            public const string P_ContentDetail_IdClassRoom = "@pIdClassRoom";
             public const string P_ContentDetail_IdContent = "@pIdContent";
             // StoreProcedure constants
             public const string SP_ContentDetail_Create = "ContentDetail_Create";

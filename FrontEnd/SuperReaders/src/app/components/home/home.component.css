@@ -58,7 +58,7 @@
 }
 
 .content-size {
-  width: 170px!important;
+  width: 70v!important;
   /* You can set the dimensions to whatever you want */
   height: 250px!important;
   object-fit: cover!important;

@@ -256,6 +256,45 @@ namespace SuperReaders.API.Controllers
             }
         }
 
+        /// api/Content/contentStudent
+        /// <summary>
+        /// This Method assign the content by group
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("contentToStudentByClassRoom")]
+        public IActionResult AddContentToStudentByClassRoom([FromBody] ContentDetail content)
+        {
+            try
+            {
+                return Ok(_iContentDomainObject.AddContentToStudentByClassRoom(content.IdClassRoom, content.IdContent));
+            }
+            catch (Exception e) 
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        /// api/Content/contentStudent
+        /// <summary>
+        /// This Method assign the content by group
+        /// </summary>
+        /// <param name="contentStudent"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("getAllAsignmentsByStudent")]
+        public IActionResult GetAllAsignmentsByStudent(int idStudent)
+        {
+            try
+            {
+                return Ok(_iContentDomainObject.GetAllAsignmentsByStudent(idStudent));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
 
     }
 }

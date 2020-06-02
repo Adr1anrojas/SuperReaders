@@ -1,9 +1,6 @@
 <h5 class="mt-3" *ngIf="this.currentUser && this.currentUser.role!=='Student'">Inicio</h5>
 <div class="card mt-3">
-    <div class="card-body" id="img-background" *ngIf="this.currentUser && this.currentUser.role=='Teacher'">
-        <img class="img-home" src="../../../assets/bg-home.jpg" alt="">
-    </div>
-    <div class="card-body" *ngIf="this.currentUser && this.currentUser.role=='Admin'">
+    <div class="card-body" *ngIf="this.currentUser && this.currentUser.role!=='Student'">
         <img class="img-admin" src="../../../assets/home-admin.jpeg" alt="">
     </div>
     <div class="card-body" *ngIf="this.currentUser.isFirstTime && this.currentUser.role == 'Student'">

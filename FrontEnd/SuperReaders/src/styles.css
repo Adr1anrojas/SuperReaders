@@ -39,11 +39,18 @@
         height: 50%;
     }
 }
-
+.icon-delete {
+  color: #C82333;
+}
 .icon-edit {
-    color: blue;
+    color: #39529B;
+}
+.align-left {
+  text-align: left !important;
 }
 
-.icon-delete {
-    color: red;
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+  box-shadow: none !important;
 }

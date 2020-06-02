@@ -22,7 +22,7 @@ export class ReportComponent implements OnInit {
   pieChartData: number[] = [];
   students: Student[] = [];
   pieChartLegend = true;
-  pieChartColors = [{ backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)'] },];
+  pieChartColors = [{ backgroundColor: ['#2ec553', 'red'] }];
   chartOptions = { responsive: true };   // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
   labelspie = ['Contenidos Finalizados', 'Contenidos no Finalizados'];
   labels = ['Contenidos Finalizados'];
@@ -32,7 +32,7 @@ export class ReportComponent implements OnInit {
   chartHorizontalData = [];
   // CHART COLOR.
   colors = [];
-  columns: string[] = ['Nombre', 'Apellidos', 'Tiempo de lectura', 'Contenidos leidos', 'Contenidos finalizados', 'Contenidos no finalizados', 'Accion'];
+  columns: string[] = ['Nombres', 'Apellidos', 'Tiempo de lectura', 'Contenidos leidos', 'Contenidos finalizados', 'Contenidos no finalizados', 'Accion'];
 
   constructor(private route: Router, private reportService: ReportService, private loginService: LoginService, private router: Router) { }
 

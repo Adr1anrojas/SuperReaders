@@ -6,6 +6,8 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { TypeContent } from '../models/typeContent';
 import { StudentContent } from '../models/StudentContent';
 import { StudentAnswer } from '../models/StudentAnswer';
+import { ContentFile } from '../models/contentFile';
+import { ContentDetail } from '../models/contentDetail';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +66,14 @@ export class ContentService {
 
   getAllContentByTypeContent() {
     return this.http.get<TypeContent[]>(this.url + 'contentByTypeContent');
+  }
+
+  asignContentByGroup(content: ContentDetail) {
+    return this.http.post(this.url + 'contentToStudentByClassRoom', content);
+  }
+
+  getAllContentAsignByStudent(idStudent: number) {
+    return this.http.get(this.url + 'getAllAsignmentsByStudent/?idStudent=' + idStudent);
   }
 
 }

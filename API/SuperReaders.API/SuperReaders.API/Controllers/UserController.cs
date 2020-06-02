@@ -10,7 +10,6 @@ using System.Collections.Generic;
 
 namespace SuperReaders.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

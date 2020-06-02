@@ -35,6 +35,10 @@
                 class="list-group-item list-group-item-action bg-light">
                 <fa-icon class="fa-2x report-icon" icon="chart-line"></fa-icon>{{collapsed?'Monitoreo':''}}
             </a>
+            <a *ngIf="currentUser.role=='Student'" [routerLink]="['/assign']"
+                class="list-group-item list-group-item-action bg-light">
+                <fa-icon class="fa-2x report-icon" icon="clipboard-check"></fa-icon>{{collapsed?'Asignaciones':''}}
+            </a>
             <br>
         </div>
     </div>

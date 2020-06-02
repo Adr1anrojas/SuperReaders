@@ -6,10 +6,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: LoginService, private spinner: NgxSpinnerService) { }
+    constructor(private authenticationService: LoginService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        setTimeout(() => this.spinner.show(), 1);
+        // setTimeout(() => this.spinner.show(), 1);
         // add authorization header with jwt token if available
         let currentUser = this.authenticationService.currentUserValue();
         if (currentUser && currentUser.token) {
