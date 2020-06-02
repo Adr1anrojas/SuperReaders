@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
   }
 
   changeStatus(index: number) {
-    console.log(index);
     this.allTypeContent[index].isSelected = !this.allTypeContent[index].isSelected;
   }
 
@@ -55,12 +54,14 @@ export class HomeComponent implements OnInit {
     this.contentService.createTypeContentStudent(typeContentStudent).subscribe(res => {
       this.currentUser.isFirstTime = false;
       this.loginService.setCurrentUser(this.currentUser);
-      this.contentService.getAllContent().subscribe((res: TypeContent[]) => { this.allContent = res; });
+      this.contentService.getAllContentByPreferenceStudent(this.currentUser.studentId).subscribe((res: ContentFile[]) => {
+        this.contentPreferences = res ? res : [];
+        this.contentService.getAllContentByTypeContent().subscribe((res: TypeContent[]) => { this.allContent = res; });
+      });
     }, error => this.toastr.error('Ocurrio un problema al cargar tus categorias.', '¡Error!'));
   }
 
   showContent(content: ContentFile) {
-    console.log(content);
     this.router.navigate(['home/content/', content.id]);
   }
 
